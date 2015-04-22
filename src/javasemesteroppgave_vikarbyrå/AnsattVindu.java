@@ -25,10 +25,9 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class AnsattVindu extends JPanel{
-    private final JPanel meny, registrering, bunn;
+    private final JPanel meny, registrering, bunn, topp;
     private JButton regFirma, regVikariat, regArbForhold, regVikar, visReg, loggUt;
     private JTextArea utskrift;
-    private JLabel lbl_header;
     private JFrame ramme; //rammen på programmet
     private BorderLayout borderLayout;
     private FlowLayout flowLayout;
@@ -49,8 +48,6 @@ public class AnsattVindu extends JPanel{
         borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
                 
-        Icon logo = new ImageIcon(getClass().getResource("Bilder/VikarbyråHeader.gif"));
-        lbl_header = new JLabel("",logo,SwingConstants.CENTER);
                 
         regFirma = new JButton("Registrer Firma");
             regFirma.setFocusPainted(false);
@@ -76,6 +73,10 @@ public class AnsattVindu extends JPanel{
         meny.add(new JPanel());
         meny.add(new JPanel());
         meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
         meny.add(loggUt);
         
 
@@ -89,8 +90,12 @@ public class AnsattVindu extends JPanel{
         bunn = new JPanel();
         bunn.setLayout(null);
         bunn.setPreferredSize(new Dimension(50, 0));
-                
-        add(lbl_header, BorderLayout.NORTH);
+        
+        topp = new JPanel();
+        topp.setLayout(null);
+        topp.setPreferredSize(new Dimension(50,0));
+        
+        add(topp, BorderLayout.NORTH);
         add(meny, BorderLayout.WEST);
         add(utskrift, BorderLayout.CENTER);
         add(registrering, BorderLayout.EAST);
@@ -114,6 +119,10 @@ public class AnsattVindu extends JPanel{
         return utskrift;
     }
     
+    public void visReg(){
+        v.firmaRegister.skrivFirmaListe(utskrift);
+    }
+    
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regFirma){
@@ -123,7 +132,7 @@ public class AnsattVindu extends JPanel{
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
                 
-                RegistrerFirma rf = new RegistrerFirma(AnsattVindu.this.getTextArea());
+                RegistrerFirma rf = new RegistrerFirma(AnsattVindu.this.getTextArea(), v);
                 add(rf, BorderLayout.EAST);
                 rf.setVisible(true);
                 
@@ -155,7 +164,7 @@ public class AnsattVindu extends JPanel{
                 AnsattVindu.this.rvv = rvv;
             }
             else if(e.getSource()==visReg){
-                
+                visReg();
             }
             else if(e.getSource()==loggUt){
                 
