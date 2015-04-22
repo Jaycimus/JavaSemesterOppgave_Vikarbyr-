@@ -23,6 +23,5 @@ public class VikarbyraaRUN {
                 System.exit(0);
             }
 	});
-        
     }
 }
