@@ -25,11 +25,14 @@ import javax.swing.JTextField;
 
 public class RegistrerVikar extends JPanel{
     private JButton regVikar;
-    private JLabel lbl_fornavn, lbl_etternavn, lbl_persnr, lbl_tlfnr, lbl_epost;
-    private JTextField tf_fornavn, tf_etternavn, tf_persnr, tf_tlfnr, tf_epost;
+    private JLabel lbl_navn, lbl_persnr, lbl_tlfnr, lbl_jobberf, lbl_ref;
+    private JTextField tf_navn, tf_persnr, tf_tlfnr, tf_jobberf, tf_ref;
     private JLabel label;
     private JTextArea utskrift;
     
+    private JComboBox<String> cb_utdanning;
+    private final String[] utdanning = 
+        {"Ingen","Videregående","Høgskole/Universitet"};
     private JComboBox<String> cb_bransjer;
     private final String[] bransjer = 
         {"Advokattjenester/Prosedyre", "Bankvirksomhet", "Helsesektor", "Bygg/Anlegg/Entreprenør", 
@@ -43,6 +46,72 @@ public class RegistrerVikar extends JPanel{
                                         "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
     public RegistrerVikar(JTextArea utskrift){
-        setLayout
-}
+        setLayout(new GridLayout(0,2,20,25));
+        setPreferredSize(new Dimension(500,500));
+        
+        this.utskrift = utskrift;
+        
+        Knappelytter lytter = new Knappelytter();
+        
+        regVikar = new JButton("Registrer Vikar");
+        regVikar.addActionListener(lytter);
+        
+        lbl_navn = new JLabel("Navn: ");
+        lbl_persnr = new JLabel("Personnr: ");
+        lbl_tlfnr = new JLabel("Telefon: ");
+        lbl_jobberf = new JLabel("Jobberfaring: ");
+        lbl_ref = new JLabel("Referanse(r): ");
+        
+        tf_navn = new JTextField("",15);
+        tf_persnr = new JTextField("",15);
+        tf_tlfnr = new JTextField("",15);
+        tf_jobberf = new JTextField("",15);
+        tf_ref = new JTextField("",15);
+        
+        cb_bransjer = new JComboBox<>(bransjer);
+        cb_bransjer.setMaximumRowCount(9);
+        cb_utdanning = new JComboBox<>(utdanning);
+        cb_utdanning.setMaximumRowCount(3);
+        
+        add(lbl_navn);
+        add(tf_navn);
+        add(lbl_persnr);
+        add(tf_persnr);
+        add(lbl_tlfnr);
+        add(tf_tlfnr);
+        add(lbl_jobberf);
+        add(tf_jobberf);
+        add(lbl_ref);
+        add(tf_ref);
+        add(regVikar);
+    }
+    public JButton getRegVikar(){
+        return regVikar;
+    }
+    
+    public void regVikar(){
+        String navn = tf_navn.getText();
+        String persS = tf_persnr.getText();
+        int pers =Integer.parseInt(persS);
+        String tlfS = tf_tlfnr.getText();
+        int tlf = Integer.parseInt(tlfS);
+        String jobberf = tf_jobberf.getText();
+        String ref = tf_ref.getText();
+        String jobbkat = (String) cb_bransjer.getSelectedItem();
+        String utdan = (String) cb_utdanning.getSelectedItem();
+        
+        Vikar vikar = new Vikar(navn,pers,tlf,jobbkat,utdan,jobberf,ref);
+        
+        System.out.println("regVikar");
+        
+        utskrift.setText(vikar.toString());
+    }
+    
+    private class Knappelytter implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            if(e.getSource()==regVikar){
+                regVikar();
+            }
+        }
+    }
 }

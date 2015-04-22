@@ -16,14 +16,13 @@ public class Vikar implements Serializable{
     private String jobbKategori;
     private String utdanning;
     private String jobberfaring;
-    private String lønnskrav;
     private String referanser;
     
     Vikar neste;
     
     private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<Arbeidsforhold>();
         
-    public Vikar(String navn, int tlf, int personNr, String jobbKategori, String utdanning, String jobberfaring, String lønnskrav, String referanser){
+    public Vikar(String navn, int tlf, int personNr, String jobbKategori, String utdanning, String jobberfaring, String referanser){
         this.navn = navn;
         this.tlf = tlf;
         this.personNr = personNr;

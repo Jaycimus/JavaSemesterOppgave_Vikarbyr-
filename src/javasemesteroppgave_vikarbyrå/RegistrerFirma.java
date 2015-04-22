@@ -104,9 +104,9 @@ public class RegistrerFirma extends JPanel {
         String epost = tf_epost.getText();
         String sektor;
             if(privat.isSelected())
-                sektor = "privat";
+                sektor = "Privat";
             else
-                sektor = "offentlig";
+                sektor = "Offentlig";
         String bransjer = (String) cb_bransjer.getSelectedItem();
         
         
