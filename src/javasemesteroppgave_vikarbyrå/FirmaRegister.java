@@ -44,11 +44,9 @@ public class FirmaRegister implements Serializable {
             while(loper!=null){
                 
                 firmaListe.append(loper.toFirmaString()+"\n");
-            }
                 
-        }
-            
-        
-    }
-   
+                loper = loper.neste;
+            }                
+        }        
+    }   
 }
