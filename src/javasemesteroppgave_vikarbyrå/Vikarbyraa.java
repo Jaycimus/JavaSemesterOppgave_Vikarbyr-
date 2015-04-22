@@ -9,7 +9,7 @@ package javasemesteroppgave_vikarbyrå;
 
 public class Vikarbyraa {
     private FirmaRegister firmaRegister = new FirmaRegister();
-    private RegistrerVikar vikarRegister = new RegistrerVikar();
+    //private Vikar vikarRegister = new RegistrerVikar();
     
     public Vikarbyraa(){
         

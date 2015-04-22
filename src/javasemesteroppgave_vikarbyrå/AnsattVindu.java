@@ -38,6 +38,7 @@ public class AnsattVindu extends JPanel{
     private Vikarbyraa v;
     private RegistrerFirma rf;
     private RegistrerVikariat rv;
+    private RegistrerVikar rvv;
     
     private Font font;    
     
@@ -137,7 +138,14 @@ public class AnsattVindu extends JPanel{
                 
             }
             else if(e.getSource()==regVikar){
+                registrering.setVisible(false);
+                AnsattVindu.this.rv.setVisible(false);
+                AnsattVindu.this.rf.setVisible(false);
                 
+                RegistrerVikar rvv = new RegistrerVikar(AnsattVindu.this.getTextArea());
+                add(rvv,BorderLayout.EAST);
+                
+                AnsattVindu.this.rvv = rvv;
             }
             else if(e.getSource()==visReg){
                 

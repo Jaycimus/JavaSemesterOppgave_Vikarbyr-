@@ -22,18 +22,13 @@ public class Vikar implements Serializable{
     
     private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<Arbeidsforhold>();
         
-<<<<<<< HEAD
-    public Vikar(String navn, int tlf, int personNr, String jobbKategori, String utdanning, String jobberfaring, String referanser){
-=======
-    public Vikar(String navn, int tlf, int personNr, String onsketBransjer, String utdanning, String jobberfaring, String lønnskrav, String referanser){
->>>>>>> origin/master
+    public Vikar(String navn, int tlf, int personNr, String onsketBransjer, String utdanning, String jobberfaring, String referanser){
         this.navn = navn;
         this.tlf = tlf;
         this.personNr = personNr;
         this.onsketBransjer = onsketBransjer;
         this.utdanning = utdanning;
         this.jobberfaring = jobberfaring;
-        this.lønnskrav = lønnskrav;
         this.referanser = referanser;
         neste = null;
         
@@ -53,7 +48,7 @@ public class Vikar implements Serializable{
         
         utskrift = "\nNavn; " + navn + "\nTelefon: " + tlf + "\nPersonNr: " + personNr + 
                    "\nØnskede bransjer: " + onsketBransjer + "\nUtdanning: " + utdanning +
-                   "\nJobberfaring: " + jobberfaring + "\nLønnskrav: " + lønnskrav + "\nReferanser: " + referanser +
+                   "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser +
                    "\nArbiedsforhold: " + arbeidsforholdString;
         
         return utskrift;
