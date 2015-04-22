@@ -31,6 +31,8 @@ public class RegistrerFirma extends JPanel {
     private JLabel label;
     private JTextArea utskrift;
     
+    private Vikarbyraa v;
+    
     private JComboBox<String> cb_bransjer; 
     private final String[] bransjer = 
         {"Advokattjenester/Prosedyre", "Bankvirksomhet", "Helsesektor", "Bygg/Anlegg/Entreprenør", 
@@ -43,10 +45,11 @@ public class RegistrerFirma extends JPanel {
                                     "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
                                         "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
-    public RegistrerFirma(JTextArea utskrift){
+    public RegistrerFirma(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
+        this.v = v;
         this.utskrift = utskrift;
         
         Knappelytter lytter = new Knappelytter();
@@ -108,9 +111,10 @@ public class RegistrerFirma extends JPanel {
             else
                 sektor = "Offentlig";
         String bransjer = (String) cb_bransjer.getSelectedItem();
-        
-        
+                
         Firma firma = new Firma(navn, sektor, adresse, bransjer, tlf, epost);
+        
+        v.firmaRegister.settInn(firma);
         
         System.out.println("regFirma");
         

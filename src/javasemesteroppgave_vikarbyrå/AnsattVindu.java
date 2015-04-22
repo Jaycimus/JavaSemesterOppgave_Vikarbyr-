@@ -114,6 +114,10 @@ public class AnsattVindu extends JPanel{
         return utskrift;
     }
     
+    public void visReg(){
+        v.firmaRegister.skrivFirmaListe(utskrift);
+    }
+    
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regFirma){
@@ -123,7 +127,7 @@ public class AnsattVindu extends JPanel{
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
                 
-                RegistrerFirma rf = new RegistrerFirma(AnsattVindu.this.getTextArea());
+                RegistrerFirma rf = new RegistrerFirma(AnsattVindu.this.getTextArea(), v);
                 add(rf, BorderLayout.EAST);
                 rf.setVisible(true);
                 
@@ -155,7 +159,7 @@ public class AnsattVindu extends JPanel{
                 AnsattVindu.this.rvv = rvv;
             }
             else if(e.getSource()==visReg){
-                
+                visReg();
             }
             else if(e.getSource()==loggUt){
                 
