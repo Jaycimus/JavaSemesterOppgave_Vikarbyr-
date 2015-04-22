@@ -15,6 +15,8 @@ public class Firma implements Serializable{
     private String bransje;
     private int tlf;
     private String epost;
+    
+    public Firma neste;
     //private VikarRegister vikReg;
     
     public Firma(String navn, String typeSektor, String adresse, String bransje,
@@ -25,6 +27,7 @@ public class Firma implements Serializable{
         this.bransje = bransje;
         this.tlf = tlf;
         this.epost = epost;
+        this.neste=null;
               
     }
     
@@ -37,7 +40,7 @@ public class Firma implements Serializable{
         return adresse;
     }
     
-    public String toString(){
+    public String toFirmaString(){
         String utskrift = "\nNavn: " + navn + "\nType Sektor: " + typeSektor + 
                           "\nAdresse: " + adresse + "\nBransje: " + bransje + 
                           "\nTelefon: " + tlf + "\nE-post: " + epost;
