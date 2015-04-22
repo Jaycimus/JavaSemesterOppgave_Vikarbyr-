@@ -25,6 +25,3 @@ public class VikarbyraaRUN {
 	});
     }
 }
-//testestestest
-
-//ENDRING, sjekke kommentar
