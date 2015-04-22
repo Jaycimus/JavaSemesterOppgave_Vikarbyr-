@@ -118,16 +118,21 @@ public class AnsattVindu extends JPanel{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regFirma){
                 registrering.setVisible(false);
-                AnsattVindu.this.rv.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rvv!=null)
+                    AnsattVindu.this.rvv.setVisible(false);
                 
                 RegistrerFirma rf = new RegistrerFirma(AnsattVindu.this.getTextArea());
                 add(rf, BorderLayout.EAST);
+                rf.setVisible(true);
                 
                 AnsattVindu.this.rf = rf;
             }
             else if(e.getSource()==regVikariat){
                 registrering.setVisible(false);
-                AnsattVindu.this.rf.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rf.setVisible(false);
                 
                 RegistrerVikariat rv = new RegistrerVikariat(AnsattVindu.this.getTextArea());
                 add(rv, BorderLayout.EAST);
@@ -139,8 +144,10 @@ public class AnsattVindu extends JPanel{
             }
             else if(e.getSource()==regVikar){
                 registrering.setVisible(false);
-                AnsattVindu.this.rv.setVisible(false);
-                AnsattVindu.this.rf.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rf!=null)
+                    AnsattVindu.this.rf.setVisible(false);
                 
                 RegistrerVikar rvv = new RegistrerVikar(AnsattVindu.this.getTextArea());
                 add(rvv,BorderLayout.EAST);
