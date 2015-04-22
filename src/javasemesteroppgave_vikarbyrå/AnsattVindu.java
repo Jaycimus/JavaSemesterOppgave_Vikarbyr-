@@ -37,6 +37,7 @@ public class AnsattVindu extends JPanel{
     private Knappelytter lytter;
     private Vikarbyraa v;
     private RegistrerFirma rf;
+    private RegistrerVikariat rv;
     
     private Font font;    
     
@@ -116,26 +117,33 @@ public class AnsattVindu extends JPanel{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regFirma){
                 registrering.setVisible(false);
+                AnsattVindu.this.rv.setVisible(false);
+                
                 RegistrerFirma rf = new RegistrerFirma(AnsattVindu.this.getTextArea());
                 add(rf, BorderLayout.EAST);
-                rf.setVisible(true);
                 
                 AnsattVindu.this.rf = rf;
             }
             else if(e.getSource()==regVikariat){
-                setVisible(false);
+                registrering.setVisible(false);
+                AnsattVindu.this.rf.setVisible(false);
+                
+                RegistrerVikariat rv = new RegistrerVikariat(AnsattVindu.this.getTextArea());
+                add(rv, BorderLayout.EAST);
+                
+                AnsattVindu.this.rv = rv;
             }
             else if(e.getSource()==regArbForhold){
-                setVisible(false);
+                
             }
             else if(e.getSource()==regVikar){
-                setVisible(false);
+                
             }
             else if(e.getSource()==visReg){
-                setVisible(false);
+                
             }
             else if(e.getSource()==loggUt){
-                setVisible(false);
+                
             }
         }
     }
