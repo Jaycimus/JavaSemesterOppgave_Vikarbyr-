@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class Vikar implements Serializable{
     private String navn;
+    private int tlf;
     private int personNr;
     private String jobbKategori;
     private String utdanning;
@@ -22,8 +23,9 @@ public class Vikar implements Serializable{
     
     private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<Arbeidsforhold>();
         
-    public Vikar(String navn, int personNr, String jobbKategori, String utdanning, String jobberfaring, String lønnskrav, String referanser){
+    public Vikar(String navn, int tlf, int personNr, String jobbKategori, String utdanning, String jobberfaring, String lønnskrav, String referanser){
         this.navn = navn;
+        this.tlf = tlf;
         this.personNr = personNr;
         this.jobbKategori = jobbKategori;
         this.utdanning = utdanning;
@@ -32,5 +34,17 @@ public class Vikar implements Serializable{
         this.referanser = referanser;
         neste = null;
         
+    }
+    
+    public int getPersonNr(){
+        return personNr;
+    }
+    
+    public String toString(){
+        String utskrift;
+        
+        utskrift = "\nNavn; " + navn + "\nTelefon: " + tlf + "\nPersonNr: " + personNr + "\Ønskede bransjer: " +
+        
+        return utskrift;
     }
 }
