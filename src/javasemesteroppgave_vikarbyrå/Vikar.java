@@ -13,7 +13,7 @@ public class Vikar implements Serializable{
     private String navn;
     private int tlf;
     private int personNr;
-    private String jobbKategori;
+    private String onsketBransjer;
     private String utdanning;
     private String jobberfaring;
     private String referanser;
@@ -22,11 +22,15 @@ public class Vikar implements Serializable{
     
     private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<Arbeidsforhold>();
         
+<<<<<<< HEAD
     public Vikar(String navn, int tlf, int personNr, String jobbKategori, String utdanning, String jobberfaring, String referanser){
+=======
+    public Vikar(String navn, int tlf, int personNr, String onsketBransjer, String utdanning, String jobberfaring, String lønnskrav, String referanser){
+>>>>>>> origin/master
         this.navn = navn;
         this.tlf = tlf;
         this.personNr = personNr;
-        this.jobbKategori = jobbKategori;
+        this.onsketBransjer = onsketBransjer;
         this.utdanning = utdanning;
         this.jobberfaring = jobberfaring;
         this.lønnskrav = lønnskrav;
@@ -41,8 +45,16 @@ public class Vikar implements Serializable{
     
     public String toString(){
         String utskrift;
+        String arbeidsforholdString = "";
         
-        utskrift = "\nNavn; " + navn + "\nTelefon: " + tlf + "\nPersonNr: " + personNr + "\Ønskede bransjer: " +
+        for(int i = 0; i < arbeidsforhold.size();i++){
+            arbeidsforholdString += arbeidsforhold.toString();
+        }
+        
+        utskrift = "\nNavn; " + navn + "\nTelefon: " + tlf + "\nPersonNr: " + personNr + 
+                   "\nØnskede bransjer: " + onsketBransjer + "\nUtdanning: " + utdanning +
+                   "\nJobberfaring: " + jobberfaring + "\nLønnskrav: " + lønnskrav + "\nReferanser: " + referanser +
+                   "\nArbiedsforhold: " + arbeidsforholdString;
         
         return utskrift;
     }
