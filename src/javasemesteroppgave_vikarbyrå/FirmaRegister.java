@@ -14,7 +14,12 @@ import java.io.*;
 
 public class FirmaRegister implements Serializable {
     
-    public Firma fforste;
+    public Firma fforste, fsiste;
+    
+    public FirmaRegister()
+            {
+                fforste = null;
+            }
    
     public void settInn(Firma ny)
     {
@@ -22,8 +27,14 @@ public class FirmaRegister implements Serializable {
         {
             return;
         }
-        ny.neste= fforste;
-        fforste = ny;
+        if(fforste == null)
+        {
+            fforste = fsiste = ny;
+        }else{
+            fsiste.neste= ny;
+            fsiste = ny;
+        }
+        
     }
     
     public Firma finnFirma(String firmanavn)
