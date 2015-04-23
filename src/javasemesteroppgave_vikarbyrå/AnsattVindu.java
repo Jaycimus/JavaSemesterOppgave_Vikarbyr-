@@ -7,41 +7,29 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 
 public class AnsattVindu extends JPanel{
     private final JPanel meny, registrering, bunn, topp;
-    private JButton regFirma, regVikariat, regArbForhold, regVikar, visReg, loggUt;
-    private JTextArea utskrift;
-    private JFrame ramme; //rammen på programmet
+    private final JButton regFirma, regVikariat, regArbForhold, regVikar, visReg, loggUt;
+    private final JTextArea utskrift;
+    private final JFrame ramme; //rammen på programmet
     private BorderLayout borderLayout;
-    private FlowLayout flowLayout;
-    private Container c;
     
-    private Knappelytter lytter;
     private Vikarbyraa v;
     private RegistrerFirma rf;
     private RegistrerVikariat rv;
     private RegistrerVikar rvv;
     
-    private Font font;    
-    
-    public AnsattVindu(Vikarbyraa v, JFrame ramme){
+   public AnsattVindu(Vikarbyraa v, JFrame ramme){
         this.v = v;
         this.ramme = ramme;
         
@@ -102,7 +90,6 @@ public class AnsattVindu extends JPanel{
         add(bunn, BorderLayout.SOUTH);
         
         Knappelytter lytter = new Knappelytter();
-        this.lytter = lytter;
         regFirma.addActionListener(lytter);
         regVikariat.addActionListener(lytter);
         regArbForhold.addActionListener(lytter);
@@ -131,37 +118,44 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
-                
+                                
                 RegistrerFirma rf = new RegistrerFirma(AnsattVindu.this.getTextArea(), v);
+                AnsattVindu.this.rf = rf;
                 add(rf, BorderLayout.EAST);
                 rf.setVisible(true);
                 
-                AnsattVindu.this.rf = rf;
+                
             }
             else if(e.getSource()==regVikariat){
                 registrering.setVisible(false);
-                if(rv!=null)
+                if(rf!=null)
                     AnsattVindu.this.rf.setVisible(false);
+                if(rvv!=null)
+                    AnsattVindu.this.rvv.setVisible(false);
                 
                 RegistrerVikariat rv = new RegistrerVikariat(AnsattVindu.this.getTextArea());
-                add(rv, BorderLayout.EAST);
-                
                 AnsattVindu.this.rv = rv;
+                add(rv, BorderLayout.EAST);  
             }
             else if(e.getSource()==regArbForhold){
-                
+                registrering.setVisible(true);
+                if(rf!=null)
+                    AnsattVindu.this.rf.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rvv!=null)
+                    AnsattVindu.this.rvv.setVisible(false);
             }
             else if(e.getSource()==regVikar){
                 registrering.setVisible(false);
-                if(rv!=null)
-                    AnsattVindu.this.rv.setVisible(false);
                 if(rf!=null)
                     AnsattVindu.this.rf.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rv.setVisible(false);
                 
                 RegistrerVikar rvv = new RegistrerVikar(AnsattVindu.this.getTextArea());
-                add(rvv,BorderLayout.EAST);
-                
                 AnsattVindu.this.rvv = rvv;
+                add(rvv,BorderLayout.EAST); 
             }
             else if(e.getSource()==visReg){
                 visReg();

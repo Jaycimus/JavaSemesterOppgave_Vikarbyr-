@@ -6,7 +6,6 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
  */
 package javasemesteroppgave_vikarbyrå;
 
-
 public class Vikariat {
     private String firma;
     private String arbeidssted;

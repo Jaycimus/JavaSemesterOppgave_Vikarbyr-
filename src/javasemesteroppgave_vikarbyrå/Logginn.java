@@ -7,10 +7,8 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
 package javasemesteroppgave_vikarbyrå;
 
 //importerer nødvendige klasser fra Javas klassebiblotek
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -24,7 +22,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Logginn extends JFrame{
