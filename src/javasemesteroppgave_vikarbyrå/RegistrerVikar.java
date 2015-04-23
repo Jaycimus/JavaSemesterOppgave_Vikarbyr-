@@ -10,23 +10,18 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class RegistrerVikar extends JPanel{
     private JButton regVikar;
     private JLabel lbl_navn, lbl_persnr, lbl_tlfnr, lbl_jobberf, lbl_ref;
+    private JLabel lbl_bransje, lbl_utdanning;
     private JTextField tf_navn, tf_persnr, tf_tlfnr, tf_jobberf, tf_ref;
-    private JLabel label;
     private JTextArea utskrift;
     
     private JComboBox<String> cb_utdanning;
@@ -60,6 +55,8 @@ public class RegistrerVikar extends JPanel{
         lbl_tlfnr = new JLabel("Telefon: ");
         lbl_jobberf = new JLabel("Jobberfaring: ");
         lbl_ref = new JLabel("Referanse(r): ");
+        lbl_bransje = new JLabel("Bransje: ");
+        lbl_utdanning = new JLabel("Utdanning: ");
         
         tf_navn = new JTextField("",15);
         tf_persnr = new JTextField("",15);
@@ -78,10 +75,14 @@ public class RegistrerVikar extends JPanel{
         add(tf_persnr);
         add(lbl_tlfnr);
         add(tf_tlfnr);
+        add(lbl_utdanning);
+        add(cb_utdanning);
         add(lbl_jobberf);
         add(tf_jobberf);
         add(lbl_ref);
         add(tf_ref);
+        add(lbl_bransje);
+        add(cb_bransjer);
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
@@ -97,7 +98,7 @@ public class RegistrerVikar extends JPanel{
     public void regVikar(){
         String navn = tf_navn.getText();
         String persS = tf_persnr.getText();
-        int pers =Integer.parseInt(persS);
+        int pers = Integer.parseInt(persS);
         String tlfS = tf_tlfnr.getText();
         int tlf = Integer.parseInt(tlfS);
         String jobberf = tf_jobberf.getText();
@@ -105,7 +106,7 @@ public class RegistrerVikar extends JPanel{
         String jobbkat = (String) cb_bransjer.getSelectedItem();
         String utdan = (String) cb_utdanning.getSelectedItem();
         
-        Vikar vikar = new Vikar(navn,pers,tlf,jobbkat,utdan,jobberf,ref);
+        Vikar vikar = new Vikar(navn,tlf,pers,jobbkat,utdan,jobberf,ref);
         
         System.out.println("regVikar");
         
