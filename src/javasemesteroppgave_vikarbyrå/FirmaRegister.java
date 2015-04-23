@@ -16,40 +16,35 @@ public class FirmaRegister implements Serializable {
     
     public Firma fforste, fsiste;
     
-    public FirmaRegister()
-            {
-                fforste = null;
-            }
+    public FirmaRegister(){
+        fforste = null;
+    }
    
-    public void settInn(Firma ny)
-    {
-        if(ny == null)
-        {
+    public void settInn(Firma ny){
+        if(ny == null){
             return;
         }
-        if(fforste == null)
-        {
+        if(fforste == null){
             fforste = fsiste = ny;
-        }else{
+        }
+        else{
             fsiste.neste= ny;
             fsiste = ny;
         }
         
     }
     
-    public Firma finnFirma(String firmanavn)
-    {
+    public Firma finnFirma(String firmanavn){
         return null;
     }
     
-    public void skrivFirmaListe(JTextArea firmaListe)
-    {
+    public void skrivFirmaListe(JTextArea firmaListe){
         Firma loper = fforste;
         
-        if(fforste == null)
-        {
+        if(fforste == null){
             firmaListe.setText("Ingen firmaer i registeret!");
-        }else{
+        }
+        else{
             firmaListe.setText("");
             
             while(loper!=null){
