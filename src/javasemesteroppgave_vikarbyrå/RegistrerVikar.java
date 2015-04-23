@@ -1,4 +1,3 @@
-
 /**
 Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
@@ -83,6 +82,12 @@ public class RegistrerVikar extends JPanel{
         add(tf_jobberf);
         add(lbl_ref);
         add(tf_ref);
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
         add(regVikar);
     }
     public JButton getRegVikar(){

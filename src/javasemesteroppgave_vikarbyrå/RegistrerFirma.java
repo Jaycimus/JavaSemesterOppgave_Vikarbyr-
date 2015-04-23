@@ -86,6 +86,12 @@ public class RegistrerFirma extends JPanel {
         add(tf_tlf);
         add(lbl_epost);
         add(tf_epost);
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
         add(regFirma);
                         
     }

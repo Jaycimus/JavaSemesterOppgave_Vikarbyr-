@@ -138,7 +138,7 @@ public class AnsattVindu extends JPanel{
                 add(rv, BorderLayout.EAST);  
             }
             else if(e.getSource()==regArbForhold){
-                registrering.setVisible(false);
+                registrering.setVisible(true);
                 if(rf!=null)
                     AnsattVindu.this.rf.setVisible(false);
                 if(rv!=null)
