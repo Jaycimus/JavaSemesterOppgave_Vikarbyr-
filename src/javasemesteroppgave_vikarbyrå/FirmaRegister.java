@@ -51,7 +51,6 @@ public class FirmaRegister implements Serializable {
     public int getAntallNoder(){
         int antall = 0;
         boolean ok = false;
-        boolean x = false;
         Firma løper = fforste;
         if(løper!=null){
             antall++;

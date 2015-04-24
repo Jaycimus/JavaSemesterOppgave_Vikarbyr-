@@ -39,9 +39,9 @@ public class RegistrerVikariat extends JPanel {
         this.v = v;
         
         Knappelytter lytter = new Knappelytter();
-        System.out.println("Firma Navn hentet1");
+
         firmaNavn = v.firmaRegister.getFirmaNavn();
-        System.out.println("Firma Navn hentet2");
+        
         regVikariat = new JButton("Registrer Vikariat");
         regVikariat.addActionListener(lytter);
         
@@ -92,7 +92,10 @@ public class RegistrerVikariat extends JPanel {
     }
     
     public void regVikariat(){
-        
+        String firma = (String) cb_firmaer.getSelectedItem();
+        String arbeidssted = tf_arbeidsted.getText();
+        String arbeidstid = tf_arbeidtid.getText();
+        //String stillingstype
     }
     
     private class Knappelytter implements ActionListener{
