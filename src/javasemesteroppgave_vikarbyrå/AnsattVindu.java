@@ -1,9 +1,8 @@
-/*
-Gruppemedlemmene:
+/*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
- */
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
@@ -133,12 +132,13 @@ public class AnsattVindu extends JPanel{
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
                 
-                RegistrerVikariat rv = new RegistrerVikariat(AnsattVindu.this.getTextArea());
+                RegistrerVikariat rv = new RegistrerVikariat(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rv = rv;
-                add(rv, BorderLayout.EAST);  
+                add(rv, BorderLayout.EAST);
+                rv.setVisible(true);
             }
             else if(e.getSource()==regArbForhold){
-                registrering.setVisible(false);
+                registrering.setVisible(true);
                 if(rf!=null)
                     AnsattVindu.this.rf.setVisible(false);
                 if(rv!=null)

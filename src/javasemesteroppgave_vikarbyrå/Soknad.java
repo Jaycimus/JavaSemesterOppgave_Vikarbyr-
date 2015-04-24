@@ -7,5 +7,5 @@ Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
  */
 public class Soknad {
-    
+    //Hva skal søknaden inneholde?
 }
