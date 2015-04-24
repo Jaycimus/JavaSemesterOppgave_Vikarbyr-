@@ -14,7 +14,7 @@ public class Vikariat {
     private String arbeidstid;
     private String stillingstype;
     private String kvalifikasjoner;
-    private String lønnsbetingelser;
+    private String lonnsbetingelser;
     private String kontaktinfo;
     private String stillingsInfo;
     //private SoknadsRegister soknadReg;
@@ -30,13 +30,13 @@ public class Vikariat {
     Stillings Beskrivelse
     Søknads Register*/
     
-    public Vikariat (String firma, String arbeidssted, String arbeidstid, String stillingstype, String kvalifikasjoner, String lønnsbetingelser, String kontaktinfo, String stillingsInfo){
+    public Vikariat (String firma, String arbeidssted, String arbeidstid, String stillingstype, String kvalifikasjoner, String lonnsbetingelser, String kontaktinfo, String stillingsInfo){
         this.firma = firma;
         this.arbeidssted = arbeidssted;
         this.arbeidstid = arbeidstid;
         this.stillingstype = stillingstype;
         this.kvalifikasjoner = kvalifikasjoner;
-        this.lønnsbetingelser = lønnsbetingelser;
+        this.lonnsbetingelser = lonnsbetingelser;
         this.kontaktinfo = kontaktinfo;
         this.stillingsInfo = stillingsInfo;
     }
@@ -44,7 +44,7 @@ public class Vikariat {
     public String toString(){
         String utskrift = "\nFirma navn: " + firma + "\nAdresse: " + arbeidssted + 
                           "\nArbeidstid: " + arbeidstid + "\nStillingstype: " + stillingstype + 
-                          "\nKvalifikasjoner: " + kvalifikasjoner + "\nLønnsbetingelser: " + lønnsbetingelser +
+                          "\nKvalifikasjoner: " + kvalifikasjoner + "\nLønnsbetingelser: " + lonnsbetingelser +
                           "\nKontaktinfo: " + kontaktinfo + "\nStillingsinfo: " + stillingsInfo;
         
         return utskrift;

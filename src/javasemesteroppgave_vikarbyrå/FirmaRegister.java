@@ -38,6 +38,41 @@ public class FirmaRegister implements Serializable {
         return null;
     }
     
+    public String[] getFirmaNavn(){
+        String[] firmaNavn = new String[getAntallNoder()];
+        Firma løper = fforste;
+        for(int i = 0; i < getAntallNoder(); i++){
+            firmaNavn[i] = løper.getNavn();
+            løper = løper.neste;
+        }
+        return firmaNavn;
+    }
+    
+    public int getAntallNoder(){
+        int antall = 0;
+        boolean ok = false;
+        boolean x = false;
+        Firma løper = fforste;
+        if(løper!=null){
+            antall++;
+            String forsteNavn = løper.getNavn();
+            ok = true;
+            løper = løper.neste;
+            while(ok == true){
+                if(løper!=null){
+                    if(løper.getNavn()!=forsteNavn){
+                        antall++;
+                        løper = løper.neste;
+                    }
+                }
+                else{
+                    ok = false;
+                }
+            }
+        }
+        
+        return antall;
+    }
     public void skrivFirmaListe(JTextArea firmaListe){
         Firma loper = fforste;
         
