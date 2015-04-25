@@ -43,6 +43,12 @@ public class Vikariat {
         this.stillingsInfo = stillingsInfo;
     }
     
+    public String toStringShort(){
+        String utskrift = firma + "\nAdresse: " + arbeidssted;
+       
+        return utskrift;
+    }
+    
     public String toString(){
         String utskrift = "\nFirma navn: " + firma + "\nAdresse: " + arbeidssted + 
                           "\nArbeidstid: " + arbeidstid + "\nStillingstype: " + stillingstype + 
