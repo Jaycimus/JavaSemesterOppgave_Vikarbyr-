@@ -11,6 +11,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,7 +20,7 @@ import javax.swing.JTextArea;
 
 public class AnsattVindu extends JPanel{
     private final JPanel meny, registrering, bunn, topp;
-    private final JButton regFirma, regVikariat, regArbForhold, regVikar, visReg, loggUt;
+    private final JButton regFirma, regVikariat, regArbForhold, regVikar, visFirmaReg, visVikariatReg, visArbeisforholdReg, visVikarReg, regSoking, loggUt;
     private final JTextArea utskrift;
     private final JFrame ramme; //rammen på programmet
     private BorderLayout borderLayout;
@@ -37,15 +39,19 @@ public class AnsattVindu extends JPanel{
                 
                 
         regFirma = new JButton("Registrer Firma");
-            regFirma.setFocusPainted(false);
+            /*regFirma.setFocusPainted(false);
             regFirma.setMargin(new Insets(0, 0, 0, 0));
             regFirma.setContentAreaFilled(false);
             regFirma.setBorderPainted(false);
-            regFirma.setOpaque(false);
+            regFirma.setOpaque(false);*/
         regVikariat = new JButton("Registrer Vikariat");
         regArbForhold = new JButton("Registrer arbeidsForhold");
         regVikar = new JButton("Registrer Vikar");
-        visReg = new JButton("Vis Register");
+        visFirmaReg = new JButton("Firma register");
+        visVikariatReg = new JButton("Vikariat register");
+        visArbeisforholdReg = new JButton("Arbeisforhold register");
+        visVikarReg = new JButton("Vikar register");
+        regSoking = new JButton("Søk i registerene");
         loggUt = new JButton("Logg Ut");
         
         meny = new JPanel();
@@ -55,11 +61,12 @@ public class AnsattVindu extends JPanel{
         meny.add(regVikariat);
         meny.add(regArbForhold);
         meny.add(regVikar);
-        meny.add(visReg);
         meny.add(new JPanel());
-        meny.add(new JPanel());
-        meny.add(new JPanel());
-        meny.add(new JPanel());
+        meny.add(visFirmaReg);
+        meny.add(visVikariatReg);
+        meny.add(visArbeisforholdReg);
+        meny.add(visVikarReg);
+        meny.add(regSoking);
         meny.add(new JPanel());
         meny.add(new JPanel());
         meny.add(new JPanel());
@@ -93,7 +100,11 @@ public class AnsattVindu extends JPanel{
         regVikariat.addActionListener(lytter);
         regArbForhold.addActionListener(lytter);
         regVikar.addActionListener(lytter);
-        visReg.addActionListener(lytter);
+        visFirmaReg.addActionListener(lytter);
+        visVikariatReg.addActionListener(lytter);
+        visArbeisforholdReg.addActionListener(lytter);
+        visVikarReg.addActionListener(lytter);
+        regSoking.addActionListener(lytter);
         loggUt.addActionListener(lytter);
     }
           
@@ -105,8 +116,12 @@ public class AnsattVindu extends JPanel{
         return utskrift;
     }
     
-    public void visReg(){
+    public void visFirmaReg(){
         v.firmaRegister.skrivFirmaListe(utskrift);
+    }
+    
+    public void visVikariatReg(){
+        v.vikariatRegister.skrivVikariatListe(utskrift);
     }
     
     private class Knappelytter implements ActionListener{
@@ -157,11 +172,24 @@ public class AnsattVindu extends JPanel{
                 AnsattVindu.this.rvv = rvv;
                 add(rvv,BorderLayout.EAST); 
             }
-            else if(e.getSource()==visReg){
-                visReg();
+            else if(e.getSource()==visFirmaReg){
+                visFirmaReg();
+            }
+            else if(e.getSource()==visVikariatReg){
+                visVikariatReg();
             }
             else if(e.getSource()==loggUt){
-                
+                Logginn logginn = new Logginn(v);
+                logginn.setSize(new Dimension(400,220));
+                logginn.setVisible(true);
+                logginn.setLocationRelativeTo(null);
+                logginn.setResizable(false);
+                logginn.addWindowListener( new WindowAdapter() {
+                    public void windowClosing(WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                ramme.setVisible(false);
             }
         }
     }

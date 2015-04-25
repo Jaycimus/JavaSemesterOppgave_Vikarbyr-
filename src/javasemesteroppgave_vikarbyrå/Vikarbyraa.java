@@ -9,7 +9,8 @@ package javasemesteroppgave_vikarbyrå;
 
 public class Vikarbyraa {
     public FirmaRegister firmaRegister = new FirmaRegister();
-    //private Vikar vikarRegister = new RegistrerVikar();
+    public VikariatRegister vikariatRegister = new VikariatRegister();
+    //public ArbeidsforholdRegister
     
     public Vikarbyraa(){
         
