@@ -40,7 +40,7 @@ public class Firma implements Serializable{
         return adresse;
     }
     
-    public String toFirmaString(){
+    public String toString(){
         String utskrift = "\nFirma navn: " + navn + "\nType Sektor: " + typeSektor + 
                           "\nAdresse: " + adresse + "\nBransje: " + bransje + 
                           "\nTelefon: " + tlf + "\nE-post: " + epost;

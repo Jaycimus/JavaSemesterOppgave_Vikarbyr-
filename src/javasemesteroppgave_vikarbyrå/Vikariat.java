@@ -30,6 +30,8 @@ public class Vikariat {
     Stillings Beskrivelse
     Søknads Register*/
     
+    public Vikariat neste;
+    
     public Vikariat (String firma, String arbeidssted, String arbeidstid, String stillingstype, String kvalifikasjoner, String lonnsbetingelser, String kontaktinfo, String stillingsInfo){
         this.firma = firma;
         this.arbeidssted = arbeidssted;

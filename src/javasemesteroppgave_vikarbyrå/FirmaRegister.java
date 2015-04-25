@@ -6,11 +6,8 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
  */
 package javasemesteroppgave_vikarbyrå;
 
-import java.util.Date;
-import java.util.ArrayList;
 import java.io.Serializable;
-import javax.swing.*;
-import java.io.*;
+import javax.swing.JTextArea;
 
 public class FirmaRegister implements Serializable {
     
@@ -83,7 +80,7 @@ public class FirmaRegister implements Serializable {
             
             while(loper!=null){
                 
-                firmaListe.append(loper.toFirmaString()+"\n");
+                firmaListe.append(loper.toString()+"\n");
                 
                 loper = loper.neste;
             }                
