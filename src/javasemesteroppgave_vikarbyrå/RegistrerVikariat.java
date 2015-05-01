@@ -3,6 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
+//Sist endret 1. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -95,7 +97,18 @@ public class RegistrerVikariat extends JPanel {
         String firma = (String) cb_firmaer.getSelectedItem();
         String arbeidssted = tf_arbeidsted.getText();
         String arbeidstid = tf_arbeidtid.getText();
-        //String stillingstype
+        String stillingstype = tf_stillingstype.getText();
+        String kvalifikasjoner = tf_kvalifikasjoner.getText();
+        String lonnsbetingelser = tf_lonnsbetingelser.getText();
+        String kontaktinfo = tf_kontaktinfo.getText();
+        String stillingsinfo = tf_stillingsinfo.getText();
+        
+        if(!Validering.validerAdresse(arbeidssted)){
+            JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
+                return;
+        } else if(!Validering){
+            
+        }
     }
     
     private class Knappelytter implements ActionListener{
