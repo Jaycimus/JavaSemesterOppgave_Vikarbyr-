@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 1. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 //importerer nødvendige klasser fra Javas klassebiblotek
@@ -16,10 +16,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Font;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -122,6 +130,7 @@ public class Logginn extends JFrame{
                             ansattVindu.setResizable(false);
                             ansattVindu.addWindowListener( new WindowAdapter(){
                                 public void windowClosing(WindowEvent e){
+                                    skrivTilFil();
                                     System.exit(0);
                                 }
                             });
@@ -162,6 +171,8 @@ public class Logginn extends JFrame{
 
             }
 	});
+        
+        lesFil();
     }
 
     public Logginn( Vikarbyraa v ){
@@ -250,6 +261,7 @@ public class Logginn extends JFrame{
                             ansattVindu.setResizable(false);
                             ansattVindu.addWindowListener( new WindowAdapter(){
                                 public void windowClosing(WindowEvent e){
+                                    skrivTilFil();
                                     System.exit(0);
                                 }
                             });
@@ -288,6 +300,36 @@ public class Logginn extends JFrame{
 
             }
 	});
+    }
+    
+    public void lesFil(){
+        try (ObjectInputStream innfil = new ObjectInputStream( new FileInputStream( "register.dta" ))) {
+            v = (Vikarbyraa) innfil.readObject();
+	}
+	catch(ClassNotFoundException cnfe) {
+            System.out.println(cnfe.getMessage());
+            JOptionPane.showMessageDialog(null,"Oppretter et nytt Vikarbyraaobjekt");
+            v = new Vikarbyraa();
+	}
+	catch(FileNotFoundException fne) {
+            JOptionPane.showMessageDialog(null,"Finner ikke datafil. Oppretter et tomt objekt");
+            v = new Vikarbyraa();
+	}
+	catch(IOException ioe) {
+            JOptionPane.showMessageDialog(null,"ERROR: Feil under lesing av fil, oppretter et tomt objekt");
+            v = new Vikarbyraa();
+	}
+    }
+    
+    public void skrivTilFil(){
+        try(ObjectOutputStream utfil = new ObjectOutputStream(new FileOutputStream("register.dta"))) {
+            utfil.writeObject(v);
+
+	} catch(NotSerializableException nse) {
+            System.out.println("Objekter er ikke serialisert!\n" + nse.toString());
+	} catch(IOException ioe) {
+            JOptionPane.showMessageDialog(null,"ERROR: Feil under skriving av fil");
+	}
     }
 }
 

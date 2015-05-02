@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 1. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 public class Validering {
@@ -21,6 +21,10 @@ public class Validering {
     
     public static boolean validerTLF(String tlf) {
         return tlf.matches( "[1-9]\\d{7}" );
+    }
+    
+    public static boolean validerArbeidstid(String arbeidstid){
+        return arbeidstid.matches("[0-9]{2}:[0-9]{2}-[0-9]{2}:[0-9]{2}");
     }
 
     public static boolean validerPersonnummer(String personnummer) {

@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 1. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -95,7 +95,7 @@ public class RegistrerVikariat extends JPanel {
     
     public void regVikariat(){
         String firma = (String) cb_firmaer.getSelectedItem();
-        String arbeidssted = tf_arbeidsted.getText();
+        String arbeidsted = tf_arbeidsted.getText();
         String arbeidstid = tf_arbeidtid.getText();
         String stillingstype = tf_stillingstype.getText();
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
@@ -103,11 +103,22 @@ public class RegistrerVikariat extends JPanel {
         String kontaktinfo = tf_kontaktinfo.getText();
         String stillingsinfo = tf_stillingsinfo.getText();
         
-        if(!Validering.validerAdresse(arbeidssted)){
+        if(!Validering.validerAdresse(arbeidsted)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
-                return;
-        } else if(!Validering){
-            
+            return;
+        } else if(!Validering.validerArbeidstid(arbeidstid)){
+            JOptionPane.showMessageDialog(null, "Feil med arbeidstid");
+            return;
+        }
+        
+        
+        else{
+            Vikariat vikariat = new Vikariat(firma, arbeidsted, arbeidstid, 
+                    stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
+                        stillingsinfo);
+            v.vikariatRegister.settInn(vikariat);
+            System.out.println("RegVikariat");
+            utskrift.setText(vikariat.toString());
         }
     }
     

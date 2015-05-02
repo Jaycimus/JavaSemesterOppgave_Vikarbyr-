@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 1. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -115,8 +115,6 @@ public class RegistrerFirma extends JPanel {
         String bransjer = (String) cb_bransjer.getSelectedItem();
         
         try{
-            tlf = Integer.parseInt(tf_tlf.getText());
-            
             if(!Validering.validerNavn(navn)){
                 JOptionPane.showMessageDialog(null, "Feil med firma navn");
                 return;
@@ -130,6 +128,7 @@ public class RegistrerFirma extends JPanel {
                 JOptionPane.showMessageDialog(null, "Feil med epost");
                 return;
             } else {
+                tlf = Integer.parseInt(tf_tlf.getText());
                 Firma firma = new Firma(navn, sektor, adresse, bransjer, tlf, epost);
                 v.firmaRegister.settInn(firma);
                 System.out.println("regFirma");

@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 1. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
@@ -125,6 +125,14 @@ public class AnsattVindu extends JPanel{
         v.vikariatRegister.skrivVikariatListe(utskrift);
     }
     
+    public void visArbeisforholdReg(){
+        v.arbeidsforholdRegister.skrivArbeidsforholdiste(utskrift);
+    }
+    
+    public void visVikarReg(){
+        v.vikarRegister.skrivVikarListe(utskrift);
+    }
+    
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regFirma){
@@ -179,6 +187,13 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==visVikariatReg){
                 visVikariatReg();
             }
+            else if(e.getSource()==visArbeisforholdReg){
+                visArbeisforholdReg();
+            }
+            else if(e.getSource()==visVikarReg){
+                visVikarReg();
+                
+            }
             else if(e.getSource()==loggUt){
                 Logginn logginn = new Logginn(v);
                 logginn.setSize(new Dimension(400,220));
@@ -187,6 +202,7 @@ public class AnsattVindu extends JPanel{
                 logginn.setResizable(false);
                 logginn.addWindowListener( new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
+                        logginn.skrivTilFil();
                         System.exit(0);
                     }
                 });
