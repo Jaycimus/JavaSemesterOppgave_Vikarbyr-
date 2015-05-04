@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -22,16 +22,16 @@ import javax.swing.JTextField;
 
 public class RegistrerVikariat extends JPanel {
     private JButton regVikariat;
-    private JLabel lbl_firma, lbl_arbeidsted, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
+    private JLabel lbl_kunde, lbl_adresse, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
                     lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo;
-    private JTextField tf_arbeidsted, tf_arbeidtid, tf_stillingstype, tf_kvalifikasjoner,
+    private JTextField tf_adresse, tf_arbeidtid, tf_stillingstype, tf_kvalifikasjoner,
                     tf_lonnsbetingelser, tf_kontaktinfo, tf_stillingsinfo;
     
     private JTextArea utskrift;
     private Vikarbyraa v;
     
-    private JComboBox<String> cb_firmaer; 
-    private String[] firmaNavn;
+    private JComboBox<String> cb_kunder; 
+    private String[] kundeNavn;
     
     public RegistrerVikariat (JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
@@ -42,13 +42,13 @@ public class RegistrerVikariat extends JPanel {
         
         Knappelytter lytter = new Knappelytter();
 
-        firmaNavn = v.firmaRegister.getFirmaNavn();
+        kundeNavn = v.kundeRegister.getKundeNavn();
         
-        regVikariat = new JButton("Registrer Vikariat");
+        regVikariat = new JButton("Registrer vikariat");
         regVikariat.addActionListener(lytter);
         
-        lbl_firma = new JLabel("Firma: ");
-        lbl_arbeidsted = new JLabel("Arbeidsted: ");
+        lbl_kunde = new JLabel("Kunde: ");
+        lbl_adresse = new JLabel("Arbeidsted: ");
         lbl_arbeidtid = new JLabel("Arbeidstid: ");
         lbl_stillingstype = new JLabel("Stillingstype: ");
         lbl_kvalifikasjoner = new JLabel("Kvalifikasjoner: ");
@@ -56,7 +56,7 @@ public class RegistrerVikariat extends JPanel {
         lbl_kontaktinfo = new JLabel("Kontaktinfo: ");
         lbl_stillingsinfo = new JLabel("Stillingsinfo: ");
         
-        tf_arbeidsted = new JTextField("",15);
+        tf_adresse = new JTextField("",15);
         tf_arbeidtid = new JTextField("",15);
         tf_stillingstype = new JTextField("",15);
         tf_kvalifikasjoner = new JTextField("",15);
@@ -64,13 +64,13 @@ public class RegistrerVikariat extends JPanel {
         tf_kontaktinfo = new JTextField("",15);
         tf_stillingsinfo = new JTextField("",15);
                 
-        cb_firmaer = new JComboBox<String>(firmaNavn);
-        cb_firmaer.setMaximumRowCount(9);
+        cb_kunder = new JComboBox<String>(kundeNavn);
+        cb_kunder.setMaximumRowCount(9);
         
-        add(lbl_firma);
-        add(cb_firmaer);
-        add(lbl_arbeidsted);
-        add(tf_arbeidsted);
+        add(lbl_kunde);
+        add(cb_kunder);
+        add(lbl_adresse);
+        add(tf_adresse);
         add(lbl_arbeidtid);
         add(tf_arbeidtid);
         add(lbl_stillingstype);
@@ -94,8 +94,8 @@ public class RegistrerVikariat extends JPanel {
     }
     
     public void regVikariat(){
-        String firma = (String) cb_firmaer.getSelectedItem();
-        String arbeidsted = tf_arbeidsted.getText();
+        String kunde = (String) cb_kunder.getSelectedItem();
+        String arbeidsted = tf_adresse.getText();
         String arbeidstid = tf_arbeidtid.getText();
         String stillingstype = tf_stillingstype.getText();
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
@@ -113,7 +113,7 @@ public class RegistrerVikariat extends JPanel {
         
         
         else{
-            Vikariat vikariat = new Vikariat(firma, arbeidsted, arbeidstid, 
+            Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
                         stillingsinfo);
             v.vikariatRegister.settInn(vikariat);

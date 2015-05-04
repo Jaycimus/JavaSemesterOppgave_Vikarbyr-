@@ -14,7 +14,7 @@ public class VikarbyraaRUN {
 
     public static void main(String[] args) {
         Logginn logginn = new Logginn();
-        logginn.setSize(new Dimension(400,220));
+        logginn.setSize(new Dimension(400,180));
 	logginn.setVisible(true);
 	logginn.setLocationRelativeTo(null);
 	logginn.setResizable(false);

@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 1. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -29,7 +29,7 @@ public class RegistrerVikar extends JPanel{
         {"Ingen","Videregående","Høgskole/Universitet"};
     private JComboBox<String> cb_bransjer;
     private final String[] bransjer = 
-        {"Advokattjenester/Prosedyre", "Bankvirksomhet", "Helsesektor", "Bygg/Anlegg/Entreprenør", 
+        {"Advokattjenester/Prosedyre", "Bankvirksomhet", "Bygg/Anlegg/Entreprenør", 
             "Eiendom/Eiendomsmegling", "Engineering", "Farmasi/Legemiddel", "Finans -verdipapirer/megling", 
                 "Forsikring/Assuranse", "Forskning og utvikling", "Helse/Velvære/Trening", "Helsesektor", "Hotell/overnatting", 
                     "Høyteknologi/Elektronikk", "IKT/Telekom", "Industri: Tradisjonell/Prosess/Øvrig", "Ingeniøryrker: Øvrig", "Internett tjenester/E-handel", 
