@@ -117,16 +117,12 @@ public class RegistrerKunde extends JPanel {
         try{
             if(!Validering.validerNavn(navn)){
                 JOptionPane.showMessageDialog(null, "Feil med kunde navn");
-                return;
             } else if(!Validering.validerAdresse(adresse)){
                 JOptionPane.showMessageDialog(null, "Feil med adresse");
-                return;
             } else if(!Validering.validerTLF(tf_tlf.getText())){
                 JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
-                return;
             } else if(!Validering.validerEpost(epost)){
                 JOptionPane.showMessageDialog(null, "Feil med epost");
-                return;
             } else {
                 tlf = Integer.parseInt(tf_tlf.getText());
                 Kunde kunde = new Kunde(navn, sektor, adresse, bransjer, tlf, epost);

@@ -12,44 +12,46 @@ import java.util.ArrayList;
 public class Vikar implements Serializable{
     private String navn;
     private int tlf;
-    private int personNr;
+    private long personNr;
     private String onsketBransjer;
     private String utdanning;
     private String jobberfaring;
     private String referanser;
+    private String kjonn;
+    private String epost;
     
     Vikar neste;
     
     //private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<Arbeidsforhold>();
         
-    public Vikar(String navn, int tlf, int personNr, String onsketBransjer, String utdanning, String jobberfaring, String referanser){
+    public Vikar(String navn, int tlf, String epost, long personNr, String onsketBransjer, String utdanning, String kjonn, String jobberfaring, String referanser){
         this.navn = navn;
         this.tlf = tlf;
+        this.epost = epost;
         this.personNr = personNr;
         this.onsketBransjer = onsketBransjer;
         this.utdanning = utdanning;
+        this.kjonn = kjonn;
         this.jobberfaring = jobberfaring;
         this.referanser = referanser;
         neste = null;
         
     }
     
-    public int getPersonNr(){
+    public long getPersonNr(){
         return personNr;
     }
     
     public String toString(){
-        String utskrift;
-        String arbeidsforholdString = "";
+        String utskrift = "\nVikar navn: " + navn + "\nTelefonnr.: " + tlf + "\nE-post: " + epost +
+                          "\nPersonnummer: " + personNr + "\nØnsket bransje: " + onsketBransjer +
+                          "\nUtdanning: " + utdanning + "\nKjønn: " + kjonn +
+                          "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser;
+       // String arbeidsforholdString = "";
         
         /*for(int i = 0; i < arbeidsforhold.size();i++){
             arbeidsforholdString += arbeidsforhold.toString();
         }*/
-        
-        utskrift = "\nNavn; " + navn + "\nTelefon: " + tlf + "\nPersonNr: " + personNr + 
-                   "\nØnskede bransjer: " + onsketBransjer + "\nUtdanning: " + utdanning +
-                   "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser +
-                   "\nArbiedsforhold: " + arbeidsforholdString;
         
         return utskrift;
     }
