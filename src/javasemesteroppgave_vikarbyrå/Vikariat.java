@@ -1,14 +1,16 @@
-/*
-Gruppemedlemmene:
+/*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
- */
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+
+//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
-public class Vikariat {
-    private String firma;
-    private String arbeidssted;
+import java.io.Serializable;
+
+public class Vikariat implements Serializable {
+    private String kunde;
+    private String adresse;
     //private int vikariatNr;
     //private Date varighet;
     private String arbeidstid;
@@ -18,23 +20,18 @@ public class Vikariat {
     private String kontaktinfo;
     private String stillingsInfo;
     //private SoknadsRegister soknadReg;
-    /*Arbeidssted
-    Jobbkategori
+    /*Jobbkategori
     Engasjementets varighet
-    Arbeidstid
-    Stillingstype
-    Kvalifikasjoner
-    Lønnsbetingelser
     Andre arbeidsvilkår?
-    Kontaktinfo
-    Stillings Beskrivelse
     Søknads Register*/
     
     public Vikariat neste;
     
-    public Vikariat (String firma, String arbeidssted, String arbeidstid, String stillingstype, String kvalifikasjoner, String lonnsbetingelser, String kontaktinfo, String stillingsInfo){
-        this.firma = firma;
-        this.arbeidssted = arbeidssted;
+    public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
+            String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
+                String kontaktinfo, String stillingsInfo){
+        this.kunde = kunde;
+        this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
         this.stillingstype = stillingstype;
         this.kvalifikasjoner = kvalifikasjoner;
@@ -43,14 +40,18 @@ public class Vikariat {
         this.stillingsInfo = stillingsInfo;
     }
     
+    /*public int getVikariatNr(){
+        return vikariatNr;
+    }*/
+    
     public String toStringShort(){
-        String utskrift = firma + "\nAdresse: " + arbeidssted;
+        String utskrift = kunde + "\nAdresse: " + adresse;
        
         return utskrift;
     }
     
     public String toString(){
-        String utskrift = "\nFirma navn: " + firma + "\nAdresse: " + arbeidssted + 
+        String utskrift = "\nKunde navn: " + kunde + "\nAdresse: " + adresse + 
                           "\nArbeidstid: " + arbeidstid + "\nStillingstype: " + stillingstype + 
                           "\nKvalifikasjoner: " + kvalifikasjoner + "\nLønnsbetingelser: " + lonnsbetingelser +
                           "\nKontaktinfo: " + kontaktinfo + "\nStillingsinfo: " + stillingsInfo;

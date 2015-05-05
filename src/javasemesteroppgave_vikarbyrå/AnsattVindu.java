@@ -3,6 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
+//Sist endret 5. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
@@ -20,13 +21,13 @@ import javax.swing.JTextArea;
 
 public class AnsattVindu extends JPanel{
     private final JPanel meny, registrering, bunn, topp;
-    private final JButton regFirma, regVikariat, regArbForhold, regVikar, visFirmaReg, visVikariatReg, visArbeisforholdReg, visVikarReg, regSoking, loggUt;
+    private final JButton regKunde, regVikariat, regArbForhold, regVikar, visKundeReg, visVikariatReg, visArbeisforholdReg, visVikarReg, regSoking, loggUt;
     private final JTextArea utskrift;
     private final JFrame ramme; //rammen på programmet
     private BorderLayout borderLayout;
     
     private Vikarbyraa v;
-    private RegistrerFirma rf;
+    private RegistrerKunde rf;
     private RegistrerVikariat rv;
     private RegistrerVikar rvv;
     
@@ -38,31 +39,31 @@ public class AnsattVindu extends JPanel{
         setLayout(borderLayout);
                 
                 
-        regFirma = new JButton("Registrer Firma");
-            /*regFirma.setFocusPainted(false);
-            regFirma.setMargin(new Insets(0, 0, 0, 0));
-            regFirma.setContentAreaFilled(false);
-            regFirma.setBorderPainted(false);
-            regFirma.setOpaque(false);*/
-        regVikariat = new JButton("Registrer Vikariat");
+        regKunde = new JButton("Registrer kunde");
+            /*regKunde.setFocusPainted(false);
+            regKunde.setMargin(new Insets(0, 0, 0, 0));
+            regKunde.setContentAreaFilled(false);
+            regKunde.setBorderPainted(false);
+            regKunde.setOpaque(false);*/
+        regVikariat = new JButton("Registrer vikariat");
         regArbForhold = new JButton("Registrer arbeidsForhold");
-        regVikar = new JButton("Registrer Vikar");
-        visFirmaReg = new JButton("Firma register");
-        visVikariatReg = new JButton("Vikariat register");
-        visArbeisforholdReg = new JButton("Arbeisforhold register");
-        visVikarReg = new JButton("Vikar register");
+        regVikar = new JButton("Registrer vikar");
+        visKundeReg = new JButton("Vis kunde register");
+        visVikariatReg = new JButton("Vis vikariat register");
+        visArbeisforholdReg = new JButton("Vis arbeisforhold register");
+        visVikarReg = new JButton("Vis vikar register");
         regSoking = new JButton("Søk i registerene");
         loggUt = new JButton("Logg Ut");
         
         meny = new JPanel();
         meny.setLayout(new GridLayout(0,1,0,10));
         meny.setPreferredSize(new Dimension(200, 200));
-        meny.add(regFirma);
+        meny.add(regKunde);
         meny.add(regVikariat);
         meny.add(regArbForhold);
         meny.add(regVikar);
         meny.add(new JPanel());
-        meny.add(visFirmaReg);
+        meny.add(visKundeReg);
         meny.add(visVikariatReg);
         meny.add(visArbeisforholdReg);
         meny.add(visVikarReg);
@@ -76,6 +77,7 @@ public class AnsattVindu extends JPanel{
 
         utskrift = new JTextArea(10, 10);
         utskrift.setEditable(false);
+        utskrift.setText(bruksanvisning());
                 
         registrering = new JPanel();
         registrering.setLayout(null);
@@ -96,11 +98,11 @@ public class AnsattVindu extends JPanel{
         add(bunn, BorderLayout.SOUTH);
         
         Knappelytter lytter = new Knappelytter();
-        regFirma.addActionListener(lytter);
+        regKunde.addActionListener(lytter);
         regVikariat.addActionListener(lytter);
         regArbForhold.addActionListener(lytter);
         regVikar.addActionListener(lytter);
-        visFirmaReg.addActionListener(lytter);
+        visKundeReg.addActionListener(lytter);
         visVikariatReg.addActionListener(lytter);
         visArbeisforholdReg.addActionListener(lytter);
         visVikarReg.addActionListener(lytter);
@@ -116,24 +118,32 @@ public class AnsattVindu extends JPanel{
         return utskrift;
     }
     
-    public void visFirmaReg(){
-        v.firmaRegister.skrivFirmaListe(utskrift);
+    public void visKundeReg(){
+        v.kundeRegister.skrivKundeListe(utskrift);
     }
     
     public void visVikariatReg(){
         v.vikariatRegister.skrivVikariatListe(utskrift);
     }
     
+    public void visArbeisforholdReg(){
+        v.arbeidsforholdRegister.skrivArbeidsforholdiste(utskrift);
+    }
+    
+    public void visVikarReg(){
+        v.vikarRegister.skrivVikarListe(utskrift);
+    }
+    
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            if(e.getSource()==regFirma){
+            if(e.getSource()==regKunde){
                 registrering.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
                                 
-                RegistrerFirma rf = new RegistrerFirma(AnsattVindu.this.getTextArea(), v);
+                RegistrerKunde rf = new RegistrerKunde(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rf = rf;
                 add(rf, BorderLayout.EAST);
                 rf.setVisible(true);
@@ -172,11 +182,18 @@ public class AnsattVindu extends JPanel{
                 AnsattVindu.this.rvv = rvv;
                 add(rvv,BorderLayout.EAST); 
             }
-            else if(e.getSource()==visFirmaReg){
-                visFirmaReg();
+            else if(e.getSource()==visKundeReg){
+                visKundeReg();
             }
             else if(e.getSource()==visVikariatReg){
                 visVikariatReg();
+            }
+            else if(e.getSource()==visArbeisforholdReg){
+                visArbeisforholdReg();
+            }
+            else if(e.getSource()==visVikarReg){
+                visVikarReg();
+                
             }
             else if(e.getSource()==loggUt){
                 Logginn logginn = new Logginn(v);
@@ -186,12 +203,26 @@ public class AnsattVindu extends JPanel{
                 logginn.setResizable(false);
                 logginn.addWindowListener( new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
+                        logginn.skrivTilFil();
                         System.exit(0);
                     }
                 });
                 ramme.setVisible(false);
             }
         }
+    }
+    
+    private String bruksanvisning(){
+        String bruksanvisning = 
+                    "\t\tBruksanvisning\n"
+                +"\nVelg på venstre siden av skjermen om du vil registrere"
+                    +"\nKunde, Vikariat, Arbeidsforhold eller Vikar.\n"
+                +"\nEtter det så vil det komme tekstfelt som må fylles ut på høyre side.\n"
+                +"\nAvslutt med å tryke på registreringsknappen nederst på høyre side."
+                +"\n\n\n\n\n\n\n"
+                +"På venstre side ";
+        
+        return bruksanvisning;
     }
 }
 

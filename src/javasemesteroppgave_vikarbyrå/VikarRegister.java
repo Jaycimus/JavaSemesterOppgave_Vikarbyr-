@@ -9,15 +9,14 @@ package javasemesteroppgave_vikarbyrå;
 import java.io.Serializable;
 import javax.swing.JTextArea;
 
-public class VikariatRegister implements Serializable {
+public class VikarRegister implements Serializable {
+    public Vikar fforste, fsiste;
     
-    public Vikariat fforste, fsiste;
-    
-    public VikariatRegister(){
+    public VikarRegister(){
         fforste = null;
     }
     
-    public void settInn(Vikariat ny){
+    public void settInn(Vikar ny){
         if(ny==null)
             return;
         if(fforste == null)
@@ -28,20 +27,18 @@ public class VikariatRegister implements Serializable {
         }
                     
     }
-    public void skrivVikariatListe(JTextArea vikariatListe){
-        Vikariat loper = fforste;
+    public void skrivVikarListe(JTextArea vikarListe){
+        Vikar loper = fforste;
         
         if(fforste == null){
-            vikariatListe.setText("Ingen vikariater i registeret");
+            vikarListe.setText("Ingen vikar i registeret");
         } else {
-            vikariatListe.setText("");
-            
-            while(loper!=null){
-                
-                vikariatListe.append(loper.toString()+"\n");
-                
+            vikarListe.setText("");            
+            while(loper!=null){                
+                vikarListe.append(loper.toString()+"\n");                
                 loper = loper.neste;
             }
         }
     }
+    
 }

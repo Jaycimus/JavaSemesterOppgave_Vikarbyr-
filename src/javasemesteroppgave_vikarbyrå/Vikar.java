@@ -1,9 +1,9 @@
-/*
-Gruppemedlemmene:
+/*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
- */
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+
+//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
@@ -20,7 +20,7 @@ public class Vikar implements Serializable{
     
     Vikar neste;
     
-    private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<Arbeidsforhold>();
+    //private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<Arbeidsforhold>();
         
     public Vikar(String navn, int tlf, int personNr, String onsketBransjer, String utdanning, String jobberfaring, String referanser){
         this.navn = navn;
@@ -42,9 +42,9 @@ public class Vikar implements Serializable{
         String utskrift;
         String arbeidsforholdString = "";
         
-        for(int i = 0; i < arbeidsforhold.size();i++){
+        /*for(int i = 0; i < arbeidsforhold.size();i++){
             arbeidsforholdString += arbeidsforhold.toString();
-        }
+        }*/
         
         utskrift = "\nNavn; " + navn + "\nTelefon: " + tlf + "\nPersonNr: " + personNr + 
                    "\nØnskede bransjer: " + onsketBransjer + "\nUtdanning: " + utdanning +
