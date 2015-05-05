@@ -115,7 +115,7 @@ public class RegistrerVikariat extends JPanel {
         else{
             Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo);
+                        stillingsinfo,varighet);
             v.vikariatRegister.settInn(vikariat);
             System.out.println("RegVikariat");
             utskrift.setText(vikariat.toString());

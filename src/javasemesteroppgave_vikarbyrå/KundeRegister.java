@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 5. Mai 2015 AV: Jørgen Dyhre
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
@@ -48,17 +48,17 @@ public class KundeRegister implements Serializable {
     public int getAntallNoder(){
         int antall = 0;
         boolean ok = false;
-        Kunde løper = fforste;
-        if(løper!=null){
+        Kunde loper = fforste;
+        if(loper!=null){
             antall++;
-            String forsteNavn = løper.getNavn();
+            String forsteNavn = loper.getNavn();
             ok = true;
-            løper = løper.neste;
+            loper = loper.neste;
             while(ok == true){
-                if(løper!=null){
-                    if(løper.getNavn()!=forsteNavn){
+                if(loper!=null){
+                    if(loper.getNavn()!=forsteNavn){
                         antall++;
-                        løper = løper.neste;
+                        loper = loper.neste;
                     }
                 }
                 else{

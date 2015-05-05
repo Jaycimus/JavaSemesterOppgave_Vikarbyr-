@@ -7,12 +7,13 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Vikariat implements Serializable {
     private String kunde;
     private String adresse;
     //private int vikariatNr;
-    //private Date varighet;
+    private Date[] varighet;
     private String arbeidstid;
     private String stillingstype;
     private String kvalifikasjoner;
@@ -29,7 +30,7 @@ public class Vikariat implements Serializable {
     
     public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
             String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
-                String kontaktinfo, String stillingsInfo){
+                String kontaktinfo, String stillingsInfo, Date[] varighet){
         this.kunde = kunde;
         this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
@@ -38,6 +39,8 @@ public class Vikariat implements Serializable {
         this.lonnsbetingelser = lonnsbetingelser;
         this.kontaktinfo = kontaktinfo;
         this.stillingsInfo = stillingsInfo;
+        this.varighet = varighet;
+       
     }
     
     /*public int getVikariatNr(){
