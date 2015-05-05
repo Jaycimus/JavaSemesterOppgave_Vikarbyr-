@@ -97,7 +97,7 @@ public class RegistrerVikariat extends JPanel {
         add(tf_stillingsinfo);
         add(lbl_varighet);
         add(tf_varighetfra);
-        add(lbl_varighet);
+        add(new JPanel());
         add(tf_varighettil);
        
         add(new JPanel());
