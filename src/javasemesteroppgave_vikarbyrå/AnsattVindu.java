@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 5. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
@@ -214,23 +214,13 @@ public class AnsattVindu extends JPanel{
     
     private String bruksanvisning(){
         String bruksanvisning = 
-                    "Bruksanvisning:\n"
-                + "\nRegistrering av kunde:"
-                    + "\nTrykk <Registrer kunde> i menyen til venstre og fyll ut\n "
-                    + "alle tekstfeltene som dukker opp til høyre"
-                    + "\nSå trykk <Registrer kunde> nederst til høyre for å fullføre registreringen\n"
-                + "\nRegistrering av vikariat:"
-                    + "\nTrykk <Registrer vikariat> i menyen til venstre og fyll ut\n"
-                    + "alle tekstfeltene som dukker opp til høyre"
-                    + "\nSå trykk <Registrer vikariat> nederst til høyre for å fullføre registreringen\n"
-                + "\nRegistrering av Arbeidsforhold:"
-                    + "\nTrykk <Registrer arbeidsforhold> i menyen til venstre og fyll ut\n"
-                    + "alle tekstfeltene som dukker opp til høyre"
-                    + "\nSå trykk <Registrer arbeidsforhold> nederst til høyre for å fullføre registreringen\n"
-                + "\nRegistrering av vikar:"
-                    + "\nTrykk <Registrer vikar> i menyen til venstre og fyll ut\n"
-                    + "alle tekstfeltene som dukker opp til høyre"
-                    + "\nSå trykk <Registrer vikar> nederst til høyre for å fullføre registreringen\n";
+                    "\t\tBruksanvisning\n"
+                +"\nVelg på venstre siden av skjermen om du vil registrere"
+                    +"\nKunde, Vikariat, Arbeidsforhold eller Vikar.\n"
+                +"\nEtter det så vil det komme tekstfelt som må fylles ut på høyre side.\n"
+                +"\nAvslutt med å tryke på registreringsknappen nederst på høyre side."
+                +"\n\n\n\n\n\n\n"
+                +"På venstre side ";
         
         return bruksanvisning;
     }
