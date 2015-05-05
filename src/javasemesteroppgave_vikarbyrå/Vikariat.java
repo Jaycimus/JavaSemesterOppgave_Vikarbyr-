@@ -8,12 +8,15 @@ package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.time.LocalDate;
+import java.util.Locale;
+import java.time.format.DateTimeFormatter;
 
 public class Vikariat implements Serializable {
     private String kunde;
     private String adresse;
     //private int vikariatNr;
-    private Date[] varighet;
+    private LocalDate[] varighet;
     private String arbeidstid;
     private String stillingstype;
     private String kvalifikasjoner;
@@ -30,7 +33,7 @@ public class Vikariat implements Serializable {
     
     public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
             String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
-                String kontaktinfo, String stillingsInfo, Date[] varighet){
+                String kontaktinfo, String stillingsInfo, LocalDate[] varighet){
         this.kunde = kunde;
         this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
@@ -57,7 +60,8 @@ public class Vikariat implements Serializable {
         String utskrift = "\nKunde navn: " + kunde + "\nAdresse: " + adresse + 
                           "\nArbeidstid: " + arbeidstid + "\nStillingstype: " + stillingstype + 
                           "\nKvalifikasjoner: " + kvalifikasjoner + "\nLønnsbetingelser: " + lonnsbetingelser +
-                          "\nKontaktinfo: " + kontaktinfo + "\nStillingsinfo: " + stillingsInfo;
+                          "\nKontaktinfo: " + kontaktinfo + "\nStillingsinfo: " + stillingsInfo+
+                          "\nVarighet: " + varighet[0] + "til" + varighet[1];
         
         return utskrift;
         
