@@ -25,13 +25,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
-//Konstruktøren til kalenderen
 public class Kalender extends JPanel {
 
-	protected int åå;//Aktiverte år
-	protected int mm;//aktiverte måned
-	protected int dd;//aktiverte dag
-	Date datoen = null; //Valgte dato
+	protected int åå,mm,dd;//Aktiverte år
+	Date dato = null; //Valgte dato
 	int xx = 1;
 
 	protected JButton knapper[][];//Dato-rutene
@@ -151,13 +148,13 @@ public class Kalender extends JPanel {
 // Setter valgte datoen rød
 					setAktivDato(Integer.parseInt(n));
 
-					datoen = new Date(åå-1900,mm,dd);//Oppretter en ny valgt dato
+					dato = new Date(åå-1900,mm,dd);//Oppretter en ny valgt dato
 					++xx;//Hjelpevariabel for å vite om brukeren har valgt en dato
 					//validering
-					if(datoen.before(new Date()))
+					if(dato.before(new Date()))
 					JOptionPane.showMessageDialog(null, "Vennligst velg en fremtidig dato");
 
-					if(xx != 1 && datoen != null && !datoen.before(new Date()))
+					if(xx != 1 && dato != null && !dato.before(new Date()))
 					valgtdato = true;
 
 				}
@@ -275,7 +272,7 @@ public class Kalender extends JPanel {
 //Returnerer den valgte datoen
 	public Date getDato() {
 
-		return datoen;
+		return dato;
 
 	}
 
