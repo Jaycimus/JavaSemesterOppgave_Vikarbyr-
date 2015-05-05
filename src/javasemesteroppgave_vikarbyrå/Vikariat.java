@@ -7,12 +7,13 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Vikariat implements Serializable {
     private String kunde;
     private String adresse;
     //private int vikariatNr;
-    //private Date varighet;
+    private Date[] varighet;
     private String arbeidstid;
     private String stillingstype;
     private String kvalifikasjoner;
