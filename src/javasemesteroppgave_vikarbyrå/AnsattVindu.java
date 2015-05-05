@@ -17,6 +17,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class AnsattVindu extends JPanel{
@@ -78,6 +79,7 @@ public class AnsattVindu extends JPanel{
         utskrift = new JTextArea(10, 10);
         utskrift.setEditable(false);
         utskrift.setText(bruksanvisning());
+        JScrollPane sp = new JScrollPane(utskrift);
                 
         registrering = new JPanel();
         registrering.setLayout(null);
@@ -93,7 +95,7 @@ public class AnsattVindu extends JPanel{
         
         add(topp, BorderLayout.NORTH);
         add(meny, BorderLayout.WEST);
-        add(utskrift, BorderLayout.CENTER);
+        add(sp, BorderLayout.CENTER);
         add(registrering, BorderLayout.EAST);
         add(bunn, BorderLayout.SOUTH);
         
@@ -178,7 +180,7 @@ public class AnsattVindu extends JPanel{
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 
-                RegistrerVikar rvv = new RegistrerVikar(AnsattVindu.this.getTextArea());
+                RegistrerVikar rvv = new RegistrerVikar(v, AnsattVindu.this.getTextArea());
                 AnsattVindu.this.rvv = rvv;
                 add(rvv,BorderLayout.EAST); 
             }
