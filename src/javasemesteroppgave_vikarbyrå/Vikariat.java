@@ -30,7 +30,7 @@ public class Vikariat implements Serializable {
     
     public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
             String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
-                String kontaktinfo, String stillingsInfo){
+                String kontaktinfo, String stillingsInfo, Date[] varighet){
         this.kunde = kunde;
         this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
@@ -39,6 +39,8 @@ public class Vikariat implements Serializable {
         this.lonnsbetingelser = lonnsbetingelser;
         this.kontaktinfo = kontaktinfo;
         this.stillingsInfo = stillingsInfo;
+        this.varighet = varighet;
+       
     }
     
     /*public int getVikariatNr(){
