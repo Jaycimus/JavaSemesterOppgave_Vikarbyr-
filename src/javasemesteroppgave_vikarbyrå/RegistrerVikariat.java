@@ -102,9 +102,6 @@ public class RegistrerVikariat extends JPanel {
        
         add(new JPanel());
         add(regVikariat);
-        
-        
-        
     }
     
     public void regVikariat(){

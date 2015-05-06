@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class Vikariat implements Serializable {
     private String kunde;
     private String adresse;
-    //private int vikariatNr;
+    private int vikariatNr;
     private LocalDate[] varighet;
     private String arbeidstid;
     private String stillingstype;
@@ -46,9 +46,13 @@ public class Vikariat implements Serializable {
        
     }
     
-    /*public int getVikariatNr(){
+    public int getVikariatNr(){
         return vikariatNr;
-    }*/
+    }
+    
+    public String getKundeNavn(){
+        return kunde;
+    }
     
     public String toStringShort(){
         String utskrift = kunde + "\nAdresse: " + adresse;

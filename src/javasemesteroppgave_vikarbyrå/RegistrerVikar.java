@@ -12,10 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -54,7 +50,7 @@ public class RegistrerVikar extends JPanel{
                                     "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
                                         "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
-    public RegistrerVikar(Vikarbyraa v, JTextArea utskrift){
+    public RegistrerVikar(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
@@ -100,9 +96,9 @@ public class RegistrerVikar extends JPanel{
         });
         tf_epost = new JTextField("",15);
         
-        ta_jobberf = new JTextArea(4,15);
+        ta_jobberf = new JTextArea(1,15);
         JScrollPane sp_jobberf = new JScrollPane(ta_jobberf);
-        ta_ref = new JTextArea(4,15);
+        ta_ref = new JTextArea(1,15);
         JScrollPane sp_ref = new JScrollPane(ta_ref);
         
         BG_kjonn = new ButtonGroup();
