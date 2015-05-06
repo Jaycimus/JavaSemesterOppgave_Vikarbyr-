@@ -7,7 +7,6 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Kunde implements Serializable{
     private String navn;
@@ -18,7 +17,6 @@ public class Kunde implements Serializable{
     private String epost;
     
     public Kunde neste;
-    private ArrayList<Vikariat> vikariater = new ArrayList<Vikariat>();
     
     public Kunde(String navn, String typeSektor, String adresse, String bransje,
                     int tlf, String epost){
@@ -28,24 +26,32 @@ public class Kunde implements Serializable{
         this.bransje = bransje;
         this.tlf = tlf;
         this.epost = epost;
-        this.neste=null;
+        this.neste = null;
               
     }
-    
-    public void setVikariat(Vikariat v){
-        vikariater.add(v);
-    }
-    /*public void fjernVikariat(Vikariat v){
-        vikariater
-    }*/
-    
+
     public String getNavn(){
         return navn;
     }
     
-    public String getAdresse()
-    {
+    public String getTypeSektor(){
+        return typeSektor;
+    }
+    
+    public String getAdresse(){
         return adresse;
+    }
+    
+    public String getBransje(){
+        return bransje;
+    }
+    
+    public String getTlf(){
+        String tlf = "" + this.tlf;
+        return tlf;
+    }
+    public String getEpost(){
+        return epost;
     }
     
     public String toString(){

@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,7 +23,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class EndreKunde extends JPanel {
-    private JButton endreKunde;
+    private JButton endreKunde, slettKunde;
     private JLabel lbl_navn, lbl_adresse, lbl_bransje, lbl_tlf, lbl_epost;
     private JRadioButton privat, offentlig;
     private ButtonGroup BG_typeSektor;
@@ -57,8 +59,10 @@ public class EndreKunde extends JPanel {
         
         kundeNavn = v.kundeRegister.getKundeNavn();
         
-        endreKunde = new JButton("Registrer Kunde");
+        endreKunde = new JButton("Registrer kunde");
         endreKunde.addActionListener(lytter);
+        slettKunde = new JButton("Slett kunde");
+        slettKunde.addActionListener(lytter);
         
         lbl_navn = new JLabel("Kunde navn: ");
         lbl_adresse = new JLabel("Adresse: ");
@@ -81,6 +85,24 @@ public class EndreKunde extends JPanel {
         cb_bransjer.setMaximumRowCount(9);
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
+        cb_kunder.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent e){
+                String kundeNavn = (String) cb_kunder.getSelectedItem();
+                Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
+                
+                tf_navn.setText(kunde.getNavn());
+                tf_adresse.setText(kunde.getAdresse());
+                tf_tlf.setText(kunde.getTlf());
+                tf_epost.setText(kunde.getEpost());
+                String sektor = kunde.getBransje();
+                if(sektor.matches("Privat")){
+                    privat.setSelected(true);
+                } else if(sektor.matches("Offentlig")) {
+                    offentlig.setSelected(true);
+                }
+                
+            }
+        });
         
         add(new JPanel());
         add(cb_kunder);
@@ -98,7 +120,7 @@ public class EndreKunde extends JPanel {
         add(tf_epost);
         add(new JPanel());
         add(new JPanel());
-        add(new JPanel());
+        add(slettKunde);
         add(endreKunde);
                         
     }
@@ -140,11 +162,20 @@ public class EndreKunde extends JPanel {
         }   
     }
     
+    public void slettKunde(){
+        
+    }
+    
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==endreKunde){
                 endreKunde();
             }
+            else if(e.getSource()==slettKunde){
+                slettKunde();
+            }
+            
+            
         }
     }
 }
