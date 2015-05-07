@@ -11,18 +11,18 @@ import javax.swing.JTextArea;
 
 public class KundeRegister implements Serializable {
     
-    public Kunde fforste, fsiste;
+    public Kunde forste, fsiste;
     
     public KundeRegister(){
-        fforste = null;
+        forste = null;
     }
    
     public void settInn(Kunde ny){
         if(ny == null){
             return;
         }
-        if(fforste == null){
-            fforste = fsiste = ny;
+        if(forste == null){
+            forste = fsiste = ny;
         }
         else{
             fsiste.neste= ny;
@@ -32,15 +32,23 @@ public class KundeRegister implements Serializable {
     }
     
     public Kunde finnKunde(String kundeNavn){
+        Kunde loper = forste;
+        for(int i = 0; i < getAntallNoder(); i++){
+            if(loper.getNavn()==kundeNavn)
+                return loper;
+            else
+                loper = loper.neste;
+        } 
         return null;
     }
     
     public String[] getKundeNavn(){
-        String[] kundeNavn = new String[getAntallNoder()];
-        Kunde løper = fforste;
-        for(int i = 0; i < getAntallNoder(); i++){
-            kundeNavn[i] = løper.getNavn();
-            løper = løper.neste;
+        String[] kundeNavn = new String[1+getAntallNoder()];
+        Kunde loper = forste;
+        kundeNavn[0] = "---Kunder---";
+        for(int i = 1; i <= getAntallNoder(); i++){
+            kundeNavn[i] = loper.getNavn();
+            loper = loper.neste;
         }
         return kundeNavn;
     }
@@ -48,7 +56,7 @@ public class KundeRegister implements Serializable {
     public int getAntallNoder(){
         int antall = 0;
         boolean ok = false;
-        Kunde loper = fforste;
+        Kunde loper = forste;
         if(loper!=null){
             antall++;
             String forsteNavn = loper.getNavn();
@@ -70,9 +78,9 @@ public class KundeRegister implements Serializable {
         return antall;
     }
     public void skrivKundeListe(JTextArea kundeListe){
-        Kunde loper = fforste;
+        Kunde loper = forste;
         
-        if(fforste == null){
+        if(forste == null){
             kundeListe.setText("Ingen kunde i registeret!");
         }
         else{

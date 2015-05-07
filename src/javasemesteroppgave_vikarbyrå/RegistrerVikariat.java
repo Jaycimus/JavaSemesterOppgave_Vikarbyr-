@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 5. Mai 2015 AV: Jørgen Dyhre
+//Sist endret 7. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -28,7 +28,7 @@ import java.time.format.DateTimeFormatter;
 public class RegistrerVikariat extends JPanel {
     private JButton regVikariat;
     private JLabel lbl_kunde, lbl_adresse, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
-                    lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighet;
+                    lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighettil, lbl_varighetfra;
     private JTextField tf_adresse, tf_arbeidtid, tf_stillingstype, tf_kvalifikasjoner,
                     tf_lonnsbetingelser, tf_kontaktinfo, tf_stillingsinfo, tf_varighettil, tf_varighetfra;
     
@@ -38,6 +38,20 @@ public class RegistrerVikariat extends JPanel {
     private JComboBox<String> cb_kunder; 
     private String[] kundeNavn;
     private LocalDate[] varighet;
+    private JComboBox<String> cb_timer;
+    private final String[] timer =
+        {"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
+            "16","17","18","19","20","21","22","23"};
+    private JComboBox<String> cb_timer2;
+    private final String[] timer2 =
+        {"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
+            "16","17","18","19","20","21","22","23"};
+    private JComboBox<String> cb_minutter;
+    private final String[] minutter =
+        {"00","05","10","15","20","25","30","35","40","45","50","55"};
+    private JComboBox<String> cb_minutter2;
+    private final String[] minutter2 =
+        {"00","05","10","15","20","25","30","35","40","45","50","55"};
     
     
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.ENGLISH);
@@ -64,7 +78,8 @@ public class RegistrerVikariat extends JPanel {
         lbl_lonnsbetingelser = new JLabel("Lønnsbetingelser: ");
         lbl_kontaktinfo = new JLabel("Kontaktinfo: ");
         lbl_stillingsinfo = new JLabel("Stillingsinfo: ");
-        lbl_varighet = new JLabel("Varighet: ");
+        lbl_varighetfra = new JLabel("Varighet(fra): ");
+        lbl_varighettil = new JLabel("Varighet(til): ");
         
         tf_adresse = new JTextField("",15);
         tf_arbeidtid = new JTextField("",15);
@@ -78,13 +93,27 @@ public class RegistrerVikariat extends JPanel {
                 
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
+        cb_timer = new JComboBox<String>(timer);
+        cb_timer.setMaximumRowCount(16);
+        cb_minutter = new JComboBox<String>(minutter);
+        cb_minutter.setMaximumRowCount(12);
+        cb_timer2 = new JComboBox<String>(timer2);
+        cb_timer2.setMaximumRowCount(16);
+        cb_minutter2 = new JComboBox<String>(minutter2);
+        cb_minutter2.setMaximumRowCount(12);
+        
+        JPanel tider = new JPanel(new GridLayout(1,1,2,2));
+        tider.add(cb_timer);
+        tider.add(cb_minutter);
+        tider.add(cb_timer2);
+        tider.add(cb_minutter2);
         
         add(lbl_kunde);
         add(cb_kunder);
         add(lbl_adresse);
         add(tf_adresse);
         add(lbl_arbeidtid);
-        add(tf_arbeidtid);
+        add(tider);
         add(lbl_stillingstype);
         add(tf_stillingstype);
         add(lbl_kvalifikasjoner);
@@ -95,16 +124,13 @@ public class RegistrerVikariat extends JPanel {
         add(tf_kontaktinfo);
         add(lbl_stillingsinfo);
         add(tf_stillingsinfo);
-        add(lbl_varighet);
+        add(lbl_varighetfra);
         add(tf_varighetfra);
-        add(new JPanel());
+        add(lbl_varighettil);
         add(tf_varighettil);
        
         add(new JPanel());
         add(regVikariat);
-        
-        
-        
     }
     
     public void regVikariat(){

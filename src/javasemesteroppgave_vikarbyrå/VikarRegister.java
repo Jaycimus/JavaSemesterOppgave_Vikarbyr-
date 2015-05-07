@@ -7,30 +7,74 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 public class VikarRegister implements Serializable {
-    public Vikar fforste, fsiste;
+    public Vikar forste, fsiste;
     
     public VikarRegister(){
-        fforste = null;
+        forste = null;
     }
     
     public void settInn(Vikar ny){
         if(ny==null)
             return;
-        if(fforste == null)
-            fforste = fsiste = ny;
+        if(forste == null)
+            forste = fsiste = ny;
         else{
             fsiste.neste = ny;
             fsiste = ny;
         }
                     
     }
-    public void skrivVikarListe(JTextArea vikarListe){
-        Vikar loper = fforste;
+    
+    /*public String[] getVikarerTilVikariat(int vikariatNr){
+        int antall = 0;
+        String[] vikariater;
+        List<String> list =new ArrayList<String>();
+        boolean ok = false;
         
-        if(fforste == null){
+        Vikar loper = forste;
+        if(loper!=null){
+            if(loper.getKundeNavn() == kundeNavn){
+                list.add(loper.getKundeNavn());
+                antall++;
+            }
+            int vikariatNr = loper.getVikariatNr();
+            ok = true;
+            loper = loper.neste;
+            while(ok == true){
+                if(loper != null){
+                    if(loper.getVikariatNr() != vikariatNr){
+                        if(loper.getKundeNavn() == kundeNavn){
+                            list.add(loper.getKundeNavn());
+                            antall++;
+                            loper = loper.neste;
+                        }                        
+                    }
+                }
+                else{
+                    ok = false;
+                    
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
+        }
+        
+        vikariater = list.toArray(new String[list.size()]);    
+                
+        return vikariater;        
+    }*/
+    
+    public void skrivVikarListe(JTextArea vikarListe){
+        Vikar loper = forste;
+        
+        if(forste == null){
             vikarListe.setText("Ingen vikar i registeret");
         } else {
             vikarListe.setText("");            
