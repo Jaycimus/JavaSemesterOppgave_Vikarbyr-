@@ -43,9 +43,10 @@ public class KundeRegister implements Serializable {
     }
     
     public String[] getKundeNavn(){
-        String[] kundeNavn = new String[getAntallNoder()];
+        String[] kundeNavn = new String[1+getAntallNoder()];
         Kunde loper = forste;
-        for(int i = 0; i < getAntallNoder(); i++){
+        kundeNavn[0] = "---Kunder---";
+        for(int i = 1; i <= getAntallNoder(); i++){
             kundeNavn[i] = loper.getNavn();
             loper = loper.neste;
         }
