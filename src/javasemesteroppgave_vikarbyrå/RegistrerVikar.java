@@ -110,7 +110,7 @@ public class RegistrerVikar extends JPanel{
         cb_bransjer = new JComboBox<>(bransjer);
         cb_bransjer.setMaximumRowCount(9);
         cb_utdanning = new JComboBox<>(utdanning);
-        cb_utdanning.setMaximumRowCount(3);
+        cb_utdanning.setMaximumRowCount(4);
         
         add(lbl_navn);
         add(tf_navn);
