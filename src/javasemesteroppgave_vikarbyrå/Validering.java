@@ -24,7 +24,7 @@ public class Validering {
     }
     
     public static boolean validerArbeidstid(String arbeidstid){
-        return arbeidstid.matches("[0-9]{2}:[0-9]{2}-[0-9]{2}:[0-9]{2}");
+        return arbeidstid.matches("[0-9]{2}:[0-9]{2}\\s-\\s[0-9]{2}:[0-9]{2}");
     }
 
     public static boolean validerPersonnummer(String personnummer) {
