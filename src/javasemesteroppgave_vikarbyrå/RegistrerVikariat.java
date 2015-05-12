@@ -29,7 +29,7 @@ public class RegistrerVikariat extends JPanel {
     private JButton regVikariat;
     private JLabel lbl_kunde, lbl_adresse, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
                     lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighettil, lbl_varighetfra;
-    private JTextField tf_adresse, tf_arbeidtid, tf_stillingstype, tf_kvalifikasjoner,
+    private JTextField tf_adresse, tf_stillingstype, tf_kvalifikasjoner,
                     tf_lonnsbetingelser, tf_kontaktinfo, tf_stillingsinfo, tf_varighettil, tf_varighetfra;
     
     private JTextArea utskrift;
@@ -82,7 +82,6 @@ public class RegistrerVikariat extends JPanel {
         lbl_varighettil = new JLabel("Varighet(til): ");
         
         tf_adresse = new JTextField("",15);
-        tf_arbeidtid = new JTextField("",15);
         tf_stillingstype = new JTextField("",15);
         tf_kvalifikasjoner = new JTextField("",15);
         tf_lonnsbetingelser = new JTextField("",15);
@@ -135,8 +134,16 @@ public class RegistrerVikariat extends JPanel {
     
     public void regVikariat(){
         String kunde = (String) cb_kunder.getSelectedItem();
+        if(kunde.matches("---Kunder---")){
+            JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
+            return;
+        }
+        
         String arbeidsted = tf_adresse.getText();
-        String arbeidstid = tf_arbeidtid.getText();
+        String arbeidstid = (String) cb_timer.getSelectedItem() + ":" + 
+                (String) cb_minutter.getSelectedItem() + " - " + 
+                    (String) cb_timer2.getSelectedItem() + ":" + 
+                        (String) cb_minutter2.getSelectedItem();
         String stillingstype = tf_stillingstype.getText();
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
         String lonnsbetingelser = tf_lonnsbetingelser.getText();
