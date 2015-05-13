@@ -52,6 +52,28 @@ public class RegistrerVikariat extends JPanel {
     private JComboBox<String> cb_minutter2;
     private final String[] minutter2 =
         {"00","05","10","15","20","25","30","35","40","45","50","55"};
+    private JComboBox<String> cb_dag;
+    private final String[] dag = 
+        {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
+            "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+    private JComboBox<String> cb_dag2;
+    private final String[] dag2 = 
+        {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
+            "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+    private JComboBox<String> cb_maned;
+    private final String[] maned =
+        {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
+            "Oktober","November","Desember"};
+    private JComboBox<String> cb_maned2;
+    private final String[] maned2 =
+        {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
+            "Oktober","November","Desember"};
+    private JComboBox<String> cb_ar;
+    private final String[] ar =
+        {"2015","2016","2017","2018","2019","2020"};
+    private JComboBox<String> cb_ar2;
+    private final String[] ar2 =
+        {"2015","2016","2017","2018","2019","2020"};
     
     
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.ENGLISH);
@@ -90,22 +112,27 @@ public class RegistrerVikariat extends JPanel {
         tf_varighetfra = new  JTextField("",10);
         tf_varighettil = new  JTextField("",10);
                 
-        cb_kunder = new JComboBox<String>(kundeNavn);
+        cb_kunder = new JComboBox<>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
-        cb_timer = new JComboBox<String>(timer);
+        cb_timer = new JComboBox<>(timer);
         cb_timer.setMaximumRowCount(16);
-        cb_minutter = new JComboBox<String>(minutter);
+        cb_minutter = new JComboBox<>(minutter);
         cb_minutter.setMaximumRowCount(12);
-        cb_timer2 = new JComboBox<String>(timer2);
+        cb_timer2 = new JComboBox<>(timer2);
         cb_timer2.setMaximumRowCount(16);
-        cb_minutter2 = new JComboBox<String>(minutter2);
+        cb_minutter2 = new JComboBox<>(minutter2);
         cb_minutter2.setMaximumRowCount(12);
+        cb_dag = new JComboBox<>(dag);
+        cb_dag.setMaximumRowCount(20);
         
         JPanel tider = new JPanel(new GridLayout(1,1,2,2));
         tider.add(cb_timer);
         tider.add(cb_minutter);
         tider.add(cb_timer2);
         tider.add(cb_minutter2);
+        
+       // JPanel fra = new JPanel(new Gridlayout(1,1,2,2));
+        //fra.add(cb_)
         
         add(lbl_kunde);
         add(cb_kunder);
