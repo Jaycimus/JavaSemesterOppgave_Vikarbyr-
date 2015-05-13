@@ -49,7 +49,7 @@ public class AnsattVindu extends JPanel{
             regKunde.setBorderPainted(false);
             regKunde.setOpaque(false);*/
         regVikariat = new JButton("Registrer vikariat");
-        regArbForhold = new JButton("Registrer arbeidsForhold");
+        regArbForhold = new JButton("Registrer Arbeidsfohold");
         regVikar = new JButton("Registrer vikar");
         visEndreKundeReg = new JButton("Vis/Endre kundregister");
         visEndreVikariatReg = new JButton("Vis/Endre vikariatregister");
