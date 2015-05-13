@@ -53,6 +53,8 @@ public class RegistrerArbeidsforhold extends JPanel {
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange() == ItemEvent.SELECTED){
+                        cb_vikariater.removeAllItems();
+                        System.out.println((String) cb_kunder.getSelectedItem());
                         vikariatNr = v.vikariatRegister.getVikariaterTilKunde((String) cb_kunder.getSelectedItem());
                         for(int i = 0; i < vikariatNr.length; i++){
                             cb_vikariater.addItem(vikariatNr[i]);
