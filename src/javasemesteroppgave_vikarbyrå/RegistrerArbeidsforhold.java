@@ -54,7 +54,6 @@ public class RegistrerArbeidsforhold extends JPanel {
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange() == ItemEvent.SELECTED){
                         cb_vikariater.removeAllItems();
-                        System.out.println((String) cb_kunder.getSelectedItem());
                         vikariatNr = v.vikariatRegister.getVikariaterTilKunde((String) cb_kunder.getSelectedItem());
                         for(int i = 0; i < vikariatNr.length; i++){
                             cb_vikariater.addItem(vikariatNr[i]);
@@ -72,7 +71,12 @@ public class RegistrerArbeidsforhold extends JPanel {
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange()==ItemEvent.SELECTED){
-                        
+                        cb_vikarer.removeAllItems();
+                        vikarer = v.vikarRegister.getVikarerTilVikariat((String) cb_vikariater.getSelectedItem());
+                        for(int i = 0; i < vikarer.length; i++){
+                            cb_vikarer.addItem(vikarer[i]);
+                        }
+                        cb_vikarer.setEnabled(true);
                     }
                 }
             }

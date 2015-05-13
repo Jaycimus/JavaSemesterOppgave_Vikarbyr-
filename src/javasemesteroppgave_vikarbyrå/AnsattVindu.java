@@ -36,7 +36,7 @@ public class AnsattVindu extends JPanel{
     private EndreKunde ek;
     private EndreVikariat ev;
     
-   public AnsattVindu(Vikarbyraa v, JFrame ramme){
+    public AnsattVindu(Vikarbyraa v, JFrame ramme){
         this.v = v;
         this.ramme = ramme;
         

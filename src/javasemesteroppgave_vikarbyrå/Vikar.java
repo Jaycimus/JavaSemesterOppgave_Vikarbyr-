@@ -22,7 +22,7 @@ public class Vikar implements Serializable{
     
     Vikar neste;
     
-    //private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<Arbeidsforhold>();
+    private ArrayList<String> vikariatNr = new ArrayList<>();
         
     public Vikar(String navn, int tlf, String epost, long personNr, String onsketBransjer, String utdanning, String kjonn, String jobberfaring, String referanser){
         this.navn = navn;
@@ -38,8 +38,21 @@ public class Vikar implements Serializable{
         
     }
     
+    public String findVikariatNr(String vikariatNr){
+        for(int i = 0; i < this.vikariatNr.size(); i++){
+            if(this.vikariatNr.get(i).matches(vikariatNr))
+                return this.vikariatNr.get(i);
+        }
+        
+        return null;
+    }
+    
     public long getPersonNr(){
         return personNr;
+    }
+    
+    public String getVikariatNr(){
+        return null;
     }
     
     public String toString(){
@@ -47,12 +60,6 @@ public class Vikar implements Serializable{
                           "\nPersonnummer: " + personNr + "\nØnsket bransje: " + onsketBransjer +
                           "\nUtdanning: " + utdanning + "\nKjønn: " + kjonn +
                           "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser;
-       // String arbeidsforholdString = "";
-        
-        /*for(int i = 0; i < arbeidsforhold.size();i++){
-            arbeidsforholdString += arbeidsforhold.toString();
-        }*/
-        
         return utskrift;
     }
 }

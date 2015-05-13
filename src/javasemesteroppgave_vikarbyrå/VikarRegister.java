@@ -31,45 +31,36 @@ public class VikarRegister implements Serializable {
                     
     }
     
-    /*public String[] getVikarerTilVikariat(int vikariatNr){
-        int antall = 0;
-        String[] vikariater;
+    public String[] getVikarerTilVikariat(String vikariatNr){
+        String[] vikarer;
         List<String> list =new ArrayList<String>();
         boolean ok = false;
-        
         Vikar loper = forste;
         if(loper!=null){
-            if(loper.getKundeNavn() == kundeNavn){
-                list.add(loper.getKundeNavn());
-                antall++;
+            if(loper.findVikariatNr(vikariatNr) == vikariatNr){
+                list.add(loper.findVikariatNr(vikariatNr));
             }
-            int vikariatNr = loper.getVikariatNr();
             ok = true;
             loper = loper.neste;
             while(ok == true){
                 if(loper != null){
-                    if(loper.getVikariatNr() != vikariatNr){
-                        if(loper.getKundeNavn() == kundeNavn){
-                            list.add(loper.getKundeNavn());
-                            antall++;
-                            loper = loper.neste;
-                        }                        
+                    if(loper.findVikariatNr(vikariatNr) == vikariatNr){
+                        list.add(loper.findVikariatNr(vikariatNr));
+                        loper = loper.neste;
                     }
                 }
-                else{
+                else
                     ok = false;
-                    
-                }
             }
         }
         else{
             JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
         }
         
-        vikariater = list.toArray(new String[list.size()]);    
+        vikarer = list.toArray(new String[list.size()]);    
                 
-        return vikariater;        
-    }*/
+        return vikarer;        
+    }
     
     public void skrivVikarListe(JTextArea vikarListe){
         Vikar loper = forste;
