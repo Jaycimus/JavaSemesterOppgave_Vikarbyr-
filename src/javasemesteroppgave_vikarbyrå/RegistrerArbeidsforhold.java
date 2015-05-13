@@ -28,7 +28,6 @@ public class RegistrerArbeidsforhold extends JPanel {
     private JTextArea utskrift;
     
     public RegistrerArbeidsforhold(JTextArea utskrift, Vikarbyraa v){
-        System.out.println("Inne i  arbeidsforhold");
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
@@ -44,13 +43,13 @@ public class RegistrerArbeidsforhold extends JPanel {
         lbl_vikariater = new JLabel("Vikariater: ");
         lbl_vikar = new JLabel("Vikar id: ");
         lbl_arbeidsforhold = new JLabel("Arbeidsforhold: ");
-        
-        
-        
+                
         kundeNavn = v.kundeRegister.getKundeNavn();
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
+        System.out.println("2,5");
         vikariatNr = v.vikariatRegister.getVikariaterTilKunde((String) cb_kunder.getSelectedItem());
+        System.out.println("2,6");
         cb_vikariater = new JComboBox<String>(vikariatNr);
         cb_vikariater.setMaximumRowCount(9);
         vikarer = new String[0];
@@ -58,7 +57,6 @@ public class RegistrerArbeidsforhold extends JPanel {
         cb_vikarer.setMaximumRowCount(9);
         
         ta_arbeidsforhold = new JTextArea(4,15);
-        
         add(lbl_kunder);
         add(cb_kunder);
         add(lbl_vikariater);
@@ -73,9 +71,6 @@ public class RegistrerArbeidsforhold extends JPanel {
         add(new JPanel());
         add(new JPanel());
         add(regArbeidsforhold);
-        
-        System.out.println("Opprettet arbeidsforhold 1");
-        
     }
     
         

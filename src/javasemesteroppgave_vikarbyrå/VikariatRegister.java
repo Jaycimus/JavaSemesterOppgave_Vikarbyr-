@@ -35,12 +35,11 @@ public class VikariatRegister implements Serializable {
     public String[] getVikariaterTilKunde(String kundeNavn){
         int antall = 0;
         String[] vikariater;
-        List<String> list =new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
         boolean ok = false;
-        
         Vikariat loper = forste;
         if(loper!=null){
-            if(loper.getKundeNavn() == kundeNavn){
+            if(loper.getKundeNavn().matches(kundeNavn)){
                 list.add(loper.getKundeNavn());
                 antall++;
             }
@@ -56,6 +55,8 @@ public class VikariatRegister implements Serializable {
                             loper = loper.neste;
                         }                        
                     }
+                    else
+                        ok = false;
                 }
                 else{
                     ok = false;
