@@ -8,4 +8,11 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
  */
 public class Soknad {
     
+    public Soknad neste;
+    
+    public Soknad()
+    {
+        neste = null;
+    }
+    
 }
