@@ -49,6 +49,10 @@ public class VikarVindu extends JPanel{
         meny.setPreferredSize(new Dimension(212,200));
         meny.add(visVikariatListe);
         meny.add(regSoking);
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
         meny.add(loggUt);
         
         utskrift = new JTextArea(0,0);
