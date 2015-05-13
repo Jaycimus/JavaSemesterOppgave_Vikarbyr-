@@ -32,7 +32,8 @@ public class Vikariat implements Serializable {
     
     public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
             String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
-                String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil, String Bransje){
+                String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil, 
+                    String Bransje, int vikariatNr){
         this.kunde = kunde;
         this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
@@ -44,11 +45,17 @@ public class Vikariat implements Serializable {
         this.varighetfra = varighetfra;
         this.varighettil = varighettil;
         this.bransje = bransje;
+        this.vikariatNr = vikariatNr;
        
     }
     
     public int getVikariatNr(){
         return vikariatNr;
+    }
+    
+    public String getVikariatNrS(){
+        String vikariatNrS = "" + vikariatNr;
+        return vikariatNrS;
     }
     
     public String getKundeNavn(){
@@ -62,7 +69,7 @@ public class Vikariat implements Serializable {
     }
     
     public String toString(){
-        String utskrift = "\nKunde navn: " + kunde + "\nAdresse: " + adresse + 
+        String utskrift = "\nKunde navn: " + kunde + "\nVikariat Nr: " + vikariatNr + "\nAdresse: " + adresse + 
                           "\nArbeidstid: " + arbeidstid + "\nStillingstype: " + stillingstype + 
                           "\nKvalifikasjoner: " + kvalifikasjoner + "\nLønnsbetingelser: " + lonnsbetingelser +
                           "\nKontaktinfo: " + kontaktinfo + "\nStillingsinfo: " + stillingsInfo+
