@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 5. Mai 2015 AV: Jørgen DYhre
+//Sist endret 13. Mai 2015 AV: Jørgen DYhre
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
@@ -33,15 +33,13 @@ public class VikariatRegister implements Serializable {
     }
     
     public String[] getVikariaterTilKunde(String kundeNavn){
-        int antall = 0;
         String[] vikariater;
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         boolean ok = false;
         Vikariat loper = forste;
         if(loper!=null){
             if(loper.getKundeNavn().matches(kundeNavn)){
                 list.add(loper.getKundeNavn());
-                antall++;
             }
             int vikariatNr = loper.getVikariatNr();
             ok = true;
@@ -51,7 +49,6 @@ public class VikariatRegister implements Serializable {
                     if(loper.getVikariatNr() != vikariatNr){
                         if(loper.getKundeNavn() == kundeNavn){
                             list.add(loper.getKundeNavn());
-                            antall++;
                             loper = loper.neste;
                         }                        
                     }

@@ -23,11 +23,6 @@ public class Vikariat implements Serializable {
     private String lonnsbetingelser;
     private String kontaktinfo;
     private String stillingsInfo;
-    //private SoknadsRegister soknadReg;
-    /*Jobbkategori
-    Engasjementets varighet
-    Andre arbeidsvilkår?
-    Søknads Register*/
     
     public Vikariat neste;
     
