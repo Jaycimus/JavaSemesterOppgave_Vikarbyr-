@@ -42,7 +42,7 @@ public class Kunde implements Serializable{
         return typeSektor;
     }
     
-    public void setTypeSektor(){
+    public void setTypeSektor(String typeSektor){
         this.typeSektor = typeSektor;
     }
     
@@ -50,7 +50,7 @@ public class Kunde implements Serializable{
         return adresse;
     }
     
-    public void setAdresse(){
+    public void setAdresse(String adresse){
         this.adresse = adresse;
     }
     
@@ -59,7 +59,7 @@ public class Kunde implements Serializable{
         return tlf;
     }
     
-    public void setTlf(){
+    public void setTlf(int tlf){
         this.tlf = tlf;
     }
     
@@ -67,7 +67,7 @@ public class Kunde implements Serializable{
         return epost;
     }
     
-    public void setEpost(){
+    public void setEpost(String epost){
         this.epost = epost;
     }
    

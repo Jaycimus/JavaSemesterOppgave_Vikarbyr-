@@ -32,6 +32,7 @@ public class EndreKunde extends JPanel {
     private JTextArea utskrift;
     
     private Vikarbyraa v;
+    private Kunde kunde;
     
     private JComboBox<String>  cb_kunder; 
     private String[] kundeNavn;
@@ -109,40 +110,26 @@ public class EndreKunde extends JPanel {
     }
     
     public void endreKunde(){
+        Kunde kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
+        
         String navn = tf_navn.getText();
+        if(kunde==null)
+            System.out.println("kukk");
+        kunde.setNavn(navn);
         String adresse = tf_adresse.getText();
+        kunde.setAdresse(adresse);
         int tlf;
         String epost = tf_epost.getText();
+        kunde.setEpost(epost);
         String sektor;
-            if(privat.isSelected())
+            if(privat.isSelected()){
                 sektor = "Privat";
-            else
-                sektor = "Offentlig";
-        
-        
-        try{
-            if(!Validering.validerNavn(navn)){
-                JOptionPane.showMessageDialog(null, "Feil med kunde navn");
-            } else if(!Validering.validerAdresse(adresse)){
-                JOptionPane.showMessageDialog(null, "Feil med adresse");
-            } else if(!Validering.validerTLF(tf_tlf.getText())){
-                JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
-            } else if(!Validering.validerEpost(epost)){
-                JOptionPane.showMessageDialog(null, "Feil med epost");
-            } else {
-                tlf = Integer.parseInt(tf_tlf.getText());
-                Kunde kunde = new Kunde(navn, sektor, adresse, tlf, epost);
-                v.kundeRegister.settInn(kunde);
-                System.out.println("regKunde");
-                utskrift.setText(kunde.toString());
-                tf_navn.setText("");
-                tf_adresse.setText("");
-                tf_tlf.setText("");
-                tf_epost.setText("");
+                kunde.setTypeSektor(sektor);
             }
-        } catch(NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
-        }   
+            else{
+                sektor = "Offentlig";
+                kunde.setTypeSektor(sektor);
+            }   
     }
     
     public void slettKunde(){
