@@ -28,6 +28,7 @@ public class RegistrerArbeidsforhold extends JPanel {
     private JTextArea utskrift;
     
     public RegistrerArbeidsforhold(JTextArea utskrift, Vikarbyraa v){
+        System.out.println("Inne i  arbeidsforhold");
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
@@ -73,7 +74,7 @@ public class RegistrerArbeidsforhold extends JPanel {
         add(new JPanel());
         add(regArbeidsforhold);
         
-        
+        System.out.println("Opprettet arbeidsforhold 1");
         
     }
     
