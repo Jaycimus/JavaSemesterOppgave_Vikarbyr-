@@ -224,6 +224,24 @@ public class RegistrerVikariat extends JPanel {
                             (String) cb_minutter.getSelectedItem() + " - " + 
                             (String) cb_timer2.getSelectedItem() + ":" + 
                             (String) cb_minutter2.getSelectedItem();
+        if(cb_timer2.getSelectedIndex() < cb_timer.getSelectedIndex()){
+            
+        } else if (cb_timer2.getSelectedIndex() == cb_timer.getSelectedIndex()){
+            if(cb_minutter2.getSelectedIndex() < cb_minutter.getSelectedIndex()){
+                
+            } else if (cb_minutter2.getSelectedIndex() == cb_minutter.getSelectedIndex()){
+                JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
+                return;
+            } else {
+                JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,"Feil med arbeidstid - time");
+            return;
+        }
+            
+        
         String stillingstype = tf_stillingstype.getText();
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
         String lonnsbetingelser = tf_lonnsbetingelser.getText();
