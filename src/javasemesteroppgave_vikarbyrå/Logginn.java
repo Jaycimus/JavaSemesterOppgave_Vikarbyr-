@@ -40,12 +40,14 @@ public class Logginn extends JFrame{
     private Font knapper, tekstfelt;
     
     private Vikarbyraa v;
+    private Fonts f;
     
     public Logginn(){
         super("Logg Inn");
         setLayout(new FlowLayout());
         knapper = new Font("Arial", Font.BOLD, 20);
         tekstfelt = new Font("Bitstream Vera Sans Mono", Font.PLAIN, 20);
+        f = new Fonts();
         v = new Vikarbyraa();
         
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter

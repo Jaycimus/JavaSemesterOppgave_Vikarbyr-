@@ -5,9 +5,16 @@
  */
 package javasemesteroppgave_vikarbyrå;
 
-import java.awt.Font;
+import java.awt.Color;
 
-public class FargeOgFont {
+public class Farge {
+    private Color farge;
     
+    public Farge(){
+        farge = new Color(0,0,182,155);
+    }
     
+    public Color getFarge(){
+        return farge;
+    }
 }
