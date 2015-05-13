@@ -33,7 +33,7 @@ public class SoknadsRegister implements Serializable {
         Soknad loper = forste;
         
         if(forste == null){
-            soknadListe.setText("Ingen vikar i registeret");
+            soknadListe.setText("Ingen soknad i registeret");
         } else {
             soknadListe.setText("");            
             while(loper!=null){                
