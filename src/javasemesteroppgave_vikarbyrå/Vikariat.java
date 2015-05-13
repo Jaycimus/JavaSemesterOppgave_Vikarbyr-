@@ -16,7 +16,7 @@ public class Vikariat implements Serializable {
     private String kunde;
     private String adresse;
     private int vikariatNr;
-    private LocalDate[] varighet;
+    private String varighetfra, varighettil;
     private String arbeidstid;
     private String stillingstype;
     private String kvalifikasjoner;
@@ -33,7 +33,7 @@ public class Vikariat implements Serializable {
     
     public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
             String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
-                String kontaktinfo, String stillingsInfo, LocalDate[] varighet){
+                String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil){
         this.kunde = kunde;
         this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
@@ -42,7 +42,8 @@ public class Vikariat implements Serializable {
         this.lonnsbetingelser = lonnsbetingelser;
         this.kontaktinfo = kontaktinfo;
         this.stillingsInfo = stillingsInfo;
-        this.varighet = varighet;
+        this.varighetfra = varighetfra;
+        this.varighettil = varighettil;
        
     }
     
@@ -65,7 +66,7 @@ public class Vikariat implements Serializable {
                           "\nArbeidstid: " + arbeidstid + "\nStillingstype: " + stillingstype + 
                           "\nKvalifikasjoner: " + kvalifikasjoner + "\nLønnsbetingelser: " + lonnsbetingelser +
                           "\nKontaktinfo: " + kontaktinfo + "\nStillingsinfo: " + stillingsInfo+
-                          "\nVarighet: " + varighet[0] + "til" + varighet[1];
+                          "\nVarighet: " + varighetfra + "\nTil: " + varighettil;
         
         return utskrift;
         

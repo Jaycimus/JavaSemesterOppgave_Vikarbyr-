@@ -30,7 +30,7 @@ public class RegistrerVikariat extends JPanel {
     private JLabel lbl_kunde, lbl_adresse, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
                     lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighettil, lbl_varighetfra;
     private JTextField tf_adresse, tf_stillingstype, tf_kvalifikasjoner,
-                    tf_lonnsbetingelser, tf_kontaktinfo, tf_stillingsinfo, tf_varighettil, tf_varighetfra;
+                    tf_lonnsbetingelser, tf_kontaktinfo, tf_stillingsinfo;
     
     private JTextArea utskrift;
     private Vikarbyraa v;
@@ -109,8 +109,6 @@ public class RegistrerVikariat extends JPanel {
         tf_lonnsbetingelser = new JTextField("",15);
         tf_kontaktinfo = new JTextField("",15);
         tf_stillingsinfo = new JTextField("",15);
-        tf_varighetfra = new  JTextField("",10);
-        tf_varighettil = new  JTextField("",10);
                 
         cb_kunder = new JComboBox<>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
@@ -124,15 +122,32 @@ public class RegistrerVikariat extends JPanel {
         cb_minutter2.setMaximumRowCount(12);
         cb_dag = new JComboBox<>(dag);
         cb_dag.setMaximumRowCount(20);
-        
+        cb_dag2 = new JComboBox<>(dag2);
+        cb_dag2.setMaximumRowCount(20);
+        cb_maned = new JComboBox<>(maned);
+        cb_maned.setMaximumRowCount(12);
+        cb_maned2 = new JComboBox<>(maned2);
+        cb_maned2.setMaximumRowCount(12);
+        cb_ar = new JComboBox<>(ar);
+        cb_ar.setMaximumRowCount(5);
+        cb_ar2 = new JComboBox<>(ar2);
+        cb_ar2.setMaximumRowCount(5);
+                
         JPanel tider = new JPanel(new GridLayout(1,1,2,2));
         tider.add(cb_timer);
         tider.add(cb_minutter);
         tider.add(cb_timer2);
         tider.add(cb_minutter2);
         
-       // JPanel fra = new JPanel(new Gridlayout(1,1,2,2));
-        //fra.add(cb_)
+        JPanel fra = new JPanel(new GridLayout(1,1,2,2));
+        fra.add(cb_dag);
+        fra.add(cb_maned);
+        fra.add(cb_ar);
+        
+        JPanel til = new JPanel(new GridLayout(1,1,2,2));
+        til.add(cb_dag2);
+        til.add(cb_maned2);
+        til.add(cb_ar2);
         
         add(lbl_kunde);
         add(cb_kunder);
@@ -151,9 +166,9 @@ public class RegistrerVikariat extends JPanel {
         add(lbl_stillingsinfo);
         add(tf_stillingsinfo);
         add(lbl_varighetfra);
-        add(tf_varighetfra);
+        add(fra);
         add(lbl_varighettil);
-        add(tf_varighettil);
+        add(til);
        
         add(new JPanel());
         add(regVikariat);
@@ -168,26 +183,29 @@ public class RegistrerVikariat extends JPanel {
         
         String arbeidsted = tf_adresse.getText();
         String arbeidstid = (String) cb_timer.getSelectedItem() + ":" + 
-                (String) cb_minutter.getSelectedItem() + " - " + 
-                    (String) cb_timer2.getSelectedItem() + ":" + 
-                        (String) cb_minutter2.getSelectedItem();
+                            (String) cb_minutter.getSelectedItem() + " - " + 
+                            (String) cb_timer2.getSelectedItem() + ":" + 
+                            (String) cb_minutter2.getSelectedItem();
         String stillingstype = tf_stillingstype.getText();
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
         String lonnsbetingelser = tf_lonnsbetingelser.getText();
         String kontaktinfo = tf_kontaktinfo.getText();
         String stillingsinfo = tf_stillingsinfo.getText();
+        String varighetfra = (String) cb_dag.getSelectedItem() + "-" + 
+                             (String) cb_maned.getSelectedItem() + "-" +
+                             (String) cb_ar.getSelectedItem();
+        String varighettil = (String) cb_dag2.getSelectedItem() + "-" +
+                             (String) cb_maned2.getSelectedItem() + "-" +
+                             (String) cb_ar2.getSelectedItem();
         
-        String varighetfra = tf_varighetfra.getText();
-        String varighettil = tf_varighettil.getText();
         
         
-        
-        LocalDate fra = LocalDate.parse(varighetfra, format);
+       /* LocalDate fra = LocalDate.parse(varighetfra, format);
         LocalDate til = LocalDate.parse(varighettil, format);
         
         varighet = new LocalDate[2];
         varighet[0] =fra;
-        varighet[1]=til;
+        varighet[1]= til;*/
         
         
         
@@ -203,7 +221,7 @@ public class RegistrerVikariat extends JPanel {
         else{
             Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo,varighet);
+                        stillingsinfo,varighetfra,varighettil);
             v.vikariatRegister.settInn(vikariat);
             System.out.println("RegVikariat");
             utskrift.setText(vikariat.toString());
