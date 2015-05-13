@@ -22,7 +22,7 @@ public class Vikarbyraa implements Serializable {
     ArrayList<String> navneListe2 = new ArrayList<String>();
     ArrayList<String> passordListe2 = new ArrayList<String>();
     
-    private int nesteVikariatNr = 1000;
+    private int nesteVikariatNr = 10000;
     
     public Vikarbyraa(){
         navneListe1.add("Andreas"); navneListe1.add("Artur"); navneListe1.add("Jørgen");
@@ -37,5 +37,13 @@ public class Vikarbyraa implements Serializable {
         int nummer = vikariatRegister.finnNesteNummer();
         
         nesteVikariatNr = ++nummer;
+    }
+    
+    public int getNesteVikariatNr(){
+        return nesteVikariatNr;
+    }
+    
+    public void setNesteVikariatNr(){
+        nesteVikariatNr++;
     }
 }

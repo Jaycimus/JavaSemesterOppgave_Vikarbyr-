@@ -66,7 +66,7 @@ public class VikariatRegister implements Serializable {
     }
     
     public int finnNesteNummer(){
-        int nummer = 1000;
+        int nummer = 10000;
         Vikariat loper = forste;
         while(loper!=null)
         {

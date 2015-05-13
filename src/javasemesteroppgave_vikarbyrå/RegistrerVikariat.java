@@ -236,7 +236,8 @@ public class RegistrerVikariat extends JPanel {
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
         String bransjer = (String) cb_bransjer.getSelectedItem();
-         int vikariatNr = 0;
+         int vikariatNr = v.getNesteVikariatNr();
+         v.setNesteVikariatNr();
         
         
        /* LocalDate fra = LocalDate.parse(varighetfra, format);
