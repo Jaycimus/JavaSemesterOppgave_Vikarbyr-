@@ -6,6 +6,7 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 //Sist endret 7. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
+import java.awt.Font;
 import java.io.Serializable;
 
 public class Kunde implements Serializable{
