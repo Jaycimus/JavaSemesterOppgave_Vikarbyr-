@@ -125,7 +125,7 @@ public class RegistrerKunde extends JPanel {
                 JOptionPane.showMessageDialog(null, "Feil med epost");
             } else {
                 tlf = Integer.parseInt(tf_tlf.getText());
-                Kunde kunde = new Kunde(navn, sektor, adresse, bransjer, tlf, epost);
+                Kunde kunde = new Kunde(navn, sektor, adresse, tlf, epost);
                 v.kundeRegister.settInn(kunde);
                 System.out.println("regKunde");
                 utskrift.setText(kunde.toString());

@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 
 public class EndreKunde extends JPanel {
     private JButton endreKunde, slettKunde;
-    private JLabel lbl_navn, lbl_adresse, lbl_bransje, lbl_tlf, lbl_epost;
+    private JLabel lbl_navn, lbl_adresse, lbl_tlf, lbl_epost;
     private JRadioButton privat, offentlig;
     private ButtonGroup BG_typeSektor;
     private JTextField tf_navn, tf_adresse, tf_tlf, tf_epost;
@@ -33,18 +33,9 @@ public class EndreKunde extends JPanel {
     
     private Vikarbyraa v;
     
-    private JComboBox<String> cb_bransjer, cb_kunder; 
+    private JComboBox<String>  cb_kunder; 
     private String[] kundeNavn;
-    private final String[] bransjer = 
-        {"Advokattjenester/Prosedyre", "Bankvirksomhet","Bygg/Anlegg/Entreprenør", 
-            "Eiendom/Eiendomsmegling", "Engineering", "Farmasi/Legemiddel", "Finans -verdipapirer/megling", 
-                "Forsikring/Assuranse", "Forskning og utvikling", "Helse/Velvære/Trening", "Helsesektor", "Hotell/overnatting", 
-                    "Høyteknologi/Elektronikk", "IKT/Telekom", "Industri: Tradisjonell/Prosess/Øvrig", "Ingeniøryrker: Øvrig", "Internett tjenester/E-handel", 
-                        "Investment banking", "Investment management", "IT: Hardware/Software", "Juridisk rådgivning", "Kommunikasjon/PR", "Konsulenttjenester: Ingeniør/Teknisk", 
-                            "Konsulenttjenester: Øvrig", "Konsultenttjenester: IT", "Kultur/Kunst/Øvrige kreative fag", "Management consulting", "Media/Underholdning", "Merkevarer/Konsumentprodukter", 
-                                "NGO - Ikke-statlige organisasjoner", "Non-profit -/interesseorg.", "Olje/Gass/Energi/Kraft", "Regnskap", "Reiseliv/Turisme/Event", "Reklame", "Rekruttering/HR/Bemanning", 
-                                    "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
-                                        "Varehandel/Dagligvare/Butikk", "Øvrig"};
+    
     
     
     public EndreKunde(JTextArea utskrift, Vikarbyraa v){
@@ -66,7 +57,7 @@ public class EndreKunde extends JPanel {
         
         lbl_navn = new JLabel("Kunde navn: ");
         lbl_adresse = new JLabel("Adresse: ");
-        lbl_bransje = new JLabel("Bransje: ");
+        
         lbl_tlf = new JLabel("Telefon: ");
         lbl_epost = new JLabel("E-post: ");
         
@@ -81,8 +72,7 @@ public class EndreKunde extends JPanel {
         tf_tlf = new JTextField("", 15);
         tf_epost = new JTextField("", 15);
         
-        cb_bransjer = new JComboBox<String>(bransjer);
-        cb_bransjer.setMaximumRowCount(9);
+        
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
         cb_kunder.addItemListener(new ItemListener(){
@@ -94,7 +84,7 @@ public class EndreKunde extends JPanel {
                 tf_adresse.setText(kunde.getAdresse());
                 tf_tlf.setText(kunde.getTlf());
                 tf_epost.setText(kunde.getEpost());
-                String sektor = kunde.getBransje();
+                String sektor = kunde.getTypeSektor();
                 if(sektor.matches("Privat")){
                     privat.setSelected(true);
                 } else if(sektor.matches("Offentlig")) {
@@ -112,8 +102,8 @@ public class EndreKunde extends JPanel {
         add(tf_adresse);
         add(privat);
         add(offentlig);
-        add(lbl_bransje);
-        add(cb_bransjer);
+        add(new JPanel());
+        add(new JPanel());
         add(lbl_tlf);
         add(tf_tlf);
         add(lbl_epost);
@@ -135,7 +125,7 @@ public class EndreKunde extends JPanel {
                 sektor = "Privat";
             else
                 sektor = "Offentlig";
-        String bransjer = (String) cb_bransjer.getSelectedItem();
+        
         
         try{
             if(!Validering.validerNavn(navn)){
@@ -148,7 +138,7 @@ public class EndreKunde extends JPanel {
                 JOptionPane.showMessageDialog(null, "Feil med epost");
             } else {
                 tlf = Integer.parseInt(tf_tlf.getText());
-                Kunde kunde = new Kunde(navn, sektor, adresse, bransjer, tlf, epost);
+                Kunde kunde = new Kunde(navn, sektor, adresse, tlf, epost);
                 v.kundeRegister.settInn(kunde);
                 System.out.println("regKunde");
                 utskrift.setText(kunde.toString());

@@ -13,18 +13,18 @@ public class Kunde implements Serializable{
     private String navn;
     private String typeSektor;
     private String adresse;
-    private String bransje;
+    
     private int tlf;
     private String epost;
     
     public Kunde neste;
     
-    public Kunde(String navn, String typeSektor, String adresse, String bransje,
+    public Kunde(String navn, String typeSektor, String adresse, 
                     int tlf, String epost){
         this.navn = navn;
         this.typeSektor = typeSektor;
         this.adresse = adresse;
-        this.bransje = bransje;
+        
         this.tlf = tlf;
         this.epost = epost;
         this.neste = null;
@@ -39,9 +39,7 @@ public class Kunde implements Serializable{
     public String getAdresse(){
         return adresse;
     }
-    public String getBransje(){
-        return bransje;
-    }
+    
     public String getTlf(){
         String tlf = "" + this.tlf;
         return tlf;
@@ -52,7 +50,7 @@ public class Kunde implements Serializable{
     
     public String toString(){
         String utskrift = "\nKunde navn: " + navn + "\nType Sektor: " + typeSektor + 
-                          "\nAdresse: " + adresse + "\nBransje: " + bransje + 
+                          "\nAdresse: " + adresse + 
                           "\nTelefon: " + tlf + "\nE-post: " + epost;
         return utskrift;
     }
