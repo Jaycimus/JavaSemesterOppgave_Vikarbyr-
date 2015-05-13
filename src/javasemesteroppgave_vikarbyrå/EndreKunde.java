@@ -32,6 +32,7 @@ public class EndreKunde extends JPanel {
     private JTextArea utskrift;
     
     private Vikarbyraa v;
+    private Kunde kunde;
     
     private JComboBox<String>  cb_kunder; 
     private String[] kundeNavn;
@@ -57,7 +58,6 @@ public class EndreKunde extends JPanel {
         
         lbl_navn = new JLabel("Kunde navn: ");
         lbl_adresse = new JLabel("Adresse: ");
-        
         lbl_tlf = new JLabel("Telefon: ");
         lbl_epost = new JLabel("E-post: ");
         
@@ -75,22 +75,18 @@ public class EndreKunde extends JPanel {
         
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
-        cb_kunder.addItemListener(new ItemListener(){
-            public void itemStateChanged(ItemEvent e){
-                String kundeNavn = (String) cb_kunder.getSelectedItem();
-                Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
-                
-                tf_navn.setText(kunde.getNavn());
-                tf_adresse.setText(kunde.getAdresse());
-                tf_tlf.setText(kunde.getTlf());
-                tf_epost.setText(kunde.getEpost());
-                String sektor = kunde.getTypeSektor();
-                if(sektor.matches("Privat")){
-                    privat.setSelected(true);
-                } else if(sektor.matches("Offentlig")) {
-                    offentlig.setSelected(true);
-                }
-                
+        cb_kunder.addItemListener((ItemEvent e) -> {
+            String kundeNavn1 = (String) cb_kunder.getSelectedItem();
+            Kunde kunde = v.kundeRegister.finnKunde(kundeNavn1);
+            tf_navn.setText(kunde.getNavn());
+            tf_adresse.setText(kunde.getAdresse());
+            tf_tlf.setText(kunde.getTlf());
+            tf_epost.setText(kunde.getEpost());
+            String sektor = kunde.getTypeSektor();
+            if(sektor.matches("Privat")){
+                privat.setSelected(true);
+            } else if(sektor.matches("Offentlig")) {
+                offentlig.setSelected(true);
             }
         });
         
@@ -102,8 +98,6 @@ public class EndreKunde extends JPanel {
         add(tf_adresse);
         add(privat);
         add(offentlig);
-        add(new JPanel());
-        add(new JPanel());
         add(lbl_tlf);
         add(tf_tlf);
         add(lbl_epost);
@@ -116,40 +110,26 @@ public class EndreKunde extends JPanel {
     }
     
     public void endreKunde(){
+        Kunde kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
+        
         String navn = tf_navn.getText();
+        if(kunde==null)
+            System.out.println("kukk");
+        kunde.setNavn(navn);
         String adresse = tf_adresse.getText();
+        kunde.setAdresse(adresse);
         int tlf;
         String epost = tf_epost.getText();
+        kunde.setEpost(epost);
         String sektor;
-            if(privat.isSelected())
+            if(privat.isSelected()){
                 sektor = "Privat";
-            else
-                sektor = "Offentlig";
-        
-        
-        try{
-            if(!Validering.validerNavn(navn)){
-                JOptionPane.showMessageDialog(null, "Feil med kunde navn");
-            } else if(!Validering.validerAdresse(adresse)){
-                JOptionPane.showMessageDialog(null, "Feil med adresse");
-            } else if(!Validering.validerTLF(tf_tlf.getText())){
-                JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
-            } else if(!Validering.validerEpost(epost)){
-                JOptionPane.showMessageDialog(null, "Feil med epost");
-            } else {
-                tlf = Integer.parseInt(tf_tlf.getText());
-                Kunde kunde = new Kunde(navn, sektor, adresse, tlf, epost);
-                v.kundeRegister.settInn(kunde);
-                System.out.println("regKunde");
-                utskrift.setText(kunde.toString());
-                tf_navn.setText("");
-                tf_adresse.setText("");
-                tf_tlf.setText("");
-                tf_epost.setText("");
+                kunde.setTypeSektor(sektor);
             }
-        } catch(NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
-        }   
+            else{
+                sektor = "Offentlig";
+                kunde.setTypeSektor(sektor);
+            }   
     }
     
     public void slettKunde(){

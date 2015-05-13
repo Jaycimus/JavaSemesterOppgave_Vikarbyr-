@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 public class RegistrerKunde extends JPanel {
     private JButton regKunde;
-    private JLabel lbl_navn, lbl_adresse, lbl_bransje, lbl_tlf, lbl_epost;
+    private JLabel lbl_navn, lbl_adresse, lbl_tlf, lbl_epost;
     private JRadioButton privat, offentlig;
     private ButtonGroup BG_typeSektor;
     private JTextField tf_navn, tf_adresse, tf_tlf, tf_epost;
@@ -31,17 +31,6 @@ public class RegistrerKunde extends JPanel {
     
     private Vikarbyraa v;
     
-    private JComboBox<String> cb_bransjer; 
-    private final String[] bransjer = 
-        {"Advokattjenester/Prosedyre", "Bankvirksomhet","Bygg/Anlegg/Entreprenør", 
-            "Eiendom/Eiendomsmegling", "Engineering", "Farmasi/Legemiddel", "Finans -verdipapirer/megling", 
-                "Forsikring/Assuranse", "Forskning og utvikling", "Helse/Velvære/Trening", "Helsesektor", "Hotell/overnatting", 
-                    "Høyteknologi/Elektronikk", "IKT/Telekom", "Industri: Tradisjonell/Prosess/Øvrig", "Ingeniøryrker: Øvrig", "Internett tjenester/E-handel", 
-                        "Investment banking", "Investment management", "IT: Hardware/Software", "Juridisk rådgivning", "Kommunikasjon/PR", "Konsulenttjenester: Ingeniør/Teknisk", 
-                            "Konsulenttjenester: Øvrig", "Konsultenttjenester: IT", "Kultur/Kunst/Øvrige kreative fag", "Management consulting", "Media/Underholdning", "Merkevarer/Konsumentprodukter", 
-                                "NGO - Ikke-statlige organisasjoner", "Non-profit -/interesseorg.", "Olje/Gass/Energi/Kraft", "Regnskap", "Reiseliv/Turisme/Event", "Reklame", "Rekruttering/HR/Bemanning", 
-                                    "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
-                                        "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
     
     public RegistrerKunde(JTextArea utskrift, Vikarbyraa v){
@@ -58,7 +47,6 @@ public class RegistrerKunde extends JPanel {
         
         lbl_navn = new JLabel("Kunde navn: ");
         lbl_adresse = new JLabel("Adresse: ");
-        lbl_bransje = new JLabel("Bransje: ");
         lbl_tlf = new JLabel("Telefon: ");
         lbl_epost = new JLabel("E-post: ");
         
@@ -72,9 +60,6 @@ public class RegistrerKunde extends JPanel {
         tf_adresse = new JTextField("", 15);
         tf_tlf = new JTextField("", 15);
         tf_epost = new JTextField("", 15);
-        
-        cb_bransjer = new JComboBox<String>(bransjer);
-        cb_bransjer.setMaximumRowCount(9);
                 
         add(lbl_navn);
         add(tf_navn);
@@ -82,8 +67,6 @@ public class RegistrerKunde extends JPanel {
         add(tf_adresse);
         add(privat);
         add(offentlig);
-        add(lbl_bransje);
-        add(cb_bransjer);
         add(lbl_tlf);
         add(tf_tlf);
         add(lbl_epost);
@@ -112,7 +95,6 @@ public class RegistrerKunde extends JPanel {
                 sektor = "Privat";
             else
                 sektor = "Offentlig";
-        String bransjer = (String) cb_bransjer.getSelectedItem();
         
         try{
             if(!Validering.validerNavn(navn)){
