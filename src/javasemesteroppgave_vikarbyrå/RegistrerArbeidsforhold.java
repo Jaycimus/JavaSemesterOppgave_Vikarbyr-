@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -47,14 +49,33 @@ public class RegistrerArbeidsforhold extends JPanel {
         kundeNavn = v.kundeRegister.getKundeNavn();
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
-        System.out.println("2,5");
-        vikariatNr = v.vikariatRegister.getVikariaterTilKunde((String) cb_kunder.getSelectedItem());
-        System.out.println("2,6");
+        cb_kunder.addItemListener(
+            new ItemListener(){
+                public void itemStateChanged(ItemEvent event){
+                    if(event.getStateChange()==ItemEvent.SELECTED){
+                        vikariatNr = v.vikariatRegister.getVikariaterTilKunde((String) cb_kunder.getSelectedItem());
+                        cb_vikariater.setEnabled(true);
+                    }
+                }
+            }
+        );
+        vikariatNr = new String[0];
         cb_vikariater = new JComboBox<String>(vikariatNr);
         cb_vikariater.setMaximumRowCount(9);
+        cb_vikariater.setEnabled(false);
+        cb_vikariater.addItemListener(
+            new ItemListener(){
+                public void itemStateChanged(ItemEvent event){
+                    if(event.getStateChange()==ItemEvent.SELECTED){
+                        
+                    }
+                }
+            }
+        );
         vikarer = new String[0];
         cb_vikarer = new JComboBox<String>(vikarer);
         cb_vikarer.setMaximumRowCount(9);
+        cb_vikarer.setEnabled(false);
         
         ta_arbeidsforhold = new JTextArea(4,15);
         add(lbl_kunder);

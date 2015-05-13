@@ -149,10 +149,10 @@ public class RegistrerVikariat extends JPanel {
         cb_ar.setMaximumRowCount(5);
         cb_ar2 = new JComboBox<>(ar2);
         cb_ar2.setMaximumRowCount(5);
-<<<<<<< HEAD
+
         cb_bransjer = new JComboBox<String>(bransjer);
         cb_bransjer.setMaximumRowCount(9);
-=======
+
         
         JPanel kolon = new JPanel(new FlowLayout());
         kolon.add(lbl_kolon);
@@ -162,7 +162,7 @@ public class RegistrerVikariat extends JPanel {
         
         JPanel bindestrek = new JPanel(new FlowLayout());
         bindestrek.add(lbl_bindestrek);
->>>>>>> 378060bfef4ad09c535afc01660ec4353ab1bbd1
+
                 
         JPanel tider = new JPanel(new FlowLayout(FlowLayout.LEFT,-2,-2));
         tider.add(cb_timer);
@@ -260,7 +260,7 @@ public class RegistrerVikariat extends JPanel {
         else{
             Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo,varighetfra,varighettil, bransje);
+                        stillingsinfo,varighetfra,varighettil, bransjer);
             v.vikariatRegister.settInn(vikariat);
             System.out.println("RegVikariat");
             utskrift.setText(vikariat.toString());

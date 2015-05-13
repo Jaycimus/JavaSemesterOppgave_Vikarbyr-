@@ -33,6 +33,7 @@ public class VikariatRegister implements Serializable {
     }
     
     public String[] getVikariaterTilKunde(String kundeNavn){
+        System.out.println(kundeNavn);
         String[] vikariater;
         List<String> list = new ArrayList<>();
         boolean ok = false;
@@ -41,24 +42,19 @@ public class VikariatRegister implements Serializable {
             if(loper.getKundeNavn().matches(kundeNavn)){
                 list.add(loper.getKundeNavn());
             }
-            int vikariatNr = loper.getVikariatNr();
             ok = true;
             loper = loper.neste;
             while(ok == true){
                 if(loper != null){
-                    if(loper.getVikariatNr() != vikariatNr){
-                        if(loper.getKundeNavn() == kundeNavn){
+                    if(loper.getKundeNavn() == kundeNavn){
                             list.add(loper.getKundeNavn());
                             loper = loper.neste;
-                        }                        
                     }
                     else
                         ok = false;
                 }
-                else{
+                else
                     ok = false;
-                    
-                }
             }
         }
         else{
