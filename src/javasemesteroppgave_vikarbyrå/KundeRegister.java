@@ -51,7 +51,7 @@ public class KundeRegister implements Serializable {
         }
         
         if(loper.getNavn() == kundeNavn){
-            loper = loper.neste;
+            loper = loper.neste.neste;
             return;
         }
         
