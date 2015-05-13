@@ -34,6 +34,7 @@ public class AnsattVindu extends JPanel{
     private RegistrerVikar rvv;
     private RegistrerArbeidsforhold raf;
     private EndreKunde ek;
+    private EndreVikariat ev;
     
    public AnsattVindu(Vikarbyraa v, JFrame ramme){
         this.v = v;
@@ -151,6 +152,8 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.raf.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
+                if(ev!=null)
+                    AnsattVindu.this.ev.setVisible(false);
                 RegistrerKunde rk = new RegistrerKunde(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rk = rk;
                 add(rk, BorderLayout.EAST);
@@ -168,6 +171,8 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.raf.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
+                if(ev!=null)
+                    AnsattVindu.this.ev.setVisible(false);
                 RegistrerVikariat rv = new RegistrerVikariat(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rv = rv;
                 add(rv, BorderLayout.EAST);
@@ -183,6 +188,8 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.rvv.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
+                if(ev!=null)
+                    AnsattVindu.this.ev.setVisible(false);
                 RegistrerArbeidsforhold raf = new RegistrerArbeidsforhold(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.raf = raf;
                 add(raf, BorderLayout.EAST);
@@ -198,7 +205,8 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.raf.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
-                
+                if(ev!=null)
+                    AnsattVindu.this.ev.setVisible(false);
                 RegistrerVikar rvv = new RegistrerVikar(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rvv = rvv;
                 add(rvv,BorderLayout.EAST); 
@@ -213,12 +221,28 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.rvv.setVisible(false);
                 if(raf!=null)
                     AnsattVindu.this.raf.setVisible(false);
+                if(ev!=null)
+                    AnsattVindu.this.ev.setVisible(false);
                 EndreKunde ek = new EndreKunde(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.ek = ek;
                 add(ek,BorderLayout.EAST);
                 visKundeReg();
             }
             else if(e.getSource()==visEndreVikariatReg){
+                registrering.setVisible(false);
+                if(rk!=null)
+                    AnsattVindu.this.rk.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rvv!=null)
+                    AnsattVindu.this.rvv.setVisible(false);
+                if(raf!=null)
+                    AnsattVindu.this.raf.setVisible(false);
+                if(ek!=null)
+                    AnsattVindu.this.ek.setVisible(false);
+                EndreVikariat ev = new EndreVikariat(AnsattVindu.this.getTextArea(),v);
+                AnsattVindu.this.ev = ev;
+                add(ev,BorderLayout.EAST);
                 visVikariatReg();
             }
             else if(e.getSource()==visEndreArbeisforholdReg){

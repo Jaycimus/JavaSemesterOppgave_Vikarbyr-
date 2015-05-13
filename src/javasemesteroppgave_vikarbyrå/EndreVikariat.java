@@ -1,45 +1,41 @@
-/*Gruppemedlemmene:
-Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
-Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
-
-//Sist endret 7. Mai 2015 AV: Arthur Nordnes
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package javasemesteroppgave_vikarbyrå;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Date;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Locale;
-import java.time.format.DateTimeFormatter;
 
-
-public class RegistrerVikariat extends JPanel {
-    private JButton regVikariat;
-    private JLabel lbl_kunde, lbl_adresse, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
-                    lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighettil, lbl_varighetfra,
-                    lbl_bindestrek, lbl_kolon, lbl_kolon2;
-    private JTextField tf_adresse, tf_stillingstype, tf_kvalifikasjoner,
-                    tf_lonnsbetingelser, tf_kontaktinfo, tf_stillingsinfo;
-    
+public class EndreVikariat extends JPanel {
+    private JButton endreVikariat, slettVikariat;
+    private JLabel lbl_navn, lbl_arbeidssted, lbl_arbeidstid, lbl_stillingstype, lbl_kvalifikasjoner,
+            lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighetfra, lbl_varighettil,
+            lbl_bindestrek, lbl_kolon, lbl_kolon2;
+    private JTextField tf_arbeidssted, tf_stillingstype, tf_kvalifikasjoner, tf_lonnsbetingelser,
+            tf_kontaktinfo, tf_stillingsinfo;
     private JTextArea utskrift;
+    
     private Vikarbyraa v;
     
-    private JComboBox<String> cb_kunder; 
-    private String[] kundeNavn;
+    private JComboBox<String> cb_kunder;
+    private String[]kundeNavn;
     private JComboBox<String> cb_timer;
     private final String[] timer =
         {"--T--","00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
@@ -89,10 +85,7 @@ public class RegistrerVikariat extends JPanel {
                                     "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
                                         "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
-    
-    private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.ENGLISH);
-    
-    public RegistrerVikariat (JTextArea utskrift, Vikarbyraa v){
+    public EndreVikariat (JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
@@ -103,12 +96,14 @@ public class RegistrerVikariat extends JPanel {
 
         kundeNavn = v.kundeRegister.getKundeNavn();
         
-        regVikariat = new JButton("Registrer vikariat");
-        regVikariat.addActionListener(lytter);
+        endreVikariat = new JButton("Endre Vikariat");
+        endreVikariat.addActionListener(lytter);
+        slettVikariat = new JButton("Slett Vikariat");
+        slettVikariat.addActionListener(lytter);
         
-        lbl_kunde = new JLabel("Kunde: ");
-        lbl_adresse = new JLabel("Arbeidsted: ");
-        lbl_arbeidtid = new JLabel("Arbeidstid: ");
+        lbl_navn = new JLabel("Kunde: ");
+        lbl_arbeidssted = new JLabel("Arbeidsted: ");
+        lbl_arbeidstid = new JLabel("Arbeidstid: ");
         lbl_stillingstype = new JLabel("Stillingstype: ");
         lbl_kvalifikasjoner = new JLabel("Kvalifikasjoner: ");
         lbl_lonnsbetingelser = new JLabel("Lønnsbetingelser: ");
@@ -120,7 +115,7 @@ public class RegistrerVikariat extends JPanel {
         lbl_kolon = new JLabel(":");
         lbl_kolon2 = new JLabel(":");
         
-        tf_adresse = new JTextField("",15);
+        tf_arbeidssted = new JTextField("",15);
         tf_stillingstype = new JTextField("",15);
         tf_kvalifikasjoner = new JTextField("",15);
         tf_lonnsbetingelser = new JTextField("",15);
@@ -129,6 +124,26 @@ public class RegistrerVikariat extends JPanel {
                 
         cb_kunder = new JComboBox<>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
+        cb_kunder.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent e){
+                String kundeNavn = (String) cb_kunder.getSelectedItem();
+                Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
+                
+                tf_adresse.setText(kunde.getNavn());
+                tf_adresse.setText(kunde.getAdresse());
+                tf_tlf.setText(kunde.getTlf());
+                tf_epost.setText(kunde.getEpost());
+                String sektor = kunde.getTypeSektor();
+                if(sektor.matches("Privat")){
+                    privat.setSelected(true);
+                } else if(sektor.matches("Offentlig")) {
+                    offentlig.setSelected(true);
+                }
+                
+            }
+        });
+            }
+        }
         cb_timer = new JComboBox<>(timer);
         cb_timer.setMaximumRowCount(16);
         cb_minutter = new JComboBox<>(minutter);
@@ -187,11 +202,11 @@ public class RegistrerVikariat extends JPanel {
         til.add(cb_maned2);
         til.add(cb_ar2);
         
-        add(lbl_kunde);
+        add(lbl_navn);
         add(cb_kunder);
-        add(lbl_adresse);
-        add(tf_adresse);
-        add(lbl_arbeidtid);
+        add(lbl_arbeidssted);
+        add(tf_arbeidssted);
+        add(lbl_arbeidstid);
         add(tider);
         add(lbl_stillingstype);
         add(cb_bransjer);
@@ -208,18 +223,18 @@ public class RegistrerVikariat extends JPanel {
         add(lbl_varighettil);
         add(til);
        
-        add(new JPanel());
-        add(regVikariat);
+        add(slettVikariat);
+        add(endreVikariat);
     }
     
-    public void regVikariat(){
+    public void endreVikariat(){
         String kunde = (String) cb_kunder.getSelectedItem();
         if(kunde.matches("---Kunder---")){
             JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
             return;
         }
         
-        String arbeidsted = tf_adresse.getText();
+        String arbeidsted = tf_arbeidssted.getText();
         String arbeidstid = (String) cb_timer.getSelectedItem() + ":" + 
                             (String) cb_minutter.getSelectedItem() + " - " + 
                             (String) cb_timer2.getSelectedItem() + ":" + 
@@ -237,17 +252,6 @@ public class RegistrerVikariat extends JPanel {
                              (String) cb_ar2.getSelectedItem();
         String bransjer = (String) cb_bransjer.getSelectedItem();
         
-        
-        
-       /* LocalDate fra = LocalDate.parse(varighetfra, format);
-        LocalDate til = LocalDate.parse(varighettil, format);
-        
-        varighet = new LocalDate[2];
-        varighet[0] =fra;
-        varighet[1]= til;*/
-        
-        
-        
         if(!Validering.validerAdresse(arbeidsted)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
             return;
@@ -264,22 +268,31 @@ public class RegistrerVikariat extends JPanel {
             v.vikariatRegister.settInn(vikariat);
             System.out.println("RegVikariat");
             utskrift.setText(vikariat.toString());
-            utskrift.setText(vikariat.toString());
-            tf_adresse.setText("");
+            tf_arbeidssted.setText("");
             tf_stillingstype.setText("");
             tf_kvalifikasjoner.setText("");
             tf_lonnsbetingelser.setText("");
             tf_kontaktinfo.setText("");
             tf_stillingsinfo.setText("");
+            
         }
     }
     
+    public void slettVikariat(){
+    
+}
+    
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            if(e.getSource()==regVikariat){
-                regVikariat();
+            if(e.getSource()==endreVikariat){
+                endreVikariat();
+            }
+            else if(e.getSource()==slettVikariat){
+                slettVikariat();
             }
         }
     }
+    
+    
     
 }

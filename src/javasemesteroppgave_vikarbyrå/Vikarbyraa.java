@@ -23,8 +23,8 @@ public class Vikarbyraa implements Serializable {
     ArrayList<String> passordListe2 = new ArrayList<String>();
     
     public Vikarbyraa(){
-        navneListe1.add("Andreas"); navneListe1.add("Artur"); navneListe1.add("Jørgen");
-        passordListe1.add("andreas"); passordListe1.add("artur"); passordListe1.add("jørgen");
+        navneListe1.add("Andreas"); navneListe1.add("Arthur"); navneListe1.add("Jørgen");
+        passordListe1.add("andreas"); passordListe1.add("arthur"); passordListe1.add("jørgen");
         navneListe2.add("Vikar");
         passordListe2.add("vikar");
     }
