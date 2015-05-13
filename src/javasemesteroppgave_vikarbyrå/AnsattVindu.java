@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
 public class AnsattVindu extends JPanel{
     private final JPanel meny, registrering, bunn, topp;
@@ -40,7 +41,7 @@ public class AnsattVindu extends JPanel{
         
         borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
-                
+        setBorder(new EmptyBorder(0, 5, 0, 5));        
                 
         regKunde = new JButton("Registrer kunde");
             /*regKunde.setFocusPainted(false);
