@@ -194,7 +194,7 @@ public class RegistrerVikariat extends JPanel {
         add(lbl_arbeidtid);
         add(tider);
         add(lbl_stillingstype);
-        add(tf_stillingstype);
+        add(cb_bransjer);
         add(lbl_kvalifikasjoner);
         add(tf_kvalifikasjoner);
         add(lbl_lonnsbetingelser);
