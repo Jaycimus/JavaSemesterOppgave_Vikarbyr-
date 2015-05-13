@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 7. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 13. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Font;
@@ -33,21 +33,44 @@ public class Kunde implements Serializable{
     public String getNavn(){
         return navn;
     }
+    
+    public void setNavn(String navn){
+        this.navn = navn;
+    }
+    
     public String getTypeSektor(){
         return typeSektor;
     }
+    
+    public void setTypeSektor(){
+        this.typeSektor = typeSektor;
+    }
+    
     public String getAdresse(){
         return adresse;
+    }
+    
+    public void setAdresse(){
+        this.adresse = adresse;
     }
     
     public String getTlf(){
         String tlf = "" + this.tlf;
         return tlf;
     }
+    
+    public void setTlf(){
+        this.tlf = tlf;
+    }
+    
     public String getEpost(){
         return epost;
     }
     
+    public void setEpost(){
+        this.epost = epost;
+    }
+   
     public String toString(){
         String utskrift = "\nKunde navn: " + navn + "\nType Sektor: " + typeSektor + 
                           "\nAdresse: " + adresse + 
