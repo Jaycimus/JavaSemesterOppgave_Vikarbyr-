@@ -7,9 +7,11 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
@@ -28,7 +30,8 @@ import java.time.format.DateTimeFormatter;
 public class RegistrerVikariat extends JPanel {
     private JButton regVikariat;
     private JLabel lbl_kunde, lbl_adresse, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
-                    lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighettil, lbl_varighetfra;
+                    lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighettil, lbl_varighetfra,
+                    lbl_bindestrek, lbl_kolon, lbl_kolon2;
     private JTextField tf_adresse, tf_stillingstype, tf_kvalifikasjoner,
                     tf_lonnsbetingelser, tf_kontaktinfo, tf_stillingsinfo;
     
@@ -37,43 +40,42 @@ public class RegistrerVikariat extends JPanel {
     
     private JComboBox<String> cb_kunder; 
     private String[] kundeNavn;
-    private LocalDate[] varighet;
     private JComboBox<String> cb_timer;
     private final String[] timer =
-        {"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
+        {"--T--","00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
             "16","17","18","19","20","21","22","23"};
     private JComboBox<String> cb_timer2;
     private final String[] timer2 =
-        {"00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
+        {"--T--","00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
             "16","17","18","19","20","21","22","23"};
     private JComboBox<String> cb_minutter;
     private final String[] minutter =
-        {"00","05","10","15","20","25","30","35","40","45","50","55"};
+        {"--M--","00","05","10","15","20","25","30","35","40","45","50","55"};
     private JComboBox<String> cb_minutter2;
     private final String[] minutter2 =
-        {"00","05","10","15","20","25","30","35","40","45","50","55"};
+        {"--M--","00","05","10","15","20","25","30","35","40","45","50","55"};
     private JComboBox<String> cb_dag;
     private final String[] dag = 
-        {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
+        {"--Dag--","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
             "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
     private JComboBox<String> cb_dag2;
     private final String[] dag2 = 
-        {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
+        {"--Dag--","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
             "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
     private JComboBox<String> cb_maned;
     private final String[] maned =
-        {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
+        {"--Måned--","Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
             "Oktober","November","Desember"};
     private JComboBox<String> cb_maned2;
     private final String[] maned2 =
-        {"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
+        {"-Måned-","Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
             "Oktober","November","Desember"};
     private JComboBox<String> cb_ar;
     private final String[] ar =
-        {"2015","2016","2017","2018","2019","2020"};
+        {"--År--","2015","2016","2017","2018","2019","2020"};
     private JComboBox<String> cb_ar2;
     private final String[] ar2 =
-        {"2015","2016","2017","2018","2019","2020"};
+        {"--År--","2015","2016","2017","2018","2019","2020"};
     
     private JComboBox<String>cb_bransjer;
     private final String[] bransjer = 
@@ -114,6 +116,9 @@ public class RegistrerVikariat extends JPanel {
         lbl_stillingsinfo = new JLabel("Stillingsinfo: ");
         lbl_varighetfra = new JLabel("Varighet(fra): ");
         lbl_varighettil = new JLabel("Varighet(til): ");
+        lbl_bindestrek = new JLabel("-");
+        lbl_kolon = new JLabel(":");
+        lbl_kolon2 = new JLabel(":");
         
         tf_adresse = new JTextField("",15);
         tf_stillingstype = new JTextField("",15);
@@ -144,14 +149,33 @@ public class RegistrerVikariat extends JPanel {
         cb_ar.setMaximumRowCount(5);
         cb_ar2 = new JComboBox<>(ar2);
         cb_ar2.setMaximumRowCount(5);
+<<<<<<< HEAD
         cb_bransjer = new JComboBox<String>(bransjer);
         cb_bransjer.setMaximumRowCount(9);
+=======
+        
+        JPanel kolon = new JPanel(new FlowLayout());
+        kolon.add(lbl_kolon);
+        
+        JPanel kolon2 = new JPanel(new FlowLayout());
+        kolon2.add(lbl_kolon2);
+        
+        JPanel bindestrek = new JPanel(new FlowLayout());
+        bindestrek.add(lbl_bindestrek);
+>>>>>>> 378060bfef4ad09c535afc01660ec4353ab1bbd1
                 
-        JPanel tider = new JPanel(new GridLayout(1,1,2,2));
+        JPanel tider = new JPanel(new FlowLayout(FlowLayout.LEFT,-2,-2));
         tider.add(cb_timer);
+        cb_timer.setBackground(Color.white);
+        tider.add(kolon);
         tider.add(cb_minutter);
+        cb_minutter.setBackground(Color.white);
+        tider.add(bindestrek);
         tider.add(cb_timer2);
+        cb_timer2.setBackground(Color.white);
+        tider.add(kolon2);
         tider.add(cb_minutter2);
+        cb_minutter2.setBackground(Color.white);
         
         JPanel fra = new JPanel(new GridLayout(1,1,2,2));
         fra.add(cb_dag);
