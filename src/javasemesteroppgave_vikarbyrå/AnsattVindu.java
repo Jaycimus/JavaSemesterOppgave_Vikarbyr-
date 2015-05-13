@@ -3,7 +3,7 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 5. Mai 2015 AV: Arthur Nordnes
+//Sist endret 13. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
@@ -42,20 +42,20 @@ public class AnsattVindu extends JPanel{
         setLayout(borderLayout);
                 
                 
-        regKunde = new JButton("Registrer kunde");
+        regKunde = new JButton("Registrer Kunde");
             /*regKunde.setFocusPainted(false);
             regKunde.setMargin(new Insets(0, 0, 0, 0));
             regKunde.setContentAreaFilled(false);
             regKunde.setBorderPainted(false);
             regKunde.setOpaque(false);*/
-        regVikariat = new JButton("Registrer vikariat");
+        regVikariat = new JButton("Registrer Vikariat");
         regArbForhold = new JButton("Registrer Arbeidsfohold");
-        regVikar = new JButton("Registrer vikar");
-        visEndreKundeReg = new JButton("Vis/Endre kundregister");
-        visEndreVikariatReg = new JButton("Vis/Endre vikariatregister");
-        visEndreArbeisforholdReg = new JButton("Vis/Endre arbeisforholdregister");
-        visEndreVikarReg = new JButton("Vis/Endre vikarregister");
-        regSoking = new JButton("Søk i registerene");
+        regVikar = new JButton("Registrer Vikar");
+        visEndreKundeReg = new JButton("Vis/Endre Kundregister");
+        visEndreVikariatReg = new JButton("Vis/Endre Vikariatregister");
+        visEndreArbeisforholdReg = new JButton("Vis/Endre Arbeisforholdregister");
+        visEndreVikarReg = new JButton("Vis/Endre Vikarregister");
+        regSoking = new JButton("Søk i Registerene");
         loggUt = new JButton("Logg Ut");
         
         meny = new JPanel();
