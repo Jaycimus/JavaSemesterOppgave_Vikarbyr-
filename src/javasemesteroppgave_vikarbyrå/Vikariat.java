@@ -48,6 +48,47 @@ public class Vikariat implements Serializable {
         this.vikariatNr = vikariatNr;
        
     }
+    public String getAdresse(){
+        return adresse;
+    }
+    
+    public String getArbeidstid(){
+        return arbeidstid;
+    }
+    
+    public String getStillingstype(){
+        return stillingstype;
+    }
+    
+    public String getKvalifikasjoner(){
+        return kvalifikasjoner;
+    }
+    
+    public String getLonnsbetingelser(){
+        return lonnsbetingelser;
+    }
+    
+    public String getKontaktinfo(){
+        return kontaktinfo;
+    }
+    
+    public String getStillingsinfo(){
+        return stillingsInfo;
+    }
+    
+    public String getVarighetfra(){
+        return varighetfra;
+    }
+    
+    public String getVarighettil(){
+        return varighettil;
+    }
+    
+    public String getBransje(){
+        return bransje;
+    }
+    
+    
     
     public int getVikariatNr(){
         return vikariatNr;

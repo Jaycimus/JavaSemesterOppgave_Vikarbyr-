@@ -57,7 +57,6 @@ public class EndreKunde extends JPanel {
         
         lbl_navn = new JLabel("Kunde navn: ");
         lbl_adresse = new JLabel("Adresse: ");
-        
         lbl_tlf = new JLabel("Telefon: ");
         lbl_epost = new JLabel("E-post: ");
         
@@ -75,22 +74,18 @@ public class EndreKunde extends JPanel {
         
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
-        cb_kunder.addItemListener(new ItemListener(){
-            public void itemStateChanged(ItemEvent e){
-                String kundeNavn = (String) cb_kunder.getSelectedItem();
-                Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
-                
-                tf_navn.setText(kunde.getNavn());
-                tf_adresse.setText(kunde.getAdresse());
-                tf_tlf.setText(kunde.getTlf());
-                tf_epost.setText(kunde.getEpost());
-                String sektor = kunde.getTypeSektor();
-                if(sektor.matches("Privat")){
-                    privat.setSelected(true);
-                } else if(sektor.matches("Offentlig")) {
-                    offentlig.setSelected(true);
-                }
-                
+        cb_kunder.addItemListener((ItemEvent e) -> {
+            String kundeNavn1 = (String) cb_kunder.getSelectedItem();
+            Kunde kunde = v.kundeRegister.finnKunde(kundeNavn1);
+            tf_navn.setText(kunde.getNavn());
+            tf_adresse.setText(kunde.getAdresse());
+            tf_tlf.setText(kunde.getTlf());
+            tf_epost.setText(kunde.getEpost());
+            String sektor = kunde.getTypeSektor();
+            if(sektor.matches("Privat")){
+                privat.setSelected(true);
+            } else if(sektor.matches("Offentlig")) {
+                offentlig.setSelected(true);
             }
         });
         
@@ -102,8 +97,6 @@ public class EndreKunde extends JPanel {
         add(tf_adresse);
         add(privat);
         add(offentlig);
-        add(new JPanel());
-        add(new JPanel());
         add(lbl_tlf);
         add(tf_tlf);
         add(lbl_epost);

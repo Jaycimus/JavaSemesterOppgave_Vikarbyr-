@@ -122,14 +122,14 @@ public class EndreVikariat extends JPanel {
         tf_kontaktinfo = new JTextField("",15);
         tf_stillingsinfo = new JTextField("",15);
                 
-        cb_kunder = new JComboBox<>(kundeNavn);
+        /*cb_kunder = new JComboBox<>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
         cb_kunder.addItemListener(new ItemListener(){
             public void itemStateChanged(ItemEvent e){
                 String kundeNavn = (String) cb_kunder.getSelectedItem();
                 Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
                 
-                tf_adresse.setText(kunde.getNavn());
+                tf_arbeidssted.setText(.getNavn());
                 tf_adresse.setText(kunde.getAdresse());
                 tf_tlf.setText(kunde.getTlf());
                 tf_epost.setText(kunde.getEpost());
@@ -143,7 +143,7 @@ public class EndreVikariat extends JPanel {
             }
         });
             }
-        }
+        }*/
         cb_timer = new JComboBox<>(timer);
         cb_timer.setMaximumRowCount(16);
         cb_minutter = new JComboBox<>(minutter);
@@ -251,6 +251,8 @@ public class EndreVikariat extends JPanel {
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
         String bransjer = (String) cb_bransjer.getSelectedItem();
+        int vikariatNr = v.getNesteVikariatNr();
+         v.setNesteVikariatNr();
         
         if(!Validering.validerAdresse(arbeidsted)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
@@ -264,7 +266,7 @@ public class EndreVikariat extends JPanel {
         else{
             Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo,varighetfra,varighettil, bransjer);
+                        stillingsinfo,varighetfra,varighettil, bransjer, vikariatNr);
             v.vikariatRegister.settInn(vikariat);
             System.out.println("RegVikariat");
             utskrift.setText(vikariat.toString());
