@@ -23,21 +23,20 @@ public class Vikariat implements Serializable {
     private String lonnsbetingelser;
     private String kontaktinfo;
     private String stillingsInfo;
-<<<<<<< HEAD
+
     private String bransje;
     //private SoknadsRegister soknadReg;
     /*Jobbkategori
     Engasjementets varighet
     Andre arbeidsvilkår?
     Søknads Register*/
-=======
->>>>>>> origin/master
+
     
     public Vikariat neste;
     
     public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
             String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
-                String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil){
+                String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil, String Bransje){
         this.kunde = kunde;
         this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
@@ -48,6 +47,7 @@ public class Vikariat implements Serializable {
         this.stillingsInfo = stillingsInfo;
         this.varighetfra = varighetfra;
         this.varighettil = varighettil;
+        this.bransje = bransje;
        
     }
     

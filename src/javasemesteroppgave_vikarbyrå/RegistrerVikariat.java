@@ -75,6 +75,18 @@ public class RegistrerVikariat extends JPanel {
     private final String[] ar2 =
         {"2015","2016","2017","2018","2019","2020"};
     
+    private JComboBox<String>cb_bransjer;
+    private final String[] bransjer = 
+        {"Advokattjenester/Prosedyre", "Bankvirksomhet","Bygg/Anlegg/Entreprenør", 
+            "Eiendom/Eiendomsmegling", "Engineering", "Farmasi/Legemiddel", "Finans -verdipapirer/megling", 
+                "Forsikring/Assuranse", "Forskning og utvikling", "Helse/Velvære/Trening", "Helsesektor", "Hotell/overnatting", 
+                    "Høyteknologi/Elektronikk", "IKT/Telekom", "Industri: Tradisjonell/Prosess/Øvrig", "Ingeniøryrker: Øvrig", "Internett tjenester/E-handel", 
+                        "Investment banking", "Investment management", "IT: Hardware/Software", "Juridisk rådgivning", "Kommunikasjon/PR", "Konsulenttjenester: Ingeniør/Teknisk", 
+                            "Konsulenttjenester: Øvrig", "Konsultenttjenester: IT", "Kultur/Kunst/Øvrige kreative fag", "Management consulting", "Media/Underholdning", "Merkevarer/Konsumentprodukter", 
+                                "NGO - Ikke-statlige organisasjoner", "Non-profit -/interesseorg.", "Olje/Gass/Energi/Kraft", "Regnskap", "Reiseliv/Turisme/Event", "Reklame", "Rekruttering/HR/Bemanning", 
+                                    "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
+                                        "Varehandel/Dagligvare/Butikk", "Øvrig"};
+    
     
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.ENGLISH);
     
@@ -132,6 +144,8 @@ public class RegistrerVikariat extends JPanel {
         cb_ar.setMaximumRowCount(5);
         cb_ar2 = new JComboBox<>(ar2);
         cb_ar2.setMaximumRowCount(5);
+        cb_bransjer = new JComboBox<String>(bransjer);
+        cb_bransjer.setMaximumRowCount(9);
                 
         JPanel tider = new JPanel(new GridLayout(1,1,2,2));
         tider.add(cb_timer);
@@ -197,6 +211,7 @@ public class RegistrerVikariat extends JPanel {
         String varighettil = (String) cb_dag2.getSelectedItem() + "-" +
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
+        String bransjer = (String) cb_bransjer.getSelectedItem();
         
         
         
@@ -221,7 +236,7 @@ public class RegistrerVikariat extends JPanel {
         else{
             Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo,varighetfra,varighettil);
+                        stillingsinfo,varighetfra,varighettil, bransje);
             v.vikariatRegister.settInn(vikariat);
             System.out.println("RegVikariat");
             utskrift.setText(vikariat.toString());
