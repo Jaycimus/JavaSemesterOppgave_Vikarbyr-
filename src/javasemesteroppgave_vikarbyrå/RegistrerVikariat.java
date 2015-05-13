@@ -236,7 +236,7 @@ public class RegistrerVikariat extends JPanel {
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
         String bransjer = (String) cb_bransjer.getSelectedItem();
-        
+         int vikariatNr = 0;
         
         
        /* LocalDate fra = LocalDate.parse(varighetfra, format);
@@ -260,7 +260,7 @@ public class RegistrerVikariat extends JPanel {
         else{
             Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo,varighetfra,varighettil, bransjer);
+                        stillingsinfo,varighetfra,varighettil, bransjer, vikariatNr);
             v.vikariatRegister.settInn(vikariat);
             System.out.println("RegVikariat");
             utskrift.setText(vikariat.toString());

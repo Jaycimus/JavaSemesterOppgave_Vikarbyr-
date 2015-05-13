@@ -33,21 +33,20 @@ public class VikariatRegister implements Serializable {
     }
     
     public String[] getVikariaterTilKunde(String kundeNavn){
-        System.out.println(kundeNavn);
         String[] vikariater;
         List<String> list = new ArrayList<>();
         boolean ok = false;
         Vikariat loper = forste;
         if(loper!=null){
             if(loper.getKundeNavn().matches(kundeNavn)){
-                list.add(loper.getKundeNavn());
+                list.add(loper.getVikariatNrS());
             }
             ok = true;
             loper = loper.neste;
             while(ok == true){
                 if(loper != null){
                     if(loper.getKundeNavn() == kundeNavn){
-                            list.add(loper.getKundeNavn());
+                            list.add(loper.getVikariatNrS());
                             loper = loper.neste;
                     }
                     else
@@ -64,6 +63,20 @@ public class VikariatRegister implements Serializable {
         vikariater = list.toArray(new String[list.size()]);    
                 
         return vikariater;        
+    }
+    
+    public int finnNesteNummer(){
+        int nummer = 1000;
+        Vikariat loper = forste;
+        while(loper!=null)
+        {
+            if(nummer <= loper.getVikariatNr())
+            {
+                nummer = loper.getVikariatNr();
+                return nummer;
+            }
+        }
+        return nummer;
     }
     
     public void skrivVikariatListe(JTextArea vikariatListe){
