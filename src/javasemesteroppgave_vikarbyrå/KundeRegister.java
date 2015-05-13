@@ -42,6 +42,30 @@ public class KundeRegister implements Serializable {
         return null;
     }
     
+    public void slettKunde(String kundeNavn){
+        Kunde loper = forste;
+        
+        if (loper.neste == null){
+            forste = null;
+            return;
+        }
+        
+        if(loper.getNavn() == kundeNavn){
+            loper = loper.neste;
+            return;
+        }
+        
+        for(int i = 0; i < getAntallNoder(); i++){
+            if(loper.neste.getNavn() == kundeNavn){
+                loper.neste = loper.neste.neste;
+                return;
+            }
+            else{
+                loper = loper.neste;
+            }
+        }
+    }
+    
     public String[] getKundeNavn(){
         String[] kundeNavn = new String[1+getAntallNoder()];
         Kunde loper = forste;
