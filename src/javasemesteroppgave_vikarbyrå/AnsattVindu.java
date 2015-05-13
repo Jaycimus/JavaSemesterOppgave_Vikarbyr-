@@ -183,9 +183,7 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.rvv.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
-                System.out.println("arbeidsforhold start");
                 RegistrerArbeidsforhold raf = new RegistrerArbeidsforhold(AnsattVindu.this.getTextArea(), v);
-                System.out.println("Opprettet arbeidsforhold 2");
                 AnsattVindu.this.raf = raf;
                 add(raf, BorderLayout.EAST);
                 raf.setVisible(true);

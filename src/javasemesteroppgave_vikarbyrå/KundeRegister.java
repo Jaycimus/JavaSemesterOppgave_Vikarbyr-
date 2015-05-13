@@ -59,15 +59,12 @@ public class KundeRegister implements Serializable {
         Kunde loper = forste;
         if(loper!=null){
             antall++;
-            String forsteNavn = loper.getNavn();
             ok = true;
             loper = loper.neste;
             while(ok == true){
                 if(loper!=null){
-                    if(loper.getNavn()!=forsteNavn){
-                        antall++;
-                        loper = loper.neste;
-                    }
+                    antall++;
+                    loper = loper.neste;
                 }
                 else{
                     ok = false;
