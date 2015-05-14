@@ -9,9 +9,12 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
 public class Soknad {
     
     public Soknad neste;
+    private String soknadTekst, navn, utdanning,jobberfaring, referanser;
     
-    public Soknad()
+    
+    public Soknad(String soknadTekst)
     {
+        this.soknadTekst=soknadTekst;
         neste = null;
     }
     

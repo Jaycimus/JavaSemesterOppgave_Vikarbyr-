@@ -42,7 +42,7 @@ public class AnsattVindu extends JPanel{
         
         borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
-        setBorder(new EmptyBorder(0, 5, 0, 5));        
+        setBorder(new EmptyBorder(0, 5, 0, 5)); 
                 
         regKunde = new JButton("Registrer Kunde");
             /*regKunde.setFocusPainted(false);
@@ -260,7 +260,7 @@ public class AnsattVindu extends JPanel{
                 logginn.setResizable(false);
                 logginn.addWindowListener( new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        logginn.skrivTilFil();
+                        logginn.skrivTilFil();                       
                         System.exit(0);
                     }
                 });

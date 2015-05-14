@@ -119,7 +119,4 @@ public class Vikariat implements Serializable {
         return utskrift;
         
     }
-
-
-    
 }
