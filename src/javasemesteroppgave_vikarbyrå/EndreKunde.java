@@ -51,12 +51,12 @@ public class EndreKunde extends JPanel {
         
         kundeNavn = v.kundeRegister.getKundeNavn();
         
-        endreKunde = new JButton("Registrer kunde");
+        endreKunde = new JButton("Endre Kunde");
         endreKunde.addActionListener(lytter);
-        slettKunde = new JButton("Slett kunde");
+        slettKunde = new JButton("Slett Kunde");
         slettKunde.addActionListener(lytter);
         
-        lbl_navn = new JLabel("Kunde navn: ");
+        lbl_navn = new JLabel("Kunde Navn: ");
         lbl_adresse = new JLabel("Adresse: ");
         lbl_tlf = new JLabel("Telefon: ");
         lbl_epost = new JLabel("E-post: ");
