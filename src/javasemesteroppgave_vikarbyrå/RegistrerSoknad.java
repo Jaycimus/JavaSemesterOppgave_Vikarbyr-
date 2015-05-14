@@ -65,14 +65,27 @@ public class RegistrerSoknad extends JPanel{
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
-        add(new JPanel());
-        add(new JPanel());
-        add(new JPanel());
         add(regSoknad);
     }
     
     public void regSoknad(){
+        Vikariat vikariat = v.vikariatRegister.finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
+        Vikar vikar = v.vikarRegister.finnVikar(Long.parseLong(tf_vikar.getText()));
+        String soknadTekst = ta_soknad.getText();
         
+        Soknad soknad = new Soknad(soknadTekst, vikariat, vikar);
+        v.soknadsRegister.settInn(soknad);
+        vikariat.setSoknad(soknad);
+        vikar.setVikariat(vikariat);
+        System.out.println("Registrer soknad");
+        utskrift.setText("Søknad registrert:\n" + soknad.toString());
+        resetInput();
+    }
+    
+    private void resetInput(){
+        cb_vikariater.setSelectedIndex(0);
+        tf_vikar.setText("");
+        ta_soknad.setText("");
     }
     
     private class Knappelytter implements ActionListener{

@@ -11,18 +11,24 @@ package javasemesteroppgave_vikarbyrå;
 import java.io.Serializable;
 
 public class Soknad implements Serializable{
-    private String soknadTekst;
+    private String soknadsTekst;
     private Vikariat vikariat;
     private Vikar vikar;
     
     public Soknad neste;
 
+    public Soknad(String soknadsTekst, Vikariat vikariat, Vikar vikar) {
+        this.soknadsTekst = soknadsTekst;
+        this.vikariat = vikariat;
+        this.vikar = vikar;
+    }
+    
     public String getSoknadTekst() {
-        return soknadTekst;
+        return soknadsTekst;
     }
 
     public void setSoknadTekst(String soknadTekst) {
-        this.soknadTekst = soknadTekst;
+        this.soknadsTekst = soknadTekst;
     }
 
     public Vikariat getVikariat() {
@@ -41,11 +47,10 @@ public class Soknad implements Serializable{
         this.vikar = vikar;
     }
     
-    
-    
-    public Soknad(String soknadTekst)
-    {
-        this.soknadTekst=soknadTekst;
-        neste = null;
+    public String toString(){
+        String utskrift = "\nVikar: " + vikar.getNavn() + "(" + vikar.getPersonNr() + ")" +
+                          "\nViakriat: " + vikariat.toStringShort() + "\nSøknads tekst: " +
+                          soknadsTekst;
+        return utskrift;
     }
 }

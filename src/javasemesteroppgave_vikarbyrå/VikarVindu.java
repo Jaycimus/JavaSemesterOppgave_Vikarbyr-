@@ -105,6 +105,10 @@ public class VikarVindu extends JPanel{
         return utskrift;
     }
     
+    private void visLedigeVikariatReg(){
+        v.vikariatRegister.skrivLedigVikariatListe(utskrift);
+    }
+    
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regSoking){
@@ -113,6 +117,7 @@ public class VikarVindu extends JPanel{
                 VikarVindu.this.rs = rs;
                 add(rs, BorderLayout.EAST);
                 rs.setVisible(true);
+                visLedigeVikariatReg();
               
             }
             else if(e.getSource()==visVikariatListe){

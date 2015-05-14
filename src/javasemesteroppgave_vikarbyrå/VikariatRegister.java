@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 
 public class VikariatRegister implements Serializable {
     
-    public Vikariat forste, fsiste;
+    public Vikariat forste, siste;
     
     public VikariatRegister(){
         forste = null;
@@ -24,18 +24,32 @@ public class VikariatRegister implements Serializable {
         if(ny==null)
             return;
         if(forste == null)
-            forste = fsiste = ny;
+            forste = siste = ny;
         else{
-            fsiste.neste = ny;
-            fsiste = ny;
+            siste.neste = ny;
+            siste = ny;
         }
                     
+    }
+    
+    public Vikariat finnVikariat(int vikariatNr){
+        Vikariat loper = forste;
+        boolean ok = true;
+        while(ok){
+            if(loper != null && loper.getVikariatNr()==vikariatNr){
+                return loper;
+            }
+            else
+                loper = loper.neste;
+        }
+        return null;
     }
     
     //Metode for å finne ledige vikariater for en vikar
     public String[] getLedigeVikariater(){
         String[] vikariater;
         List<String> list = new ArrayList<>();
+        list.add("---Vikariater---");
         boolean ok = false;
         Vikariat loper = forste;
         if(loper!=null){

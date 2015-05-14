@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 
 public class KundeRegister implements Serializable {
     
-    public Kunde forste, fsiste;
+    public Kunde forste, siste;
     
     public KundeRegister(){
         forste = null;
@@ -22,11 +22,11 @@ public class KundeRegister implements Serializable {
             return;
         }
         if(forste == null){
-            forste = fsiste = ny;
+            forste = siste = ny;
         }
         else{
-            fsiste.neste= ny;
-            fsiste = ny;
+            siste.neste= ny;
+            siste = ny;
         }
         
     }

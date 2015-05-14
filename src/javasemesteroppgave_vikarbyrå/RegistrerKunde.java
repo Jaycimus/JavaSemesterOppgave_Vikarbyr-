@@ -80,10 +80,6 @@ public class RegistrerKunde extends JPanel {
                         
     }
     
-    public JButton getRegKunde(){
-        return regKunde;
-    }
-    
     public void regKunde(){
         String navn = tf_navn.getText();
         String adresse = tf_adresse.getText();
@@ -110,14 +106,18 @@ public class RegistrerKunde extends JPanel {
                 v.kundeRegister.settInn(kunde);
                 System.out.println("regKunde");
                 utskrift.setText(kunde.toString());
-                tf_navn.setText("");
-                tf_adresse.setText("");
-                tf_tlf.setText("");
-                tf_epost.setText("");
+                fjernInput();
             }
         } catch(NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
         }   
+    }
+    
+    private void fjernInput(){
+        tf_navn.setText("");
+        tf_adresse.setText("");
+        tf_tlf.setText("");
+        tf_epost.setText("");
     }
     
     private class Knappelytter implements ActionListener{

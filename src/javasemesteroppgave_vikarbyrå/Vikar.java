@@ -22,7 +22,7 @@ public class Vikar implements Serializable{
     
     Vikar neste;
     
-    private ArrayList<String> vikariatNr = new ArrayList<>();
+    private ArrayList<Vikariat> vikariatNr = new ArrayList<>();
         
     public Vikar(String navn, int tlf, String epost, long personNr, String onsketBransjer, String utdanning, String kjonn, String jobberfaring, String referanser){
         this.navn = navn;
@@ -38,22 +38,22 @@ public class Vikar implements Serializable{
         
     }
     
-    public String findVikariatNr(String vikariatNr){
+    public int findVikariatNr(int vikariatNr){
         for(int i = 0; i < this.vikariatNr.size(); i++){
-            if(this.vikariatNr.get(i).matches(vikariatNr))
-                return this.vikariatNr.get(i);
+            if(this.vikariatNr.get(i).getVikariatNr() == vikariatNr)
+                return this.vikariatNr.get(i).getVikariatNr();
         }
-        return null;
+        return 0;
     }
 
-    public ArrayList<String> getVikariatNr() {
+    public void setVikariat(Vikariat v){
+        vikariatNr.add(v);
+    }
+    
+    public ArrayList<Vikariat> getVikariatNr() {
         return vikariatNr;
     }
 
-    public void setVikariatNr(ArrayList<String> vikariatNr) {
-        this.vikariatNr = vikariatNr;
-    }
-    
     public String getNavn() {
         return navn;
     }
