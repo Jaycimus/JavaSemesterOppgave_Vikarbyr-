@@ -43,16 +43,87 @@ public class Vikar implements Serializable{
             if(this.vikariatNr.get(i).matches(vikariatNr))
                 return this.vikariatNr.get(i);
         }
-        
         return null;
     }
+
+    public ArrayList<String> getVikariatNr() {
+        return vikariatNr;
+    }
+
+    public void setVikariatNr(ArrayList<String> vikariatNr) {
+        this.vikariatNr = vikariatNr;
+    }
     
-    public long getPersonNr(){
+    public String getNavn() {
+        return navn;
+    }
+
+    public int getTlf() {
+        return tlf;
+    }
+
+    public long getPersonNr() {
         return personNr;
     }
-    
-    public String getVikariatNr(){
-        return null;
+
+    public String getOnsketBransjer() {
+        return onsketBransjer;
+    }
+
+    public String getUtdanning() {
+        return utdanning;
+    }
+
+    public String getJobberfaring() {
+        return jobberfaring;
+    }
+
+    public String getReferanser() {
+        return referanser;
+    }
+
+    public String getKjonn() {
+        return kjonn;
+    }
+
+    public String getEpost() {
+        return epost;
+    }
+
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
+
+    public void setTlf(int tlf) {
+        this.tlf = tlf;
+    }
+
+    public void setPersonNr(long personNr) {
+        this.personNr = personNr;
+    }
+
+    public void setOnsketBransjer(String onsketBransjer) {
+        this.onsketBransjer = onsketBransjer;
+    }
+
+    public void setUtdanning(String utdanning) {
+        this.utdanning = utdanning;
+    }
+
+    public void setJobberfaring(String jobberfaring) {
+        this.jobberfaring = jobberfaring;
+    }
+
+    public void setReferanser(String referanser) {
+        this.referanser = referanser;
+    }
+
+    public void setKjonn(String kjonn) {
+        this.kjonn = kjonn;
+    }
+
+    public void setEpost(String epost) {
+        this.epost = epost;
     }
     
     public String toString(){

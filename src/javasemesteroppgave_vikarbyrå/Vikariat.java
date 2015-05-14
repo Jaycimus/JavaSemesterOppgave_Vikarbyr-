@@ -19,14 +19,7 @@ public class Vikariat implements Serializable {
     private String lonnsbetingelser;
     private String kontaktinfo;
     private String stillingsInfo;
-
     private String bransje;
-    //private SoknadsRegister soknadReg;
-    /*Jobbkategori
-    Engasjementets varighet
-    Andre arbeidsvilkår?
-    Søknads Register*/
-
     
     public Vikariat neste;
     
@@ -46,77 +39,60 @@ public class Vikariat implements Serializable {
         this.varighettil = varighettil;
         this.bransje = bransje;
         this.vikariatNr = vikariatNr;
-       
     }
+    
     public String getAdresse(){
         return adresse;
     }
-    
     public String getArbeidstid(){
         return arbeidstid;
     }
-    
     public String getStillingstype(){
         return stillingstype;
     }
-    
     public String getKvalifikasjoner(){
         return kvalifikasjoner;
     }
-    
     public String getLonnsbetingelser(){
         return lonnsbetingelser;
     }
-    
     public String getKontaktinfo(){
         return kontaktinfo;
     }
-    
     public String getStillingsinfo(){
         return stillingsInfo;
     }
-    
     public String getVarighetfra(){
         return varighetfra;
     }
-    
     public String getVarighettil(){
         return varighettil;
     }
-    
     public String getBransje(){
         return bransje;
     }
-    
-    
-    
     public int getVikariatNr(){
         return vikariatNr;
     }
-    
     public String getVikariatNrS(){
         String vikariatNrS = "" + vikariatNr;
         return vikariatNrS;
     }
-    
     public String getKundeNavn(){
         return kunde;
     }
     
     public String toStringShort(){
-        String utskrift = kunde + "\nAdresse: " + adresse;
-       
+        String utskrift = "\nKunde Navn: " + kunde + "\nVikariat Nr: " + vikariatNr;
         return utskrift;
     }
     
     public String toString(){
         String utskrift = "\nKunde navn: " + kunde + "\nVikariat Nr: " + vikariatNr + "\nAdresse: " + adresse + 
-                          "\nArbeidstid: " + arbeidstid + "\nStillingstype: " + stillingstype + 
-                          "\nKvalifikasjoner: " + kvalifikasjoner + "\nLønnsbetingelser: " + lonnsbetingelser +
-                          "\nKontaktinfo: " + kontaktinfo + "\nStillingsinfo: " + stillingsInfo+
-                          "\nVarighet: " + varighetfra + "\nTil: " + varighettil;
-        
+                          "\nVarighet: " + varighetfra + "\nTil: " + varighettil + "\nArbeidstid: " + arbeidstid + 
+                          "\nStillingstype: " + stillingstype + "\nKvalifikasjoner: " + kvalifikasjoner + 
+                          "\nLønnsbetingelser: " + lonnsbetingelser + "\nKontaktinfo: " + kontaktinfo + 
+                          "\nStillingsinfo: " + stillingsInfo;
         return utskrift;
-        
     }
 }

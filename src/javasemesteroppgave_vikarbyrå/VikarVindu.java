@@ -99,7 +99,7 @@ public class VikarVindu extends JPanel{
             }
             else if(e.getSource()==loggUt){
                 Logginn logginn = new Logginn(v);
-                logginn.setSize(new Dimension(400,220));
+                logginn.setSize(new Dimension(400,180));
                 logginn.setVisible(true);
                 logginn.setLocationRelativeTo(null);
                 logginn.setResizable(false);

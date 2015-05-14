@@ -9,7 +9,6 @@ package javasemesteroppgave_vikarbyrå;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -254,7 +253,7 @@ public class AnsattVindu extends JPanel{
             }
             else if(e.getSource()==loggUt){
                 Logginn logginn = new Logginn(v);
-                logginn.setSize(new Dimension(400,220));
+                logginn.setSize(new Dimension(400,180));
                 logginn.setVisible(true);
                 logginn.setLocationRelativeTo(null);
                 logginn.setResizable(false);
