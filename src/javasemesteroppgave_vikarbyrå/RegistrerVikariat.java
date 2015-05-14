@@ -149,7 +149,6 @@ public class RegistrerVikariat extends JPanel {
         cb_bransjer = new JComboBox<String>(bransjer);
         cb_bransjer.setMaximumRowCount(9);
 
-        
         JPanel kolon = new JPanel(new FlowLayout());
         kolon.add(lbl_kolon);
         
@@ -159,7 +158,6 @@ public class RegistrerVikariat extends JPanel {
         JPanel bindestrek = new JPanel(new FlowLayout());
         bindestrek.add(lbl_bindestrek);
 
-                
         JPanel tider = new JPanel(new FlowLayout(FlowLayout.LEFT,-2,-2));
         tider.add(cb_timer);
         cb_timer.setBackground(Color.white);
@@ -187,6 +185,10 @@ public class RegistrerVikariat extends JPanel {
         add(cb_kunder);
         add(lbl_adresse);
         add(tf_adresse);
+        add(lbl_varighetfra);
+        add(fra);
+        add(lbl_varighettil);
+        add(til);
         add(lbl_arbeidtid);
         add(tider);
         add(lbl_stillingstype);
@@ -199,44 +201,18 @@ public class RegistrerVikariat extends JPanel {
         add(tf_kontaktinfo);
         add(lbl_stillingsinfo);
         add(tf_stillingsinfo);
-        add(lbl_varighetfra);
-        add(fra);
-        add(lbl_varighettil);
-        add(til);
-       
         add(new JPanel());
         add(regVikariat);
     }
     
     public void regVikariat(){
         String kunde = (String) cb_kunder.getSelectedItem();
-        if(kunde.matches("---Kunder---")){
-            JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
-            return;
-        }
-        
+                
         String arbeidsted = tf_adresse.getText();
         String arbeidstid = (String) cb_timer.getSelectedItem() + ":" + 
                             (String) cb_minutter.getSelectedItem() + " - " + 
                             (String) cb_timer2.getSelectedItem() + ":" + 
                             (String) cb_minutter2.getSelectedItem();
-        /*if(cb_timer2.getSelectedIndex() < cb_timer.getSelectedIndex()){
-            
-        } else if (cb_timer2.getSelectedIndex() == cb_timer.getSelectedIndex()){
-            if(cb_minutter2.getSelectedIndex() < cb_minutter.getSelectedIndex()){
-                
-            } else if (cb_minutter2.getSelectedIndex() == cb_minutter.getSelectedIndex()){
-                JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
-                return;
-            } else {
-                JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
-                return;
-            }
-        } else {
-            JOptionPane.showMessageDialog(null,"Feil med arbeidstid - time");
-            return;
-        }*/
-            
         
         String stillingstype = tf_stillingstype.getText();
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
@@ -250,48 +226,59 @@ public class RegistrerVikariat extends JPanel {
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
         //IF TEST OM VALGENE AV VARIGHET ER RIKTIGE
-        if(cb_ar2.getSelectedIndex() > cb_ar.getSelectedIndex()){
-            //Ingen problemer kan oppstå med inputt av varigheten til vikariatet
-        } else if(cb_ar2.getSelectedIndex() == cb_ar.getSelectedIndex()){
-            if(cb_maned2.getSelectedIndex() > cb_maned.getSelectedIndex()){
-                
-            } else if(cb_maned2.getSelectedIndex() == cb_maned.getSelectedIndex()) {
-                if(cb_dag2.getSelectedIndex() > cb_dag.getSelectedIndex()){
-                    
-                } else if(cb_dag2.getSelectedIndex() == cb_dag.getSelectedIndex()){
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null,"Feil med varighet - dag");
-                    return;
-                }
-            } else{
-                JOptionPane.showMessageDialog(null,"Feil med varighet - måned");
-                return;
-            }
-        } else {
-            JOptionPane.showMessageDialog(null,"Feil med varighet - år");
-            return;
-        }
+        
         
         String bransjer = (String) cb_bransjer.getSelectedItem();
-        if(bransjer.matches("---Stillingstype---")){
-            JOptionPane.showMessageDialog(null, "Stillingstype ikke valgt!");
-            return;
-        }
+        
                 
         int vikariatNr = v.getNesteVikariatNr();
         v.setNesteVikariatNr();
-
-        if(!Validering.validerAdresse(arbeidsted)){
+        
+        if(Validering.validerVikariatInput(kunde, arbeidsted, cb_ar2.getSelectedIndex(), 
+                cb_ar.getSelectedIndex(), cb_maned2.getSelectedIndex(), cb_maned.getSelectedIndex(),
+                cb_dag2.getSelectedIndex(), cb_dag.getSelectedIndex(), cb_timer2.getSelectedIndex(), 
+                cb_timer.getSelectedIndex(), cb_minutter2.getSelectedIndex(), cb_minutter.getSelectedIndex()
+                )){
+            
+            System.out.println("Validering vikariat godkjent");
+            Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
+                    stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
+                        stillingsinfo,varighetfra,varighettil, bransjer, vikariatNr);
+            v.vikariatRegister.settInn(vikariat);
+            System.out.println("Registrer Vikariat");
+            utskrift.setText(vikariat.toString());
+            resetInput();
+        }
+        
+        /*if(kunde.matches("---Kunder---")){
+            JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
+            return;
+        } else if(!Validering.validerAdresse(arbeidsted)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
             return;
         } else if(!Validering.validerArbeidstid(arbeidstid)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidstid");
+            if(cb_timer2.getSelectedIndex() < cb_timer.getSelectedIndex()){
+            
+            } else if (cb_timer2.getSelectedIndex() == cb_timer.getSelectedIndex()){
+                if(cb_minutter2.getSelectedIndex() < cb_minutter.getSelectedIndex()){
+                
+                } else if (cb_minutter2.getSelectedIndex() == cb_minutter.getSelectedIndex()){
+                    JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
+                    return;
+                } else {
+                        JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
+                    return;
+                }
+            } else {
+            JOptionPane.showMessageDialog(null,"Feil med arbeidstid - time");
             return;
-        }
-        
-        
-        else{
+            }
+            return;
+        } else if(bransjer.matches("---Stillingstype---")){
+            JOptionPane.showMessageDialog(null, "Stillingstype ikke valgt!");
+            return;
+        } else{
             Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
                         stillingsinfo,varighetfra,varighettil, bransjer, vikariatNr);
@@ -300,7 +287,7 @@ public class RegistrerVikariat extends JPanel {
             utskrift.setText(vikariat.toString());
             utskrift.setText(vikariat.toString());
             resetInput();
-        }
+        }*/
     }
     
     private class Knappelytter implements ActionListener{
