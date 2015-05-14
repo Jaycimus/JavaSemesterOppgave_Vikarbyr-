@@ -260,7 +260,7 @@ public class AnsattVindu extends JPanel{
                 logginn.setResizable(false);
                 logginn.addWindowListener( new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        logginn.skrivTilFil();
+                        logginn.skrivTilFil();                       
                         System.exit(0);
                     }
                 });
