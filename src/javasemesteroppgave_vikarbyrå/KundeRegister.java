@@ -42,28 +42,29 @@ public class KundeRegister implements Serializable {
         return null;
     }
     
-    public void slettKunde(String kundeNavn){
+    public boolean slettKunde(String kundeNavn){
         Kunde loper = forste;
         
         if (loper.neste == null){
             forste = null;
-            return;
+            return true;
         }
         
         if(loper.getNavn() == kundeNavn){
             loper = loper.neste;
-            return;
+            return true;
         }
         
-        for(int i = 0; i < getAntallNoder(); i++){
+        while(loper.neste != null){
             if(loper.neste.getNavn() == kundeNavn){
                 loper.neste = loper.neste.neste;
-                return;
+                return true;
             }
             else{
                 loper = loper.neste;
             }
         }
+        return false;
     }
     
     public String[] getKundeNavn(){

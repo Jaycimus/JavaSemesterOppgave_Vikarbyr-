@@ -12,8 +12,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -21,8 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Locale;
 import java.time.format.DateTimeFormatter;
 
@@ -79,7 +75,7 @@ public class RegistrerVikariat extends JPanel {
     
     private JComboBox<String>cb_bransjer;
     private final String[] bransjer = 
-        {"Advokattjenester/Prosedyre", "Bankvirksomhet","Bygg/Anlegg/Entreprenør", 
+        {"---Stillingstype---","Advokattjenester/Prosedyre", "Bankvirksomhet","Bygg/Anlegg/Entreprenør", 
             "Eiendom/Eiendomsmegling", "Engineering", "Farmasi/Legemiddel", "Finans -verdipapirer/megling", 
                 "Forsikring/Assuranse", "Forskning og utvikling", "Helse/Velvære/Trening", "Helsesektor", "Hotell/overnatting", 
                     "Høyteknologi/Elektronikk", "IKT/Telekom", "Industri: Tradisjonell/Prosess/Øvrig", "Ingeniøryrker: Øvrig", "Internett tjenester/E-handel", 
@@ -224,6 +220,24 @@ public class RegistrerVikariat extends JPanel {
                             (String) cb_minutter.getSelectedItem() + " - " + 
                             (String) cb_timer2.getSelectedItem() + ":" + 
                             (String) cb_minutter2.getSelectedItem();
+        /*if(cb_timer2.getSelectedIndex() < cb_timer.getSelectedIndex()){
+            
+        } else if (cb_timer2.getSelectedIndex() == cb_timer.getSelectedIndex()){
+            if(cb_minutter2.getSelectedIndex() < cb_minutter.getSelectedIndex()){
+                
+            } else if (cb_minutter2.getSelectedIndex() == cb_minutter.getSelectedIndex()){
+                JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
+                return;
+            } else {
+                JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,"Feil med arbeidstid - time");
+            return;
+        }*/
+            
+        
         String stillingstype = tf_stillingstype.getText();
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
         String lonnsbetingelser = tf_lonnsbetingelser.getText();
@@ -235,20 +249,39 @@ public class RegistrerVikariat extends JPanel {
         String varighettil = (String) cb_dag2.getSelectedItem() + "-" +
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
+        //IF TEST OM VALGENE AV VARIGHET ER RIKTIGE
+        if(cb_ar2.getSelectedIndex() > cb_ar.getSelectedIndex()){
+            //Ingen problemer kan oppstå med inputt av varigheten til vikariatet
+        } else if(cb_ar2.getSelectedIndex() == cb_ar.getSelectedIndex()){
+            if(cb_maned2.getSelectedIndex() > cb_maned.getSelectedIndex()){
+                
+            } else if(cb_maned2.getSelectedIndex() == cb_maned.getSelectedIndex()) {
+                if(cb_dag2.getSelectedIndex() > cb_dag.getSelectedIndex()){
+                    
+                } else if(cb_dag2.getSelectedIndex() == cb_dag.getSelectedIndex()){
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null,"Feil med varighet - dag");
+                    return;
+                }
+            } else{
+                JOptionPane.showMessageDialog(null,"Feil med varighet - måned");
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,"Feil med varighet - år");
+            return;
+        }
+        
         String bransjer = (String) cb_bransjer.getSelectedItem();
-         int vikariatNr = v.getNesteVikariatNr();
-         v.setNesteVikariatNr();
-        
-        
-       /* LocalDate fra = LocalDate.parse(varighetfra, format);
-        LocalDate til = LocalDate.parse(varighettil, format);
-        
-        varighet = new LocalDate[2];
-        varighet[0] =fra;
-        varighet[1]= til;*/
-        
-        
-        
+        if(bransjer.matches("---Stillingstype---")){
+            JOptionPane.showMessageDialog(null, "Stillingstype ikke valgt!");
+            return;
+        }
+                
+        int vikariatNr = v.getNesteVikariatNr();
+        v.setNesteVikariatNr();
+
         if(!Validering.validerAdresse(arbeidsted)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
             return;
@@ -266,12 +299,7 @@ public class RegistrerVikariat extends JPanel {
             System.out.println("RegVikariat");
             utskrift.setText(vikariat.toString());
             utskrift.setText(vikariat.toString());
-            tf_adresse.setText("");
-            tf_stillingstype.setText("");
-            tf_kvalifikasjoner.setText("");
-            tf_lonnsbetingelser.setText("");
-            tf_kontaktinfo.setText("");
-            tf_stillingsinfo.setText("");
+            resetInput();
         }
     }
     
@@ -283,4 +311,24 @@ public class RegistrerVikariat extends JPanel {
         }
     }
     
+    private void resetInput(){
+        tf_adresse.setText("");
+        tf_stillingstype.setText("");
+        tf_kvalifikasjoner.setText("");
+        tf_lonnsbetingelser.setText("");
+        tf_kontaktinfo.setText("");
+        tf_stillingsinfo.setText("");
+        cb_kunder.setSelectedIndex(0);
+        cb_dag.setSelectedIndex(0);
+        cb_maned.setSelectedIndex(0);
+        cb_ar.setSelectedIndex(0);
+        cb_dag2.setSelectedIndex(0);
+        cb_maned2.setSelectedIndex(0);
+        cb_ar2.setSelectedIndex(0);
+        cb_bransjer.setSelectedIndex(0);
+        cb_timer.setSelectedIndex(0);
+        cb_minutter.setSelectedIndex(0);
+        cb_timer2.setSelectedIndex(0);
+        cb_minutter2.setSelectedIndex(0);
+    } 
 }

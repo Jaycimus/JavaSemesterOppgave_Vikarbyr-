@@ -134,6 +134,18 @@ public class EndreKunde extends JPanel {
     
     public void slettKunde(){
         
+        String navn = (String)cb_kunder.getSelectedItem();
+        if(v.kundeRegister.slettKunde(navn)){
+            tf_navn.setText("");
+            tf_adresse.setText("");
+            tf_tlf.setText("");
+            tf_epost.setText("");
+            
+            cb_kunder.removeItem((String)cb_kunder.getSelectedItem());
+        }
+        
+        
+        
     }
     
     private class Knappelytter implements ActionListener{

@@ -44,13 +44,9 @@ public class VikariatRegister implements Serializable {
             ok = true;
             loper = loper.neste;
             while(ok == true){
-                if(loper != null){
-                    if(loper.getKundeNavn() == kundeNavn){
-                            list.add(loper.getVikariatNrS());
-                            loper = loper.neste;
-                    }
-                    else
-                        ok = false;
+                if(loper != null && loper.getKundeNavn() == kundeNavn){
+                    list.add(loper.getVikariatNrS());
+                    loper = loper.neste;
                 }
                 else
                     ok = false;
