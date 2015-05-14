@@ -28,8 +28,7 @@ public class RegistrerVikar extends JPanel{
     private JLabel lbl_navn, lbl_persnr, lbl_tlfnr, lbl_jobberf, lbl_ref;
     private JLabel lbl_bransje, lbl_utdanning, lbl_epost;
     private JTextField tf_navn, tf_persnr, tf_tlfnr, tf_epost;
-    private JTextArea ta_jobberf, ta_ref;
-    private JTextArea utskrift;
+    private JTextArea ta_jobberf, ta_ref, utskrift;
     private JRadioButton mann, kvinne;
     private ButtonGroup BG_kjonn;
     
@@ -183,7 +182,6 @@ public class RegistrerVikar extends JPanel{
         }
     }
             
-    
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regVikar){

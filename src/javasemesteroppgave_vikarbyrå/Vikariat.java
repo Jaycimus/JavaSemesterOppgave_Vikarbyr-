@@ -21,6 +21,8 @@ public class Vikariat implements Serializable {
     private String stillingsInfo;
     private String bransje;
     
+    private boolean ledig;
+    
     public Vikariat neste;
     
     public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
@@ -39,8 +41,18 @@ public class Vikariat implements Serializable {
         this.varighettil = varighettil;
         this.bransje = bransje;
         this.vikariatNr = vikariatNr;
+        
+        ledig = true;
     }
-    
+
+    public boolean isLedig() {
+        return ledig;
+    }
+
+    public void setLedig(boolean ledig) {
+        this.ledig = ledig;
+    }
+           
     public String getAdresse(){
         return adresse;
     }

@@ -9,7 +9,6 @@ package javasemesteroppgave_vikarbyrå;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
 public class Vikarbyraa implements Serializable {
     public KundeRegister kundeRegister = new KundeRegister();//Register med alle kundene
     public VikariatRegister vikariatRegister = new VikariatRegister();

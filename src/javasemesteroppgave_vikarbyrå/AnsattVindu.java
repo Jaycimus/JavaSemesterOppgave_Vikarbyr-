@@ -55,7 +55,7 @@ public class AnsattVindu extends JPanel{
         visEndreKundeReg = new JButton("Vis/Endre Kundregister");
         visEndreVikariatReg = new JButton("Vis/Endre Vikariatregister");
         visEndreArbeisforholdReg = new JButton("Vis/Endre Arbeisforholdregister");
-        visEndreVikarReg = new JButton("Vis/Endre Vikarregister");
+        visEndreVikarReg = new JButton("Vis/Endre Vikar register");
         regSoking = new JButton("Søk i Registerene");
         loggUt = new JButton("Logg Ut");
         

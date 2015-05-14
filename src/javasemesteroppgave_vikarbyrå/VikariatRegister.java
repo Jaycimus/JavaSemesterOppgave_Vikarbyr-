@@ -32,6 +32,37 @@ public class VikariatRegister implements Serializable {
                     
     }
     
+    //Metode for å finne ledige vikariater for en vikar
+    public String[] getLedigeVikariater(){
+        String[] vikariater;
+        List<String> list = new ArrayList<>();
+        boolean ok = false;
+        Vikariat loper = forste;
+        if(loper!=null){
+            if(loper.isLedig()){
+                list.add(loper.getVikariatNrS());
+            }
+            ok = true;
+            loper = loper.neste;
+            while(ok == true){
+                if(loper != null && loper.isLedig()){
+                    list.add(loper.getVikariatNrS());
+                    loper = loper.neste;
+                }
+                else
+                    ok = false;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
+        }
+        
+        vikariater = list.toArray(new String[list.size()]);    
+                
+        return vikariater;        
+    }
+    
+    //Metode for å finne vikariater som tilhører en kunde
     public String[] getVikariaterTilKunde(String kundeNavn){
         String[] vikariater;
         List<String> list = new ArrayList<>();
@@ -86,6 +117,23 @@ public class VikariatRegister implements Serializable {
             while(loper!=null){
                 
                 vikariatListe.append(loper.toString()+"\n");
+                
+                loper = loper.neste;
+            }
+        }
+    }
+    
+    public void skrivLedigVikariatListe(JTextArea utskrift){
+        Vikariat loper = forste;
+        
+        if(forste == null){
+            utskrift.setText("Ingen vikariater i registeret");
+        } else {
+            utskrift.setText("");
+            
+            while(loper!=null){
+                if(loper.isLedig())
+                    utskrift.append(loper.toString()+"\n");
                 
                 loper = loper.neste;
             }
