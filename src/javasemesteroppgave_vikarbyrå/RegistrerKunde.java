@@ -106,14 +106,14 @@ public class RegistrerKunde extends JPanel {
                 v.kundeRegister.settInn(kunde);
                 System.out.println("regKunde");
                 utskrift.setText(kunde.toString());
-                fjernInput();
+                resetInput();
             }
         } catch(NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
         }   
     }
     
-    private void fjernInput(){
+    private void resetInput(){
         tf_navn.setText("");
         tf_adresse.setText("");
         tf_tlf.setText("");

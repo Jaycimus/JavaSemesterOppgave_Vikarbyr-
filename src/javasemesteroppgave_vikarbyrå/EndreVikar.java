@@ -23,8 +23,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
-public class RegistrerVikar extends JPanel{
-    private JButton regVikar;
+public class EndreVikar extends JPanel{
+    private JButton endreVikar, slettVikar;
     private JLabel lbl_navn, lbl_persnr, lbl_tlfnr, lbl_jobberf, lbl_ref;
     private JLabel lbl_bransje, lbl_utdanning, lbl_epost;
     private JTextField tf_navn, tf_persnr, tf_tlfnr, tf_epost;
@@ -49,7 +49,7 @@ public class RegistrerVikar extends JPanel{
                                     "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
                                         "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
-    public RegistrerVikar(JTextArea utskrift, Vikarbyraa v){
+    public EndreVikar(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
@@ -58,8 +58,10 @@ public class RegistrerVikar extends JPanel{
         
         Knappelytter lytter = new Knappelytter();
         
-        regVikar = new JButton("Registrer Vikar");
-        regVikar.addActionListener(lytter);
+        endreVikar = new JButton("Endre Vikar");
+        endreVikar.addActionListener(lytter);
+        slettVikar = new JButton("Slett Vikar");
+        slettVikar.addActionListener(lytter);
         
         lbl_navn = new JLabel("Navn: ");
         lbl_persnr = new JLabel("Personnr: ");
@@ -134,11 +136,8 @@ public class RegistrerVikar extends JPanel{
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
-        add(new JPanel());
-        add(regVikar);
-    }
-    public JButton getRegVikar(){
-        return regVikar;
+        add(slettVikar);
+        add(endreVikar);
     }
     
     public void regVikar(){
@@ -170,28 +169,28 @@ public class RegistrerVikar extends JPanel{
                 v.vikarRegister.settInn(vikar);
                 System.out.println("regVikar");
                 utskrift.setText(vikar.toString());
-                resetInput();
+                tf_navn.setText("");
+                tf_persnr.setText("");
+                tf_tlfnr.setText("");
+                tf_epost.setText("");
+                ta_jobberf.setText("");
+                ta_ref.setText("");
             }
         } catch(NumberFormatException nfe){
             JOptionPane.showMessageDialog(null, "");
         }
     }
     
-    private void resetInput(){
-        tf_navn.setText("");
-        tf_persnr.setText("");
-        tf_tlfnr.setText("");
-        tf_epost.setText("");
-        ta_jobberf.setText("");
-        ta_ref.setText("");
-        cb_bransjer.setSelectedIndex(0);
-        cb_utdanning.setSelectedIndex(0);
+    public void slettVikar(){
+        
     }
             
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            if(e.getSource()==regVikar){
+            if(e.getSource()==endreVikar){
                 regVikar();
+            } else if(e.getSource()==slettVikar){
+                slettVikar();
             }
         }
     }
