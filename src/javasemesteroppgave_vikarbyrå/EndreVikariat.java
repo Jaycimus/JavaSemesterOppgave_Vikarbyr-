@@ -246,7 +246,7 @@ public class EndreVikariat extends JPanel {
         int vikariatNr = v.getNesteVikariatNr();
          v.setNesteVikariatNr();
         
-        if(!Validering.validerAdresse(arbeidsted)){
+        /*if(!Validering.validerAdresse(arbeidsted)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
             return;
         } else if(!Validering.validerArbeidstid(arbeidstid)){
@@ -269,7 +269,7 @@ public class EndreVikariat extends JPanel {
             tf_kontaktinfo.setText("");
             tf_stillingsinfo.setText("");
             
-        }
+        }*/
     }
     
     public void slettVikariat(){
