@@ -33,6 +33,7 @@ public class EndreVikariat extends JPanel {
     private JTextArea utskrift;
     
     private Vikarbyraa v;
+    private Vikariat vikariat;
     
     private JComboBox<String> cb_kunder;
     private String[]kundeNavn;
@@ -122,28 +123,19 @@ public class EndreVikariat extends JPanel {
         tf_kontaktinfo = new JTextField("",15);
         tf_stillingsinfo = new JTextField("",15);
                 
-        /*cb_kunder = new JComboBox<>(kundeNavn);
+        cb_kunder = new JComboBox<>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
-        cb_kunder.addItemListener(new ItemListener(){
-            public void itemStateChanged(ItemEvent e){
+        cb_kunder.addItemListener((ItemEvent e) -> {
                 String kundeNavn = (String) cb_kunder.getSelectedItem();
                 Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
-                
-                tf_arbeidssted.setText(.getNavn());
-                tf_adresse.setText(kunde.getAdresse());
-                tf_tlf.setText(kunde.getTlf());
-                tf_epost.setText(kunde.getEpost());
-                String sektor = kunde.getTypeSektor();
-                if(sektor.matches("Privat")){
-                    privat.setSelected(true);
-                } else if(sektor.matches("Offentlig")) {
-                    offentlig.setSelected(true);
-                }
-                
-            }
-        });
-            }
-        }*/
+                tf_arbeidssted.setText(vikariat.getAdresse());
+                tf_stillingstype.setText(vikariat.getStillingstype());
+                tf_kvalifikasjoner.setText(vikariat.getKvalifikasjoner());
+                tf_lonnsbetingelser.setText(vikariat.getLonnsbetingelser());
+                tf_kontaktinfo.setText(vikariat.getKontaktinfo());
+                tf_stillingsinfo.setText(vikariat.getStillingsinfo());    
+            });
+        
         cb_timer = new JComboBox<>(timer);
         cb_timer.setMaximumRowCount(16);
         cb_minutter = new JComboBox<>(minutter);

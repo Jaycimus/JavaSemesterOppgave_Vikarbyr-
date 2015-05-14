@@ -12,8 +12,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -21,8 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Locale;
 import java.time.format.DateTimeFormatter;
 
@@ -224,7 +220,7 @@ public class RegistrerVikariat extends JPanel {
                             (String) cb_minutter.getSelectedItem() + " - " + 
                             (String) cb_timer2.getSelectedItem() + ":" + 
                             (String) cb_minutter2.getSelectedItem();
-        if(cb_timer2.getSelectedIndex() < cb_timer.getSelectedIndex()){
+        /*if(cb_timer2.getSelectedIndex() < cb_timer.getSelectedIndex()){
             
         } else if (cb_timer2.getSelectedIndex() == cb_timer.getSelectedIndex()){
             if(cb_minutter2.getSelectedIndex() < cb_minutter.getSelectedIndex()){
@@ -239,7 +235,7 @@ public class RegistrerVikariat extends JPanel {
         } else {
             JOptionPane.showMessageDialog(null,"Feil med arbeidstid - time");
             return;
-        }
+        }*/
             
         
         String stillingstype = tf_stillingstype.getText();
