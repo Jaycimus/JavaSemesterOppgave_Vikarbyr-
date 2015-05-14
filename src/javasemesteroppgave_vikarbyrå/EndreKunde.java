@@ -105,8 +105,7 @@ public class EndreKunde extends JPanel {
         add(new JPanel());
         add(new JPanel());
         add(slettKunde);
-        add(endreKunde);
-                        
+        add(endreKunde);                        
     }
     
     public void endreKunde(){
