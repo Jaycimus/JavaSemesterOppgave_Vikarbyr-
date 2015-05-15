@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -72,7 +73,8 @@ public class RegistrerArbeidsforhold extends JPanel {
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange()==ItemEvent.SELECTED){
                         cb_vikarer.removeAllItems();
-                        vikarer = v.vikarRegister.getVikarerTilVikariat((String) cb_vikariater.getSelectedItem());
+                        String vikariat = (String) cb_vikariater.getSelectedItem();
+                        vikarer = v.vikarRegister.getVikarerTilVikariat(Integer.parseInt(vikariat));
                         for(int i = 0; i < vikarer.length; i++){
                             cb_vikarer.addItem(vikarer[i]);
                         }
@@ -87,6 +89,8 @@ public class RegistrerArbeidsforhold extends JPanel {
         cb_vikarer.setEnabled(false);
         
         ta_arbeidsforhold = new JTextArea(4,15);
+        JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
+        
         add(lbl_kunder);
         add(cb_kunder);
         add(lbl_vikariater);
@@ -94,7 +98,7 @@ public class RegistrerArbeidsforhold extends JPanel {
         add(lbl_vikar);
         add(cb_vikarer);
         add(lbl_arbeidsforhold);
-        add(ta_arbeidsforhold);
+        add(sp);
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
@@ -103,9 +107,22 @@ public class RegistrerArbeidsforhold extends JPanel {
         add(regArbeidsforhold);
     }
     
-        
     public void regArbeidsforhold(){
+        Vikariat vikariat = v.vikariatRegister.finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
+        Vikar vikar = v.vikarRegister.finnVikar(Long.parseLong((String) cb_vikarer.getSelectedItem()));
+        String arbeidsforhold = ta_arbeidsforhold.getText();
         
+        Arbeidsforhold af = new Arbeidsforhold(vikariat, vikar, arbeidsforhold);
+        v.arbeidsforholdRegister.settInn(af);
+        System.out.println("Registrer Arbeidsforhold");
+        utskrift.setText(af.toString());
+        resetInput();
+    }
+    
+    private void resetInput(){
+        cb_vikariater.setSelectedIndex(0);
+        cb_vikarer.setSelectedIndex(0);
+        ta_arbeidsforhold.setText("");
     }
     
     private class Knappelytter implements ActionListener{

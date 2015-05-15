@@ -10,27 +10,27 @@ import java.io.Serializable;
 import javax.swing.JTextArea;
 
 public class ArbeidsforholdRegister implements Serializable {
-    public Arbeidsforhold fforste, fsiste;
+    public Arbeidsforhold forste, siste;
     
     public ArbeidsforholdRegister(){
-        fforste = null;
+        forste = null;
     }
     
     public void settInn(Arbeidsforhold ny){
         if(ny==null)
             return;
-        if(fforste == null)
-            fforste = fsiste = ny;
+        if(forste == null)
+            forste = siste = ny;
         else{
-            fsiste.neste = ny;
-            fsiste = ny;
+            siste.neste = ny;
+            siste = ny;
         }
                     
     }
     public void skrivArbeidsforholdiste(JTextArea arbeidsforholdiste){
-        Arbeidsforhold loper = fforste;
+        Arbeidsforhold loper = forste;
         
-        if(fforste == null){
+        if(forste == null){
             arbeidsforholdiste.setText("Ingen Arbeidsforhold i registeret");
         } else {
             arbeidsforholdiste.setText("");            

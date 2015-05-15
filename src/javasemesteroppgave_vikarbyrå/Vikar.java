@@ -22,7 +22,7 @@ public class Vikar implements Serializable{
     
     Vikar neste;
     
-    private ArrayList<String> vikariatNr = new ArrayList<>();
+    private ArrayList<Vikariat> vikariatNr = new ArrayList<>();
         
     public Vikar(String navn, int tlf, String epost, long personNr, String onsketBransjer, String utdanning, String kjonn, String jobberfaring, String referanser){
         this.navn = navn;
@@ -38,21 +38,92 @@ public class Vikar implements Serializable{
         
     }
     
-    public String findVikariatNr(String vikariatNr){
+    public int findVikariatNr(int vikariatNr){
         for(int i = 0; i < this.vikariatNr.size(); i++){
-            if(this.vikariatNr.get(i).matches(vikariatNr))
-                return this.vikariatNr.get(i);
+            if(this.vikariatNr.get(i).getVikariatNr() == vikariatNr)
+                return this.vikariatNr.get(i).getVikariatNr();
         }
-        
-        return null;
+        return 0;
+    }
+
+    public void setVikariat(Vikariat v){
+        vikariatNr.add(v);
     }
     
-    public long getPersonNr(){
+    public ArrayList<Vikariat> getVikariatNr() {
+        return vikariatNr;
+    }
+
+    public String getNavn() {
+        return navn;
+    }
+
+    public int getTlf() {
+        return tlf;
+    }
+
+    public long getPersonNr() {
         return personNr;
     }
-    
-    public String getVikariatNr(){
-        return null;
+
+    public String getOnsketBransjer() {
+        return onsketBransjer;
+    }
+
+    public String getUtdanning() {
+        return utdanning;
+    }
+
+    public String getJobberfaring() {
+        return jobberfaring;
+    }
+
+    public String getReferanser() {
+        return referanser;
+    }
+
+    public String getKjonn() {
+        return kjonn;
+    }
+
+    public String getEpost() {
+        return epost;
+    }
+
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
+
+    public void setTlf(int tlf) {
+        this.tlf = tlf;
+    }
+
+    public void setPersonNr(long personNr) {
+        this.personNr = personNr;
+    }
+
+    public void setOnsketBransjer(String onsketBransjer) {
+        this.onsketBransjer = onsketBransjer;
+    }
+
+    public void setUtdanning(String utdanning) {
+        this.utdanning = utdanning;
+    }
+
+    public void setJobberfaring(String jobberfaring) {
+        this.jobberfaring = jobberfaring;
+    }
+
+    public void setReferanser(String referanser) {
+        this.referanser = referanser;
+    }
+
+    public void setKjonn(String kjonn) {
+        this.kjonn = kjonn;
+    }
+
+    public void setEpost(String epost) {
+        this.epost = epost;
     }
     
     public String toString(){

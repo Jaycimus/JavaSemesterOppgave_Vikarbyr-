@@ -9,7 +9,6 @@ package javasemesteroppgave_vikarbyrå;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -56,7 +55,7 @@ public class AnsattVindu extends JPanel{
         visEndreKundeReg = new JButton("Vis/Endre Kundregister");
         visEndreVikariatReg = new JButton("Vis/Endre Vikariatregister");
         visEndreArbeisforholdReg = new JButton("Vis/Endre Arbeisforholdregister");
-        visEndreVikarReg = new JButton("Vis/Endre Vikarregister");
+        visEndreVikarReg = new JButton("Vis/Endre Vikar register");
         regSoking = new JButton("Søk i Registerene");
         loggUt = new JButton("Logg Ut");
         
@@ -254,13 +253,13 @@ public class AnsattVindu extends JPanel{
             }
             else if(e.getSource()==loggUt){
                 Logginn logginn = new Logginn(v);
-                logginn.setSize(new Dimension(400,220));
+                logginn.setSize(new Dimension(400,180));
                 logginn.setVisible(true);
                 logginn.setLocationRelativeTo(null);
                 logginn.setResizable(false);
                 logginn.addWindowListener( new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        logginn.skrivTilFil();
+                        logginn.skrivTilFil();                       
                         System.exit(0);
                     }
                 });

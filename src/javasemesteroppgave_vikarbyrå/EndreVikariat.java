@@ -12,7 +12,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -246,7 +245,7 @@ public class EndreVikariat extends JPanel {
         int vikariatNr = v.getNesteVikariatNr();
          v.setNesteVikariatNr();
         
-        if(!Validering.validerAdresse(arbeidsted)){
+        /*if(!Validering.validerAdresse(arbeidsted)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
             return;
         } else if(!Validering.validerArbeidstid(arbeidstid)){
@@ -269,7 +268,7 @@ public class EndreVikariat extends JPanel {
             tf_kontaktinfo.setText("");
             tf_stillingsinfo.setText("");
             
-        }
+        }*/
     }
     
     public void slettVikariat(){

@@ -9,7 +9,6 @@ package javasemesteroppgave_vikarbyrå;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -32,6 +31,8 @@ public class VikarVindu extends JPanel{
     
     private Vikarbyraa v;
     
+    private RegistrerSoknad rs;
+    
     public VikarVindu(Vikarbyraa v,JFrame ramme){
         this.v = v;
         this.ramme = ramme;
@@ -49,6 +50,16 @@ public class VikarVindu extends JPanel{
         meny.setPreferredSize(new Dimension(212,200));
         meny.add(visVikariatListe);
         meny.add(regSoking);
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
+        meny.add(new JPanel());
         meny.add(new JPanel());
         meny.add(new JPanel());
         meny.add(new JPanel());
@@ -83,23 +94,38 @@ public class VikarVindu extends JPanel{
         regSoking.addActionListener(lytter);
         loggUt.addActionListener(lytter);
         visVikariatListe.addActionListener(lytter);
-        
-        
-        
+    
     }
     
-     private class Knappelytter implements ActionListener{
+    public void visVikariatListe(){
+        v.vikariatRegister.skrivVikariatListe(utskrift);
+    }
+    
+    private JTextArea getTextArea(){
+        return utskrift;
+    }
+    
+    private void visLedigeVikariatReg(){
+        v.vikariatRegister.skrivLedigVikariatListe(utskrift);
+    }
+    
+    private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regSoking){
-                
+                registrering.setVisible(false);
+                RegistrerSoknad rs = new RegistrerSoknad(VikarVindu.this.getTextArea(), v);
+                VikarVindu.this.rs = rs;
+                add(rs, BorderLayout.EAST);
+                rs.setVisible(true);
+                visLedigeVikariatReg();
               
             }
             else if(e.getSource()==visVikariatListe){
-                
+                visVikariatListe();
             }
             else if(e.getSource()==loggUt){
                 Logginn logginn = new Logginn(v);
-                logginn.setSize(new Dimension(400,220));
+                logginn.setSize(new Dimension(400,180));
                 logginn.setVisible(true);
                 logginn.setLocationRelativeTo(null);
                 logginn.setResizable(false);

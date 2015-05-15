@@ -3,16 +3,14 @@ Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
 
-//Sist endret 1. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 13. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
-import javax.swing.JTextArea;
-
 
 public class Arbeidsforhold implements Serializable {
-    Vikariat vikariat;
-    Vikar vikar;
+    private Vikariat vikariat;
+    private Vikar vikar;
     private String arbeidsforhold;
     
     Arbeidsforhold neste;
@@ -21,7 +19,26 @@ public class Arbeidsforhold implements Serializable {
         this.vikariat = vikariat;
         this.vikar = vikar;
         this.arbeidsforhold = arbeidsforhold;
-        
+    }
+    
+    public Vikariat getVikariat(){
+        return vikariat;
+    }
+    public Vikar getVikar(){
+        return vikar;
+    }
+    public String getArbeidsforhold(){
+        return arbeidsforhold;
+    }
+    
+    public void setVikariat(Vikariat v){
+        this.vikariat = v;
+    }
+    public void setVikar(Vikar v){
+        this.vikar = v;
+    }
+    public void setArbeidsforhold(String forhold){
+        this.arbeidsforhold = forhold;
     }
     
     public String toString(){

@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -81,10 +80,6 @@ public class RegistrerKunde extends JPanel {
                         
     }
     
-    public JButton getRegKunde(){
-        return regKunde;
-    }
-    
     public void regKunde(){
         String navn = tf_navn.getText();
         String adresse = tf_adresse.getText();
@@ -111,14 +106,18 @@ public class RegistrerKunde extends JPanel {
                 v.kundeRegister.settInn(kunde);
                 System.out.println("regKunde");
                 utskrift.setText(kunde.toString());
-                tf_navn.setText("");
-                tf_adresse.setText("");
-                tf_tlf.setText("");
-                tf_epost.setText("");
+                resetInput();
             }
         } catch(NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
         }   
+    }
+    
+    private void resetInput(){
+        tf_navn.setText("");
+        tf_adresse.setText("");
+        tf_tlf.setText("");
+        tf_epost.setText("");
     }
     
     private class Knappelytter implements ActionListener{

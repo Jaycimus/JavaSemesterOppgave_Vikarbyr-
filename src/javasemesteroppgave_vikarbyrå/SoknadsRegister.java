@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 
 public class SoknadsRegister implements Serializable {
     
-    public Soknad forste, fsiste;
+    public Soknad forste, siste;
     
     public SoknadsRegister(){
         forste = null;        
@@ -22,10 +22,10 @@ public class SoknadsRegister implements Serializable {
         if(ny==null)
             return;
         if(forste == null)
-            forste = fsiste = ny;
+            forste = siste = ny;
         else{
-            fsiste.neste = ny;
-            fsiste = ny;
+            siste.neste = ny;
+            siste = ny;
         }                    
     }
     

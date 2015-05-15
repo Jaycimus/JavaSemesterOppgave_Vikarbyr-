@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 public class VikarRegister implements Serializable {
-    public Vikar forste, fsiste;
+    public Vikar forste, siste;
     
     public VikarRegister(){
         forste = null;
@@ -23,29 +23,44 @@ public class VikarRegister implements Serializable {
         if(ny==null)
             return;
         if(forste == null)
-            forste = fsiste = ny;
+            forste = siste = ny;
         else{
-            fsiste.neste = ny;
-            fsiste = ny;
+            siste.neste = ny;
+            siste = ny;
         }
                     
     }
     
-    public String[] getVikarerTilVikariat(String vikariatNr){
+    public Vikar finnVikar(long personNr){
+        Vikar loper = forste;
+        boolean ok = true;
+        while(ok){
+            if(loper != null && loper.getPersonNr()==personNr){
+                return loper;
+            }
+            else
+                loper = loper.neste;
+        }
+        return null;
+    }
+    
+    public String[] getVikarerTilVikariat(int vikariatNr){
         String[] vikarer;
         List<String> list =new ArrayList<String>();
         boolean ok = false;
         Vikar loper = forste;
         if(loper!=null){
             if(loper.findVikariatNr(vikariatNr) == vikariatNr){
-                list.add(loper.findVikariatNr(vikariatNr));
+                String s = "" + vikariatNr;
+                list.add(s);
             }
             ok = true;
             loper = loper.neste;
             while(ok == true){
                 if(loper != null){
                     if(loper.findVikariatNr(vikariatNr) == vikariatNr){
-                        list.add(loper.findVikariatNr(vikariatNr));
+                        String s = "" + vikariatNr;
+                        list.add(s);
                         loper = loper.neste;
                     }
                 }

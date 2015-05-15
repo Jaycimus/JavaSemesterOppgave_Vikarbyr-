@@ -16,6 +16,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -58,7 +60,7 @@ public class Logginn extends JFrame{
                 brukernavn.setText("");
             }
 	});
-        
+                        
         //oppretter tekstfelt for passord og regisrerer museklikk lytter
         passord = new JPasswordField("andreas",15);
         passord.setFont(tekstfelt);
@@ -98,7 +100,7 @@ public class Logginn extends JFrame{
                 for(int i = 0; i < v.navneListe1.size(); i++) {
                     if(bruker.equalsIgnoreCase(v.navneListe1.get(i)) && pass.equals(v.passordListe1.get(i))) {
                         setVisible(false);
-                        JFrame ansattVindu = new JFrame("Vikarbyrå - Ansatt");
+                        JFrame ansattVindu = new JFrame("Vikarbyrå");
                         AnsattVindu vindu = new AnsattVindu(v, ansattVindu);
                         ansattVindu.add(vindu);
                         ansattVindu.setSize(new Dimension(1200,700));
@@ -117,22 +119,23 @@ public class Logginn extends JFrame{
                 for(int i = 0; i < v.navneListe2.size(); i++){
                     if (bruker.equalsIgnoreCase(v.navneListe2.get(i)) && pass.equals(v.passordListe2.get(i))){
                         setVisible(false);
-                        JFrame vikarVindu = new JFrame("Vikarbyrå - Vikar");
+                        JFrame vikarVindu = new JFrame("Vikarbyrå");
                         VikarVindu vindu = new VikarVindu(v, vikarVindu);
                         vikarVindu.add(vindu);
-                        vikarVindu.setSize(new Dimension(700,700));
+                        vikarVindu.setSize(new Dimension(1200,700));
                         vikarVindu.setVisible(true);
                         vikarVindu.setLocationRelativeTo(null);
                         vikarVindu.setResizable(false);
                         vikarVindu.addWindowListener( new WindowAdapter(){
                             public void windowsClosing(WindowEvent e){
+                                skrivTilFil();
                                 System.exit(0);
                                 }
                             });
                         return;
                     }
                     else {
-                        status.setText("Feil brukernavn/passord");
+                        status.setText("       Feil brukernavn/passord       ");
                         
                         //fjerner all tekst i tekstfeltene
                         brukernavn.setText("");
@@ -209,7 +212,7 @@ public class Logginn extends JFrame{
                 for(int i = 0; i < navneListe1.size(); i++) {
                     if(bruker.equalsIgnoreCase(navneListe1.get(i)) && pass.equals(passordListe1.get(i))) {
                         setVisible(false);
-                        JFrame ansattVindu = new JFrame("Rekrutering AS - Ansatt");
+                        JFrame ansattVindu = new JFrame("Vikarbyrå");
                         AnsattVindu vindu = new AnsattVindu(v, ansattVindu);
                         ansattVindu.add(vindu);
                         ansattVindu.setSize(new Dimension(1200,700));
@@ -228,22 +231,23 @@ public class Logginn extends JFrame{
                 for(int i = 0; i < navneListe2.size(); i++){
                     if (bruker.equalsIgnoreCase(navneListe2.get(i)) && pass.equals(passordListe2.get(i))){
                         setVisible(false);
-                        JFrame vikarVindu = new JFrame("Rekrutering AS - Vikar");
+                        JFrame vikarVindu = new JFrame("Vikarbyrå");
                         VikarVindu vindu = new VikarVindu(v, vikarVindu);
                         vikarVindu.add(vindu);
-                        vikarVindu.setSize(new Dimension(700,700));
+                        vikarVindu.setSize(new Dimension(1200,700));
                         vikarVindu.setVisible(true);
                         vikarVindu.setLocationRelativeTo(null);
                         vikarVindu.setResizable(false);
                         vikarVindu.addWindowListener( new WindowAdapter(){
                             public void windowsClosing(WindowEvent e){
+                                skrivTilFil();
                                 System.exit(0);
                                 }
                             });
                         return;
                     }
                     else {
-                        status.setText("Feil brukernavn/passord");
+                        status.setText("       Feil brukernavn/passord       ");
                         
                         //fjerner all tekst i tekstfeltene
                         brukernavn.setText("");
