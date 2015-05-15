@@ -185,11 +185,13 @@ public class EndreVikar extends JPanel{
         } catch(NumberFormatException nfe){
             JOptionPane.showMessageDialog(null, "");
         }
+        JOptionPane.showMessageDialog(null, "Vikar har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
     }//end regVikar()
     
     //Sletter den valgte vikaren når "Slett Vikar"-knappen blir trykket
     public void slettVikar(){
-        
+        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette kunden?","Sletting",JOptionPane.YES_NO_OPTION);
+        if(sikker == JOptionPane.YES_OPTION){}
     }
             
     //Knytter "Endre Vikar" og "Slett Vikar" knappene til lytter

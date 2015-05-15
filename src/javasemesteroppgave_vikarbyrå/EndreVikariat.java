@@ -1,8 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*Gruppemedlemmene:
+Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
+Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
+
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Color;
@@ -247,8 +249,9 @@ public class EndreVikariat extends JPanel {
                              (String) cb_ar2.getSelectedItem();
         String bransjer = (String) cb_bransjer.getSelectedItem();
         int vikariatNr = v.getNesteVikariatNr();
-         v.setNesteVikariatNr();
-        
+        v.setNesteVikariatNr();
+        JOptionPane.showMessageDialog(null, "Kunden har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
+
         /*if(!Validering.validerAdresse(arbeidsted)){
             JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
             return;
@@ -277,7 +280,8 @@ public class EndreVikariat extends JPanel {
     
     //Sletter det valgte vikariatet
     public void slettVikariat(){
-    
+        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette kunden?","Sletting",JOptionPane.YES_NO_OPTION);
+        if(sikker == JOptionPane.YES_OPTION){}
     }
     
     //Knytter knappene "Slett Vikariat" og "Endre Vikariat" til lytter

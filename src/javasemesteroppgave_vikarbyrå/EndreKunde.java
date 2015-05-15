@@ -16,6 +16,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -119,7 +120,9 @@ public class EndreKunde extends JPanel {
         kunde.setNavn(navn);
         String adresse = tf_adresse.getText();
         kunde.setAdresse(adresse);
-        int tlf;
+        String tlfS = tf_tlf.getText();
+        int tlf = Integer.parseInt(tlfS);
+        kunde.setTlf(tlf);
         String epost = tf_epost.getText();
         kunde.setEpost(epost);
         String sektor;
@@ -131,17 +134,21 @@ public class EndreKunde extends JPanel {
                 sektor = "Offentlig";
                 kunde.setTypeSektor(sektor);
             }   
+        JOptionPane.showMessageDialog(null, "Kunden har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
     }
     
     //Sletter den valgte kunden
     public void slettKunde(){
         String navn = (String)cb_kunder.getSelectedItem();
-        if(v.kundeRegister.slettKunde(navn)){
-            tf_navn.setText("");
-            tf_adresse.setText("");
-            tf_tlf.setText("");
-            tf_epost.setText("");
-            cb_kunder.removeItem((String)cb_kunder.getSelectedItem());
+        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette kunden?","Sletting",JOptionPane.YES_NO_OPTION);
+        if(sikker == JOptionPane.YES_OPTION){
+            if(v.kundeRegister.slettKunde(navn)){
+                tf_navn.setText("");
+                tf_adresse.setText("");
+                tf_tlf.setText("");
+                tf_epost.setText("");
+                cb_kunder.removeItem((String)cb_kunder.getSelectedItem());
+            }
         }
     }
     
