@@ -64,7 +64,7 @@ public class EndreKunde extends JPanel {
         lbl_epost = new JLabel("E-post: ");
         
         BG_typeSektor = new ButtonGroup();
-        privat = new JRadioButton("Privat Sektor", true);
+        privat = new JRadioButton("Privat Sektor", false);
         offentlig = new JRadioButton("Offentlig Sektor", false);
         BG_typeSektor.add(privat);
         BG_typeSektor.add(offentlig);
@@ -79,8 +79,17 @@ public class EndreKunde extends JPanel {
         cb_kunder.setMaximumRowCount(9);
         //Gjør at nåværende info blir skrevet inn i tekstfeltet
         cb_kunder.addItemListener((ItemEvent e) -> {
-            String kundeNavn1 = (String) cb_kunder.getSelectedItem();
-            Kunde kunde = v.kundeRegister.finnKunde(kundeNavn1);
+            String kundeNavn = (String) cb_kunder.getSelectedItem();
+            if(kundeNavn.equals("---Kunder---")){
+                privat.setSelected(false);
+                offentlig.setSelected(false);
+                tf_navn.setText("");
+                tf_adresse.setText("");
+                tf_tlf.setText("");
+                tf_epost.setText("");
+                return;
+            }
+            Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
             tf_navn.setText(kunde.getNavn());
             tf_adresse.setText(kunde.getAdresse());
             tf_tlf.setText(kunde.getTlf());
@@ -113,11 +122,14 @@ public class EndreKunde extends JPanel {
     
     //Samler inn den nye infoen om kunden når knappen "Endre Kunde" blir trykket
     public void endreKunde(){
-        Kunde kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
+        String kundeNavn = (String)cb_kunder.getSelectedItem();
+        if(kundeNavn.matches("---Kunder---")){
+            JOptionPane.showMessageDialog(null,"Kunde ikke valgt!");
+            return;
+        }
+        Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
         
         String navn = tf_navn.getText();
-        if(kunde==null)
-            System.out.println("OK");
         kunde.setNavn(navn);
         String adresse = tf_adresse.getText();
         kunde.setAdresse(adresse);
@@ -136,15 +148,22 @@ public class EndreKunde extends JPanel {
                 kunde.setTypeSektor(sektor);
             }   
         JOptionPane.showMessageDialog(null, "Kunden har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
+        endreKundeTilVikariater(navn);
         refresh();
+        resetInput();
     }
     
     //Sletter den valgte kunden
     public void slettKunde(){
         String navn = (String)cb_kunder.getSelectedItem();
+        if(navn.matches("---Kunder---")){
+            JOptionPane.showMessageDialog(null,"Kunde ikke valgt!");
+            return;
+        }
         int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette kunden?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
             if(v.kundeRegister.slettKunde(navn)){
+                v.vikariatRegister.slettVikariater(navn);
                 tf_navn.setText("");
                 tf_adresse.setText("");
                 tf_tlf.setText("");
@@ -159,6 +178,16 @@ public class EndreKunde extends JPanel {
         v.kundeRegister.skrivKundeListe(utskrift);
     }
     
+    private void resetInput(){
+        cb_kunder.setSelectedIndex(0);
+        privat.setSelected(false);
+        offentlig.setSelected(false);
+        tf_navn.setText("");
+        tf_adresse.setText("");
+        tf_tlf.setText("");
+        tf_epost.setText("");
+    } 
+    
     //Knytter knappene "Endre Kunde" og "Slett Kunde til en lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
@@ -170,4 +199,30 @@ public class EndreKunde extends JPanel {
             }
         }
     }//end Knappelytter
-}//end EndreKunde
+    
+    public void endreKundeTilVikariater(String kundeNavn){
+        Vikariat loper = v.vikariatRegister.forste;
+        if(loper==null){
+            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
+        } else {
+            Boolean ok = true;
+            if(loper.getKundeNavn().matches(kundeNavn)){
+                loper.setKunde(v.kundeRegister.finnKunde(kundeNavn));
+                loper = loper.neste;
+                
+                while(ok){
+                    if(loper!=null){
+                        if(loper.getKundeNavn().matches(kundeNavn)){
+                            loper.setKunde(v.kundeRegister.finnKunde(kundeNavn));
+                            loper = loper.neste;
+                        } else
+                            loper = loper.neste;
+                    } else {
+                        ok = false;
+                    }
+                }//end while 
+            }//end if
+        }//end else
+    }//end endreKundeTilVikariater
+    
+}//end EndreKunde klasse

@@ -27,58 +27,35 @@ import javax.swing.JTextField;
 //Klassen bygger opp vinduet til "Vis/Endre Vikariat" og tar imot nytt info
 public class EndreVikariat extends JPanel {
     private JButton endreVikariat, slettVikariat;
-    private JLabel lbl_navn, lbl_arbeidssted, lbl_arbeidstid, lbl_stillingstype, lbl_kvalifikasjoner,
+    private JLabel lbl_vikariat, lbl_adresse, lbl_arbeidstid, lbl_stillingstype, lbl_kvalifikasjoner,
             lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighetfra, lbl_varighettil,
             lbl_bindestrek, lbl_kolon, lbl_kolon2;
-    private JTextField tf_arbeidssted, tf_stillingstype, tf_kvalifikasjoner, tf_lonnsbetingelser,
+    private JTextField tf_adresse, tf_stillingstype, tf_kvalifikasjoner, tf_lonnsbetingelser,
             tf_kontaktinfo, tf_stillingsinfo;
     private JTextArea utskrift;
     
     private Vikarbyraa v;
     private Vikariat vikariat;
     
-    private JComboBox<String> cb_kunder;
-    private String[]kundeNavn;
-    private JComboBox<String> cb_timer;
+    private JComboBox<String> cb_vikariater;
+    private String[]vikariatNavn;
+    private JComboBox<String> cb_timer, cb_timer2, cb_minutter, cb_minutter2, 
+            cb_dag, cb_dag2, cb_maned, cb_maned2, cb_ar, cb_ar2, cb_stillingsTyper;
     private final String[] timer =
         {"--T--","00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
             "16","17","18","19","20","21","22","23"};
-    private JComboBox<String> cb_timer2;
-    private final String[] timer2 =
-        {"--T--","00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
-            "16","17","18","19","20","21","22","23"};
-    private JComboBox<String> cb_minutter;
     private final String[] minutter =
         {"--M--","00","05","10","15","20","25","30","35","40","45","50","55"};
-    private JComboBox<String> cb_minutter2;
-    private final String[] minutter2 =
-        {"--M--","00","05","10","15","20","25","30","35","40","45","50","55"};
-    private JComboBox<String> cb_dag;
     private final String[] dag = 
         {"--Dag--","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
             "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-    private JComboBox<String> cb_dag2;
-    private final String[] dag2 = 
-        {"--Dag--","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
-            "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-    private JComboBox<String> cb_maned;
     private final String[] maned =
         {"--Måned--","Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
             "Oktober","November","Desember"};
-    private JComboBox<String> cb_maned2;
-    private final String[] maned2 =
-        {"-Måned-","Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
-            "Oktober","November","Desember"};
-    private JComboBox<String> cb_ar;
     private final String[] ar =
         {"--År--","2015","2016","2017","2018","2019","2020"};
-    private JComboBox<String> cb_ar2;
-    private final String[] ar2 =
-        {"--År--","2015","2016","2017","2018","2019","2020"};
-    
-    private JComboBox<String>cb_bransjer;
-    private final String[] bransjer = 
-        {"Advokattjenester/Prosedyre", "Bankvirksomhet","Bygg/Anlegg/Entreprenør", 
+    private final String[] stillingsTyper = 
+        {"---Stillingstype---", "Advokattjenester/Prosedyre", "Bankvirksomhet","Bygg/Anlegg/Entreprenør", 
             "Eiendom/Eiendomsmegling", "Engineering", "Farmasi/Legemiddel", "Finans -verdipapirer/megling", 
                 "Forsikring/Assuranse", "Forskning og utvikling", "Helse/Velvære/Trening", "Helsesektor", "Hotell/overnatting", 
                     "Høyteknologi/Elektronikk", "IKT/Telekom", "Industri: Tradisjonell/Prosess/Øvrig", "Ingeniøryrker: Øvrig", "Internett tjenester/E-handel", 
@@ -98,15 +75,15 @@ public class EndreVikariat extends JPanel {
         
         Knappelytter lytter = new Knappelytter();
 
-        kundeNavn = v.kundeRegister.getKundeNavn();
+        vikariatNavn = v.vikariatRegister.getVikariatNr();
         
         endreVikariat = new JButton("Endre Vikariat");
         endreVikariat.addActionListener(lytter);
         slettVikariat = new JButton("Slett Vikariat");
         slettVikariat.addActionListener(lytter);
         
-        lbl_navn = new JLabel("Kunde: ");
-        lbl_arbeidssted = new JLabel("Arbeidsted: ");
+        lbl_vikariat = new JLabel("Vikariat: ");
+        lbl_adresse = new JLabel("Arbeidsted: ");
         lbl_arbeidstid = new JLabel("Arbeidstid: ");
         lbl_stillingstype = new JLabel("Stillingstype: ");
         lbl_kvalifikasjoner = new JLabel("Kvalifikasjoner: ");
@@ -119,50 +96,138 @@ public class EndreVikariat extends JPanel {
         lbl_kolon = new JLabel(":");
         lbl_kolon2 = new JLabel(":");
         
-        tf_arbeidssted = new JTextField("",15);
+        tf_adresse = new JTextField("",15);
         tf_stillingstype = new JTextField("",15);
         tf_kvalifikasjoner = new JTextField("",15);
         tf_lonnsbetingelser = new JTextField("",15);
         tf_kontaktinfo = new JTextField("",15);
         tf_stillingsinfo = new JTextField("",15);
+        
+        cb_vikariater = new JComboBox<String>(vikariatNavn);
+        
+        //lytter for endring i vikariat comboboxen
+        cb_vikariater.addItemListener((ItemEvent e) -> {
+            String vikariaterNr = (String) cb_vikariater.getSelectedItem();
+            if(vikariaterNr.equals("---Vikariater---")){
+                resetInput();
+                return;
+            }
+            Vikariat vikariat = v.vikariatRegister.finnVikariat(Integer.parseInt(vikariaterNr));
+            tf_adresse.setText(vikariat.getAdresse());
+            tf_stillingstype.setText(vikariat.getStillingstype());
+            tf_kvalifikasjoner.setText(vikariat.getKvalifikasjoner());
+            tf_lonnsbetingelser.setText(vikariat.getLonnsbetingelser());
+            tf_kontaktinfo.setText(vikariat.getKontaktinfo());
+            tf_stillingsinfo.setText(vikariat.getStillingsinfo()); 
+            String varighetFra = vikariat.getVarighetfra();
+                for( int i = 0; i < dag.length; i++){
+                    String d = varighetFra.substring(0, 2);
+                    if(d.matches(dag[i])){
+                        cb_dag.setSelectedIndex(i);
+                    }
+                }
+                for( int i = 0; i < maned.length; i++){
+                    int x = varighetFra.indexOf("-");
+                    int y = varighetFra.lastIndexOf("-");
+                    String m = varighetFra.substring(++x, y);
+                    if(m.matches(maned[i])){
+                        cb_maned.setSelectedIndex(i);
+                    }
+                }
+                for( int i = 0; i < ar.length; i++){
+                    int x = varighetFra.lastIndexOf("-");
+                    int y = varighetFra.length();
+                    
+                    String a = varighetFra.substring(++x, y);
+                    if(a.matches(ar[i])){
+                        cb_ar.setSelectedIndex(i);
+                    }
+                }
                 
-        cb_kunder = new JComboBox<>(kundeNavn);
-        cb_kunder.setMaximumRowCount(9);
-        //Skriver inn den nåværende infoen i tekstfeltene
-        cb_kunder.addItemListener((ItemEvent e) -> {
-                String kundeNavn = (String) cb_kunder.getSelectedItem();
-                Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
-                tf_arbeidssted.setText(vikariat.getAdresse());
-                tf_stillingstype.setText(vikariat.getStillingstype());
-                tf_kvalifikasjoner.setText(vikariat.getKvalifikasjoner());
-                tf_lonnsbetingelser.setText(vikariat.getLonnsbetingelser());
-                tf_kontaktinfo.setText(vikariat.getKontaktinfo());
-                tf_stillingsinfo.setText(vikariat.getStillingsinfo());    
-            });
+            String varighetTil = vikariat.getVarighettil();
+                for( int i = 0; i < dag.length; i++){
+                    String d = varighetTil.substring(0, 2);
+                    if(d.matches(dag[i])){
+                        cb_dag2.setSelectedIndex(i);
+                    }
+                }
+                for( int i = 0; i < maned.length; i++){
+                    int x = varighetTil.indexOf("-");
+                    int y = varighetTil.lastIndexOf("-");
+                    String m = varighetTil.substring(++x, y);
+                    if(m.matches(maned[i])){
+                        cb_maned2.setSelectedIndex(i);
+                    }
+                }
+                for( int i = 0; i < ar.length; i++){
+                    int x = varighetTil.lastIndexOf("-");
+                    int y = varighetTil.length();
+                    String a = varighetTil.substring(++x, y);
+                    if(a.matches(ar[i])){
+                        cb_ar2.setSelectedIndex(i);
+                    }
+                }
+                
+            String arbeidstid = vikariat.getArbeidstid();
+                for( int i = 0; i < timer.length; i++){
+                    String t = arbeidstid.substring(0, 2);
+                    if(t.matches(timer[i])){
+                        cb_timer.setSelectedIndex(i);
+                    }
+                }
+                for( int i = 0; i < minutter.length; i++){
+                    String m = arbeidstid.substring(3, 5);
+                    if(m.matches(minutter[i])){
+                        cb_minutter.setSelectedIndex(i);
+                    }
+                }
+                for( int i = 0; i < timer.length; i++){
+                    int x = arbeidstid.indexOf("-");
+                    int y = arbeidstid.lastIndexOf(":");
+                    String t = arbeidstid.substring(2+x, y);
+                    if(t.matches(timer[i])){
+                        cb_timer2.setSelectedIndex(i);
+                    }
+                }
+                for( int i = 0; i < minutter.length; i++){
+                    int x = arbeidstid.lastIndexOf(":");
+                    int y = arbeidstid.length();
+                    String a = arbeidstid.substring(++x, y);
+                    if(a.matches(minutter[i])){
+                        cb_minutter2.setSelectedIndex(i);
+                    }
+                }
+            String stillingsType = vikariat.getStillingstype();
+                for( int i = 0; i < stillingsTyper.length; i++){
+                    if(stillingsType.matches(stillingsTyper[i])){
+                        cb_stillingsTyper.setSelectedIndex(i);
+                    }
+                }
+        });//slutten av lytteren
         
         cb_timer = new JComboBox<>(timer);
         cb_timer.setMaximumRowCount(16);
         cb_minutter = new JComboBox<>(minutter);
         cb_minutter.setMaximumRowCount(12);
-        cb_timer2 = new JComboBox<>(timer2);
+        cb_timer2 = new JComboBox<>(timer);
         cb_timer2.setMaximumRowCount(16);
-        cb_minutter2 = new JComboBox<>(minutter2);
+        cb_minutter2 = new JComboBox<>(minutter);
         cb_minutter2.setMaximumRowCount(12);
         cb_dag = new JComboBox<>(dag);
         cb_dag.setMaximumRowCount(20);
-        cb_dag2 = new JComboBox<>(dag2);
+        cb_dag2 = new JComboBox<>(dag);
         cb_dag2.setMaximumRowCount(20);
         cb_maned = new JComboBox<>(maned);
         cb_maned.setMaximumRowCount(12);
-        cb_maned2 = new JComboBox<>(maned2);
+        cb_maned2 = new JComboBox<>(maned);
         cb_maned2.setMaximumRowCount(12);
         cb_ar = new JComboBox<>(ar);
         cb_ar.setMaximumRowCount(5);
-        cb_ar2 = new JComboBox<>(ar2);
+        cb_ar2 = new JComboBox<>(ar);
         cb_ar2.setMaximumRowCount(5);
 
-        cb_bransjer = new JComboBox<String>(bransjer);
-        cb_bransjer.setMaximumRowCount(9);
+        cb_stillingsTyper = new JComboBox<String>(stillingsTyper);
+        cb_stillingsTyper.setMaximumRowCount(9);
 
         
         JPanel kolon = new JPanel(new FlowLayout());
@@ -174,7 +239,6 @@ public class EndreVikariat extends JPanel {
         JPanel bindestrek = new JPanel(new FlowLayout());
         bindestrek.add(lbl_bindestrek);
 
-                
         JPanel tider = new JPanel(new FlowLayout(FlowLayout.LEFT,-2,-2));
         tider.add(cb_timer);
         cb_timer.setBackground(Color.white);
@@ -198,14 +262,18 @@ public class EndreVikariat extends JPanel {
         til.add(cb_maned2);
         til.add(cb_ar2);
         
-        add(lbl_navn);
-        add(cb_kunder);
-        add(lbl_arbeidssted);
-        add(tf_arbeidssted);
+        add(lbl_vikariat);
+        add(cb_vikariater);
+        add(lbl_adresse);
+        add(tf_adresse);
+        add(lbl_varighetfra);
+        add(fra);
+        add(lbl_varighettil);
+        add(til);
         add(lbl_arbeidstid);
         add(tider);
         add(lbl_stillingstype);
-        add(cb_bransjer);
+        add(cb_stillingsTyper);
         add(lbl_kvalifikasjoner);
         add(tf_kvalifikasjoner);
         add(lbl_lonnsbetingelser);
@@ -214,74 +282,92 @@ public class EndreVikariat extends JPanel {
         add(tf_kontaktinfo);
         add(lbl_stillingsinfo);
         add(tf_stillingsinfo);
-        add(lbl_varighetfra);
-        add(fra);
-        add(lbl_varighettil);
-        add(til);
-       
         add(slettVikariat);
         add(endreVikariat);
     }//end kontruktør
     
     //Tar i mot den nye infoen fra tekstfeltene
     public void endreVikariat(){
-        String kunde = (String) cb_kunder.getSelectedItem();
-        if(kunde.matches("---Kunder---")){
-            JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
+        String vikariatNr = (String) cb_vikariater.getSelectedItem();
+        if(vikariatNr.matches("---Vikariater---")){
+            JOptionPane.showMessageDialog(null, "Vikariat ikke valgt");
             return;
         }
+        Vikariat vikariat = v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr));
         
-        String arbeidsted = tf_arbeidssted.getText();
+        String adresse = tf_adresse.getText();
+        vikariat.setAdresse(adresse);
         String arbeidstid = (String) cb_timer.getSelectedItem() + ":" + 
                             (String) cb_minutter.getSelectedItem() + " - " + 
                             (String) cb_timer2.getSelectedItem() + ":" + 
                             (String) cb_minutter2.getSelectedItem();
+        vikariat.setArbeidstid(arbeidstid);
         String stillingstype = tf_stillingstype.getText();
+        vikariat.setStillingstype(stillingstype);
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
+        vikariat.setKvalifikasjoner(kvalifikasjoner);
         String lonnsbetingelser = tf_lonnsbetingelser.getText();
+        vikariat.setLonnsbetingelser(lonnsbetingelser);
         String kontaktinfo = tf_kontaktinfo.getText();
+        vikariat.setKontaktinfo(kontaktinfo);
         String stillingsinfo = tf_stillingsinfo.getText();
+        vikariat.setStillingsInfo(stillingsinfo);
         String varighetfra = (String) cb_dag.getSelectedItem() + "-" + 
                              (String) cb_maned.getSelectedItem() + "-" +
                              (String) cb_ar.getSelectedItem();
+        vikariat.setVarighetfra(varighetfra);
         String varighettil = (String) cb_dag2.getSelectedItem() + "-" +
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
-        String bransjer = (String) cb_bransjer.getSelectedItem();
-        int vikariatNr = v.getNesteVikariatNr();
-        v.setNesteVikariatNr();
-        JOptionPane.showMessageDialog(null, "Kunden har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
-
-        /*if(!Validering.validerAdresse(arbeidsted)){
-            JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
-            return;
-        } else if(!Validering.validerArbeidstid(arbeidstid)){
-            JOptionPane.showMessageDialog(null, "Feil med arbeidstid");
-            return;
-        }
+        vikariat.setVarighettil(varighettil);
+        String bransjer = (String) cb_stillingsTyper.getSelectedItem();
+        vikariat.setBransje(bransjer);
+        JOptionPane.showMessageDialog(null, "Vikariatet har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
         
-        
-        else{
-            Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
-                    stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo,varighetfra,varighettil, bransjer, vikariatNr);
-            v.vikariatRegister.settInn(vikariat);
-            System.out.println("RegVikariat");
-            utskrift.setText(vikariat.toString());
-            tf_arbeidssted.setText("");
-            tf_stillingstype.setText("");
-            tf_kvalifikasjoner.setText("");
-            tf_lonnsbetingelser.setText("");
-            tf_kontaktinfo.setText("");
-            tf_stillingsinfo.setText("");
-            
-        }*/
+        refresh();
+        resetInput();
     }//end endreVikariat()
     
     //Sletter det valgte vikariatet
     public void slettVikariat(){
-        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette kunden?","Sletting",JOptionPane.YES_NO_OPTION);
-        if(sikker == JOptionPane.YES_OPTION){}
+        String vikariatNr = (String)cb_vikariater.getSelectedItem();
+        if(vikariatNr.matches("---Vikariater---")){
+            JOptionPane.showMessageDialog(null,"Vikariat ikke valgt!");
+            return;
+        }
+        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikariatet?","Sletting",JOptionPane.YES_NO_OPTION);
+        if(sikker == JOptionPane.YES_OPTION){
+            if(v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr))!=null){
+                v.vikariatRegister.slettVikariater(vikariatNr);
+                cb_vikariater.removeItem((String)cb_vikariater.getSelectedItem());
+                resetInput();
+                refresh();
+            }
+        }
+    }
+    
+    private void refresh(){
+        v.vikariatRegister.skrivVikariatListe(utskrift);
+    }
+    
+    private void resetInput(){
+        //cb_vikariater.setSelectedIndex(0);
+        tf_adresse.setText("");
+        cb_timer.setSelectedIndex(0);
+        cb_timer2.setSelectedIndex(0);
+        cb_minutter.setSelectedIndex(0);
+        cb_minutter2.setSelectedIndex(0);
+        cb_dag.setSelectedIndex(0);
+        cb_dag2.setSelectedIndex(0);
+        cb_maned.setSelectedIndex(0);
+        cb_maned2.setSelectedIndex(0);
+        cb_ar.setSelectedIndex(0);
+        cb_ar2.setSelectedIndex(0);
+        cb_stillingsTyper.setSelectedIndex(0);
+        tf_kvalifikasjoner.setText("");
+        tf_lonnsbetingelser.setText("");
+        tf_kontaktinfo.setText("");
+        tf_stillingsinfo.setText("");
     }
     
     //Knytter knappene "Slett Vikariat" og "Endre Vikariat" til lytter

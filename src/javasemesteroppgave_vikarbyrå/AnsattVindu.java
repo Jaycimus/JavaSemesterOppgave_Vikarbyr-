@@ -24,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 //Denne klassen bygger opp det vinduet som man ser når man logger inn som en ansatt
 public class AnsattVindu extends JPanel{
     private final JPanel meny, registrering, bunn, topp;
-    private final JButton regKunde, regVikariat, regArbForhold, regVikar, visEndreKundeReg, visEndreVikariatReg, visEndreArbeisforholdReg, visEndreVikarReg, regSoking, loggUt;
+    private final JButton regKunde, regVikariat, regArbForhold, regVikar, vikarVikariat, visEndreKundeReg, visEndreVikariatReg, visEndreArbeisforholdReg, visEndreVikarReg, regSoking, loggUt;
     private final JTextArea utskrift;
     private final JFrame ramme; //rammen på programmet
     private BorderLayout borderLayout;
@@ -55,6 +55,7 @@ public class AnsattVindu extends JPanel{
         regVikariat = new JButton("Registrer Vikariat");
         regArbForhold = new JButton("Registrer Arbeidsfohold");
         regVikar = new JButton("Registrer Vikar");
+        vikarVikariat = new JButton("Vikar->Vikariat");
         visEndreKundeReg = new JButton("Vis/Endre Kundregister");
         visEndreVikariatReg = new JButton("Vis/Endre Vikariatregister");
         visEndreArbeisforholdReg = new JButton("Vis/Endre Arbeisforholdregister");
@@ -69,6 +70,7 @@ public class AnsattVindu extends JPanel{
         meny.add(regVikariat);
         meny.add(regArbForhold);
         meny.add(regVikar);
+        meny.add(vikarVikariat);
         meny.add(new JPanel());
         meny.add(visEndreKundeReg);
         meny.add(visEndreVikariatReg);
@@ -110,6 +112,7 @@ public class AnsattVindu extends JPanel{
         regVikariat.addActionListener(lytter);
         regArbForhold.addActionListener(lytter);
         regVikar.addActionListener(lytter);
+        vikarVikariat.addActionListener(lytter);
         visEndreKundeReg.addActionListener(lytter);
         visEndreVikariatReg.addActionListener(lytter);
         visEndreArbeisforholdReg.addActionListener(lytter);
@@ -224,6 +227,20 @@ public class AnsattVindu extends JPanel{
                 RegistrerVikar rvv = new RegistrerVikar(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rvv = rvv;
                 add(rvv,BorderLayout.EAST); 
+            }
+            //Knappen "vikar->vikariat"
+            else if(e.getSource()==vikarVikariat){
+                registrering.setVisible(false);
+                if(rk!=null)
+                    AnsattVindu.this.rk.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rvv!=null)
+                    AnsattVindu.this.rvv.setVisible(false);
+                if(raf!=null)
+                    AnsattVindu.this.raf.setVisible(false);
+                if(ev!=null)
+                    AnsattVindu.this.ev.setVisible(false);
             }
             
             //Knappen "Vis/Endre Kunde"

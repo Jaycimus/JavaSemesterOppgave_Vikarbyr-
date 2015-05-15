@@ -33,7 +33,6 @@ public class VikariatRegister implements Serializable {
             siste.neste = ny;
             siste = ny;
         }
-                    
     }
     
     //Finner et bestemt vikariat
@@ -81,25 +80,66 @@ public class VikariatRegister implements Serializable {
         return vikariater;        
     }//end getLedigeViakriater()
     
-    //Metode for å finne vikariater som tilhører en kunde
-    public String[] getVikariaterTilKunde(String kundeNavn){
-        String[] vikariater;
-        List<String> list = new ArrayList<>();
+    //metode som henter alle vikariater
+    public String[] getVikariatNr(){
+        String[] vikariatNavn = new String[1+getAntallNoder()];
+        Vikariat loper = forste;
+        vikariatNavn[0] = "---Vikariater---";
+        for(int i = 1; i <= getAntallNoder(); i++){
+            vikariatNavn[i] = "" + loper.getVikariatNr();
+            loper = loper.neste;
+        }
+        return vikariatNavn;
+    }
+    
+    //metode for å finne antall noder i register
+    public int getAntallNoder(){
+        int antall = 0;
         boolean ok = false;
         Vikariat loper = forste;
+        if(loper!=null){
+            antall++;
+            ok = true;
+            loper = loper.neste;
+            while(ok == true){
+                if(loper!=null){
+                    antall++;
+                    loper = loper.neste;
+                }
+                else{
+                    ok = false;
+                }
+            }
+        }
+        
+        return antall;
+    }//end getAntallNoder
+    
+    //Metode for å finne vikariater som tilhører en kunde
+    public String[] getVikariaterTilKunde(String kundeNavn){
+        System.out.println(kundeNavn);
+        String[] vikariater;
+        List<String> list = new ArrayList<>();
+        boolean ok = true;
+        Vikariat loper = null;
         if(loper!=null){
             if(loper.getKundeNavn().matches(kundeNavn)){
                 list.add(loper.getVikariatNrS());
             }
-            ok = true;
             loper = loper.neste;
-            while(ok == true){
-                if(loper != null && loper.getKundeNavn() == kundeNavn){
-                    list.add(loper.getVikariatNrS());
-                    loper = loper.neste;
+            while(ok){
+                System.out.println("while");
+                if(loper!=null){
+                    if(loper.getKundeNavn().equals(kundeNavn)){
+                        list.add(loper.getVikariatNrS());
+                        loper = loper.neste;
+                        System.out.println("das");
+                    }
                 }
-                else
+                else if (loper==null){
                     ok = false;
+                    System.out.println("else");
+                }
             }
         }
         else{
@@ -143,6 +183,32 @@ public class VikariatRegister implements Serializable {
             }
         }
     }
+    
+    //Sletting av vikariater til et firma som blir fjernet
+    public void slettVikariater(String kundeNavn){
+        Vikariat loper = forste;
+        System.out.println("hei");
+        if (loper==null){
+            return;
+        } else {
+            if(loper.getKundeNavn().equals(kundeNavn)){
+                System.out.println("hei3");
+                loper = loper.neste;
+                return;
+            }
+        
+            while(loper.neste != null){
+                if(loper.neste.getKundeNavn() == kundeNavn){
+                    loper.neste = loper.neste.neste;
+                    return;
+                }
+                else{
+                    loper = loper.neste;
+                }
+            }
+        }
+    }
+    
     
     //Skriver ut de vikariatene med ledig stilling
     public void skrivLedigVikariatListe(JTextArea utskrift){

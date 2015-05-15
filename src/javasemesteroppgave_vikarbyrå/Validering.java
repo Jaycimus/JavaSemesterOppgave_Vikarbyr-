@@ -37,12 +37,12 @@ public class Validering {
         return personnummer.matches( "[1-9]\\d{10}" );
     }
     
-    //Validering av vikariat info
-    public static boolean validerVikariatInput(String kunde, String arbeidsted, 
+    //Validering av vikariat input
+    public static boolean validerVikariatInput(Kunde kunde, String arbeidsted, 
             int ar2, int ar, int maned2, int maned, int dag2, int dag, int timer2, 
             int timer, int minutter2, int minutter){
         
-        if(kunde.matches("---Kunder---")){
+        if(kunde.getNavn().matches("---Kunder---")){
             JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
             return false;
         } else if (!validerAdresse(arbeidsted)){

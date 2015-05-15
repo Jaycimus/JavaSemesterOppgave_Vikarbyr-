@@ -41,37 +41,24 @@ public class RegistrerVikariat extends JPanel {
         {"--T--","00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
             "16","17","18","19","20","21","22","23"};
     private JComboBox<String> cb_timer2;
-    private final String[] timer2 =
-        {"--T--","00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
-            "16","17","18","19","20","21","22","23"};
     private JComboBox<String> cb_minutter;
     private final String[] minutter =
         {"--M--","00","05","10","15","20","25","30","35","40","45","50","55"};
     private JComboBox<String> cb_minutter2;
-    private final String[] minutter2 =
-        {"--M--","00","05","10","15","20","25","30","35","40","45","50","55"};
     private JComboBox<String> cb_dag;
     private final String[] dag = 
         {"--Dag--","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
             "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
     private JComboBox<String> cb_dag2;
-    private final String[] dag2 = 
-        {"--Dag--","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16",
-            "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
     private JComboBox<String> cb_maned;
     private final String[] maned =
         {"--Måned--","Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
             "Oktober","November","Desember"};
     private JComboBox<String> cb_maned2;
-    private final String[] maned2 =
-        {"-Måned-","Januar","Februar","Mars","April","Mai","Juni","Juli","August","September",
-            "Oktober","November","Desember"};
     private JComboBox<String> cb_ar;
     private final String[] ar =
         {"--År--","2015","2016","2017","2018","2019","2020"};
     private JComboBox<String> cb_ar2;
-    private final String[] ar2 =
-        {"--År--","2015","2016","2017","2018","2019","2020"};
     
     private JComboBox<String>cb_bransjer;
     private final String[] bransjer = 
@@ -130,21 +117,21 @@ public class RegistrerVikariat extends JPanel {
         cb_timer.setMaximumRowCount(16);
         cb_minutter = new JComboBox<>(minutter);
         cb_minutter.setMaximumRowCount(12);
-        cb_timer2 = new JComboBox<>(timer2);
+        cb_timer2 = new JComboBox<>(timer);
         cb_timer2.setMaximumRowCount(16);
-        cb_minutter2 = new JComboBox<>(minutter2);
+        cb_minutter2 = new JComboBox<>(minutter);
         cb_minutter2.setMaximumRowCount(12);
         cb_dag = new JComboBox<>(dag);
         cb_dag.setMaximumRowCount(20);
-        cb_dag2 = new JComboBox<>(dag2);
+        cb_dag2 = new JComboBox<>(dag);
         cb_dag2.setMaximumRowCount(20);
         cb_maned = new JComboBox<>(maned);
         cb_maned.setMaximumRowCount(12);
-        cb_maned2 = new JComboBox<>(maned2);
+        cb_maned2 = new JComboBox<>(maned);
         cb_maned2.setMaximumRowCount(12);
         cb_ar = new JComboBox<>(ar);
         cb_ar.setMaximumRowCount(5);
-        cb_ar2 = new JComboBox<>(ar2);
+        cb_ar2 = new JComboBox<>(ar);
         cb_ar2.setMaximumRowCount(5);
 
         cb_bransjer = new JComboBox<String>(bransjer);
@@ -208,15 +195,15 @@ public class RegistrerVikariat extends JPanel {
     
     //Tar innlest data og setter dem i en Vikariat-objekt
     public void regVikariat(){
-        String kunde = (String) cb_kunder.getSelectedItem();
-                
+        Kunde kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
+        
         String arbeidsted = tf_adresse.getText();
         String arbeidstid = (String) cb_timer.getSelectedItem() + ":" + 
                             (String) cb_minutter.getSelectedItem() + " - " + 
                             (String) cb_timer2.getSelectedItem() + ":" + 
                             (String) cb_minutter2.getSelectedItem();
         
-        String stillingstype = tf_stillingstype.getText();
+        String stillingstype = (String) cb_bransjer.getSelectedItem();
         String kvalifikasjoner = tf_kvalifikasjoner.getText();
         String lonnsbetingelser = tf_lonnsbetingelser.getText();
         String kontaktinfo = tf_kontaktinfo.getText();
@@ -251,46 +238,6 @@ public class RegistrerVikariat extends JPanel {
             utskrift.setText(vikariat.toString());
             resetInput();
         }
-        
-        //Validering av info
-        /*if(kunde.matches("---Kunder---")){
-            JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
-            return;
-        } else if(!Validering.validerAdresse(arbeidsted)){
-            JOptionPane.showMessageDialog(null, "Feil med arbeidsted");
-            return;
-        } else if(!Validering.validerArbeidstid(arbeidstid)){
-            JOptionPane.showMessageDialog(null, "Feil med arbeidstid");
-            if(cb_timer2.getSelectedIndex() < cb_timer.getSelectedIndex()){
-            
-            } else if (cb_timer2.getSelectedIndex() == cb_timer.getSelectedIndex()){
-                if(cb_minutter2.getSelectedIndex() < cb_minutter.getSelectedIndex()){
-                
-                } else if (cb_minutter2.getSelectedIndex() == cb_minutter.getSelectedIndex()){
-                    JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
-                    return;
-                } else {
-                        JOptionPane.showMessageDialog(null,"Feil med arbeidstid - minutter");
-                    return;
-                }
-            } else {
-            JOptionPane.showMessageDialog(null,"Feil med arbeidstid - time");
-            return;
-            }
-            return;
-        } else if(bransjer.matches("---Stillingstype---")){
-            JOptionPane.showMessageDialog(null, "Stillingstype ikke valgt!");
-            return;
-        } else{
-            Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
-                    stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo,varighetfra,varighettil, bransjer, vikariatNr);
-            v.vikariatRegister.settInn(vikariat);
-            System.out.println("RegVikariat");
-            utskrift.setText(vikariat.toString());
-            utskrift.setText(vikariat.toString());
-            resetInput();
-        }*/
     }
     
     //Knytter knappen "Registrer Vikariat" tile en lytter
