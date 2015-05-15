@@ -34,7 +34,6 @@ public class EndreKunde extends JPanel {
     
     private Vikarbyraa v;
     private Kunde kunde;
-    private KundeRegister kr;
     
     private JComboBox<String>  cb_kunder; 
     private String[] kundeNavn;
@@ -122,12 +121,16 @@ public class EndreKunde extends JPanel {
     
     //Samler inn den nye infoen om kunden når knappen "Endre Kunde" blir trykket
     public void endreKunde(){
+<<<<<<< HEAD
         String kundeNavn = (String)cb_kunder.getSelectedItem();
         if(kundeNavn.matches("---Kunder---")){
             JOptionPane.showMessageDialog(null,"Kunde ikke valgt!");
             return;
         }
         Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
+=======
+        kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
+>>>>>>> origin/master
         
         String navn = tf_navn.getText();
         kunde.setNavn(navn);
