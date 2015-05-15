@@ -34,6 +34,7 @@ public class EndreKunde extends JPanel {
     
     private Vikarbyraa v;
     private Kunde kunde;
+    private KundeRegister kr;
     
     private JComboBox<String>  cb_kunder; 
     private String[] kundeNavn;
@@ -135,6 +136,7 @@ public class EndreKunde extends JPanel {
                 kunde.setTypeSektor(sektor);
             }   
         JOptionPane.showMessageDialog(null, "Kunden har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
+        refresh();
     }
     
     //Sletter den valgte kunden
@@ -148,8 +150,13 @@ public class EndreKunde extends JPanel {
                 tf_tlf.setText("");
                 tf_epost.setText("");
                 cb_kunder.removeItem((String)cb_kunder.getSelectedItem());
+                refresh();
             }
         }
+    }
+    
+    private void refresh(){
+        v.kundeRegister.skrivKundeListe(utskrift);
     }
     
     //Knytter knappene "Endre Kunde" og "Slett Kunde til en lytter
