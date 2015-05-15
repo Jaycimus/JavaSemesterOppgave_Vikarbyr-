@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -20,6 +21,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+//Klassen viser vinduet etter man trykker på knappen "Vis/Endre Kunde"
 public class EndreKunde extends JPanel {
     private JButton endreKunde, slettKunde;
     private JLabel lbl_navn, lbl_adresse, lbl_tlf, lbl_epost;
@@ -36,7 +38,7 @@ public class EndreKunde extends JPanel {
     private String[] kundeNavn;
     
     
-    
+    //Kontruktør på oppbygning av vinduet
     public EndreKunde(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
@@ -73,6 +75,7 @@ public class EndreKunde extends JPanel {
         
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
+        //Gjør at nåværende info blir skrevet inn i tekstfeltet
         cb_kunder.addItemListener((ItemEvent e) -> {
             String kundeNavn1 = (String) cb_kunder.getSelectedItem();
             Kunde kunde = v.kundeRegister.finnKunde(kundeNavn1);
@@ -104,14 +107,15 @@ public class EndreKunde extends JPanel {
         add(new JPanel());
         add(slettKunde);
         add(endreKunde);                        
-    }
+    }//end EndreKunde konstruktør
     
+    //Samler inn den nye infoen om kunden når knappen "Endre Kunde" blir trykket
     public void endreKunde(){
         Kunde kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
         
         String navn = tf_navn.getText();
         if(kunde==null)
-            System.out.println("kukk");
+            System.out.println("OK");
         kunde.setNavn(navn);
         String adresse = tf_adresse.getText();
         kunde.setAdresse(adresse);
@@ -129,22 +133,19 @@ public class EndreKunde extends JPanel {
             }   
     }
     
+    //Sletter den valgte kunden
     public void slettKunde(){
-        
         String navn = (String)cb_kunder.getSelectedItem();
         if(v.kundeRegister.slettKunde(navn)){
             tf_navn.setText("");
             tf_adresse.setText("");
             tf_tlf.setText("");
             tf_epost.setText("");
-            
             cb_kunder.removeItem((String)cb_kunder.getSelectedItem());
         }
-        
-        
-        
     }
     
+    //Knytter knappene "Endre Kunde" og "Slett Kunde til en lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==endreKunde){
@@ -153,8 +154,6 @@ public class EndreKunde extends JPanel {
             else if(e.getSource()==slettKunde){
                 slettKunde();
             }
-            
-            
         }
-    }
-}
+    }//end Knappelytter
+}//end EndreKunde

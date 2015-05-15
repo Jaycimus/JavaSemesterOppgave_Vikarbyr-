@@ -1,22 +1,26 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 5. Mai 2015 AV: Jørgen Dyhre
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
 import javax.swing.JTextArea;
 
+//Klassen er for å ha alle de forskjelle kundene i et refister
 public class KundeRegister implements Serializable {
     
     public Kunde forste, siste;
     
+    //Konstruktør
     public KundeRegister(){
         forste = null;
     }
    
+    //Setter inn et kunde-objekt i lista
     public void settInn(Kunde ny){
         if(ny == null){
             return;
@@ -31,6 +35,7 @@ public class KundeRegister implements Serializable {
         
     }
     
+    //Finner en bestemt kunde
     public Kunde finnKunde(String kundeNavn){
         Kunde loper = forste;
         for(int i = 0; i < getAntallNoder(); i++){
@@ -42,6 +47,7 @@ public class KundeRegister implements Serializable {
         return null;
     }
     
+    //Sletter en bestemt kunde hvis funnet
     public boolean slettKunde(String kundeNavn){
         Kunde loper = forste;
         
@@ -67,6 +73,7 @@ public class KundeRegister implements Serializable {
         return false;
     }
     
+    //Lager en liste med navn på kundene som er registrert
     public String[] getKundeNavn(){
         String[] kundeNavn = new String[1+getAntallNoder()];
         Kunde loper = forste;
@@ -78,6 +85,7 @@ public class KundeRegister implements Serializable {
         return kundeNavn;
     }
     
+    //Teller antall noder det finnes i lista
     public int getAntallNoder(){
         int antall = 0;
         boolean ok = false;
@@ -98,7 +106,9 @@ public class KundeRegister implements Serializable {
         }
         
         return antall;
-    }
+    }//end getAntallNoder
+    
+    //Skriver ut enten om det ikke finnes noen kunder, eller alle registrerte kunder
     public void skrivKundeListe(JTextArea kundeListe){
         Kunde loper = forste;
         
@@ -115,5 +125,5 @@ public class KundeRegister implements Serializable {
                 loper = loper.neste;
             }                
         }        
-    }   
-}
+    }//end skrivKundeListe()   
+}//end KundeRegister

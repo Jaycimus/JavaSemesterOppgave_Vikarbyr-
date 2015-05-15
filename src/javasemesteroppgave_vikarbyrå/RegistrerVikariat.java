@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 7. Mai 2015 AV: Arthur Nordnes
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -21,7 +22,7 @@ import javax.swing.JTextField;
 import java.util.Locale;
 import java.time.format.DateTimeFormatter;
 
-
+//Klassen bygger opp vinduet for registrering av vikariat
 public class RegistrerVikariat extends JPanel {
     private JButton regVikariat;
     private JLabel lbl_kunde, lbl_adresse, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
@@ -87,6 +88,7 @@ public class RegistrerVikariat extends JPanel {
     
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.ENGLISH);
     
+    //Konstruktør
     public RegistrerVikariat (JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
@@ -202,8 +204,9 @@ public class RegistrerVikariat extends JPanel {
         add(tf_stillingsinfo);
         add(new JPanel());
         add(regVikariat);
-    }
+    }//end konstruktør
     
+    //Tar innlest data og setter dem i en Vikariat-objekt
     public void regVikariat(){
         String kunde = (String) cb_kunder.getSelectedItem();
                 
@@ -249,6 +252,7 @@ public class RegistrerVikariat extends JPanel {
             resetInput();
         }
         
+        //Validering av info
         /*if(kunde.matches("---Kunder---")){
             JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
             return;
@@ -289,6 +293,7 @@ public class RegistrerVikariat extends JPanel {
         }*/
     }
     
+    //Knytter knappen "Registrer Vikariat" tile en lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regVikariat){
@@ -297,6 +302,7 @@ public class RegistrerVikariat extends JPanel {
         }
     }
     
+    //Tilbakestiller feltene til tomme igjen
     private void resetInput(){
         tf_adresse.setText("");
         tf_stillingstype.setText("");
@@ -317,4 +323,4 @@ public class RegistrerVikariat extends JPanel {
         cb_timer2.setSelectedIndex(0);
         cb_minutter2.setSelectedIndex(0);
     } 
-}
+}//end RegistrerVikariat

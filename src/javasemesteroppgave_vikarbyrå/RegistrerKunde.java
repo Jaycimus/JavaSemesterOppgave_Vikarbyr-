@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -19,6 +20,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+//Klassen bygger opp vinduet når knappen "Registrer Kunde" blir trykket
 public class RegistrerKunde extends JPanel {
     private JButton regKunde;
     private JLabel lbl_navn, lbl_adresse, lbl_tlf, lbl_epost;
@@ -30,8 +32,7 @@ public class RegistrerKunde extends JPanel {
     
     private Vikarbyraa v;
     
-    
-    
+    //Konstruktør
     public RegistrerKunde(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
@@ -76,10 +77,10 @@ public class RegistrerKunde extends JPanel {
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
-        add(regKunde);
-                        
-    }
+        add(regKunde);             
+    }//end konstruktør
     
+    //Tar i mot info fra tekstfelt og setter det inn i Kunde-objektet
     public void regKunde(){
         String navn = tf_navn.getText();
         String adresse = tf_adresse.getText();
@@ -91,6 +92,7 @@ public class RegistrerKunde extends JPanel {
             else
                 sektor = "Offentlig";
         
+        //Validering av innlest info
         try{
             if(!Validering.validerNavn(navn)){
                 JOptionPane.showMessageDialog(null, "Feil med kunde navn");
@@ -111,8 +113,9 @@ public class RegistrerKunde extends JPanel {
         } catch(NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
         }   
-    }
+    }//end regKunde()
     
+    //Tilbakestiller tekstfeltene til tomme tilstand
     private void resetInput(){
         tf_navn.setText("");
         tf_adresse.setText("");
@@ -120,11 +123,12 @@ public class RegistrerKunde extends JPanel {
         tf_epost.setText("");
     }
     
+    //Knytter knappen "Registrer Kunde" til en lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regKunde){
                 regKunde();
             }
-        }}
-    
-}
+        }
+    }
+}//end RegistrerKunde

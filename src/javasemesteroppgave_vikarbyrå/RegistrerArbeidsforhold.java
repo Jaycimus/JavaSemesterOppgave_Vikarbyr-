@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -20,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+//Klassen bygger opp vinduet når knappen "Registrer Arbeidsfohold" er trykket
 public class RegistrerArbeidsforhold extends JPanel {
     private JLabel lbl_kunder, lbl_vikariater, lbl_vikar, lbl_arbeidsforhold;
     private JTextArea ta_arbeidsforhold;
@@ -30,6 +32,7 @@ public class RegistrerArbeidsforhold extends JPanel {
     private Vikarbyraa v;
     private JTextArea utskrift;
     
+    //Konstruktøren
     public RegistrerArbeidsforhold(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
@@ -50,6 +53,7 @@ public class RegistrerArbeidsforhold extends JPanel {
         kundeNavn = v.kundeRegister.getKundeNavn();
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
+        //Setter inn kunder som er registrert fra før i ComboBox'en
         cb_kunder.addItemListener(
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
@@ -68,6 +72,7 @@ public class RegistrerArbeidsforhold extends JPanel {
         cb_vikariater = new JComboBox<String>(vikariatNr);
         cb_vikariater.setMaximumRowCount(9);
         cb_vikariater.setEnabled(false);
+        //Setter inn vikariatnr. som er registrert fra før av i ComboBox'en
         cb_vikariater.addItemListener(
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
@@ -105,8 +110,9 @@ public class RegistrerArbeidsforhold extends JPanel {
         add(new JPanel());
         add(new JPanel());
         add(regArbeidsforhold);
-    }
+    }//end konstruktør
     
+    //Metoden tar i mot info fra felt og mater dem inn i registrering av arbeidsforhold
     public void regArbeidsforhold(){
         Vikariat vikariat = v.vikariatRegister.finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
         Vikar vikar = v.vikarRegister.finnVikar(Long.parseLong((String) cb_vikarer.getSelectedItem()));
@@ -119,12 +125,14 @@ public class RegistrerArbeidsforhold extends JPanel {
         resetInput();
     }
     
+    //Tilbakestiller infoen til originale tilstand
     private void resetInput(){
         cb_vikariater.setSelectedIndex(0);
         cb_vikarer.setSelectedIndex(0);
         ta_arbeidsforhold.setText("");
     }
     
+    //Knytter knappen "Registrer Arbeidsfohold" til lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regArbeidsforhold){
@@ -132,4 +140,4 @@ public class RegistrerArbeidsforhold extends JPanel {
             }
         }
     }
-}
+}//end RegistrerArbeidsforhold

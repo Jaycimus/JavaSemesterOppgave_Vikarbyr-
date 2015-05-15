@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
@@ -12,13 +13,16 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
+//Klassen setter vikar-objektene i registeret
 public class VikarRegister implements Serializable {
     public Vikar forste, siste;
     
+    //Konstruktør
     public VikarRegister(){
         forste = null;
     }
     
+    //Setter inn vikaren i lista
     public void settInn(Vikar ny){
         if(ny==null)
             return;
@@ -28,9 +32,9 @@ public class VikarRegister implements Serializable {
             siste.neste = ny;
             siste = ny;
         }
-                    
     }
     
+    //Finner en bestemt vikar
     public Vikar finnVikar(long personNr){
         Vikar loper = forste;
         boolean ok = true;
@@ -44,6 +48,7 @@ public class VikarRegister implements Serializable {
         return null;
     }
     
+    //
     public String[] getVikarerTilVikariat(int vikariatNr){
         String[] vikarer;
         List<String> list =new ArrayList<String>();
@@ -77,6 +82,7 @@ public class VikarRegister implements Serializable {
         return vikarer;        
     }
     
+    //Skriver ut en liste med vikarer
     public void skrivVikarListe(JTextArea vikarListe){
         Vikar loper = forste;
         
@@ -91,4 +97,4 @@ public class VikarRegister implements Serializable {
         }
     }
     
-}
+}//end VikarRegister

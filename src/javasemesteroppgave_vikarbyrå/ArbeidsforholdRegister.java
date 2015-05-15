@@ -1,21 +1,25 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
 import javax.swing.JTextArea;
 
+//Klassen holder register over alle arbeidsforhold
 public class ArbeidsforholdRegister implements Serializable {
     public Arbeidsforhold forste, siste;
     
+    //Konstruktør
     public ArbeidsforholdRegister(){
         forste = null;
     }
     
+    //Setter inn nytt arbeidfohold i listen
     public void settInn(Arbeidsforhold ny){
         if(ny==null)
             return;
@@ -25,8 +29,9 @@ public class ArbeidsforholdRegister implements Serializable {
             siste.neste = ny;
             siste = ny;
         }
-                    
     }
+    
+    //Skriver ut en liste med arbeidsforhold (eldst-nyest)
     public void skrivArbeidsforholdiste(JTextArea arbeidsforholdiste){
         Arbeidsforhold loper = forste;
         
@@ -40,4 +45,4 @@ public class ArbeidsforholdRegister implements Serializable {
             }
         }
     }
-}
+}//end ArbeidsforholdRegister

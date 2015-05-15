@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 //importerer nødvendige klasser fra Javas klassebiblotek
@@ -33,17 +34,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+//Klassen bygger opp innloggings vinduet for ansatte og vikarer
 public class Logginn extends JFrame{
-    private final JTextField brukernavn; //innskrivningsfelt for brukernavn
-    private final JPasswordField passord; //innskrivningsfelt for passord
-    private final JButton loggInn; //knapp for aa logge inn
-    private final JLabel bN, p, status; //gir beskjed om feil brukernavn/passord
+    private final JTextField brukernavn;
+    private final JPasswordField passord;
+    private final JButton loggInn;
+    private final JLabel bN, p, status;
         
     private Font knapper, tekstfelt;
     
     private Vikarbyraa v;
     private Fonts f;
     
+    //Konstruktør
     public Logginn(){
         super("Logg Inn");
         setLayout(new FlowLayout());
@@ -81,7 +84,7 @@ public class Logginn extends JFrame{
         status = new JLabel("Skriv inn brukernavn/passord");
         status.setFont(knapper);
         
-        //legger til resterende elemter til ramme
+        //legger til resterende elementer til ramme
         add(bN);
 	add(brukernavn);
         add(p);
@@ -147,7 +150,8 @@ public class Logginn extends JFrame{
         
         lesFil();
     }
-
+    
+    
     public Logginn( Vikarbyraa v ){
         super("Logg Inn");
         setLayout(new FlowLayout());
@@ -156,9 +160,9 @@ public class Logginn extends JFrame{
         this.v = v;
         
         ArrayList<String> navneListe1 = new ArrayList<String>();
-            navneListe1.add("Andreas"); navneListe1.add("Artur"); navneListe1.add("Jørgen");
+            navneListe1.add("Andreas"); navneListe1.add("Arthur"); navneListe1.add("Jørgen");
         ArrayList<String> passordListe1 = new ArrayList<String>();
-            passordListe1.add("andreas"); passordListe1.add("artur"); passordListe1.add("jørgen");
+            passordListe1.add("andreas"); passordListe1.add("arthur"); passordListe1.add("jørgen");
         ArrayList<String> navneListe2 = new ArrayList<String>();
             navneListe2.add("Vikar");
         ArrayList<String> passordListe2 = new ArrayList<String>();
@@ -258,6 +262,7 @@ public class Logginn extends JFrame{
         });
     }
     
+    //Metode for lesing ifra fil
     public void lesFil(){
         try (ObjectInputStream innfil = new ObjectInputStream( new FileInputStream( "register.dta" ))) {
             v = (Vikarbyraa) innfil.readObject();
@@ -277,6 +282,7 @@ public class Logginn extends JFrame{
 	}
     }
     
+    //Metode for skriving til fil
     public void skrivTilFil(){
         try(ObjectOutputStream utfil = new ObjectOutputStream(new FileOutputStream("register.dta"))) {
             utfil.writeObject(v);
@@ -287,6 +293,6 @@ public class Logginn extends JFrame{
             JOptionPane.showMessageDialog(null,"ERROR: Feil under skriving av fil");
 	}
     }
-}
+}//end Logginn
 
 

@@ -22,6 +22,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+//Klassen bygger opp vinduet til "Vis/Endre Vikariat" og tar imot nytt info
 public class EndreVikariat extends JPanel {
     private JButton endreVikariat, slettVikariat;
     private JLabel lbl_navn, lbl_arbeidssted, lbl_arbeidstid, lbl_stillingstype, lbl_kvalifikasjoner,
@@ -85,6 +86,7 @@ public class EndreVikariat extends JPanel {
                                     "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
                                         "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
+    //Konstruktør
     public EndreVikariat (JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
@@ -124,6 +126,7 @@ public class EndreVikariat extends JPanel {
                 
         cb_kunder = new JComboBox<>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
+        //Skriver inn den nåværende infoen i tekstfeltene
         cb_kunder.addItemListener((ItemEvent e) -> {
                 String kundeNavn = (String) cb_kunder.getSelectedItem();
                 Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
@@ -216,8 +219,9 @@ public class EndreVikariat extends JPanel {
        
         add(slettVikariat);
         add(endreVikariat);
-    }
+    }//end kontruktør
     
+    //Tar i mot den nye infoen fra tekstfeltene
     public void endreVikariat(){
         String kunde = (String) cb_kunder.getSelectedItem();
         if(kunde.matches("---Kunder---")){
@@ -269,12 +273,14 @@ public class EndreVikariat extends JPanel {
             tf_stillingsinfo.setText("");
             
         }*/
-    }
+    }//end endreVikariat()
     
+    //Sletter det valgte vikariatet
     public void slettVikariat(){
     
-}
+    }
     
+    //Knytter knappene "Slett Vikariat" og "Endre Vikariat" til lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==endreVikariat){
@@ -284,8 +290,5 @@ public class EndreVikariat extends JPanel {
                 slettVikariat();
             }
         }
-    }
-    
-    
-    
-}
+    }//end Knappelytter
+}//end Endrevikariat

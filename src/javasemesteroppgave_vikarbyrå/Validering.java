@@ -1,34 +1,43 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 2. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import javax.swing.JOptionPane;
 
+//Klassen validerer infoen som vi ønsker å validere
 public class Validering {
+    
+    //Validering av navn
     public static boolean validerNavn(String navn) {
         return navn.matches( "[a-zæøåA-ZÆØÅ]+([ '-][a-zæøåA-ZÆØÅ]+)*" );
     }
 
+    //Validering av adresse
     public static boolean validerAdresse(String adresse) {
 	return adresse.matches( "[a-zæøåA-ZÆØÅ]+([ '-]\\d+|[ '-][a-zæøåA-ZÆØÅ]+)*" );
     }
 
+    //Validering av e-post
     public static boolean validerEpost(String epost) {
 	return epost.matches(".+@.+\\.[a-z]+");
     }
     
+    //Validering av telfonnummer
     public static boolean validerTLF(String tlf) {
         return tlf.matches( "[1-9]\\d{7}" );
     }
 
+    //Validering av personnummer
     public static boolean validerPersonnummer(String personnummer) {
         return personnummer.matches( "[1-9]\\d{10}" );
     }
     
+    //Validering av vikariat info
     public static boolean validerVikariatInput(String kunde, String arbeidsted, 
             int ar2, int ar, int maned2, int maned, int dag2, int dag, int timer2, 
             int timer, int minutter2, int minutter){
@@ -55,5 +64,5 @@ public class Validering {
         }
         
         return true;
-    }
-}
+    }//end validerVikariatInput()
+}//end Validering

@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -23,6 +24,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
+//Klassen bygger opp vinduet til registrering av vikar
 public class RegistrerVikar extends JPanel{
     private JButton regVikar;
     private JLabel lbl_navn, lbl_persnr, lbl_tlfnr, lbl_jobberf, lbl_ref;
@@ -49,6 +51,7 @@ public class RegistrerVikar extends JPanel{
                                     "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
                                         "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
+    //Konstruktør
     public RegistrerVikar(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
@@ -72,6 +75,7 @@ public class RegistrerVikar extends JPanel{
         
         tf_navn = new JTextField("",15);
         tf_persnr = new JTextField("11 siffer",15);
+        //Fjerner teksten "11 siffer" når feltet er trykket på
         tf_persnr.addFocusListener(new FocusListener(){
             public void focusGained(FocusEvent e){
                 tf_persnr.setText("");
@@ -84,6 +88,7 @@ public class RegistrerVikar extends JPanel{
             
         
         tf_tlfnr = new JTextField("8 siffer",15);
+        //Fjerner teksten "8 siffer" når feltet er trykket på
         tf_tlfnr.addFocusListener(new FocusListener(){
             public void focusGained(FocusEvent e){
                 tf_tlfnr.setText("");
@@ -136,11 +141,14 @@ public class RegistrerVikar extends JPanel{
         add(new JPanel());
         add(new JPanel());
         add(regVikar);
-    }
+    }//end konstruktør
+    
+    //Metoden trykker på knapper "Registrer Vikar"
     public JButton getRegVikar(){
         return regVikar;
     }
     
+    //Metoden registrer infoen fra tekstfelt i vikar-objektet
     public void regVikar(){
         String navn = tf_navn.getText();
         long pers;
@@ -156,6 +164,7 @@ public class RegistrerVikar extends JPanel{
             else
                 kjonn = "Kvinne";
         
+        //Validering av info    
         try{
             if(!Validering.validerNavn(navn)){
                 JOptionPane.showMessageDialog(null, "Feil i vikar navn");
@@ -175,8 +184,9 @@ public class RegistrerVikar extends JPanel{
         } catch(NumberFormatException nfe){
             JOptionPane.showMessageDialog(null, "");
         }
-    }
+    }//end regVikar()
     
+    //Setter feltene tomme igjen
     private void resetInput(){
         tf_navn.setText("");
         tf_persnr.setText("");
@@ -187,7 +197,8 @@ public class RegistrerVikar extends JPanel{
         cb_bransjer.setSelectedIndex(0);
         cb_utdanning.setSelectedIndex(0);
     }
-            
+    
+    //Knytter knappen "Registrer Vikar" til en lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regVikar){
@@ -195,4 +206,4 @@ public class RegistrerVikar extends JPanel{
             }
         }
     }
-}
+}//end RegistrerVikar

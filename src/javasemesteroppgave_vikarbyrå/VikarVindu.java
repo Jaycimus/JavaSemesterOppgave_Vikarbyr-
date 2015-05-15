@@ -3,7 +3,9 @@ Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
- */
+Gruppenummer: 15*/
+
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
@@ -20,7 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-
+//Klassen bygger opp vinduet når du logger inn med vikar
 public class VikarVindu extends JPanel{
     
     private final JPanel meny, registrering, bunn, topp;
@@ -33,6 +35,7 @@ public class VikarVindu extends JPanel{
     
     private RegistrerSoknad rs;
     
+    //Konstruktør
     public VikarVindu(Vikarbyraa v,JFrame ramme){
         this.v = v;
         this.ramme = ramme;
@@ -95,20 +98,24 @@ public class VikarVindu extends JPanel{
         loggUt.addActionListener(lytter);
         visVikariatListe.addActionListener(lytter);
     
-    }
+    }//end Konstruktør
     
+    //Viser vikariatliste i utskfriftsområdet
     public void visVikariatListe(){
         v.vikariatRegister.skrivVikariatListe(utskrift);
     }
     
+    //Returnerer teksten som i utskriftsområdet
     private JTextArea getTextArea(){
         return utskrift;
     }
     
+    //Viser registrerte og ledige vikariater for vikarer
     private void visLedigeVikariatReg(){
         v.vikariatRegister.skrivLedigVikariatListe(utskrift);
     }
     
+    //Knytter de forskjellige knappene til lyttere
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regSoking){
@@ -138,5 +145,5 @@ public class VikarVindu extends JPanel{
                 ramme.setVisible(false);
             }
         }
-    }
-}
+    }//end Knappelytter
+}//end VikarVindu

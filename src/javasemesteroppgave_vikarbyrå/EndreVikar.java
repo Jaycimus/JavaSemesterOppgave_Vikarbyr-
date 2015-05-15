@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Dimension;
@@ -23,6 +24,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
+//Klassen bygger opp vinduet når du trykker på knappen "Vis/Endre Vikar"
 public class EndreVikar extends JPanel{
     private JButton endreVikar, slettVikar;
     private JLabel lbl_navn, lbl_persnr, lbl_tlfnr, lbl_jobberf, lbl_ref;
@@ -49,6 +51,7 @@ public class EndreVikar extends JPanel{
                                     "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
                                         "Varehandel/Dagligvare/Butikk", "Øvrig"};
     
+    //Konstruktør
     public EndreVikar(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
@@ -74,6 +77,7 @@ public class EndreVikar extends JPanel{
         
         tf_navn = new JTextField("",15);
         tf_persnr = new JTextField("11 siffer",15);
+        //Når man trykker på feltet så forsvinner teksten "11 siffer"
         tf_persnr.addFocusListener(new FocusListener(){
             public void focusGained(FocusEvent e){
                 tf_persnr.setText("");
@@ -86,6 +90,7 @@ public class EndreVikar extends JPanel{
             
         
         tf_tlfnr = new JTextField("8 siffer",15);
+        //Når man trykker på feltet så forsvinner teksten "8 siffer"
         tf_tlfnr.addFocusListener(new FocusListener(){
             public void focusGained(FocusEvent e){
                 tf_tlfnr.setText("");
@@ -138,8 +143,9 @@ public class EndreVikar extends JPanel{
         add(new JPanel());
         add(slettVikar);
         add(endreVikar);
-    }
+    }//end kontruktør
     
+    //Leser inn den nye infoen som blir skrevet inn i tekstfelt
     public void regVikar(){
         String navn = tf_navn.getText();
         long pers;
@@ -179,12 +185,14 @@ public class EndreVikar extends JPanel{
         } catch(NumberFormatException nfe){
             JOptionPane.showMessageDialog(null, "");
         }
-    }
+    }//end regVikar()
     
+    //Sletter den valgte vikaren når "Slett Vikar"-knappen blir trykket
     public void slettVikar(){
         
     }
             
+    //Knytter "Endre Vikar" og "Slett Vikar" knappene til lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==endreVikar){
@@ -193,5 +201,5 @@ public class EndreVikar extends JPanel{
                 slettVikar();
             }
         }
-    }
-}
+    }//end Knappelytter
+}//end EndreVikar

@@ -1,23 +1,26 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
 import javax.swing.JTextArea;
 
+//Klassen holder alle søknads-objektene i et register
 public class SoknadsRegister implements Serializable {
     
     public Soknad forste, siste;
     
+    //Konstruktør
     public SoknadsRegister(){
         forste = null;        
     }
     
-        
+    //Setter inn en ny søknad inn i lista
     public void settInn(Soknad ny){
         if(ny==null)
             return;
@@ -29,6 +32,7 @@ public class SoknadsRegister implements Serializable {
         }                    
     }
     
+    //Skriver ut søknadene som registrert
     public void skrivVikarListe(JTextArea soknadListe){
         Soknad loper = forste;
         
@@ -41,9 +45,5 @@ public class SoknadsRegister implements Serializable {
                 loper = loper.neste;
             }
         }
-    }
-    
-    
-        
-    
-}
+    } 
+}//end SoknadsRegister

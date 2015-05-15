@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 13. Mai 2015 AV: Arthur Nordnes
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
@@ -20,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+//Denne klassen bygger opp det vinduet som man ser når man logger inn som en ansatt
 public class AnsattVindu extends JPanel{
     private final JPanel meny, registrering, bunn, topp;
     private final JButton regKunde, regVikariat, regArbForhold, regVikar, visEndreKundeReg, visEndreVikariatReg, visEndreArbeisforholdReg, visEndreVikarReg, regSoking, loggUt;
@@ -35,6 +37,7 @@ public class AnsattVindu extends JPanel{
     private EndreKunde ek;
     private EndreVikariat ev;
     
+    //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
     public AnsattVindu(Vikarbyraa v, JFrame ramme){
         this.v = v;
         this.ramme = ramme;
@@ -113,34 +116,42 @@ public class AnsattVindu extends JPanel{
         visEndreVikarReg.addActionListener(lytter);
         regSoking.addActionListener(lytter);
         loggUt.addActionListener(lytter);
-    }
+    }//end AnsattVindu
           
+    //Setter en tekst i utskriftområdet.
     public void utskrift (String tekst){
         utskrift.setText(tekst);
     }
     
+    //Returnerer utskriftrorådet med tekst
     public JTextArea getTextArea(){
         return utskrift;
     }
     
+    //Skriver ut kunderegister
     public void visKundeReg(){
         v.kundeRegister.skrivKundeListe(utskrift);
     }
     
+    //Skriver ut vikariatregister
     public void visVikariatReg(){
         v.vikariatRegister.skrivVikariatListe(utskrift);
     }
     
+    //Skriver ut arbeidsforholdregister
     public void visArbeisforholdReg(){
         v.arbeidsforholdRegister.skrivArbeidsforholdiste(utskrift);
     }
     
+    //Skriver ut vikarregister
     public void visVikarReg(){
         v.vikarRegister.skrivVikarListe(utskrift);
     }
     
+    //Knytter knappene på venstre siden av menyen til en lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
+            //Knappen "Registrer Kunde"
             if(e.getSource()==regKunde){
                 registrering.setVisible(false);
                 if(rv!=null)
@@ -157,9 +168,9 @@ public class AnsattVindu extends JPanel{
                 AnsattVindu.this.rk = rk;
                 add(rk, BorderLayout.EAST);
                 rk.setVisible(true);
-                
-                
             }
+            
+            //Knapppen "Registrer Vikariat"
             else if(e.getSource()==regVikariat){
                 registrering.setVisible(false);
                 if(rk!=null)
@@ -177,6 +188,8 @@ public class AnsattVindu extends JPanel{
                 add(rv, BorderLayout.EAST);
                 rv.setVisible(true);
             }
+            
+            //Knappen "Registrer Arbeidsforhold"
             else if(e.getSource()==regArbForhold){
                 registrering.setVisible(false);
                 if(rk!=null)
@@ -194,6 +207,8 @@ public class AnsattVindu extends JPanel{
                 add(raf, BorderLayout.EAST);
                 raf.setVisible(true);
             }
+            
+            //Knapppen "Registrer Vikar"
             else if(e.getSource()==regVikar){
                 registrering.setVisible(false);
                 if(rk!=null)
@@ -210,6 +225,8 @@ public class AnsattVindu extends JPanel{
                 AnsattVindu.this.rvv = rvv;
                 add(rvv,BorderLayout.EAST); 
             }
+            
+            //Knappen "Vis/Endre Kunde"
             else if(e.getSource()==visEndreKundeReg){
                 registrering.setVisible(false);
                 if(rk!=null)
@@ -227,6 +244,8 @@ public class AnsattVindu extends JPanel{
                 add(ek,BorderLayout.EAST);
                 visKundeReg();
             }
+            
+            //Knappen "Vis/Endre Vikariat"
             else if(e.getSource()==visEndreVikariatReg){
                 registrering.setVisible(false);
                 if(rk!=null)
@@ -244,13 +263,18 @@ public class AnsattVindu extends JPanel{
                 add(ev,BorderLayout.EAST);
                 visVikariatReg();
             }
+            
+            //Knappen "Vis/Endre Arbeidsfohold"
             else if(e.getSource()==visEndreArbeisforholdReg){
                 visArbeisforholdReg();
             }
+            
+            //Knappen "Vis/Endre Vikar"
             else if(e.getSource()==visEndreVikarReg){
                 visVikarReg();
-                
             }
+            
+            //Knappen "Logg ut"
             else if(e.getSource()==loggUt){
                 Logginn logginn = new Logginn(v);
                 logginn.setSize(new Dimension(400,180));
@@ -266,8 +290,10 @@ public class AnsattVindu extends JPanel{
                 ramme.setVisible(false);
             }
         }
-    }
+    }//end Knappelytter
     
+    //Det første som er skrevet i utskriftområdet når man begynner programmet
+    //er en bruksanvisning som forteller hva som kan gjøres i programmet.
     private String bruksanvisning(){
         String bruksanvisning = 
                     "\t\tBruksanvisning\n"
@@ -280,6 +306,6 @@ public class AnsattVindu extends JPanel{
         
         return bruksanvisning;
     }
-}
+}//end AnsattVindu
 
 

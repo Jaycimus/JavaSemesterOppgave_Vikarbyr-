@@ -1,9 +1,10 @@
 /*Gruppemedlemmene:
 Andreas Stenseng Bjørnrud, studentnummer: s236654, INFORMATIK14HA
 Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
-Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA*/
+Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
+Gruppenummer: 15*/
 
-//Sist endret 13. Mai 2015 AV: Jørgen DYhre
+//Sist endret 15. Mai 2015 AV: Arthur Nordnes
 package javasemesteroppgave_vikarbyrå;
 
 import java.io.Serializable;
@@ -12,14 +13,17 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
+//Klassen setter vikariat.objektene i registeret
 public class VikariatRegister implements Serializable {
     
     public Vikariat forste, siste;
     
+    //Konstruktør
     public VikariatRegister(){
         forste = null;
     }
     
+    //Setter inn vikariat i lista
     public void settInn(Vikariat ny){
         if(ny==null)
             return;
@@ -32,6 +36,7 @@ public class VikariatRegister implements Serializable {
                     
     }
     
+    //Finner et bestemt vikariat
     public Vikariat finnVikariat(int vikariatNr){
         Vikariat loper = forste;
         boolean ok = true;
@@ -74,7 +79,7 @@ public class VikariatRegister implements Serializable {
         vikariater = list.toArray(new String[list.size()]);    
                 
         return vikariater;        
-    }
+    }//end getLedigeViakriater()
     
     //Metode for å finne vikariater som tilhører en kunde
     public String[] getVikariaterTilKunde(String kundeNavn){
@@ -104,8 +109,9 @@ public class VikariatRegister implements Serializable {
         vikariater = list.toArray(new String[list.size()]);    
                 
         return vikariater;        
-    }
+    }//end getVikariaterTilKunde
     
+    //Lager neste vikariatnummer
     public int finnNesteNummer(){
         int nummer = 10000;
         Vikariat loper = forste;
@@ -120,6 +126,7 @@ public class VikariatRegister implements Serializable {
         return nummer;
     }
     
+    //Skriver ut vikariatliste
     public void skrivVikariatListe(JTextArea vikariatListe){
         Vikariat loper = forste;
         
@@ -137,6 +144,7 @@ public class VikariatRegister implements Serializable {
         }
     }
     
+    //Skriver ut de vikariatene med ledig stilling
     public void skrivLedigVikariatListe(JTextArea utskrift){
         Vikariat loper = forste;
         
@@ -153,4 +161,4 @@ public class VikariatRegister implements Serializable {
             }
         }
     }
-}
+}//end VikarRegister
