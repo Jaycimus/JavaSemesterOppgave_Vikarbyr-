@@ -215,7 +215,7 @@ public class Vikariat implements Serializable {
                           "\nVarighet: " + varighetfra + "\nTil: " + varighettil + "\nArbeidstid: " + arbeidstid + 
                           "\nStillingstype: " + stillingstype + "\nKvalifikasjoner: " + kvalifikasjoner + 
                           "\nLønnsbetingelser: " + lonnsbetingelser + "\nKontaktinfo: " + kontaktinfo + 
-                          "\nStillingsinfo: " + stillingsInfo + "\nVikarer:\n";
+                          "\nStillingsinfo: " + stillingsInfo;
         for(int i = 0; i < vikarer.size();i++){
             utskrift += vikarer.get(i).toString() + "\n";
         }
