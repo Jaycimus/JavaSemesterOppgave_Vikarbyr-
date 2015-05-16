@@ -77,9 +77,9 @@ public class AnsattVindu extends JPanel{
         meny.setPreferredSize(new Dimension(212, 200));
         meny.add(regKunde);
         meny.add(regVikariat);
-        meny.add(regArbForhold);
         meny.add(regVikar);
         meny.add(vikarVikariat);
+        meny.add(regArbForhold);
         meny.add(new JPanel());
         meny.add(visEndreKundeReg);
         meny.add(visEndreVikariatReg);
@@ -298,7 +298,6 @@ public class AnsattVindu extends JPanel{
             
             //Knappen "Vis/Endre Kunde"
             else if(e.getSource()==visEndreKundeReg){
-                registrering.setVisible(false);
                 registrering.setVisible(false);
                 if(rk!=null)
                     AnsattVindu.this.rk.setVisible(false);
