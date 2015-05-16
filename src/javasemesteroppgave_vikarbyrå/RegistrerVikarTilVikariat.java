@@ -16,6 +16,7 @@ import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -82,12 +83,15 @@ public class RegistrerVikarTilVikariat extends JPanel {
         
         add(lbl_kunder);
         add(cb_kunder);
-        add(lbl_kunder);
-        add(cb_kunder);
-        add(lbl_kunder);
-        add(cb_kunder);
-        add(lbl_kunder);
-        add(cb_kunder);
+        add(lbl_vikaiater);
+        add(cb_vikariater);
+        add(new JPanel());
+        add(new JPanel());
+        add(lbl_vikar);
+        add(cb_vikarer);
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
@@ -99,6 +103,44 @@ public class RegistrerVikarTilVikariat extends JPanel {
     }//end konstruktør
     
     public void regVikarTilVikariat(){
+        String kunde = (String)cb_kunder.getSelectedItem();
+        String vikariatNr = (String)cb_vikariater.getSelectedItem();
+        String vikar = (String)cb_vikariater.getSelectedItem();
+        if (kunde.matches("---Kunder---")){
+            JOptionPane.showMessageDialog(null,"Kunde ikke valgt!");
+            return;
+        } else if(vikariatNr.matches("---Vikariater---")){
+            JOptionPane.showMessageDialog(null,"Vikariat ikke valgt!");
+            return;
+        } else if ( vikar.matches("---Vikarer---")){
+            JOptionPane.showMessageDialog(null,"Vikar ikke valgt!");
+            return;
+        } else {
+            int sikker = JOptionPane.showConfirmDialog(null, 
+                    "Er du sikker på at du vil tildele vikar: " + vikar + "\nvikariatet: " +
+                    vikariatNr + "\nsom tilhører kunden: " + kunde,"Tildel Vikariat Til Vikar",JOptionPane.YES_NO_OPTION);
+            
+            if(sikker == JOptionPane.YES_OPTION){
+                if(v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr))!=null){
+                    System.out.println("Vikariat funnet");
+                    if(v.vikariatRegister.slettVikariat(vikariatNr)){
+                        cb_vikariater.removeItem((String)cb_vikariater.getSelectedItem());
+                        v.nesteVikariatNr();
+                        resetInput();
+                        refresh();
+                    }
+                }
+            }
+        }
+    }
+    
+    private void resetInput(){
+        cb_kunder.setSelectedIndex(0);
+        cb_vikariater.setSelectedIndex(0);
+        cb_vikarer.setSelectedIndex(0);
+    }
+    
+    private void refresh(){
         
     }
     

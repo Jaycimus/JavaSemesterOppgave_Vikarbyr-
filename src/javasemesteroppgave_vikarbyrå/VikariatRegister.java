@@ -71,9 +71,6 @@ public class VikariatRegister implements Serializable {
                     ok = false;
             }
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
-        }
         
         vikariater = list.toArray(new String[list.size()]);    
                 
