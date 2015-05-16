@@ -24,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 //Denne klassen bygger opp det vinduet som man ser når man logger inn som en ansatt
 public class AnsattVindu extends JPanel{
-    private final JPanel meny, registrering, bunn, topp;
+    private final JPanel meny, registrering, bunn, topp, tom;
     private final JButton regKunde, regVikariat, regArbForhold, regVikar, vikarVikariat, visEndreKundeReg, visEndreVikariatReg, visEndreArbeisforholdReg, visEndreVikarReg, regSoking, loggUt;
     private final JTextArea utskrift;
     private final JFrame ramme; //rammen på programmet
@@ -42,20 +42,23 @@ public class AnsattVindu extends JPanel{
     //private EndreArbeidsforhold eaf;
     private EndreVikar ev;
     //private Sokning s;
+    
     private Color bakgrunn;
     
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
     public AnsattVindu(Vikarbyraa v, JFrame ramme){
         this.v = v;
         this.ramme = ramme;
+        bakgrunn = v.farge.getBakrunn();
         
         borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
         setBorder(new EmptyBorder(0, 5, 0, 5));
-        setBackground( Color.blue );
         
-        bakgrunn = new Color(0,0,182,155);
-                
+        this.setBackground(bakgrunn);
+        tom = new JPanel();
+        tom.setBackground(bakgrunn);
+        
         regKunde = new JButton("Registrer Kunde");
             /*regKunde.setFocusPainted(false);
             regKunde.setMargin(new Insets(0, 0, 0, 0));
@@ -81,17 +84,28 @@ public class AnsattVindu extends JPanel{
         meny.add(regVikar);
         meny.add(vikarVikariat);
         meny.add(regArbForhold);
-        meny.add(new JPanel());
+        JPanel a = new JPanel();
+        a.setBackground(bakgrunn);
+        meny.add(a);
         meny.add(visEndreKundeReg);
         meny.add(visEndreVikariatReg);
-        meny.add(visEndreArbeisforholdReg);
         meny.add(visEndreVikarReg);
+        meny.add(visEndreArbeisforholdReg);
         meny.add(regSoking);
-        meny.add(new JPanel());
-        meny.add(new JPanel());
-        meny.add(new JPanel());
-        meny.add(new JPanel());
+        JPanel b = new JPanel();
+        b.setBackground(bakgrunn);
+        meny.add(b);
+        JPanel c = new JPanel();
+        c.setBackground(bakgrunn);
+        meny.add(c);
+        JPanel d = new JPanel();
+        d.setBackground(bakgrunn);
+        meny.add(d);
+        JPanel e = new JPanel();
+        e.setBackground(bakgrunn);
+        meny.add(e);
         meny.add(loggUt);
+        meny.setBackground(bakgrunn);
         
 
         utskrift = new JTextArea(0, 0);
@@ -106,6 +120,7 @@ public class AnsattVindu extends JPanel{
         bunn = new JPanel();
         bunn.setLayout(null);
         bunn.setPreferredSize(new Dimension(50, 0));
+        
         
         topp = new JPanel();
         topp.setLayout(null);

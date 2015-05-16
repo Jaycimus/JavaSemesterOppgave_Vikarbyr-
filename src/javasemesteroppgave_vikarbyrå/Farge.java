@@ -11,15 +11,16 @@ import java.awt.Color;
 
 //Klassen er for når vi vil kalle på en spesifik farge et sted
 public class Farge {
-    private Color farge;
+    private Color bakgrunn;
     
-    //Setter opp en farge i konstruktøren
+
+//Setter opp en farge i konstruktøren
     public Farge(){
-        farge = new Color(0,0,182,155);
+        bakgrunn = Color.decode("#CDEAFA");
     }
     
     //Returnerer fargen når vi kaller på den
-    public Color getFarge(){
-        return farge;
+    public Color getBakrunn(){
+        return bakgrunn;
     }
 }//end Farge
