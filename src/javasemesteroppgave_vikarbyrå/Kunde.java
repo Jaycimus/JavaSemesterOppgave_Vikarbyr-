@@ -71,7 +71,7 @@ public class Kunde implements Serializable{
         this.tlf = tlf;
     }
     
-    //Returnerer e-post adressen til kuneden når metoden blir kalt
+    //Returnerer e-post adressen til kunden når metoden blir kalt
     public String getEpost(){
         return epost;
     }
@@ -83,7 +83,7 @@ public class Kunde implements Serializable{
     
     //Skriver ut all innlest informasjon til utskriftsområdet
     public String toString(){
-        String utskrift = "\nKunde navn: " + navn + "\nType Sektor: " + typeSektor + 
+        String utskrift = "\n<strong>Kunde navn:</strong> " + navn + "\nType Sektor: " + typeSektor + 
                           "\nAdresse: " + adresse + 
                           "\nTelefon: " + tlf + "\nE-post: " + epost;
         return utskrift;
