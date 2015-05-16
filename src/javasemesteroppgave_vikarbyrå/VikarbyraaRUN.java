@@ -24,7 +24,6 @@ public class VikarbyraaRUN {
         logginn.addWindowListener( new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 logginn.skrivTilFil();
-                
                 System.exit(0);
             }
 	});

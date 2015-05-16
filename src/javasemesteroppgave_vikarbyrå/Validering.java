@@ -14,35 +14,35 @@ public class Validering {
     
     //Validering av navn
     public static boolean validerNavn(String navn) {
-        return navn.matches( "[a-zæøåA-ZÆØÅ]+([ '-][a-zæøåA-ZÆØÅ]+)*" );
+        return true;//navn.matches( "[a-zæøåA-ZÆØÅ]+([ '-][a-zæøåA-ZÆØÅ]+)*" );
     }
 
     //Validering av adresse
     public static boolean validerAdresse(String adresse) {
-	return adresse.matches( "[a-zæøåA-ZÆØÅ]+([ '-]\\d+|[ '-][a-zæøåA-ZÆØÅ]+)*" );
+	return true;//adresse.matches( "[a-zæøåA-ZÆØÅ]+([ '-]\\d+|[ '-][a-zæøåA-ZÆØÅ]+)*" );
     }
 
     //Validering av e-post
     public static boolean validerEpost(String epost) {
-	return epost.matches(".+@.+\\.[a-z]+");
+	return true;//epost.matches(".+@.+\\.[a-z]+");
     }
     
     //Validering av telfonnummer
     public static boolean validerTLF(String tlf) {
-        return tlf.matches( "[1-9]\\d{7}" );
+        return true;//tlf.matches( "[1-9]\\d{7}" );
     }
 
     //Validering av personnummer
     public static boolean validerPersonnummer(String personnummer) {
-        return personnummer.matches( "[1-9]\\d{10}" );
+        return true;//personnummer.matches( "[1-9]\\d{10}" );
     }
     
-    //Validering av vikariat info
-    public static boolean validerVikariatInput(String kunde, String arbeidsted, 
+    //Validering av vikariat input
+    public static boolean validerVikariatInput(Kunde kunde, String arbeidsted, 
             int ar2, int ar, int maned2, int maned, int dag2, int dag, int timer2, 
             int timer, int minutter2, int minutter){
         
-        if(kunde.matches("---Kunder---")){
+        if(kunde.getNavn().matches("---Kunder---")){
             JOptionPane.showMessageDialog(null, "Kunde ikke valgt");
             return false;
         } else if (!validerAdresse(arbeidsted)){

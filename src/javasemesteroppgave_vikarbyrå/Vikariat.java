@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 //Klassen lager vikariat-objekt
 public class Vikariat implements Serializable {
-    private String kunde;
     private String adresse;
     private int vikariatNr;
     private String varighetfra, varighettil;
@@ -25,12 +24,15 @@ public class Vikariat implements Serializable {
     private String bransje;
     
     private boolean ledig;
+    private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<>();
     private ArrayList<Soknad> soknader = new ArrayList<>();
+    private ArrayList<Vikar> vikarer = new ArrayList<>();
     
     public Vikariat neste;
+    private Kunde kunde;
     
     //Konstruktør
-    public Vikariat (String kunde, String arbeidsted, String arbeidstid, 
+    public Vikariat (Kunde kunde, String arbeidsted, String arbeidstid, 
             String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
                 String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil, 
                     String Bransje, int vikariatNr){
@@ -48,6 +50,76 @@ public class Vikariat implements Serializable {
         this.vikariatNr = vikariatNr;
         
         ledig = true;
+    }
+
+    public ArrayList<Arbeidsforhold> getArbeidsforhold() {
+        return arbeidsforhold;
+    }
+
+    public void setArbeidsforhold(ArrayList<Arbeidsforhold> arbeidsforhold) {
+        this.arbeidsforhold = arbeidsforhold;
+    }
+
+    public ArrayList<Soknad> getSoknader() {
+        return soknader;
+    }
+
+    public void setSoknader(ArrayList<Soknad> soknader) {
+        this.soknader = soknader;
+    }
+
+    public ArrayList<Vikar> getVikarer() {
+        return vikarer;
+    }
+
+    public void setVikarer(Vikar vikarer) {
+        this.vikarer.add(vikarer);
+    }
+
+    
+    
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setVarighetfra(String varighetfra) {
+        this.varighetfra = varighetfra;
+    }
+
+    public void setVarighettil(String varighettil) {
+        this.varighettil = varighettil;
+    }
+
+    public void setArbeidstid(String arbeidstid) {
+        this.arbeidstid = arbeidstid;
+    }
+
+    public void setStillingstype(String stillingstype) {
+        this.stillingstype = stillingstype;
+    }
+
+    public void setKvalifikasjoner(String kvalifikasjoner) {
+        this.kvalifikasjoner = kvalifikasjoner;
+    }
+
+    public void setLonnsbetingelser(String lonnsbetingelser) {
+        this.lonnsbetingelser = lonnsbetingelser;
+    }
+
+    public void setKontaktinfo(String kontaktinfo) {
+        this.kontaktinfo = kontaktinfo;
+    }
+
+    public void setStillingsInfo(String stillingsInfo) {
+        this.stillingsInfo = stillingsInfo;
+    }
+
+    public void setBransje(String bransje) {
+        this.bransje = bransje;
+    }
+        
+    public void setKunde(Kunde kunde){
+        this.kunde = kunde;
     }
     
     //Metoden setter søknad
@@ -128,7 +200,7 @@ public class Vikariat implements Serializable {
     
     //Returnerer firmanavn
     public String getKundeNavn(){
-        return kunde;
+        return kunde.getNavn();
     }
     
     //Returnerer en forkortet versjon av info til utskriftområde
@@ -139,11 +211,15 @@ public class Vikariat implements Serializable {
     
     //Returnerer innskrvet info til utskriftsområdet
     public String toString(){
-        String utskrift = "\nKunde navn: " + kunde + "\nVikariat Nr: " + vikariatNr + "\nAdresse: " + adresse + 
+        String utskrift = "\nKunde navn: " + kunde.getNavn() + "\nVikariat Nr: " + vikariatNr + "\nAdresse: " + adresse + 
                           "\nVarighet: " + varighetfra + "\nTil: " + varighettil + "\nArbeidstid: " + arbeidstid + 
                           "\nStillingstype: " + stillingstype + "\nKvalifikasjoner: " + kvalifikasjoner + 
                           "\nLønnsbetingelser: " + lonnsbetingelser + "\nKontaktinfo: " + kontaktinfo + 
                           "\nStillingsinfo: " + stillingsInfo;
+        for(int i = 0; i < vikarer.size();i++){
+            utskrift += vikarer.get(i).toString() + "\n";
+        }
+        
         return utskrift;
     }
 }//end Vikariat

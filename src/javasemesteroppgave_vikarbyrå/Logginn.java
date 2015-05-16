@@ -17,8 +17,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -44,7 +42,6 @@ public class Logginn extends JFrame{
     private Font knapper, tekstfelt;
     
     private Vikarbyraa v;
-    private Fonts f;
     
     //Konstruktør
     public Logginn(){
@@ -52,7 +49,6 @@ public class Logginn extends JFrame{
         setLayout(new FlowLayout());
         knapper = new Font("Arial", Font.BOLD, 20);
         tekstfelt = new Font("Bitstream Vera Sans Mono", Font.PLAIN, 20);
-        f = new Fonts();
         v = new Vikarbyraa();
         
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter

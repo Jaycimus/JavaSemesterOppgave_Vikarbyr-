@@ -39,7 +39,7 @@ public class KundeRegister implements Serializable {
     public Kunde finnKunde(String kundeNavn){
         Kunde loper = forste;
         for(int i = 0; i < getAntallNoder(); i++){
-            if(loper.getNavn()==kundeNavn)
+            if(loper.getNavn().equals(kundeNavn))
                 return loper;
             else
                 loper = loper.neste;
@@ -49,20 +49,25 @@ public class KundeRegister implements Serializable {
     
     //Sletter en bestemt kunde hvis funnet
     public boolean slettKunde(String kundeNavn){
-        Kunde loper = forste;
+        Kunde loper = forste;        
+        
+        if(forste.getNavn().equals(kundeNavn)){
+            forste = forste.neste;
+            return true;
+        }
         
         if (loper.neste == null){
             forste = null;
             return true;
         }
         
-        if(loper.getNavn() == kundeNavn){
+        if(loper.getNavn().equals(kundeNavn)){
             loper = loper.neste;
             return true;
         }
         
         while(loper.neste != null){
-            if(loper.neste.getNavn() == kundeNavn){
+            if(loper.neste.getNavn().equals(kundeNavn)){
                 loper.neste = loper.neste.neste;
                 return true;
             }
@@ -70,6 +75,12 @@ public class KundeRegister implements Serializable {
                 loper = loper.neste;
             }
         }
+        
+        loper = finnNestSisteNode();
+        if(loper.getNavn().equals(kundeNavn)){
+            loper.neste = null;
+        }
+        
         return false;
     }
     
@@ -107,6 +118,19 @@ public class KundeRegister implements Serializable {
         
         return antall;
     }//end getAntallNoder
+    
+    public Kunde finnNestSisteNode(){
+        Kunde loper = forste;
+        boolean ok = true;
+        while(ok){
+            if(loper.neste.neste!=null){
+                loper = loper.neste;
+            } else {
+                return loper;
+            }
+        }
+        return loper;
+    }
     
     //Skriver ut enten om det ikke finnes noen kunder, eller alle registrerte kunder
     public void skrivKundeListe(JTextArea kundeListe){

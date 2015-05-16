@@ -33,7 +33,6 @@ public class VikariatRegister implements Serializable {
             siste.neste = ny;
             siste = ny;
         }
-                    
     }
     
     //Finner et bestemt vikariat
@@ -72,34 +71,72 @@ public class VikariatRegister implements Serializable {
                     ok = false;
             }
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
-        }
         
         vikariater = list.toArray(new String[list.size()]);    
                 
         return vikariater;        
     }//end getLedigeViakriater()
     
-    //Metode for å finne vikariater som tilhører en kunde
-    public String[] getVikariaterTilKunde(String kundeNavn){
-        String[] vikariater;
-        List<String> list = new ArrayList<>();
+    //metode som henter alle vikariater
+    public String[] getVikariatNr(){
+        String[] vikariatNavn = new String[1+getAntallNoder()];
+        Vikariat loper = forste;
+        vikariatNavn[0] = "---Vikariater---";
+        for(int i = 1; i <= getAntallNoder(); i++){
+            vikariatNavn[i] = "" + loper.getVikariatNr();
+            loper = loper.neste;
+        }
+        return vikariatNavn;
+    }
+    
+    //metode for å finne antall noder i register
+    public int getAntallNoder(){
+        int antall = 0;
         boolean ok = false;
         Vikariat loper = forste;
+        if(loper!=null){
+            antall++;
+            ok = true;
+            loper = loper.neste;
+            while(ok == true){
+                if(loper!=null){
+                    antall++;
+                    loper = loper.neste;
+                }
+                else{
+                    ok = false;
+                }
+            }
+        }
+        
+        return antall;
+    }//end getAntallNoder
+    
+    //Metode for å finne vikariater som tilhører en kunde
+    public String[] getVikariaterTilKunde(String kundeNavn){
+        System.out.println(kundeNavn);
+        String[] vikariater;
+        List<String> list = new ArrayList<>();
+        boolean ok = true;
+        Vikariat loper = null;
         if(loper!=null){
             if(loper.getKundeNavn().matches(kundeNavn)){
                 list.add(loper.getVikariatNrS());
             }
-            ok = true;
             loper = loper.neste;
-            while(ok == true){
-                if(loper != null && loper.getKundeNavn() == kundeNavn){
-                    list.add(loper.getVikariatNrS());
-                    loper = loper.neste;
+            while(ok){
+                System.out.println("while");
+                if(loper!=null){
+                    if(loper.getKundeNavn().equals(kundeNavn)){
+                        list.add(loper.getVikariatNrS());
+                        loper = loper.neste;
+                        System.out.println("das");
+                    }
                 }
-                else
+                else if (loper==null){
                     ok = false;
+                    System.out.println("else");
+                }
             }
         }
         else{
@@ -143,6 +180,81 @@ public class VikariatRegister implements Serializable {
             }
         }
     }
+    
+    //Sletting av vikariater til et firma som blir fjernet
+    public boolean slettVikariat(String vikariatNr){
+        Vikariat loper = forste;
+        if(loper==null){
+            JOptionPane.showMessageDialog(null, "Ingen registrerte vikariater");
+            return false;
+        } else if (loper.neste == null && loper.getVikariatNrS().equals(vikariatNr)){
+            forste = null;
+            return true;
+        } else if(loper.getVikariatNrS().equals(vikariatNr)) {
+            loper = loper.neste;
+            return true;
+        }
+        while(loper.neste != null){
+            if(loper.neste.getVikariatNrS().equals(vikariatNr)){
+                loper.neste = loper.neste.neste;
+                System.out.println("Vikariatnavn passet 2");
+                return true;
+            }
+            else{
+                loper = loper.neste;
+            }
+        }
+        
+        loper = finnNestSisteNode();
+        if(loper.getVikariatNrS().equals(vikariatNr)){
+            loper.neste = null;
+        }
+        return false;
+    }
+    
+    public Vikariat finnNestSisteNode(){
+        Vikariat loper = forste;
+        boolean ok = true;
+        while(ok){
+            if(loper.neste.neste!=null){
+                loper = loper.neste;
+            } else {
+                return loper;
+            }
+        }
+        return loper;
+    }
+    
+    public boolean slettVikariaterTilKunde(String kundeNavn){
+        Vikariat loper = forste;
+        if(loper==null){
+            //JOptionPane.showMessageDialog(null, "Ingen registrerte vikariater");
+            return false;
+        } else if (loper.neste == null && loper.getKundeNavn().equals(kundeNavn)){
+            forste = null;
+            System.out.println("Slette eneste vikraiat");
+            return true;
+        } else {
+            while(loper.neste != null){
+                if(loper.neste.getKundeNavn().equals(kundeNavn)){
+                    loper.neste = loper.neste.neste;
+                    System.out.println("Vikariatnavn passet 2");
+                    if(forste.getKundeNavn().equals(kundeNavn))
+                        forste = forste.neste;
+        
+                } else {
+                    loper = loper.neste;
+                }
+            }
+        }
+        /*loper = finnNestSisteNode();
+        if(loper.getKundeNavn().equals(kundeNavn)){
+            loper.neste = null;
+        }*/
+        return false;
+        
+    }
+    
     
     //Skriver ut de vikariatene med ledig stilling
     public void skrivLedigVikariatListe(JTextArea utskrift){
