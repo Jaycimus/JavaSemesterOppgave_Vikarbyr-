@@ -8,6 +8,7 @@ Gruppenummer: 15*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,7 @@ public class AnsattVindu extends JPanel{
     //private EndreArbeidsforhold eaf;
     private EndreVikar ev;
     //private Sokning s;
+    private Color bakgrunn;
     
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
     public AnsattVindu(Vikarbyraa v, JFrame ramme){
@@ -50,6 +52,8 @@ public class AnsattVindu extends JPanel{
         borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
         setBorder(new EmptyBorder(0, 5, 0, 5)); 
+        
+        bakgrunn = new Color(0,0,182,155);
                 
         regKunde = new JButton("Registrer Kunde");
             /*regKunde.setFocusPainted(false);
