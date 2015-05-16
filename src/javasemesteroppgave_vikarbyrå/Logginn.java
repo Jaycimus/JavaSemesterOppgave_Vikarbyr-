@@ -30,7 +30,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -42,6 +41,7 @@ public class Logginn extends JFrame{
     private final JLabel bN, p, status;
         
     private Font knapper, tekstfelt;
+    private Color bakgrunn;
     
     private Vikarbyraa v;
     
@@ -49,10 +49,12 @@ public class Logginn extends JFrame{
     public Logginn(){
         super("Logg Inn");
         setLayout(new FlowLayout());
+        
         knapper = new Font("Arial", Font.BOLD, 20);
         tekstfelt = new Font("Bitstream Vera Sans Mono", Font.PLAIN, 20);
         v = new Vikarbyraa();
-        
+        bakgrunn = v.farge.getBakrunn();
+        getContentPane().setBackground( bakgrunn );
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter
         brukernavn = new JTextField("Andreas",15);
         brukernavn.setFont(tekstfelt);
