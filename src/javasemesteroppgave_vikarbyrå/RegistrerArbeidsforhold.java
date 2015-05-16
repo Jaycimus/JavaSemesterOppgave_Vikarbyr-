@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 //Klassen bygger opp vinduet når knappen "Registrer Arbeidsfohold" er trykket
 public class RegistrerArbeidsforhold extends JPanel {
@@ -45,10 +44,10 @@ public class RegistrerArbeidsforhold extends JPanel {
         regArbeidsforhold = new JButton("Registrer forhold");
         regArbeidsforhold.addActionListener(lytter);
         
-        lbl_kunder = new JLabel("Kunder: ");
-        lbl_vikariater = new JLabel("Vikariater: ");
-        lbl_vikar = new JLabel("Vikar id: ");
-        lbl_arbeidsforhold = new JLabel("Arbeidsforhold: ");
+        lbl_kunder = new JLabel("Kunder:");
+        lbl_vikariater = new JLabel("Vikariater:");
+        lbl_vikar = new JLabel("Vikar id:");
+        lbl_arbeidsforhold = new JLabel("Arbeidsforhold:");
                 
         kundeNavn = v.kundeRegister.getKundeNavn();
         cb_kunder = new JComboBox<String>(kundeNavn);

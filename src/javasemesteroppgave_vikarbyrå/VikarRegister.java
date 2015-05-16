@@ -48,6 +48,39 @@ public class VikarRegister implements Serializable {
         return null;
     }
     
+    public String[] getVikarer(){
+        String[] vikarer = new String[1+getAntallNoder()];
+        Vikar loper = forste;
+        vikarer[0] = "---Vikarer---";
+        for(int i = 1; i <= getAntallNoder(); i++){
+            vikarer[i] = loper.getNavn();
+            loper = loper.neste;
+        }
+        return vikarer;
+    }
+    
+    public int getAntallNoder(){
+        int antall = 0;
+        boolean ok = false;
+        Vikar loper = forste;
+        if(loper!=null){
+            antall++;
+            ok = true;
+            loper = loper.neste;
+            while(ok == true){
+                if(loper!=null){
+                    antall++;
+                    loper = loper.neste;
+                }
+                else{
+                    ok = false;
+                }
+            }
+        }
+        
+        return antall;
+    }//end getAntallNoder
+    
     //
     public String[] getVikarerTilVikariat(int vikariatNr){
         String[] vikarer;

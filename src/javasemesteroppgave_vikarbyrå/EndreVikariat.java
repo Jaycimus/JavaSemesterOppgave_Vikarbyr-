@@ -338,10 +338,13 @@ public class EndreVikariat extends JPanel {
         int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikariatet?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
             if(v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr))!=null){
-                v.vikariatRegister.slettVikariater(vikariatNr);
-                cb_vikariater.removeItem((String)cb_vikariater.getSelectedItem());
-                resetInput();
-                refresh();
+                System.out.println("Vikariat funnet");
+                if(v.vikariatRegister.slettVikariat(vikariatNr)){
+                    cb_vikariater.removeItem((String)cb_vikariater.getSelectedItem());
+                    v.nesteVikariatNr();
+                    resetInput();
+                    refresh();
+                }
             }
         }
     }

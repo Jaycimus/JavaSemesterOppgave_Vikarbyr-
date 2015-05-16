@@ -30,12 +30,17 @@ public class AnsattVindu extends JPanel{
     private BorderLayout borderLayout;
     
     private Vikarbyraa v;
+    
     private RegistrerKunde rk;
     private RegistrerVikariat rv;
-    private RegistrerVikar rvv;
     private RegistrerArbeidsforhold raf;
+    private RegistrerVikar rvv;
+    private RegistrerVikarTilVikariat rvtv;
     private EndreKunde ek;
-    private EndreVikariat ev;
+    private EndreVikariat evt;
+    //private EndreArbeidsforhold eaf;
+    private EndreVikar ev;
+    //private Sokning s;
     
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
     public AnsattVindu(Vikarbyraa v, JFrame ramme){
@@ -161,12 +166,20 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
+                if(rvtv!=null)
+                    AnsattVindu.this.rvtv.setVisible(false);
                 if(raf!=null)
                     AnsattVindu.this.raf.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
+                if(evt!=null)
+                    AnsattVindu.this.evt.setVisible(false);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
                 if(ev!=null)
                     AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
                 RegistrerKunde rk = new RegistrerKunde(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rk = rk;
                 add(rk, BorderLayout.EAST);
@@ -180,12 +193,20 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.rk.setVisible(false);
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
+                if(rvtv!=null)
+                    AnsattVindu.this.rvtv.setVisible(false);
                 if(raf!=null)
                     AnsattVindu.this.raf.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
+                if(evt!=null)
+                    AnsattVindu.this.evt.setVisible(false);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
                 if(ev!=null)
                     AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
                 RegistrerVikariat rv = new RegistrerVikariat(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rv = rv;
                 add(rv, BorderLayout.EAST);
@@ -201,10 +222,18 @@ public class AnsattVindu extends JPanel{
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
+                if(rvtv!=null)
+                    AnsattVindu.this.rvtv.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
+                if(evt!=null)
+                    AnsattVindu.this.evt.setVisible(false);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
                 if(ev!=null)
                     AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
                 RegistrerArbeidsforhold raf = new RegistrerArbeidsforhold(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.raf = raf;
                 add(raf, BorderLayout.EAST);
@@ -215,15 +244,23 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==regVikar){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rk.setVisible(false);
+                    AnsattVindu.this.rv.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
+                if(rvtv!=null)
+                    AnsattVindu.this.rvtv.setVisible(false);
                 if(raf!=null)
                     AnsattVindu.this.raf.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
+                if(evt!=null)
+                    AnsattVindu.this.evt.setVisible(false);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
                 if(ev!=null)
                     AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
                 RegistrerVikar rvv = new RegistrerVikar(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.rvv = rvv;
                 add(rvv,BorderLayout.EAST); 
@@ -232,30 +269,51 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==vikarVikariat){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rk.setVisible(false);
+                    AnsattVindu.this.rv.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
                 if(raf!=null)
                     AnsattVindu.this.raf.setVisible(false);
+                if(ek!=null)
+                    AnsattVindu.this.ek.setVisible(false);
+                if(evt!=null)
+                    AnsattVindu.this.evt.setVisible(false);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
                 if(ev!=null)
                     AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
+                
+                RegistrerVikarTilVikariat rvtv = new RegistrerVikarTilVikariat(AnsattVindu.this.getTextArea(),v);
+                AnsattVindu.this.rvtv = rvtv;
+                add(rvtv,BorderLayout.EAST);
             }
             
             //Knappen "Vis/Endre Kunde"
             else if(e.getSource()==visEndreKundeReg){
                 registrering.setVisible(false);
+                registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rk.setVisible(false);
+                    AnsattVindu.this.rv.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
+                if(rvtv!=null)
+                    AnsattVindu.this.rvtv.setVisible(false);
                 if(raf!=null)
                     AnsattVindu.this.raf.setVisible(false);
+                if(evt!=null)
+                    AnsattVindu.this.evt.setVisible(false);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
                 if(ev!=null)
                     AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
                 EndreKunde ek = new EndreKunde(AnsattVindu.this.getTextArea(), v);
                 AnsattVindu.this.ek = ek;
                 add(ek,BorderLayout.EAST);
@@ -266,28 +324,76 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==visEndreVikariatReg){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rk.setVisible(false);
+                    AnsattVindu.this.rv.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
                     AnsattVindu.this.rvv.setVisible(false);
+                if(rvtv!=null)
+                    AnsattVindu.this.rvtv.setVisible(false);
                 if(raf!=null)
                     AnsattVindu.this.raf.setVisible(false);
                 if(ek!=null)
                     AnsattVindu.this.ek.setVisible(false);
-                EndreVikariat ev = new EndreVikariat(AnsattVindu.this.getTextArea(),v);
-                AnsattVindu.this.ev = ev;
-                add(ev,BorderLayout.EAST);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
+                if(ev!=null)
+                    AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
+                EndreVikariat evt = new EndreVikariat(AnsattVindu.this.getTextArea(),v);
+                AnsattVindu.this.evt = evt;
+                add(evt,BorderLayout.EAST);
                 visVikariatReg();
             }
             
             //Knappen "Vis/Endre Arbeidsfohold"
             else if(e.getSource()==visEndreArbeisforholdReg){
+                registrering.setVisible(false);
+                if(rk!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rvv!=null)
+                    AnsattVindu.this.rvv.setVisible(false);
+                if(rvtv!=null)
+                    AnsattVindu.this.rvtv.setVisible(false);
+                if(raf!=null)
+                    AnsattVindu.this.raf.setVisible(false);
+                if(ek!=null)
+                    AnsattVindu.this.ek.setVisible(false);
+                if(evt!=null)
+                    AnsattVindu.this.evt.setVisible(false);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
+                if(ev!=null)
+                    AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
                 visArbeisforholdReg();
             }
             
             //Knappen "Vis/Endre Vikar"
             else if(e.getSource()==visEndreVikarReg){
+                registrering.setVisible(false);
+                if(rk!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rv!=null)
+                    AnsattVindu.this.rv.setVisible(false);
+                if(rvv!=null)
+                    AnsattVindu.this.rvv.setVisible(false);
+                if(rvtv!=null)
+                    AnsattVindu.this.rvtv.setVisible(false);
+                if(raf!=null)
+                    AnsattVindu.this.raf.setVisible(false);
+                if(ek!=null)
+                    AnsattVindu.this.ek.setVisible(false);
+                if(evt!=null)
+                    AnsattVindu.this.evt.setVisible(false);
+                //if(eaf!=null)
+                //    AnsattVindu.this.ev.setVisible(false);
+                //if(s!=null)
+                //    AnsattVindu.this.s.setVisible(false);
                 visVikarReg();
             }
             

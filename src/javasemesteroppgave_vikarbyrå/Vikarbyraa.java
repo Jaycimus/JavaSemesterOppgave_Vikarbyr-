@@ -36,7 +36,7 @@ public class Vikarbyraa implements Serializable {
     }
     
     //Metoden lager neste vikariatnummer
-    private void nesteVikariatNr(){
+    public void nesteVikariatNr(){
         int nummer = vikariatRegister.finnNesteNummer();
         
         nesteVikariatNr = ++nummer;

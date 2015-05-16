@@ -185,28 +185,77 @@ public class VikariatRegister implements Serializable {
     }
     
     //Sletting av vikariater til et firma som blir fjernet
-    public void slettVikariater(String kundeNavn){
+    public boolean slettVikariat(String vikariatNr){
         Vikariat loper = forste;
-        System.out.println("hei");
-        if (loper==null){
-            return;
-        } else {
-            if(loper.getKundeNavn().equals(kundeNavn)){
-                System.out.println("hei3");
-                loper = loper.neste;
-                return;
+        if(loper==null){
+            JOptionPane.showMessageDialog(null, "Ingen registrerte vikariater");
+            return false;
+        } else if (loper.neste == null && loper.getVikariatNrS().equals(vikariatNr)){
+            forste = null;
+            return true;
+        } else if(loper.getVikariatNrS().equals(vikariatNr)) {
+            loper = loper.neste;
+            return true;
+        }
+        while(loper.neste != null){
+            if(loper.neste.getVikariatNrS().equals(vikariatNr)){
+                loper.neste = loper.neste.neste;
+                System.out.println("Vikariatnavn passet 2");
+                return true;
             }
+            else{
+                loper = loper.neste;
+            }
+        }
         
+        loper = finnNestSisteNode();
+        if(loper.getVikariatNrS().equals(vikariatNr)){
+            loper.neste = null;
+        }
+        return false;
+    }
+    
+    public Vikariat finnNestSisteNode(){
+        Vikariat loper = forste;
+        boolean ok = true;
+        while(ok){
+            if(loper.neste.neste!=null){
+                loper = loper.neste;
+            } else {
+                return loper;
+            }
+        }
+        return loper;
+    }
+    
+    public boolean slettVikariaterTilKunde(String kundeNavn){
+        Vikariat loper = forste;
+        if(loper==null){
+            //JOptionPane.showMessageDialog(null, "Ingen registrerte vikariater");
+            return false;
+        } else if (loper.neste == null && loper.getKundeNavn().equals(kundeNavn)){
+            forste = null;
+            System.out.println("Slette eneste vikraiat");
+            return true;
+        } else {
             while(loper.neste != null){
-                if(loper.neste.getKundeNavn() == kundeNavn){
+                if(loper.neste.getKundeNavn().equals(kundeNavn)){
                     loper.neste = loper.neste.neste;
-                    return;
-                }
-                else{
+                    System.out.println("Vikariatnavn passet 2");
+                    if(forste.getKundeNavn().equals(kundeNavn))
+                        forste = forste.neste;
+        
+                } else {
                     loper = loper.neste;
                 }
             }
         }
+        /*loper = finnNestSisteNode();
+        if(loper.getKundeNavn().equals(kundeNavn)){
+            loper.neste = null;
+        }*/
+        return false;
+        
     }
     
     

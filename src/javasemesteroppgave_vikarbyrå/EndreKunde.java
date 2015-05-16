@@ -163,7 +163,10 @@ public class EndreKunde extends JPanel {
         int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette kunden?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
             if(v.kundeRegister.slettKunde(navn)){
-                v.vikariatRegister.slettVikariater(navn);
+                if(v.vikariatRegister.slettVikariaterTilKunde(navn)){
+                    System.out.println("Vikariater slettet");
+                    v.nesteVikariatNr();
+                }
                 tf_navn.setText("");
                 tf_adresse.setText("");
                 tf_tlf.setText("");
