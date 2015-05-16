@@ -103,9 +103,20 @@ public class Logginn extends JFrame{
                 for(int i = 0; i < v.navneListe1.size(); i++) {
                     if(bruker.equalsIgnoreCase(v.navneListe1.get(i)) && pass.equals(v.passordListe1.get(i))) {
                         setVisible(false);
-                        JFrame ansattVindu = new JFrame("Vikarbyrå");
-                        AnsattVindu vindu = new AnsattVindu(v, ansattVindu);
-                        ansattVindu.add(vindu);
+                        //JFrame ansattVindu = new JFrame("Vikarbyrå");
+                        AnsattVindu vindu = new AnsattVindu(v/*, ansattVindu*/);
+                        //ansattVindu.add(vindu);
+                        vindu.setSize(new Dimension(1200,700));
+                        vindu.setVisible(true);
+                        vindu.setLocationRelativeTo(null);
+                        vindu.setResizable(false);
+                        vindu.addWindowListener( new WindowAdapter(){
+                            public void windowClosing(WindowEvent e){
+                                skrivTilFil();
+                                System.exit(0);
+                            }
+                        });
+                        /*ansattVindu.add(vindu);
                         ansattVindu.setSize(new Dimension(1200,700));
                         ansattVindu.setVisible(true);
                         ansattVindu.setLocationRelativeTo(null);
@@ -115,21 +126,21 @@ public class Logginn extends JFrame{
                                 skrivTilFil();
                                 System.exit(0);
                             }
-                        });
+                        });*/
                         return;
                     } 
                 }
                 for(int i = 0; i < v.navneListe2.size(); i++){
                     if (bruker.equalsIgnoreCase(v.navneListe2.get(i)) && pass.equals(v.passordListe2.get(i))){
                         setVisible(false);
-                        JFrame vikarVindu = new JFrame("Vikarbyrå");
-                        VikarVindu vindu = new VikarVindu(v, vikarVindu);
-                        vikarVindu.add(vindu);
-                        vikarVindu.setSize(new Dimension(1200,700));
-                        vikarVindu.setVisible(true);
-                        vikarVindu.setLocationRelativeTo(null);
-                        vikarVindu.setResizable(false);
-                        vikarVindu.addWindowListener( new WindowAdapter(){
+                        //JFrame vikarVindu = new JFrame("Vikarbyrå");
+                        VikarVindu vindu = new VikarVindu(v);
+                        //vikarVindu.add(vindu);
+                        vindu.setSize(new Dimension(1200,700));
+                        vindu.setVisible(true);
+                        vindu.setLocationRelativeTo(null);
+                        vindu.setResizable(false);
+                        vindu.addWindowListener( new WindowAdapter(){
                             public void windowsClosing(WindowEvent e){
                                 skrivTilFil();
                                 System.exit(0);
@@ -159,13 +170,13 @@ public class Logginn extends JFrame{
         tekstfelt = new Font("Bitstream Vera Sans Mono", Font.PLAIN, 20);
         this.v = v;
         
-        ArrayList<String> navneListe1 = new ArrayList<String>();
+        ArrayList<String> navneListe1 = new ArrayList<>();
             navneListe1.add("Andreas"); navneListe1.add("Arthur"); navneListe1.add("Jørgen");
-        ArrayList<String> passordListe1 = new ArrayList<String>();
+        ArrayList<String> passordListe1 = new ArrayList<>();
             passordListe1.add("andreas"); passordListe1.add("arthur"); passordListe1.add("jørgen");
-        ArrayList<String> navneListe2 = new ArrayList<String>();
+        ArrayList<String> navneListe2 = new ArrayList<>();
             navneListe2.add("Vikar");
-        ArrayList<String> passordListe2 = new ArrayList<String>();
+        ArrayList<String> passordListe2 = new ArrayList<>();
             passordListe2.add("vikar");
                 
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter
@@ -216,14 +227,14 @@ public class Logginn extends JFrame{
                 for(int i = 0; i < navneListe1.size(); i++) {
                     if(bruker.equalsIgnoreCase(navneListe1.get(i)) && pass.equals(passordListe1.get(i))) {
                         setVisible(false);
-                        JFrame ansattVindu = new JFrame("Vikarbyrå");
-                        AnsattVindu vindu = new AnsattVindu(v, ansattVindu);
-                        ansattVindu.add(vindu);
-                        ansattVindu.setSize(new Dimension(1200,700));
-                        ansattVindu.setVisible(true);
-                        ansattVindu.setLocationRelativeTo(null);
-                        ansattVindu.setResizable(false);
-                        ansattVindu.addWindowListener( new WindowAdapter(){
+                        //JFrame ansattVindu = new JFrame("Vikarbyrå");
+                        AnsattVindu vindu = new AnsattVindu(v/*, ansattVindu*/);
+                        //ansattVindu.add(vindu);
+                        vindu.setSize(new Dimension(1200,700));
+                        vindu.setVisible(true);
+                        vindu.setLocationRelativeTo(null);
+                        vindu.setResizable(false);
+                        vindu.addWindowListener( new WindowAdapter(){
                             public void windowClosing(WindowEvent e){
                                 skrivTilFil();
                                 System.exit(0);
@@ -235,14 +246,14 @@ public class Logginn extends JFrame{
                 for(int i = 0; i < navneListe2.size(); i++){
                     if (bruker.equalsIgnoreCase(navneListe2.get(i)) && pass.equals(passordListe2.get(i))){
                         setVisible(false);
-                        JFrame vikarVindu = new JFrame("Vikarbyrå");
-                        VikarVindu vindu = new VikarVindu(v, vikarVindu);
-                        vikarVindu.add(vindu);
-                        vikarVindu.setSize(new Dimension(1200,700));
-                        vikarVindu.setVisible(true);
-                        vikarVindu.setLocationRelativeTo(null);
-                        vikarVindu.setResizable(false);
-                        vikarVindu.addWindowListener( new WindowAdapter(){
+                        //JFrame vikarVindu = new JFrame("Vikarbyrå");
+                        VikarVindu vindu = new VikarVindu(v/*, vikarVindu*/);
+                        //vikarVindu.add(vindu);
+                        vindu.setSize(new Dimension(1200,700));
+                        vindu.setVisible(true);
+                        vindu.setLocationRelativeTo(null);
+                        vindu.setResizable(false);
+                        vindu.addWindowListener( new WindowAdapter(){
                             public void windowsClosing(WindowEvent e){
                                 skrivTilFil();
                                 System.exit(0);

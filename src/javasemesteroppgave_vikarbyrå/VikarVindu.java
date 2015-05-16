@@ -23,12 +23,12 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 //Klassen bygger opp vinduet når du logger inn med vikar
-public class VikarVindu extends JPanel{
+public class VikarVindu extends JFrame{
     
     private final JPanel meny, registrering, bunn, topp;
     private final JButton visVikariatListe,regSoking, loggUt;
     private final JTextArea utskrift;
-    private final JFrame ramme; //rammen på programmet
+    //private final JFrame ramme; //rammen på programmet
     private BorderLayout borderLayout;
     
     private Vikarbyraa v;
@@ -36,13 +36,13 @@ public class VikarVindu extends JPanel{
     private RegistrerSoknad rs;
     
     //Konstruktør
-    public VikarVindu(Vikarbyraa v,JFrame ramme){
+    public VikarVindu(Vikarbyraa v){
         this.v = v;
-        this.ramme = ramme;
+        //this.ramme = ramme;
         
         borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
-        setBorder(new EmptyBorder(0, 5, 0, 5));
+        //setBorder(new EmptyBorder(0, 5, 0, 5));
         
         regSoking = new JButton("Registrer Søknad");
         loggUt = new JButton("Logg ut");
@@ -142,7 +142,7 @@ public class VikarVindu extends JPanel{
                         System.exit(0);
                     }
                 });
-                ramme.setVisible(false);
+                //ramme.setVisible(false);
             }
         }
     }//end Knappelytter

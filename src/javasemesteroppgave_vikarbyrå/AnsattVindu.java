@@ -20,14 +20,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
+//import javax.swing.border.EmptyBorder;
 
 //Denne klassen bygger opp det vinduet som man ser når man logger inn som en ansatt
-public class AnsattVindu extends JPanel{
+public class AnsattVindu extends JFrame{
     private final JPanel meny, registrering, bunn, topp, a, b, c; //a,b,c er tomme paneler som tilhører meny
     private final JButton regKunde, regVikariat, regArbForhold, regVikar, vikarVikariat, visEndreKundeReg, visEndreVikariatReg, visEndreArbeisforholdReg, visEndreVikarReg, regSoking, loggUt;
     private final JTextArea utskrift;
-    private final JFrame ramme; //rammen på programmet
+    //private final JFrame ramme; //rammen på programmet
     
     private Vikarbyraa v;
     
@@ -45,15 +45,15 @@ public class AnsattVindu extends JPanel{
     private final Color bakgrunn;
     
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
-    public AnsattVindu(Vikarbyraa v, JFrame ramme){
+    public AnsattVindu(Vikarbyraa v/*, JFrame ramme*/){
         this.v = v;
-        this.ramme = ramme;
+        //this.ramme = ramme;
         bakgrunn = v.farge.getBakrunn();
-        
         setLayout(new BorderLayout(10, 10));
-        setBorder(new EmptyBorder(0, 5, 0, 5));
+        //setBorder(new EmptyBorder(0, 5, 0, 5));
         
-        this.setBackground(bakgrunn);
+        //this.setBackground(bakgrunn);
+        getContentPane().setBackground( bakgrunn );
         
         regKunde = new JButton("Registrer Kunde");
             /*regKunde.setFocusPainted(false);
@@ -418,7 +418,7 @@ public class AnsattVindu extends JPanel{
                         System.exit(0);
                     }
                 });
-                ramme.setVisible(false);
+                //ramme.setVisible(false);
             }
         }
     }//end Knappelytter

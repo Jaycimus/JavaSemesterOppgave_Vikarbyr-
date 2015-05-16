@@ -16,7 +16,7 @@ public class Farge {
 
 //Setter opp en farge i konstruktøren
     public Farge(){
-        bakgrunn = Color.decode("#CDEAFA");
+        bakgrunn = Color.decode("#d5ebf2");
     }
     
     //Returnerer fargen når vi kaller på den
