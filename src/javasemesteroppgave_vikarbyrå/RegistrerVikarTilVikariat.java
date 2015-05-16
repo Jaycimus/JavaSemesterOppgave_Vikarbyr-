@@ -53,7 +53,13 @@ public class RegistrerVikarTilVikariat extends JPanel {
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange() == ItemEvent.SELECTED){
-                        
+                        String valg = (String) cb_kunder.getSelectedItem();
+                        if(valg.matches("---Kunder---")){
+                            cb_vikariater.setSelectedIndex(0);
+                            cb_vikarer.setSelectedIndex(0);
+                            return;
+                        }
+                        //cb_vikariater.set
                     }
                 }
             }
@@ -89,6 +95,10 @@ public class RegistrerVikarTilVikariat extends JPanel {
         add(new JPanel());
         add(lbl_vikar);
         add(cb_vikarer);
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());

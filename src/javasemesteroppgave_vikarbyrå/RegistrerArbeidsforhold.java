@@ -92,7 +92,7 @@ public class RegistrerArbeidsforhold extends JPanel {
         cb_vikarer.setMaximumRowCount(9);
         cb_vikarer.setEnabled(false);
         
-        ta_arbeidsforhold = new JTextArea(4,15);
+        ta_arbeidsforhold = new JTextArea(40,15);
         JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
         
         add(lbl_kunder);
@@ -103,6 +103,14 @@ public class RegistrerArbeidsforhold extends JPanel {
         add(cb_vikarer);
         add(lbl_arbeidsforhold);
         add(sp);
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
