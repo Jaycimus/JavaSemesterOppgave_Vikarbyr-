@@ -42,7 +42,7 @@ public class RegistrerKunde extends JPanel {
         
         Knappelytter lytter = new Knappelytter();
         
-        regKunde = new JButton("Registrer Kunde");
+        regKunde = new JButton("Lagre ny kunde");
         regKunde.addActionListener(lytter);
         
         lbl_navn = new JLabel("Kunde navn: ");
