@@ -42,8 +42,10 @@ public class VikarRegister implements Serializable {
             if(loper != null && loper.getPersonNr()==personNr){
                 return loper;
             }
-            else
+            else if(loper.neste!=null)
                 loper = loper.neste;
+            else
+                ok = false;
         }
         return null;
     }

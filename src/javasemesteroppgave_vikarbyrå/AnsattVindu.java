@@ -244,7 +244,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==regVikar){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvtv!=null)
@@ -269,7 +269,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==vikarVikariat){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
@@ -297,7 +297,7 @@ public class AnsattVindu extends JPanel{
                 registrering.setVisible(false);
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
@@ -324,7 +324,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==visEndreVikariatReg){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
@@ -351,7 +351,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==visEndreArbeisforholdReg){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
@@ -377,7 +377,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==visEndreVikarReg){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)

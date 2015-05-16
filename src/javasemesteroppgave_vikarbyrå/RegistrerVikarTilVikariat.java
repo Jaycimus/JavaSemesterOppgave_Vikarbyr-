@@ -105,7 +105,7 @@ public class RegistrerVikarTilVikariat extends JPanel {
     public void regVikarTilVikariat(){
         String kunde = (String)cb_kunder.getSelectedItem();
         String vikariatNr = (String)cb_vikariater.getSelectedItem();
-        String vikar = (String)cb_vikariater.getSelectedItem();
+        String vikar = (String)cb_vikarer.getSelectedItem();
         if (kunde.matches("---Kunder---")){
             JOptionPane.showMessageDialog(null,"Kunde ikke valgt!");
             return;
@@ -117,15 +117,16 @@ public class RegistrerVikarTilVikariat extends JPanel {
             return;
         } else {
             int sikker = JOptionPane.showConfirmDialog(null, 
-                    "Er du sikker på at du vil tildele vikar: " + vikar + "\nvikariatet: " +
-                    vikariatNr + "\nsom tilhører kunden: " + kunde,"Tildel Vikariat Til Vikar",JOptionPane.YES_NO_OPTION);
+                    "Er du sikker på at du vil tildele vikar: " + vikar + "\nVikariatet: " +
+                    vikariatNr + "\nSom tilhører kunden: " + kunde,"Tildel Vikariat Til Vikar",JOptionPane.YES_NO_OPTION);
             
             if(sikker == JOptionPane.YES_OPTION){
                 if(v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr))!=null){
                     System.out.println("Vikariat funnet");
-                    if(v.vikariatRegister.slettVikariat(vikariatNr)){
-                        cb_vikariater.removeItem((String)cb_vikariater.getSelectedItem());
-                        v.nesteVikariatNr();
+                    if(v.vikarRegister.finnVikar(Long.parseLong(vikar))!=null){
+                        System.out.println("Vikar funnet");
+                        v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr)).setVikarer(v.vikarRegister.finnVikar(Long.parseLong(vikar)));
+                        v.vikarRegister.finnVikar(Long.parseLong(vikar)).setVikariat(v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr)));
                         resetInput();
                         refresh();
                     }
