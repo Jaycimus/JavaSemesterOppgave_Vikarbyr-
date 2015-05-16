@@ -8,6 +8,7 @@ Gruppenummer: 15*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,7 @@ public class AnsattVindu extends JPanel{
     //private EndreArbeidsforhold eaf;
     private EndreVikar ev;
     //private Sokning s;
+    private Color bakgrunn;
     
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
     public AnsattVindu(Vikarbyraa v, JFrame ramme){
@@ -50,6 +52,8 @@ public class AnsattVindu extends JPanel{
         borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
         setBorder(new EmptyBorder(0, 5, 0, 5)); 
+        
+        bakgrunn = new Color(0,0,182,155);
                 
         regKunde = new JButton("Registrer Kunde");
             /*regKunde.setFocusPainted(false);
@@ -244,7 +248,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==regVikar){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvtv!=null)
@@ -269,7 +273,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==vikarVikariat){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
@@ -297,7 +301,7 @@ public class AnsattVindu extends JPanel{
                 registrering.setVisible(false);
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
@@ -324,7 +328,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==visEndreVikariatReg){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
@@ -351,7 +355,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==visEndreArbeisforholdReg){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)
@@ -377,7 +381,7 @@ public class AnsattVindu extends JPanel{
             else if(e.getSource()==visEndreVikarReg){
                 registrering.setVisible(false);
                 if(rk!=null)
-                    AnsattVindu.this.rv.setVisible(false);
+                    AnsattVindu.this.rk.setVisible(false);
                 if(rv!=null)
                     AnsattVindu.this.rv.setVisible(false);
                 if(rvv!=null)

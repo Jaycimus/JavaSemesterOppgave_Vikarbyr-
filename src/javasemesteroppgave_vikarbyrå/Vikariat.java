@@ -26,6 +26,7 @@ public class Vikariat implements Serializable {
     private boolean ledig;
     private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<>();
     private ArrayList<Soknad> soknader = new ArrayList<>();
+    private ArrayList<Vikar> vikarer = new ArrayList<>();
     
     public Vikariat neste;
     private Kunde kunde;
@@ -51,6 +52,32 @@ public class Vikariat implements Serializable {
         ledig = true;
     }
 
+    public ArrayList<Arbeidsforhold> getArbeidsforhold() {
+        return arbeidsforhold;
+    }
+
+    public void setArbeidsforhold(ArrayList<Arbeidsforhold> arbeidsforhold) {
+        this.arbeidsforhold = arbeidsforhold;
+    }
+
+    public ArrayList<Soknad> getSoknader() {
+        return soknader;
+    }
+
+    public void setSoknader(ArrayList<Soknad> soknader) {
+        this.soknader = soknader;
+    }
+
+    public ArrayList<Vikar> getVikarer() {
+        return vikarer;
+    }
+
+    public void setVikarer(Vikar vikarer) {
+        this.vikarer.add(vikarer);
+    }
+
+    
+    
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -189,6 +216,10 @@ public class Vikariat implements Serializable {
                           "\nStillingstype: " + stillingstype + "\nKvalifikasjoner: " + kvalifikasjoner + 
                           "\nLønnsbetingelser: " + lonnsbetingelser + "\nKontaktinfo: " + kontaktinfo + 
                           "\nStillingsinfo: " + stillingsInfo;
+        for(int i = 0; i < vikarer.size();i++){
+            utskrift += vikarer.get(i).toString() + "\n";
+        }
+        
         return utskrift;
     }
 }//end Vikariat
