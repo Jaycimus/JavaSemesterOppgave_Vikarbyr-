@@ -126,7 +126,7 @@ public class EndreKunde extends JPanel {
             JOptionPane.showMessageDialog(null,"Kunde ikke valgt!");
             return;
         }
-        Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
+        kunde = v.kundeRegister.finnKunde(kundeNavn);
         kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
         
         String navn = tf_navn.getText();
@@ -177,6 +177,7 @@ public class EndreKunde extends JPanel {
         }
     }
     
+    //Endrer informasjonen i utskriftsområdet når endringene blir gjort
     private void refresh(){
         v.kundeRegister.skrivKundeListe(utskrift);
     }
