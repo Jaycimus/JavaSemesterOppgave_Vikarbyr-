@@ -137,9 +137,6 @@ public class RegistrerVikar extends JPanel{
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
-        add(new JPanel());
-        add(new JPanel());
-        add(new JPanel());
         add(regVikar);
     }//end konstruktør
     

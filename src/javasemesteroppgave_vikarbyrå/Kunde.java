@@ -71,7 +71,7 @@ public class Kunde implements Serializable{
         this.tlf = tlf;
     }
     
-    //Returnerer e-post adressen til kuneden når metoden blir kalt
+    //Returnerer e-post adressen til kunden når metoden blir kalt
     public String getEpost(){
         return epost;
     }

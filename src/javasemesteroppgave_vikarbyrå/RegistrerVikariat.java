@@ -87,7 +87,7 @@ public class RegistrerVikariat extends JPanel {
 
         kundeNavn = v.kundeRegister.getKundeNavn();
         
-        regVikariat = new JButton("Registrer vikariat");
+        regVikariat = new JButton("Lagre nytt vikariat");
         regVikariat.addActionListener(lytter);
         
         lbl_kunde = new JLabel("Kunde: ");

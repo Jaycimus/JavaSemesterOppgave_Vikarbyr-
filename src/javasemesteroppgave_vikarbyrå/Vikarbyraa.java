@@ -17,6 +17,7 @@ public class Vikarbyraa implements Serializable {
     public ArbeidsforholdRegister arbeidsforholdRegister = new ArbeidsforholdRegister();
     public VikarRegister vikarRegister = new VikarRegister();
     public SoknadsRegister soknadsRegister = new SoknadsRegister();
+    public Farge farge = new Farge();
     
     ArrayList<String> navneListe1 = new ArrayList<String>();
     ArrayList<String> passordListe1 = new ArrayList<String>();

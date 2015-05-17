@@ -77,6 +77,11 @@ public class RegistrerKunde extends JPanel {
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
         add(regKunde);             
     }//end konstruktør
     
