@@ -51,7 +51,7 @@ public class AnsattVindu extends JPanel{
         
         borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
-        setBorder(new EmptyBorder(0, 5, 0, 5)); 
+        setBorder(new EmptyBorder(0, 5, 0, 5));
         
         bakgrunn = new Color(0,0,182,155);
                 
