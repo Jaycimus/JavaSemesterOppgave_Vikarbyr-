@@ -33,10 +33,17 @@ public class AnsattVindu extends JFrame{
     
     private Vikarbyraa v;
     
+    private Color bakgrunn;
+    
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
     public AnsattVindu(Vikarbyraa v){
         this.v = v;
-        setLayout(new BorderLayout(10, 10));
+
+        bakgrunn = v.getFarge().getBakrunn();
+        
+        BorderLayout borderLayout = new BorderLayout(10, 10);
+        setLayout(borderLayout);
+         setLayout(new BorderLayout(10, 10));
         regKunde = new JButton("Registrer Kunde");
             regKunde.setFocusPainted(false);
             regKunde.setContentAreaFilled(false);
