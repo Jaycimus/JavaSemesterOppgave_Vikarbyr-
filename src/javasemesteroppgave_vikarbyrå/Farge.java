@@ -8,9 +8,10 @@ Gruppenummer: 15*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 //Klassen er for når vi vil kalle på en spesifik farge et sted
-public class Farge {
+public class Farge implements Serializable {
     private Color bakgrunn;
     
 

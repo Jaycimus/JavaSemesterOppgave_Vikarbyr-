@@ -49,12 +49,13 @@ public class Logginn extends JFrame{
     public Logginn(){
         super("Logg Inn");
         setLayout(new FlowLayout());
-        
-        knapper = new Font("Arial", Font.BOLD, 20);
-        tekstfelt = new Font("Bitstream Vera Sans Mono", Font.PLAIN, 20);
         v = new Vikarbyraa();
-        bakgrunn = v.farge.getBakrunn();
+        bakgrunn = v.getFarge().getBakrunn();
         getContentPane().setBackground( bakgrunn );
+        
+        knapper = v.getFonts().getArial();
+        tekstfelt = v.getFonts().getBitstreamVeraSansMono();
+        
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter
         brukernavn = new JTextField("Andreas",15);
         brukernavn.setFont(tekstfelt);
@@ -103,9 +104,7 @@ public class Logginn extends JFrame{
                 for(int i = 0; i < v.navneListe1.size(); i++) {
                     if(bruker.equalsIgnoreCase(v.navneListe1.get(i)) && pass.equals(v.passordListe1.get(i))) {
                         setVisible(false);
-                        //JFrame ansattVindu = new JFrame("Vikarbyrå");
-                        AnsattVindu vindu = new AnsattVindu(v/*, ansattVindu*/);
-                        //ansattVindu.add(vindu);
+                        AnsattVindu vindu = new AnsattVindu(v);
                         vindu.setSize(new Dimension(1200,700));
                         vindu.setVisible(true);
                         vindu.setLocationRelativeTo(null);
@@ -116,26 +115,13 @@ public class Logginn extends JFrame{
                                 System.exit(0);
                             }
                         });
-                        /*ansattVindu.add(vindu);
-                        ansattVindu.setSize(new Dimension(1200,700));
-                        ansattVindu.setVisible(true);
-                        ansattVindu.setLocationRelativeTo(null);
-                        ansattVindu.setResizable(false);
-                        ansattVindu.addWindowListener( new WindowAdapter(){
-                            public void windowClosing(WindowEvent e){
-                                skrivTilFil();
-                                System.exit(0);
-                            }
-                        });*/
                         return;
                     } 
                 }
                 for(int i = 0; i < v.navneListe2.size(); i++){
                     if (bruker.equalsIgnoreCase(v.navneListe2.get(i)) && pass.equals(v.passordListe2.get(i))){
                         setVisible(false);
-                        //JFrame vikarVindu = new JFrame("Vikarbyrå");
                         VikarVindu vindu = new VikarVindu(v);
-                        //vikarVindu.add(vindu);
                         vindu.setSize(new Dimension(1200,700));
                         vindu.setVisible(true);
                         vindu.setLocationRelativeTo(null);
@@ -162,23 +148,16 @@ public class Logginn extends JFrame{
         lesFil();
     }
     
-    
     public Logginn( Vikarbyraa v ){
         super("Logg Inn");
         setLayout(new FlowLayout());
-        knapper = new Font("Arial", Font.BOLD, 20);
-        tekstfelt = new Font("Bitstream Vera Sans Mono", Font.PLAIN, 20);
         this.v = v;
+        bakgrunn = v.getFarge().getBakrunn();
+        getContentPane().setBackground( bakgrunn );
         
-        ArrayList<String> navneListe1 = new ArrayList<>();
-            navneListe1.add("Andreas"); navneListe1.add("Arthur"); navneListe1.add("Jørgen");
-        ArrayList<String> passordListe1 = new ArrayList<>();
-            passordListe1.add("andreas"); passordListe1.add("arthur"); passordListe1.add("jørgen");
-        ArrayList<String> navneListe2 = new ArrayList<>();
-            navneListe2.add("Vikar");
-        ArrayList<String> passordListe2 = new ArrayList<>();
-            passordListe2.add("vikar");
-                
+        knapper = v.getFonts().getArial();
+        tekstfelt = v.getFonts().getBitstreamVeraSansMono();
+        
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter
         brukernavn = new JTextField("Andreas",15);
         brukernavn.setFont(tekstfelt);
@@ -224,12 +203,10 @@ public class Logginn extends JFrame{
                 String pass = passord.getText();
                     
                 //tester om brukernavn og passord kombanasjonen funker
-                for(int i = 0; i < navneListe1.size(); i++) {
-                    if(bruker.equalsIgnoreCase(navneListe1.get(i)) && pass.equals(passordListe1.get(i))) {
+                for(int i = 0; i < v.navneListe1.size(); i++) {
+                    if(bruker.equalsIgnoreCase(v.navneListe1.get(i)) && pass.equals(v.passordListe1.get(i))) {
                         setVisible(false);
-                        //JFrame ansattVindu = new JFrame("Vikarbyrå");
-                        AnsattVindu vindu = new AnsattVindu(v/*, ansattVindu*/);
-                        //ansattVindu.add(vindu);
+                        AnsattVindu vindu = new AnsattVindu(v);
                         vindu.setSize(new Dimension(1200,700));
                         vindu.setVisible(true);
                         vindu.setLocationRelativeTo(null);
@@ -243,12 +220,10 @@ public class Logginn extends JFrame{
                         return;
                     } 
                 }
-                for(int i = 0; i < navneListe2.size(); i++){
-                    if (bruker.equalsIgnoreCase(navneListe2.get(i)) && pass.equals(passordListe2.get(i))){
+                for(int i = 0; i < v.navneListe2.size(); i++){
+                    if (bruker.equalsIgnoreCase(v.navneListe2.get(i)) && pass.equals(v.passordListe2.get(i))){
                         setVisible(false);
-                        //JFrame vikarVindu = new JFrame("Vikarbyrå");
-                        VikarVindu vindu = new VikarVindu(v/*, vikarVindu*/);
-                        //vikarVindu.add(vindu);
+                        VikarVindu vindu = new VikarVindu(v);
                         vindu.setSize(new Dimension(1200,700));
                         vindu.setVisible(true);
                         vindu.setLocationRelativeTo(null);

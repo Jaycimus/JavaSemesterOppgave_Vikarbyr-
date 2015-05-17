@@ -29,7 +29,7 @@ public class KundeRegister implements Serializable {
             forste = siste = ny;
         }
         else{
-            siste.neste= ny;
+            siste.neste = ny;
             siste = ny;
         }
         
@@ -133,21 +133,129 @@ public class KundeRegister implements Serializable {
     }
     
     //Skriver ut enten om det ikke finnes noen kunder, eller alle registrerte kunder
-    public void skrivKundeListe(JTextArea kundeListe){
+    public void skrivHeleKundeListe(JTextArea utskrift){
         Kunde loper = forste;
         
         if(forste == null){
-            kundeListe.setText("Ingen kunde i registeret!");
+            utskrift.setText("Ingen kunde i registeret!");
         }
         else{
-            kundeListe.setText("");
+            utskrift.setText("");
             
             while(loper!=null){
                 
-                kundeListe.append(loper.toString()+"\n");
+                utskrift.append(loper.toString()+"\n");
                 
                 loper = loper.neste;
             }                
         }        
-    }//end skrivKundeListe()   
+    }//end skrivKundeListe()  
+    
+    public void skrivKunde(JTextArea utskrift, String kundeNavn){
+        Kunde loper = forste;
+        
+        if(forste == null){
+            utskrift.setText("Ingen kunder i registeret!");
+        }
+        else{
+            while(loper!=null){
+                if(loper.getNavn().equals(kundeNavn)){
+                        utskrift.setText(loper.toString());
+                        return;
+                }
+                loper = loper.neste;
+            }
+            utskrift.setText("Ingen kunder i registeret med navnet: " + kundeNavn);
+        }        
+    }
+    
+    //metode skriver ut alle kunder med gitt sektor
+    public void skrivKundeListeSektor(JTextArea utskrift, String sektor){
+        Kunde loper = forste;
+        String u = "";
+        if(forste == null){
+            utskrift.setText("Ingen kunde i registeret!");
+        }
+        else{
+            while(loper!=null){
+                if(loper.getTypeSektor().equals(sektor))
+                    u += loper.toString() + "\n";
+                
+                loper = loper.neste;
+            }   
+        }
+        if(u.matches("")){
+            utskrift.setText("Ingen registrerte kunder innen for denne sektoren");
+            return;
+        } else {
+            utskrift.setText(u);
+        }
+    }//end skrivKundeListeSektor()
+    
+    public void skrivKundeAdresse(JTextArea utskrift, String adresse){
+        Kunde loper = forste;
+        String u = "";
+        if(forste == null){
+            utskrift.setText("Ingen kunde i registeret!");
+        }
+        else{
+            utskrift.setText("");
+            
+            while(loper!=null){
+                if(loper.getAdresse().equals(adresse))
+                    u += loper.toString() + "\n";
+                
+                loper = loper.neste;
+            }
+            
+        }
+        if(u.matches("")){
+            utskrift.setText("Ingen registrerte kunder innen for denne sektoren");
+            return;
+        } else {
+            utskrift.setText(u);
+        }
+    }
+    
+    public void skrivKundeEpost(JTextArea utskrift, String epost){
+        Kunde loper = forste;
+        String u = "";
+        if(forste == null){
+            utskrift.setText("Ingen kunde i registeret!");
+        }
+        else{
+            utskrift.setText("");
+            
+            while(loper!=null){
+                if(loper.getEpost().equals(epost))
+                    u += loper.toString()+"\n";
+                
+                loper = loper.neste;
+            }                
+        } 
+        if(u.matches("")){
+            utskrift.setText("Ingen registrerte kunder innen for denne sektoren");
+            return;
+        } else {
+            utskrift.setText(u);
+        }
+    }
+    
+    public void skrivKundeTlf(JTextArea utskrift, String tlf){
+        Kunde loper = forste;
+        
+        if(forste == null){
+            utskrift.setText("Ingen kunder i registeret!");
+        }
+        else{
+            while(loper!=null){
+                if(loper.getTlf().equals(tlf)){
+                        utskrift.setText(loper.toString());
+                        return;
+                }
+                loper = loper.neste;
+            }
+            utskrift.setText("Ingen kunder i registeret med tlf: " + tlf);
+        }        
+    }
 }//end KundeRegister

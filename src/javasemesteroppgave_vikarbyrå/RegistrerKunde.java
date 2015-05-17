@@ -27,7 +27,6 @@ public class RegistrerKunde extends JPanel {
     private JRadioButton privat, offentlig;
     private ButtonGroup BG_typeSektor;
     private JTextField tf_navn, tf_adresse, tf_tlf, tf_epost;
-    private JLabel label;
     private JTextArea utskrift;
     
     private Vikarbyraa v;
@@ -110,7 +109,7 @@ public class RegistrerKunde extends JPanel {
             } else {
                 tlf = Integer.parseInt(tf_tlf.getText());
                 Kunde kunde = new Kunde(navn, sektor, adresse, tlf, epost);
-                v.kundeRegister.settInn(kunde);
+                v.getKundeRegister().settInn(kunde);
                 System.out.println("regKunde");
                 utskrift.setText(kunde.toString());
                 resetInput();

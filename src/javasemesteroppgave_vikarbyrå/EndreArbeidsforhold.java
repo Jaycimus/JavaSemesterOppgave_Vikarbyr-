@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 //Klassen bygger opp vinduet når knappen "Registrer Arbeidsfohold" er trykket
-public class RegistrerArbeidsforhold extends JPanel {
+public class EndreArbeidsforhold extends JPanel {
     private JLabel lbl_kunder, lbl_vikariater, lbl_vikar, lbl_arbeidsforhold;
     private JTextArea ta_arbeidsforhold;
     private JComboBox<String> cb_kunder, cb_vikariater, cb_vikarer;
@@ -32,7 +32,7 @@ public class RegistrerArbeidsforhold extends JPanel {
     private JTextArea utskrift;
     
     //Konstruktøren
-    public RegistrerArbeidsforhold(JTextArea utskrift, Vikarbyraa v){
+    public EndreArbeidsforhold(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
@@ -50,8 +50,6 @@ public class RegistrerArbeidsforhold extends JPanel {
         lbl_arbeidsforhold = new JLabel("Arbeidsforhold:");
                 
         kundeNavn = v.getKundeRegister().getKundeNavn();
-        vikariatNr = v.getVikariatRegister().getOpptatteVikariater();
-        vikarer = v.getVikarRegister().getVikarer();
         cb_kunder = new JComboBox<String>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
         //Setter inn kunder som er registrert fra før i ComboBox'en
@@ -59,52 +57,37 @@ public class RegistrerArbeidsforhold extends JPanel {
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange() == ItemEvent.SELECTED){
-                        String valg = (String) cb_kunder.getSelectedItem();
-                        if(valg.matches("---Kunder---")){
-                            cb_vikariater.setSelectedIndex(0);
-                            cb_vikariater.setEnabled(false);
-                            cb_vikarer.setSelectedIndex(0);
-                            cb_vikarer.setEnabled(false);
-                            return;
-                        } else {
-                            v.getVikariatRegister().skrivOpptatteVikariatListeTilKunde(utskrift, valg);
-                            cb_vikariater.removeAllItems();
-                            String[] vikariater = v.getVikariatRegister().getOpptatteVikariaterTilKunde(valg);
-                            for(int i=0; i < vikariater.length;i++){
-                                cb_vikariater.addItem(vikariater[i]);
-                            }
-                            cb_vikariater.setEnabled(true);
+                        cb_vikariater.removeAllItems();
+                        vikariatNr = v.getVikariatRegister().getVikariaterTilKunde((String) cb_kunder.getSelectedItem());
+                        for(int i = 0; i < vikariatNr.length; i++){
+                            cb_vikariater.addItem(vikariatNr[i]);
                         }
+                        cb_vikariater.setEnabled(true);
                     }
                 }
             }
         );
+        vikariatNr = new String[0];
         cb_vikariater = new JComboBox<String>(vikariatNr);
         cb_vikariater.setMaximumRowCount(9);
         cb_vikariater.setEnabled(false);
+        //Setter inn vikariatnr. som er registrert fra før av i ComboBox'en
         cb_vikariater.addItemListener(
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange()==ItemEvent.SELECTED){
-                        String valg = (String) cb_vikariater.getSelectedItem();
-                        if(valg.matches("---Vikariater---")){
-                            cb_vikarer.setSelectedIndex(0);
-                            cb_vikarer.setEnabled(false);
-                            return;
-                        } else {
-                            String vikar = v.getVikarRegister().skrivVikarTilVikariatListe(utskrift, valg);
-                            if(vikar!=null){
-                                cb_vikarer.removeAllItems();
-                                cb_vikarer.addItem(vikar);
-                                cb_vikarer.setEnabled(true);
-                            } else {
-                                utskrift.setText("Ingen vikar i registeret");
-                            }
+                        cb_vikarer.removeAllItems();
+                        String vikariat = (String) cb_vikariater.getSelectedItem();
+                        vikarer = v.getVikarRegister().getVikarerTilVikariat(Integer.parseInt(vikariat));
+                        for(int i = 0; i < vikarer.length; i++){
+                            cb_vikarer.addItem(vikarer[i]);
                         }
+                        cb_vikarer.setEnabled(true);
                     }
                 }
             }
         );
+        vikarer = new String[0];
         cb_vikarer = new JComboBox<String>(vikarer);
         cb_vikarer.setMaximumRowCount(9);
         cb_vikarer.setEnabled(false);

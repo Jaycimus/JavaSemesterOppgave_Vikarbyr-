@@ -51,7 +51,7 @@ public class RegistrerSoknad extends JPanel{
         ta_soknad = new JTextArea(4,15);
         JScrollPane sp = new JScrollPane(ta_soknad);
         
-        vikariatNr = v.vikariatRegister.getLedigeVikariater();
+        vikariatNr = v.getVikariatRegister().getLedigeVikariater();
         cb_vikariater = new JComboBox<String>(vikariatNr);
         
         tf_vikar = new JTextField("",15);
@@ -73,14 +73,15 @@ public class RegistrerSoknad extends JPanel{
     
     //Metoden tar i mot søknaden og sender den til visning av vikar i ansattvindu
     public void regSoknad(){
-        Vikariat vikariat = v.vikariatRegister.finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
-        Vikar vikar = v.vikarRegister.finnVikar(Long.parseLong(tf_vikar.getText()));
+        Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
+        Vikar vikar = v.getVikarRegister().finnVikar(Long.parseLong(tf_vikar.getText()));
         String soknadTekst = ta_soknad.getText();
         
         Soknad soknad = new Soknad(soknadTekst, vikariat, vikar);
-        v.soknadsRegister.settInn(soknad);
+        v.getSoknadsRegister().settInn(soknad);
         vikariat.setSoknad(soknad);
         vikar.setVikariat(vikariat);
+        vikar.setSoknad(soknad);
         System.out.println("Registrer søknad");
         utskrift.setText("Søknad registrert:\n" + soknad.toString());
         resetInput();

@@ -85,7 +85,7 @@ public class RegistrerVikariat extends JPanel {
         
         Knappelytter lytter = new Knappelytter();
 
-        kundeNavn = v.kundeRegister.getKundeNavn();
+        kundeNavn = v.getKundeRegister().getKundeNavn();
         
         regVikariat = new JButton("Lagre nytt vikariat");
         regVikariat.addActionListener(lytter);
@@ -195,7 +195,7 @@ public class RegistrerVikariat extends JPanel {
     
     //Tar innlest data og setter dem i en Vikariat-objekt
     public void regVikariat(){
-        Kunde kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
+        Kunde kunde = v.getKundeRegister().finnKunde((String) cb_kunder.getSelectedItem());
         
         String arbeidsted = tf_adresse.getText();
         String arbeidstid = (String) cb_timer.getSelectedItem() + ":" + 
@@ -214,12 +214,7 @@ public class RegistrerVikariat extends JPanel {
         String varighettil = (String) cb_dag2.getSelectedItem() + "-" +
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
-        //IF TEST OM VALGENE AV VARIGHET ER RIKTIGE
         
-        
-        String bransjer = (String) cb_bransjer.getSelectedItem();
-        
-                
         int vikariatNr = v.getNesteVikariatNr();
         v.setNesteVikariatNr();
         
@@ -232,8 +227,8 @@ public class RegistrerVikariat extends JPanel {
             System.out.println("Validering vikariat godkjent");
             Vikariat vikariat = new Vikariat(kunde, arbeidsted, arbeidstid, 
                     stillingstype, kvalifikasjoner, lonnsbetingelser, kontaktinfo,
-                        stillingsinfo,varighetfra,varighettil, bransjer, vikariatNr);
-            v.vikariatRegister.settInn(vikariat);
+                        stillingsinfo,varighetfra,varighettil, vikariatNr);
+            v.getVikariatRegister().settInn(vikariat);
             System.out.println("Registrer Vikariat");
             utskrift.setText(vikariat.toString());
             resetInput();

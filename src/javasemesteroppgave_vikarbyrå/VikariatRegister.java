@@ -49,7 +49,7 @@ public class VikariatRegister implements Serializable {
         return null;
     }
     
-    //Metode for å finne ledige vikariater for en vikar
+    //Metode for å finne ledige vikariater
     public String[] getLedigeVikariater(){
         String[] vikariater;
         List<String> list = new ArrayList<>();
@@ -64,6 +64,33 @@ public class VikariatRegister implements Serializable {
             loper = loper.neste;
             while(ok == true){
                 if(loper != null && loper.isLedig()){
+                    list.add(loper.getVikariatNrS());
+                    loper = loper.neste;
+                }
+                else
+                    ok = false;
+            }
+        }
+        
+        vikariater = list.toArray(new String[list.size()]);    
+                
+        return vikariater;        
+    }//end getLedigeViakriater()
+    
+    public String[] getOpptatteVikariater(){
+        String[] vikariater;
+        List<String> list = new ArrayList<>();
+        list.add("---Vikariater---");
+        boolean ok = false;
+        Vikariat loper = forste;
+        if(loper!=null){
+            if(!loper.isLedig()){
+                list.add(loper.getVikariatNrS());
+            }
+            ok = true;
+            loper = loper.neste;
+            while(ok == true){
+                if(loper != null && !loper.isLedig()){
                     list.add(loper.getVikariatNrS());
                     loper = loper.neste;
                 }
@@ -117,9 +144,9 @@ public class VikariatRegister implements Serializable {
         System.out.println(kundeNavn);
         String[] vikariater;
         List<String> list = new ArrayList<>();
-        boolean ok = true;
-        Vikariat loper = null;
+        Vikariat loper = forste;
         if(loper!=null){
+            boolean ok = true;
             if(loper.getKundeNavn().matches(kundeNavn)){
                 list.add(loper.getVikariatNrS());
             }
@@ -127,24 +154,59 @@ public class VikariatRegister implements Serializable {
             while(ok){
                 System.out.println("while");
                 if(loper!=null){
+                    System.out.println("if");
                     if(loper.getKundeNavn().equals(kundeNavn)){
                         list.add(loper.getVikariatNrS());
                         loper = loper.neste;
                         System.out.println("das");
-                    }
+                    } else
+                        loper = loper.neste;
                 }
-                else if (loper==null){
+                else {
                     ok = false;
                     System.out.println("else");
                 }
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
+            JOptionPane.showMessageDialog(null, "Kunde har ingen registrerte vikariater");
         }
         
         vikariater = list.toArray(new String[list.size()]);    
-                
+        return vikariater;        
+    }//end getVikariaterTilKunde
+    
+    public String[] getLedigeVikariaterTilKunde(String kundeNavn){
+        System.out.println(kundeNavn);
+        String[] vikariater;
+        List<String> list = new ArrayList<>();
+        list.add("---Vikariater---");
+        Vikariat loper = forste;
+        if(loper!=null){
+            boolean ok = true;
+            if(loper.isLedig() && loper.getKundeNavn().matches(kundeNavn)){
+                list.add(loper.getVikariatNrS());
+            }
+            loper = loper.neste;
+            while(ok){
+                System.out.println("while");
+                if(loper!=null){
+                    System.out.println("if");
+                    if(loper.isLedig() && loper.getKundeNavn().equals(kundeNavn)){
+                        list.add(loper.getVikariatNrS());
+                        loper = loper.neste;
+                        System.out.println("das");
+                    } else
+                        loper = loper.neste;
+                }
+                else {
+                    ok = false;
+                    System.out.println("else");
+                }
+            }
+        }
+        
+        vikariater = list.toArray(new String[list.size()]);    
         return vikariater;        
     }//end getVikariaterTilKunde
     
@@ -178,6 +240,124 @@ public class VikariatRegister implements Serializable {
                 
                 loper = loper.neste;
             }
+        }
+    }
+    
+    public String[] getOpptatteVikariaterTilKunde(String kundeNavn){
+        System.out.println(kundeNavn);
+        String[] vikariater;
+        List<String> list = new ArrayList<>();
+        list.add("---Vikariater---");
+        Vikariat loper = forste;
+        if(loper!=null){
+            boolean ok = true;
+            if(!loper.isLedig() && loper.getKundeNavn().matches(kundeNavn)){
+                list.add(loper.getVikariatNrS());
+            }
+            loper = loper.neste;
+            while(ok){
+                System.out.println("while");
+                if(loper!=null){
+                    System.out.println("if");
+                    if(!loper.isLedig() && loper.getKundeNavn().equals(kundeNavn)){
+                        list.add(loper.getVikariatNrS());
+                        loper = loper.neste;
+                        System.out.println("das");
+                    } else
+                        loper = loper.neste;
+                }
+                else {
+                    ok = false;
+                    System.out.println("else");
+                }
+            }
+        }
+        vikariater = list.toArray(new String[list.size()]);    
+        return vikariater;  
+    }
+    
+    public void skrivOpptatteVikariatListeTilKunde(JTextArea vikariatListe, String navn){
+        String[] vikariater;
+        List<String> list = new ArrayList<>();
+        Vikariat loper = forste;
+        if(loper!=null){
+            boolean ok = true;
+            if(!loper.isLedig() && loper.getKundeNavn().matches(navn)){
+                list.add(loper.toString());
+            }
+            loper = loper.neste;
+            while(ok){
+                System.out.println("while");
+                if(loper!=null){
+                    System.out.println("if");
+                    if(!loper.isLedig() && loper.getKundeNavn().equals(navn)){
+                        list.add(loper.toString());
+                        loper = loper.neste;
+                        System.out.println("das");
+                    } else
+                        loper = loper.neste;
+                }
+                else {
+                    ok = false;
+                    System.out.println("else");
+                }
+            }
+            vikariater = list.toArray(new String[list.size()]); 
+            String utskrift = "";
+            for(int i = 0; i < vikariater.length; i++){
+                utskrift += vikariater[i].toString() + "\n";
+            }
+            if(utskrift.matches("")){
+                vikariatListe.setText("Ingen registrerte vikariater til kunde: " +  navn);
+                return;
+            }
+            vikariatListe.setText(utskrift);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
+        }
+    }
+    
+    //Skriver ut vikariatliste til kunde
+    public void skrivLedigVikariatListeTilKunde(JTextArea vikariatListe, String navn){
+        String[] vikariater;
+        List<String> list = new ArrayList<>();
+        Vikariat loper = forste;
+        if(loper!=null){
+            boolean ok = true;
+            if(loper.isLedig() && loper.getKundeNavn().matches(navn)){
+                list.add(loper.toString());
+            }
+            loper = loper.neste;
+            while(ok){
+                System.out.println("while");
+                if(loper!=null){
+                    System.out.println("if");
+                    if(loper.isLedig() && loper.getKundeNavn().equals(navn)){
+                        list.add(loper.toString());
+                        loper = loper.neste;
+                        System.out.println("das");
+                    } else
+                        loper = loper.neste;
+                }
+                else {
+                    ok = false;
+                    System.out.println("else");
+                }
+            }
+            vikariater = list.toArray(new String[list.size()]); 
+            String utskrift = "";
+            for(int i = 0; i < vikariater.length; i++){
+                utskrift += vikariater[i].toString() + "\n";
+            }
+            if(utskrift.matches("")){
+                vikariatListe.setText("Ingen registrerte vikariater til kunde: " +  navn);
+                return;
+            }
+            vikariatListe.setText(utskrift);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
         }
     }
     
@@ -247,10 +427,6 @@ public class VikariatRegister implements Serializable {
                 }
             }
         }
-        /*loper = finnNestSisteNode();
-        if(loper.getKundeNavn().equals(kundeNavn)){
-            loper.neste = null;
-        }*/
         return false;
         
     }

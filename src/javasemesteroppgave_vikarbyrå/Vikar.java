@@ -25,6 +25,7 @@ public class Vikar implements Serializable{
     Vikar neste;
     
     private ArrayList<Vikariat> vikariatNr = new ArrayList<>();
+    private ArrayList<Soknad> soknader = new ArrayList<>();
         
     //Konstruktør
     public Vikar(String navn, int tlf, String epost, long personNr, String onsketBransjer, String utdanning, String kjonn, String jobberfaring, String referanser){
@@ -50,13 +51,17 @@ public class Vikar implements Serializable{
         return 0;
     }
 
+    public void setSoknad(Soknad s){
+        soknader.add(s);
+    }
+    
     //Setter inn vikariat
     public void setVikariat(Vikariat v){
         vikariatNr.add(v);
     }
     
     //Returnerer vikariatnummer fra lista
-    public ArrayList<Vikariat> getVikariatNr() {
+    public ArrayList<Vikariat> getVikariatListe() {
         return vikariatNr;
     }
 
@@ -150,12 +155,31 @@ public class Vikar implements Serializable{
         this.epost = epost;
     }
     
+    public String toStringShort(){
+        String utskrift = "\nVikar navn: " + navn + "\nPersonnummer: " + personNr;
+        return utskrift;
+    }
+    
+    public String toStringUtenVikariat(){
+        String utskrift = "\nVikar navn: " + navn + "\nTelefonnr.: " + tlf + "\nE-post: " + epost +
+                          "\nPersonnummer: " + personNr + "\nØnsket bransje: " + onsketBransjer +
+                          "\nUtdanning: " + utdanning + "\nKjønn: " + kjonn +
+                          "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser;
+        return utskrift;
+    }
+
     //Skriver ut info om vikaren i utskriftområdet
     public String toString(){
         String utskrift = "\nVikar navn: " + navn + "\nTelefonnr.: " + tlf + "\nE-post: " + epost +
                           "\nPersonnummer: " + personNr + "\nØnsket bransje: " + onsketBransjer +
                           "\nUtdanning: " + utdanning + "\nKjønn: " + kjonn +
-                          "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser;
+                          "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser + "\nViakriarer: ";
+                          if(vikariatNr.size()!=0){
+                              for(int i=0;i<vikariatNr.size();i++){
+                              utskrift += "\t" + vikariatNr.get(i).toStringShort();
+                              } 
+                          }else
+                              utskrift += "Ingen vikariater";
         return utskrift;
     }
 }//end Vikar
