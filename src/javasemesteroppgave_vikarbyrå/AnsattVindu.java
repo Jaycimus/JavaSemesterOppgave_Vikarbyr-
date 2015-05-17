@@ -50,16 +50,13 @@ public class AnsattVindu extends JPanel{
         this.ramme = ramme;
         bakgrunn = v.farge.getBakrunn();
         
-<<<<<<< HEAD
-        borderLayout = new BorderLayout(10, 10);
+        BorderLayout borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
         setBorder(new EmptyBorder(0, 5, 0, 5));
-=======
         setLayout(new BorderLayout(10, 10));
         setBorder(new EmptyBorder(0, 5, 0, 5));
         
         this.setBackground(bakgrunn);
->>>>>>> origin/master
         
         regKunde = new JButton("Registrer Kunde");
             /*regKunde.setFocusPainted(false);
