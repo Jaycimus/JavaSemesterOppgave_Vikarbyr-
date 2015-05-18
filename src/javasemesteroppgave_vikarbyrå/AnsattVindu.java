@@ -245,41 +245,12 @@ public class AnsattVindu extends JFrame{
                 cl.show(cards, "EndreArbeidsforhold");
                 visArbeisforholdReg();
             }
-            
-<<<<<<< HEAD
-            //Knappen "Vis/Endre Vikar"
-            else if(e.getSource()==visEndreVikarReg){
-                registrering.setVisible(false);
-                if(rk!=null)
-                    AnsattVindu.this.rk.setVisible(false);
-                if(rv!=null)
-                    AnsattVindu.this.rv.setVisible(false);
-                if(rvv!=null)
-                    AnsattVindu.this.rvv.setVisible(false);
-                if(rvtv!=null)
-                    AnsattVindu.this.rvtv.setVisible(false);
-                if(raf!=null)
-                    AnsattVindu.this.raf.setVisible(false);
-                if(ek!=null)
-                    AnsattVindu.this.ek.setVisible(false);
-                if(evt!=null)
-                    AnsattVindu.this.evt.setVisible(false);
-                //if(eaf!=null)
-                  //  AnsattVindu.this.ev.setVisible(false);
-                //if(s!=null)
-                //    AnsattVindu.this.s.setVisible(false);
-                EndreVikar ev = new EndreVikar(AnsattVindu.this.getTextArea(),v);
-                AnsattVindu.this.ev = ev;
-                add(ev,BorderLayout.EAST);
-                visVikariatReg();
-                visVikarReg();
-=======
+                
             //Knappe "Søk i registerene
             else if(e.getSource()==regSoking){
                 cardLayoutUpdate();
                 CardLayout cl = (CardLayout)(cards.getLayout());
                 cl.show(cards, "SokningIRegister");
->>>>>>> origin/master
             }
             
             //Knappen "Logg ut"
