@@ -48,15 +48,15 @@ public class AnsattVindu extends JFrame{
         setLayout(borderLayout);
         
         
-        borderKunde = BorderFactory.createTitledBorder(null,"Registreing av Kunde");
+        borderKunde = BorderFactory.createTitledBorder(null,"Registrering av Kunde");
         borderKunde.setTitleJustification(TitledBorder.CENTER);
-        borderVikariat = BorderFactory.createTitledBorder(null,"Registreing av Vikriat");
+        borderVikariat = BorderFactory.createTitledBorder(null,"Registrering av Vikriat");
         borderVikariat.setTitleJustification(TitledBorder.CENTER);
-        borderVikar = BorderFactory.createTitledBorder(null,"Registreing av Vikar");
+        borderVikar = BorderFactory.createTitledBorder(null,"Registrering av Vikar");
         borderVikar.setTitleJustification(TitledBorder.CENTER);
-        borderVikarVikariat = BorderFactory.createTitledBorder(null,"Registreing av Vikar til Vikariat");
+        borderVikarVikariat = BorderFactory.createTitledBorder(null,"Registrering av Vikar til Vikariat");
         borderVikarVikariat.setTitleJustification(TitledBorder.CENTER);
-        borderArbForhold = BorderFactory.createTitledBorder(null,"Registreing av Arbeidsforhold");
+        borderArbForhold = BorderFactory.createTitledBorder(null,"Registrering av Arbeidsforhold");
         borderArbForhold.setTitleJustification(TitledBorder.CENTER);
         borderVisEndreKundeReg = BorderFactory.createTitledBorder(null,"Endring/Sletting av Kunde");
         borderVisEndreKundeReg.setTitleJustification(TitledBorder.CENTER);
@@ -73,7 +73,7 @@ public class AnsattVindu extends JFrame{
         regVikariat = new JButton("Registrer Vikariat");
         regArbForhold = new JButton("Registrer Arbeidsfohold");
         regVikar = new JButton("Registrer Vikar");
-        vikarVikariat = new JButton("Vikar<-->Vikariat");
+        vikarVikariat = new JButton("Administrer vikariater");
         visEndreKundeReg = new JButton("Vis/Endre Kundregister");
         visEndreVikariatReg = new JButton("Vis/Endre Vikariatregister");
         visEndreArbeisforholdReg = new JButton("Vis/Endre Arbeisforholdregister");
