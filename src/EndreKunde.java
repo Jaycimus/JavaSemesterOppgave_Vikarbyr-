@@ -34,7 +34,7 @@ public class EndreKunde extends JPanel {
     private JTextArea utskrift;
     
     private Vikarbyraa v;
-    private Kunde kunde;
+    
     
     private JComboBox<String>  cb_kunder; 
     private String[] kundeNavn;
@@ -134,7 +134,7 @@ public class EndreKunde extends JPanel {
             JOptionPane.showMessageDialog(null,"Kunde ikke valgt!");
             return;
         }
-        kunde = v.getKundeRegister().finnKunde(kundeNavn);
+        Kunde kunde = v.getKundeRegister().finnKunde(kundeNavn);
         
         String navn = tf_navn.getText();
         kunde.setNavn(navn);
@@ -222,7 +222,7 @@ public class EndreKunde extends JPanel {
     public void endreKundeTilVikariater(String kundeNavn){
         Vikariat loper = v.getVikariatRegister().forste;
         if(loper==null){
-            JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
+            return;
         } else {
             Boolean ok = true;
             if(loper.getKundeNavn().matches(kundeNavn)){

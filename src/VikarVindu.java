@@ -35,6 +35,7 @@ public class VikarVindu extends JFrame{
     
     //Konstruktør
     public VikarVindu(Vikarbyraa v){
+        super("Vikarbyrå AS");
         this.v = v;
         
         setLayout(new BorderLayout(10, 10));

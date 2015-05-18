@@ -48,6 +48,12 @@ public class RegistrerArbeidsforhold extends JPanel {
         lbl_vikariater = new JLabel("Vikariater:");
         lbl_vikar = new JLabel("Vikar id:");
         lbl_arbeidsforhold = new JLabel("Arbeidsforhold:");
+        
+        ta_arbeidsforhold = new JTextArea(40,15);
+        ta_arbeidsforhold.setWrapStyleWord(true);
+        ta_arbeidsforhold.setLineWrap(true);
+        JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
+        ta_arbeidsforhold.setEnabled(false);
                 
         kundeNavn = v.getKundeRegister().getKundeNavn();
         vikariatNr = v.getVikariatRegister().getOpptatteVikariater();
@@ -97,6 +103,7 @@ public class RegistrerArbeidsforhold extends JPanel {
                                 cb_vikarer.removeAllItems();
                                 cb_vikarer.addItem(vikar);
                                 cb_vikarer.setEnabled(true);
+                                sp.setEnabled(true);
                             } else {
                                 utskrift.setText("Ingen vikar i registeret");
                             }
@@ -109,10 +116,7 @@ public class RegistrerArbeidsforhold extends JPanel {
         cb_vikarer.setMaximumRowCount(9);
         cb_vikarer.setEnabled(false);
         
-        ta_arbeidsforhold = new JTextArea(40,15);
-        ta_arbeidsforhold.setWrapStyleWord(true);
-        ta_arbeidsforhold.setLineWrap(true);
-        JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
+        
         
         add(lbl_kunder);
         add(cb_kunder);

@@ -49,6 +49,18 @@ public class VikariatRegister implements Serializable {
         return null;
     }
     
+    public void finnVikariatOgSLettVikar(String personNr){
+        Vikariat loper = forste;
+        while(loper!=null){
+            if(loper.getVikar().getPersonNrS().equals(personNr)){
+                loper.setVikarer(null, true);
+                return;
+            }
+            else
+                loper = loper.neste;
+        }
+    }
+    
     //Metode for å finne ledige vikariater
     public String[] getLedigeVikariater(){
         String[] vikariater;

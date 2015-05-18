@@ -105,7 +105,7 @@ public class VikarRegister implements Serializable {
         vikarer[0] = "---Vikarer---";
         
         for(int i = 1; i <= getAntallNoder(); i++){
-            vikarer[i] = loper.getNavn();
+            vikarer[i] = loper.getPersonNrS();
             loper = loper.neste;
         }
         return vikarer;
