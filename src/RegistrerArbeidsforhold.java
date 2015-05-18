@@ -110,6 +110,8 @@ public class RegistrerArbeidsforhold extends JPanel {
         cb_vikarer.setEnabled(false);
         
         ta_arbeidsforhold = new JTextArea(40,15);
+        ta_arbeidsforhold.setWrapStyleWord(true);
+        ta_arbeidsforhold.setLineWrap(true);
         JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
         
         add(lbl_kunder);

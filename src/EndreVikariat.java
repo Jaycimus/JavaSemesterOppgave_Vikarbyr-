@@ -14,13 +14,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -29,7 +27,7 @@ public class EndreVikariat extends JPanel {
     private JButton endreVikariat, slettVikariat;
     private JLabel lbl_vikariat, lbl_adresse, lbl_arbeidstid, lbl_stillingstype, lbl_kvalifikasjoner,
             lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighetfra, lbl_varighettil,
-            lbl_bindestrek, lbl_kolon, lbl_kolon2;
+            lbl_bindestrek;
     private JTextField tf_adresse, tf_stillingstype, tf_kvalifikasjoner, tf_lonnsbetingelser,
             tf_kontaktinfo, tf_stillingsinfo;
     private JTextArea utskrift;
@@ -93,8 +91,6 @@ public class EndreVikariat extends JPanel {
         lbl_varighetfra = new JLabel("Varighet(fra): ");
         lbl_varighettil = new JLabel("Varighet(til): ");
         lbl_bindestrek = new JLabel("-");
-        lbl_kolon = new JLabel(":");
-        lbl_kolon2 = new JLabel(":");
         
         tf_adresse = new JTextField("",15);
         tf_stillingstype = new JTextField("",15);
@@ -229,26 +225,17 @@ public class EndreVikariat extends JPanel {
         cb_stillingsTyper = new JComboBox<String>(stillingsTyper);
         cb_stillingsTyper.setMaximumRowCount(9);
 
-        
-        JPanel kolon = new JPanel(new FlowLayout());
-        kolon.add(lbl_kolon);
-        
-        JPanel kolon2 = new JPanel(new FlowLayout());
-        kolon2.add(lbl_kolon2);
-        
         JPanel bindestrek = new JPanel(new FlowLayout());
         bindestrek.add(lbl_bindestrek);
 
         JPanel tider = new JPanel(new FlowLayout(FlowLayout.LEFT,-2,-2));
         tider.add(cb_timer);
         cb_timer.setBackground(Color.white);
-        tider.add(kolon);
         tider.add(cb_minutter);
         cb_minutter.setBackground(Color.white);
         tider.add(bindestrek);
         tider.add(cb_timer2);
         cb_timer2.setBackground(Color.white);
-        tider.add(kolon2);
         tider.add(cb_minutter2);
         cb_minutter2.setBackground(Color.white);
         

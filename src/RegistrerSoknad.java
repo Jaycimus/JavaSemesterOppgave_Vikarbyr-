@@ -49,6 +49,8 @@ public class RegistrerSoknad extends JPanel{
         lbl_soknad = new JLabel("Søknadstekst: ");
         
         ta_soknad = new JTextArea(4,15);
+        ta_soknad.setWrapStyleWord(true);
+        ta_soknad.setLineWrap(true);
         JScrollPane sp = new JScrollPane(ta_soknad);
         
         vikariatNr = v.getVikariatRegister().getLedigeVikariater();
@@ -62,6 +64,11 @@ public class RegistrerSoknad extends JPanel{
         add(tf_vikar);
         add(lbl_soknad);
         add(sp);
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());

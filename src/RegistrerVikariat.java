@@ -101,8 +101,6 @@ public class RegistrerVikariat extends JPanel {
         lbl_varighetfra = new JLabel("Varighet(fra): ");
         lbl_varighettil = new JLabel("Varighet(til): ");
         lbl_bindestrek = new JLabel("-");
-        lbl_kolon = new JLabel(":");
-        lbl_kolon2 = new JLabel(":");
         
         tf_adresse = new JTextField("",15);
         tf_stillingstype = new JTextField("",15);
@@ -137,25 +135,17 @@ public class RegistrerVikariat extends JPanel {
         cb_bransjer = new JComboBox<String>(bransjer);
         cb_bransjer.setMaximumRowCount(9);
 
-        JPanel kolon = new JPanel(new FlowLayout());
-        kolon.add(lbl_kolon);
-        
-        JPanel kolon2 = new JPanel(new FlowLayout());
-        kolon2.add(lbl_kolon2);
-        
         JPanel bindestrek = new JPanel(new FlowLayout());
         bindestrek.add(lbl_bindestrek);
 
         JPanel tider = new JPanel(new FlowLayout(FlowLayout.LEFT,-2,-2));
         tider.add(cb_timer);
         cb_timer.setBackground(Color.white);
-        tider.add(kolon);
         tider.add(cb_minutter);
         cb_minutter.setBackground(Color.white);
         tider.add(bindestrek);
         tider.add(cb_timer2);
         cb_timer2.setBackground(Color.white);
-        tider.add(kolon2);
         tider.add(cb_minutter2);
         cb_minutter2.setBackground(Color.white);
         

@@ -173,7 +173,7 @@ public class Vikar implements Serializable{
         String utskrift = "\nVikar navn: " + navn + "\nTelefonnr.: " + tlf + "\nE-post: " + epost +
                           "\nPersonnummer: " + personNr + "\nØnsket bransje: " + onsketBransjer +
                           "\nUtdanning: " + utdanning + "\nKjønn: " + kjonn +
-                          "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser + "\nViakriarer: ";
+                          "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser + "\nVikariater: ";
                           if(vikariatNr.size()!=0){
                               for(int i=0;i<vikariatNr.size();i++){
                               utskrift += "\t" + vikariatNr.get(i).toStringShort();

@@ -12,7 +12,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -23,7 +22,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
@@ -116,13 +114,16 @@ public class AnsattVindu extends JFrame{
         
         utskrift = new JTextArea(0, 0);
         utskrift.setEditable(false);
+        utskrift.setWrapStyleWord(true);
+        utskrift.setLineWrap(true);
         utskrift.setText(bruksanvisning());
         utskrift.setPreferredSize(new Dimension(200,200));
         JScrollPane sp = new JScrollPane(utskrift);
         sp.setBorder(new EmptyBorder(10,0,10,0));
         
         cards = new JPanel(new CardLayout());
-        cards.setBorder(new EmptyBorder(5,0,5,5));
+        cards.setPreferredSize(new Dimension(500, 600));
+        cards.setBorder(new EmptyBorder(5,0,5,0));
         cardLayoutUpdate();
         
         add(cards, BorderLayout.EAST);
