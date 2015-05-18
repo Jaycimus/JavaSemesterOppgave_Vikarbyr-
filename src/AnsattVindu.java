@@ -47,7 +47,6 @@ public class AnsattVindu extends JFrame{
         BorderLayout borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
         
-        
         borderKunde = BorderFactory.createTitledBorder(null,"Registrering av Kunde");
         borderKunde.setTitleJustification(TitledBorder.CENTER);
         borderVikariat = BorderFactory.createTitledBorder(null,"Registrering av Vikriat");
