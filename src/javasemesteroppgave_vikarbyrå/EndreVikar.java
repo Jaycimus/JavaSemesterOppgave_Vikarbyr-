@@ -65,7 +65,7 @@ public class EndreVikar extends JPanel{
         
         Knappelytter lytter = new Knappelytter();
         
-        vikarPersNr = v.getVikarRegister().finnVikar(vikar.getPersonNr());
+        vikarPersNr = v.getVikarRegister().getVikarer();
         
         endreVikar = new JButton("Endre Vikar");
         endreVikar.addActionListener(lytter);
@@ -137,7 +137,7 @@ public class EndreVikar extends JPanel{
                 ta_ref.setText("");
                 return;
             }
-            Vikar vikar = v.getVikarRegister().finnVikar(WIDTH)
+            vikar = v.getVikarRegister().finnVikar(vikar.getPersonNr());
             
             
         });
