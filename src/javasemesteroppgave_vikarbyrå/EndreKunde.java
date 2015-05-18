@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,7 +26,7 @@ import javax.swing.JTextField;
 //Klassen viser vinduet etter man trykker på knappen "Vis/Endre Kunde"
 public class EndreKunde extends JPanel {
     private JButton endreKunde, slettKunde;
-    private JLabel lbl_navn, lbl_adresse, lbl_tlf, lbl_epost;
+    private JLabel lbl_kunde, lbl_navn, lbl_adresse, lbl_tlf, lbl_epost;
     private JRadioButton privat, offentlig;
     private ButtonGroup BG_typeSektor;
     private JTextField tf_navn, tf_adresse, tf_tlf, tf_epost;
@@ -50,13 +51,14 @@ public class EndreKunde extends JPanel {
         Knappelytter lytter = new Knappelytter();
         //CBlytter cbLytter = new CBlytter();
         
-        kundeNavn = v.kundeRegister.getKundeNavn();
+        kundeNavn = v.getKundeRegister().getKundeNavn();
         
         endreKunde = new JButton("Endre Kunde");
         endreKunde.addActionListener(lytter);
         slettKunde = new JButton("Slett Kunde");
         slettKunde.addActionListener(lytter);
         
+        lbl_kunde = new JLabel("Velg kunde: ");
         lbl_navn = new JLabel("Kunde Navn: ");
         lbl_adresse = new JLabel("Adresse: ");
         lbl_tlf = new JLabel("Telefon: ");
@@ -88,7 +90,7 @@ public class EndreKunde extends JPanel {
                 tf_epost.setText("");
                 return;
             }
-            Kunde kunde = v.kundeRegister.finnKunde(kundeNavn);
+            Kunde kunde = v.getKundeRegister().finnKunde(kundeNavn);
             tf_navn.setText(kunde.getNavn());
             tf_adresse.setText(kunde.getAdresse());
             tf_tlf.setText(kunde.getTlf());
@@ -101,7 +103,7 @@ public class EndreKunde extends JPanel {
             }
         });
         
-        add(new JPanel());
+        add(lbl_kunde);
         add(cb_kunder);
         add(lbl_navn);
         add(tf_navn);
@@ -115,6 +117,12 @@ public class EndreKunde extends JPanel {
         add(tf_epost);
         add(new JPanel());
         add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
+        add(new JPanel());
         add(slettKunde);
         add(endreKunde);                        
     }//end EndreKunde konstruktør
@@ -126,8 +134,7 @@ public class EndreKunde extends JPanel {
             JOptionPane.showMessageDialog(null,"Kunde ikke valgt!");
             return;
         }
-        kunde = v.kundeRegister.finnKunde(kundeNavn);
-        kunde = v.kundeRegister.finnKunde((String) cb_kunder.getSelectedItem());
+        kunde = v.getKundeRegister().finnKunde(kundeNavn);
         
         String navn = tf_navn.getText();
         kunde.setNavn(navn);
@@ -162,8 +169,16 @@ public class EndreKunde extends JPanel {
         }
         int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette kunden?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
-            if(v.kundeRegister.slettKunde(navn)){
-                if(v.vikariatRegister.slettVikariaterTilKunde(navn)){
+            if(v.getKundeRegister().slettKunde(navn)){
+                if(v.getVikariatRegister().slettVikariaterTilKunde(navn)){
+                    Vikar[] vikarer = v.getVikarRegister().getVikarerObjekter();
+                    for(int i = 0; i < vikarer.length;i++){
+                        ArrayList<Vikariat> vikariater = vikarer[i].getVikariatListe();
+                        for(int y = 0;y < vikariater.size();y++){
+                            if(vikariater.get(y).getKundeNavn().equals(navn))
+                                vikariater.remove(y);
+                        }
+                    }
                     System.out.println("Vikariater slettet");
                     v.nesteVikariatNr();
                 }
@@ -179,7 +194,7 @@ public class EndreKunde extends JPanel {
     
     //Endrer informasjonen i utskriftsområdet når endringene blir gjort
     private void refresh(){
-        v.kundeRegister.skrivKundeListe(utskrift);
+        v.getKundeRegister().skrivHeleKundeListe(utskrift);
     }
     
     private void resetInput(){
@@ -205,19 +220,19 @@ public class EndreKunde extends JPanel {
     }//end Knappelytter
     
     public void endreKundeTilVikariater(String kundeNavn){
-        Vikariat loper = v.vikariatRegister.forste;
+        Vikariat loper = v.getVikariatRegister().forste;
         if(loper==null){
             JOptionPane.showMessageDialog(null, "Det er ingen vikariater registrert for tiden.");
         } else {
             Boolean ok = true;
             if(loper.getKundeNavn().matches(kundeNavn)){
-                loper.setKunde(v.kundeRegister.finnKunde(kundeNavn));
+                loper.setKunde(v.getKundeRegister().finnKunde(kundeNavn));
                 loper = loper.neste;
                 
                 while(ok){
                     if(loper!=null){
                         if(loper.getKundeNavn().matches(kundeNavn)){
-                            loper.setKunde(v.kundeRegister.finnKunde(kundeNavn));
+                            loper.setKunde(v.getKundeRegister().finnKunde(kundeNavn));
                             loper = loper.neste;
                         } else
                             loper = loper.neste;

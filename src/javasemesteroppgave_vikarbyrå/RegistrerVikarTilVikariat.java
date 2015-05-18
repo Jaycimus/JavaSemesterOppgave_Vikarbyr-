@@ -44,10 +44,10 @@ public class RegistrerVikarTilVikariat extends JPanel {
         lbl_vikaiater = new JLabel("Vikariater:");
         lbl_vikar = new JLabel("Vikarer:");    
         
-        kunder = v.kundeRegister.getKundeNavn();
-        vikariatNr = v.vikariatRegister.getLedigeVikariater();
-        vikarer = v.vikarRegister.getVikarer();
-        cb_kunder = new JComboBox<String>(kunder);
+        kunder = v.getKundeRegister().getKundeNavn();
+        vikariatNr = v.getVikariatRegister().getLedigeVikariater();
+        vikarer = v.getVikarRegister().getVikarer();
+        cb_kunder = new JComboBox<>(kunder);
         cb_kunder.setMaximumRowCount(9);
         cb_kunder.addItemListener(
             new ItemListener(){
@@ -56,36 +56,46 @@ public class RegistrerVikarTilVikariat extends JPanel {
                         String valg = (String) cb_kunder.getSelectedItem();
                         if(valg.matches("---Kunder---")){
                             cb_vikariater.setSelectedIndex(0);
+                            cb_vikariater.setEnabled(false);
                             cb_vikarer.setSelectedIndex(0);
+                            cb_vikarer.setEnabled(false);
                             return;
+                        } else {
+                            v.getVikariatRegister().skrivLedigVikariatListeTilKunde(utskrift, valg);
+                            cb_vikariater.removeAllItems();
+                            String[] vikariater = v.getVikariatRegister().getLedigeVikariaterTilKunde(valg);
+                            for(int i=0; i < vikariater.length;i++){
+                                cb_vikariater.addItem(vikariater[i]);
+                            }
+                            cb_vikariater.setEnabled(true);
                         }
-                        //cb_vikariater.set
                     }
                 }
             }
         );
-        cb_vikariater = new JComboBox<String>(vikariatNr);
+        cb_vikariater = new JComboBox<>(vikariatNr);
         cb_vikariater.setMaximumRowCount(9);
+        cb_vikariater.setEnabled(false);
         cb_vikariater.addItemListener(
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange() == ItemEvent.SELECTED){
-                        
+                        String valg = (String) cb_vikariater.getSelectedItem();
+                        if(valg.matches("---Vikariater---")){
+                            cb_vikarer.setSelectedIndex(0);
+                            cb_vikarer.setEnabled(false);
+                            return;
+                        } else {
+                            v.getVikarRegister().skrivVikarListe(utskrift);
+                            cb_vikarer.setEnabled(true);
+                        }
                     }
                 }
             }
         );
-        cb_vikarer = new JComboBox<String>(vikarer);
+        cb_vikarer = new JComboBox<>(vikarer);
         cb_vikarer.setMaximumRowCount(9);
-        cb_vikarer.addItemListener(
-            new ItemListener(){
-                public void itemStateChanged(ItemEvent event){
-                    if(event.getStateChange() == ItemEvent.SELECTED){
-                        
-                    }
-                }
-            }
-        );
+        cb_vikarer.setEnabled(false);
         
         add(lbl_kunder);
         add(cb_kunder);
@@ -131,12 +141,12 @@ public class RegistrerVikarTilVikariat extends JPanel {
                     vikariatNr + "\nSom tilhører kunden: " + kunde,"Tildel Vikariat Til Vikar",JOptionPane.YES_NO_OPTION);
             
             if(sikker == JOptionPane.YES_OPTION){
-                if(v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr))!=null){
+                if(v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr))!=null){
                     System.out.println("Vikariat funnet");
-                    if(v.vikarRegister.finnVikar(Long.parseLong(vikar))!=null){
+                    if(v.getVikarRegister().finnVikar(Long.parseLong(vikar))!=null){
                         System.out.println("Vikar funnet");
-                        v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr)).setVikarer(v.vikarRegister.finnVikar(Long.parseLong(vikar)));
-                        v.vikarRegister.finnVikar(Long.parseLong(vikar)).setVikariat(v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr)));
+                        v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr)).setVikarer(v.getVikarRegister().finnVikar(Long.parseLong(vikar)), false);
+                        v.getVikarRegister().finnVikar(Long.parseLong(vikar)).setVikariat(v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr)));
                         resetInput();
                         refresh();
                     }

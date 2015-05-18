@@ -61,6 +61,16 @@ public class VikarRegister implements Serializable {
         return vikarer;
     }
     
+    public Vikar[] getVikarerObjekter(){
+        Vikar[] vikarer = new Vikar[getAntallNoder()];
+        Vikar loper = forste;
+        for(int i = 0; i < getAntallNoder(); i++){
+            vikarer[i] = loper;
+            loper = loper.neste;
+        }
+        return vikarer;
+    }
+    
     public int getAntallNoder(){
         int antall = 0;
         boolean ok = false;
@@ -115,6 +125,25 @@ public class VikarRegister implements Serializable {
         vikarer = list.toArray(new String[list.size()]);    
                 
         return vikarer;        
+    }
+
+    public String skrivVikarTilVikariatListe(JTextArea utskrift, String vikariatNr){
+        Vikar loper = forste;
+        
+        if(forste == null){
+            utskrift.setText("Ingen vikar i registeret");
+        } else {
+            utskrift.setText("");            
+            while(loper!=null){   
+                String vikariat = "" + loper.findVikariatNr(Integer.parseInt(vikariatNr)); 
+                if(vikariat.equals(vikariatNr)){
+                    utskrift.setText(loper.toStringUtenVikariat());
+                    return "" + loper.getPersonNr();
+                } else 
+                    loper = loper.neste;
+            }
+        }
+        return null;
     }
     
     //Skriver ut en liste med vikarer

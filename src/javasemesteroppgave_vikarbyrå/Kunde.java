@@ -17,7 +17,7 @@ public class Kunde implements Serializable{
     private String epost;
     private int tlf;
        
-    public Kunde neste;
+    Kunde neste;
     
     //Kontruktør
     public Kunde(String navn, String typeSektor, String adresse, 
@@ -28,6 +28,10 @@ public class Kunde implements Serializable{
         this.tlf = tlf;
         this.epost = epost;
         this.neste = null;
+    }
+    
+    public Kunde getNesteKunde(){
+        return neste;
     }
 
     //Returnerer navn når metoden blir kalt på

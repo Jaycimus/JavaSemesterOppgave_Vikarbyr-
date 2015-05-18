@@ -193,7 +193,7 @@ public class EndreVikar extends JPanel{
                 tlf = Integer.parseInt(tf_tlfnr.getText());
                 pers = Long.parseLong(tf_persnr.getText());
                 Vikar vikar = new Vikar(navn,tlf,epost,pers,jobbkat,utdan,kjonn,jobberf,ref);
-                v.vikarRegister.settInn(vikar);
+                v.getVikarRegister().settInn(vikar);
                 System.out.println("regVikar");
                 utskrift.setText(vikar.toString());
                 tf_navn.setText("");

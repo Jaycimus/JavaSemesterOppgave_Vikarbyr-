@@ -16,7 +16,8 @@ public class VikarbyraaRUN {
 
     //Kjører i gang programmet
     public static void main(String[] args) {
-        Logginn logginn = new Logginn();
+        final Logginn logginn = new Logginn();
+        
         logginn.setSize(new Dimension(400,180));
 	logginn.setVisible(true);
 	logginn.setLocationRelativeTo(null);

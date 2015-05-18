@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 //Klassen lager vikariat-objekt
 public class Vikariat implements Serializable {
+    private final int vikariatNr;
     private String adresse;
-    private int vikariatNr;
     private String varighetfra, varighettil;
     private String arbeidstid;
     private String stillingstype;
@@ -21,21 +21,19 @@ public class Vikariat implements Serializable {
     private String lonnsbetingelser;
     private String kontaktinfo;
     private String stillingsInfo;
-    private String bransje;
     
     private boolean ledig;
     private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<>();
     private ArrayList<Soknad> soknader = new ArrayList<>();
-    private ArrayList<Vikar> vikarer = new ArrayList<>();
+    private Vikar vikaren;
     
-    public Vikariat neste;
+    Vikariat neste;
     private Kunde kunde;
     
     //Konstruktør
     public Vikariat (Kunde kunde, String arbeidsted, String arbeidstid, 
             String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
-                String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil, 
-                    String Bransje, int vikariatNr){
+                String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil, int vikariatNr){
         this.kunde = kunde;
         this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
@@ -46,7 +44,6 @@ public class Vikariat implements Serializable {
         this.stillingsInfo = stillingsInfo;
         this.varighetfra = varighetfra;
         this.varighettil = varighettil;
-        this.bransje = bransje;
         this.vikariatNr = vikariatNr;
         
         ledig = true;
@@ -68,16 +65,15 @@ public class Vikariat implements Serializable {
         this.soknader = soknader;
     }
 
-    public ArrayList<Vikar> getVikarer() {
-        return vikarer;
+    public Vikar getVikarer() {
+        return vikaren;
     }
 
-    public void setVikarer(Vikar vikarer) {
-        this.vikarer.add(vikarer);
+    public void setVikarer(Vikar vikaren, boolean b) {
+        this.ledig = b;
+        this.vikaren = vikaren;
     }
 
-    
-    
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
@@ -114,10 +110,6 @@ public class Vikariat implements Serializable {
         this.stillingsInfo = stillingsInfo;
     }
 
-    public void setBransje(String bransje) {
-        this.bransje = bransje;
-    }
-        
     public void setKunde(Kunde kunde){
         this.kunde = kunde;
     }
@@ -182,11 +174,6 @@ public class Vikariat implements Serializable {
         return varighettil;
     }
     
-    //Returnerer hvem bransje vikariatet er innafor
-    public String getBransje(){
-        return bransje;
-    }
-    
     //Returnerer nummeret på vikariatet
     public int getVikariatNr(){
         return vikariatNr;
@@ -203,6 +190,10 @@ public class Vikariat implements Serializable {
         return kunde.getNavn();
     }
     
+    public String getKundeToString(){
+        return kunde.toString();
+    }
+    
     //Returnerer en forkortet versjon av info til utskriftområde
     public String toStringShort(){
         String utskrift = "\nKunde Navn: " + kunde + "\nVikariat Nr: " + vikariatNr;
@@ -216,10 +207,10 @@ public class Vikariat implements Serializable {
                           "\nStillingstype: " + stillingstype + "\nKvalifikasjoner: " + kvalifikasjoner + 
                           "\nLønnsbetingelser: " + lonnsbetingelser + "\nKontaktinfo: " + kontaktinfo + 
                           "\nStillingsinfo: " + stillingsInfo;
-        for(int i = 0; i < vikarer.size();i++){
-            utskrift += "\t" + vikarer.get(i).toString() + "\n";
-        }
-        
+                          if(vikaren!=null)
+                              utskrift += "\nVikaren på stedet: " + vikaren.toStringShort();
+                          else
+                              utskrift += "Ingen vikar";
         return utskrift;
     }
 }//end Vikariat

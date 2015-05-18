@@ -7,22 +7,24 @@ Gruppenummer: 15*/
 //Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
 package javasemesteroppgave_vikarbyrå;
 
+import java.awt.Font;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 //Klassen lager nye registere og holder brukernavn og passord
 public class Vikarbyraa implements Serializable {
-    public KundeRegister kundeRegister = new KundeRegister();//Register med alle kundene
-    public VikariatRegister vikariatRegister = new VikariatRegister();
-    public ArbeidsforholdRegister arbeidsforholdRegister = new ArbeidsforholdRegister();
-    public VikarRegister vikarRegister = new VikarRegister();
-    public SoknadsRegister soknadsRegister = new SoknadsRegister();
-    public Farge farge = new Farge();
+    private KundeRegister kundeRegister = new KundeRegister();//Register med alle kundene
+    private VikariatRegister vikariatRegister = new VikariatRegister();
+    private ArbeidsforholdRegister arbeidsforholdRegister = new ArbeidsforholdRegister();
+    private VikarRegister vikarRegister = new VikarRegister();
+    private SoknadsRegister soknadsRegister = new SoknadsRegister();
+    private Farge farge = new Farge();
+    private Fonts fonts = new Fonts();
     
-    ArrayList<String> navneListe1 = new ArrayList<String>();
-    ArrayList<String> passordListe1 = new ArrayList<String>();
-    ArrayList<String> navneListe2 = new ArrayList<String>();
-    ArrayList<String> passordListe2 = new ArrayList<String>();
+    ArrayList<String> navneListe1 = new ArrayList<>();
+    ArrayList<String> passordListe1 = new ArrayList<>();
+    ArrayList<String> navneListe2 = new ArrayList<>();
+    ArrayList<String> passordListe2 = new ArrayList<>();
     
     private int nesteVikariatNr = 10000;
     
@@ -36,10 +38,37 @@ public class Vikarbyraa implements Serializable {
         nesteVikariatNr();
     }
     
+    public Fonts getFonts(){
+        return fonts;
+    }
+    
+    public Farge getFarge(){
+        return farge;
+    }
+
+    public KundeRegister getKundeRegister() {
+        return kundeRegister;
+    }
+
+    public VikariatRegister getVikariatRegister() {
+        return vikariatRegister;
+    }
+
+    public ArbeidsforholdRegister getArbeidsforholdRegister() {
+        return arbeidsforholdRegister;
+    }
+
+    public VikarRegister getVikarRegister() {
+        return vikarRegister;
+    }
+
+    public SoknadsRegister getSoknadsRegister() {
+        return soknadsRegister;
+    }
+    
     //Metoden lager neste vikariatnummer
     public void nesteVikariatNr(){
         int nummer = vikariatRegister.finnNesteNummer();
-        
         nesteVikariatNr = ++nummer;
     }
     

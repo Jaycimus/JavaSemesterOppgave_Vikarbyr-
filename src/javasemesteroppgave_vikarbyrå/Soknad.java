@@ -16,7 +16,7 @@ public class Soknad implements Serializable{
     private Vikariat vikariat;
     private Vikar vikar;
     
-    public Soknad neste;
+    Soknad neste;
     
     //Konstruktør
     public Soknad(String soknadsTekst, Vikariat vikariat, Vikar vikar) {

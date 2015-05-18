@@ -9,6 +9,7 @@ Gruppenummer: 15*/
 package javasemesteroppgave_vikarbyrå;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -23,40 +24,37 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 //Klassen bygger opp vinduet når du logger inn med vikar
-public class VikarVindu extends JPanel{
+public class VikarVindu extends JFrame{
     
-    private final JPanel meny, registrering, bunn, topp;
+    private final JPanel meny, cards;
     private final JButton visVikariatListe,regSoking, loggUt;
     private final JTextArea utskrift;
-    private final JFrame ramme; //rammen på programmet
-    private BorderLayout borderLayout;
     
     private Vikarbyraa v;
     
-    private RegistrerSoknad rs;
     
     //Konstruktør
-    public VikarVindu(Vikarbyraa v,JFrame ramme){
+    public VikarVindu(Vikarbyraa v){
         this.v = v;
-        this.ramme = ramme;
         
-        borderLayout = new BorderLayout(10, 10);
-        setLayout(borderLayout);
-        setBorder(new EmptyBorder(0, 5, 0, 5));
+        setLayout(new BorderLayout(10, 10));
         
         regSoking = new JButton("Registrer Søknad");
         loggUt = new JButton("Logg ut");
         visVikariatListe = new JButton("Vis ledige vikariater");
         
+        Knappelytter lytter = new Knappelytter();
+        
+        regSoking.addActionListener(lytter);
+        loggUt.addActionListener(lytter);
+        visVikariatListe.addActionListener(lytter);
+        
         meny = new JPanel();
         meny.setLayout(new GridLayout(0,1,0,10));
         meny.setPreferredSize(new Dimension(212,200));
+        meny.setBorder(new EmptyBorder(5,5,5,0));
         meny.add(visVikariatListe);
         meny.add(regSoking);
-        meny.add(new JPanel());
-        meny.add(new JPanel());
-        meny.add(new JPanel());
-        meny.add(new JPanel());
         meny.add(new JPanel());
         meny.add(new JPanel());
         meny.add(new JPanel());
@@ -73,36 +71,27 @@ public class VikarVindu extends JPanel{
         utskrift.setEditable(false);
         utskrift.setText("Vikarbruksanvisning");
         JScrollPane sp = new JScrollPane(utskrift);
+        sp.setBorder(new EmptyBorder(10,0,10,0));
         
-        registrering = new JPanel();
+        JPanel registrering = new JPanel();
         registrering.setLayout(null);
-        registrering.setPreferredSize(new Dimension(500,500));
+        registrering.setPreferredSize(new Dimension(500, 500));
         
-        bunn = new JPanel();
-        bunn.setLayout(null);
-        bunn.setPreferredSize(new Dimension(50,0));
+        JPanel card1 = new RegistrerSoknad(utskrift, v);
         
-        topp = new JPanel();
-        topp.setLayout(null);
-        topp.setPreferredSize(new Dimension(50,0));
+        cards = new JPanel(new CardLayout());
+        cards.setBorder(new EmptyBorder(5,0,5,5));
+        cards.add(registrering, "Registrering");//Det første blanke feltet som bli opprettet
+        cards.add(card1, "RegistrerSøknad");
         
-        add(topp, BorderLayout.NORTH);
         add(meny, BorderLayout.WEST);
         add(sp, BorderLayout.CENTER);
-        add(registrering, BorderLayout.EAST);
-        add(bunn, BorderLayout.SOUTH);
-        
-        Knappelytter lytter = new Knappelytter();
-        
-        regSoking.addActionListener(lytter);
-        loggUt.addActionListener(lytter);
-        visVikariatListe.addActionListener(lytter);
-    
+        add(cards, BorderLayout.EAST);
     }//end Konstruktør
     
     //Viser vikariatliste i utskfriftsområdet
     public void visVikariatListe(){
-        v.vikariatRegister.skrivVikariatListe(utskrift);
+        v.getVikariatRegister().skrivVikariatListe(utskrift);
     }
     
     //Returnerer teksten som i utskriftsområdet
@@ -112,18 +101,15 @@ public class VikarVindu extends JPanel{
     
     //Viser registrerte og ledige vikariater for vikarer
     private void visLedigeVikariatReg(){
-        v.vikariatRegister.skrivLedigVikariatListe(utskrift);
+        v.getVikariatRegister().skrivLedigVikariatListe(utskrift);
     }
     
     //Knytter de forskjellige knappene til lyttere
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regSoking){
-                registrering.setVisible(false);
-                RegistrerSoknad rs = new RegistrerSoknad(VikarVindu.this.getTextArea(), v);
-                VikarVindu.this.rs = rs;
-                add(rs, BorderLayout.EAST);
-                rs.setVisible(true);
+                CardLayout cl = (CardLayout)(cards.getLayout());
+                cl.show(cards, "RegistrerSøknad");
                 visLedigeVikariatReg();
               
             }
@@ -142,7 +128,7 @@ public class VikarVindu extends JPanel{
                         System.exit(0);
                     }
                 });
-                ramme.setVisible(false);
+                setVisible(false);
             }
         }
     }//end Knappelytter

@@ -75,7 +75,7 @@ public class EndreVikariat extends JPanel {
         
         Knappelytter lytter = new Knappelytter();
 
-        vikariatNavn = v.vikariatRegister.getVikariatNr();
+        vikariatNavn = v.getVikariatRegister().getVikariatNr();
         
         endreVikariat = new JButton("Endre Vikariat");
         endreVikariat.addActionListener(lytter);
@@ -112,7 +112,7 @@ public class EndreVikariat extends JPanel {
                 resetInput();
                 return;
             }
-            Vikariat vikariat = v.vikariatRegister.finnVikariat(Integer.parseInt(vikariaterNr));
+            Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariaterNr));
             tf_adresse.setText(vikariat.getAdresse());
             tf_stillingstype.setText(vikariat.getStillingstype());
             tf_kvalifikasjoner.setText(vikariat.getKvalifikasjoner());
@@ -293,7 +293,7 @@ public class EndreVikariat extends JPanel {
             JOptionPane.showMessageDialog(null, "Vikariat ikke valgt");
             return;
         }
-        Vikariat vikariat = v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr));
+        Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr));
         
         String adresse = tf_adresse.getText();
         vikariat.setAdresse(adresse);
@@ -320,8 +320,6 @@ public class EndreVikariat extends JPanel {
                              (String) cb_maned2.getSelectedItem() + "-" +
                              (String) cb_ar2.getSelectedItem();
         vikariat.setVarighettil(varighettil);
-        String bransjer = (String) cb_stillingsTyper.getSelectedItem();
-        vikariat.setBransje(bransjer);
         JOptionPane.showMessageDialog(null, "Vikariatet har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
         
         refresh();
@@ -337,9 +335,9 @@ public class EndreVikariat extends JPanel {
         }
         int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikariatet?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
-            if(v.vikariatRegister.finnVikariat(Integer.parseInt(vikariatNr))!=null){
+            if(v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr))!=null){
                 System.out.println("Vikariat funnet");
-                if(v.vikariatRegister.slettVikariat(vikariatNr)){
+                if(v.getVikariatRegister().slettVikariat(vikariatNr)){
                     cb_vikariater.removeItem((String)cb_vikariater.getSelectedItem());
                     v.nesteVikariatNr();
                     resetInput();
@@ -350,7 +348,7 @@ public class EndreVikariat extends JPanel {
     }
     
     private void refresh(){
-        v.vikariatRegister.skrivVikariatListe(utskrift);
+        v.getVikariatRegister().skrivVikariatListe(utskrift);
     }
     
     private void resetInput(){
