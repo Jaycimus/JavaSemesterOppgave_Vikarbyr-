@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -36,11 +37,9 @@ public class EndreVikar extends JPanel{
     
     private Vikarbyraa v;
     
-<<<<<<< HEAD
-=======
     private JComboBox<String> cb_vikar;
     private String[] vikarPersNr;
->>>>>>> origin/master
+
     private JComboBox<String> cb_utdanning;
     private final String[] utdanning = 
         {"Ingen","Videregående","Fagskole","Høgskole/Universitet"};
@@ -66,11 +65,10 @@ public class EndreVikar extends JPanel{
         
         Knappelytter lytter = new Knappelytter();
         
-<<<<<<< HEAD
-=======
+
         vikarPersNr = v.getVikarRegister().getVikarer();
         
->>>>>>> origin/master
+
         endreVikar = new JButton("Endre Vikar");
         endreVikar.addActionListener(lytter);
         slettVikar = new JButton("Slett Vikar");
@@ -127,8 +125,7 @@ public class EndreVikar extends JPanel{
         cb_bransjer.setMaximumRowCount(9);
         cb_utdanning = new JComboBox<>(utdanning);
         cb_utdanning.setMaximumRowCount(4);
-<<<<<<< HEAD
-=======
+
         cb_vikar = new JComboBox<>(vikarPersNr);
         cb_vikar.setMaximumRowCount(9);
         cb_vikar.addItemListener((ItemEvent e)-> {
@@ -143,11 +140,11 @@ public class EndreVikar extends JPanel{
                 ta_ref.setText("");
                 return;
             }
-            vikar = v.getVikarRegister().finnVikar(vikar.getPersonNr());
+            Vikar vikar = v.getVikarRegister().finnVikar(vikar.getPersonNr());
             
             
         });
->>>>>>> origin/master
+
         
         add(lbl_navn);
         add(cb_vikar);
