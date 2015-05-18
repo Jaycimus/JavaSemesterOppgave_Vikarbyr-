@@ -5,7 +5,7 @@ Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
 Gruppenummer: 15*/
 
 //Sist endret 17. Mai 2015 AV: Andreas Stenseng Bjørnrud
-package javasemesteroppgave_vikarbyrå;
+
 
 import java.awt.Color;
 import java.awt.Dimension;
