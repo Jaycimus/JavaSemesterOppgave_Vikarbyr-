@@ -25,10 +25,10 @@ public class Vikariat implements Serializable {
     private boolean ledig;
     private ArrayList<Arbeidsforhold> arbeidsforhold = new ArrayList<>();
     private ArrayList<Soknad> soknader = new ArrayList<>();
-    private Vikar vikaren;
     
     Vikariat neste;
     private Kunde kunde;
+    private Vikar vikar;
     
     //Konstruktør
     public Vikariat (Kunde kunde, String arbeidsted, String arbeidstid, 
@@ -65,13 +65,13 @@ public class Vikariat implements Serializable {
         this.soknader = soknader;
     }
 
-    public Vikar getVikarer() {
-        return vikaren;
+    public Vikar getVikar() {
+        return vikar;
     }
 
     public void setVikarer(Vikar vikaren, boolean b) {
         this.ledig = b;
-        this.vikaren = vikaren;
+        this.vikar = vikaren;
     }
 
     public void setAdresse(String adresse) {
@@ -207,8 +207,8 @@ public class Vikariat implements Serializable {
                           "\nStillingstype: " + stillingstype + "\nKvalifikasjoner: " + kvalifikasjoner + 
                           "\nLønnsbetingelser: " + lonnsbetingelser + "\nKontaktinfo: " + kontaktinfo + 
                           "\nStillingsinfo: " + stillingsInfo;
-                          if(vikaren!=null)
-                              utskrift += "\nVikaren på stedet: " + vikaren.toStringShort();
+                          if(vikar!=null)
+                              utskrift += "\nVikaren på stedet: " + vikar.toStringShort();
                           else
                               utskrift += "Ingen vikar";
         return utskrift;

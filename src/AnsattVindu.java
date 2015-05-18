@@ -41,6 +41,7 @@ public class AnsattVindu extends JFrame{
     
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
     public AnsattVindu(Vikarbyraa v){
+        super("Vikarbyrå AS");
         this.v = v;
         bakgrunn = v.getFarge().getBakrunn();
         BorderLayout borderLayout = new BorderLayout(10, 10);
@@ -72,7 +73,7 @@ public class AnsattVindu extends JFrame{
         regVikariat = new JButton("Registrer Vikariat");
         regArbForhold = new JButton("Registrer Arbeidsfohold");
         regVikar = new JButton("Registrer Vikar");
-        vikarVikariat = new JButton("Vikar->Vikariat");
+        vikarVikariat = new JButton("Vikar<-->Vikariat");
         visEndreKundeReg = new JButton("Vis/Endre Kundregister");
         visEndreVikariatReg = new JButton("Vis/Endre Vikariatregister");
         visEndreArbeisforholdReg = new JButton("Vis/Endre Arbeisforholdregister");

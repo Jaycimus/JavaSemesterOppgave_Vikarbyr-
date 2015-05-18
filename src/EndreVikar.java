@@ -36,6 +36,7 @@ public class EndreVikar extends JPanel{
     private ButtonGroup BG_kjonn;
     
     private Vikarbyraa v;
+    private Vikar vikar;
     
     private JComboBox<String> cb_vikar;
     private String[] vikarPersNr;
@@ -197,13 +198,18 @@ public class EndreVikar extends JPanel{
     
     //Leser inn den nye infoen som blir skrevet inn i tekstfelt
     public void endreVikar(){
+        String personNr = (String)cb_vikar.getSelectedItem();
+        if(personNr.matches("---Vikarer---")){
+            JOptionPane.showMessageDialog(null,"Vikar ikke valgt!");
+            return;
+        }
         String navn = tf_navn.getText();
         long pers;
         int tlf;
         String epost = tf_epost.getText();
         String jobberf = ta_jobberf.getText();
         String ref = ta_ref.getText();
-        String jobbkat = (String) cb_bransjer.getSelectedItem();
+        String onsketBransje = (String) cb_bransjer.getSelectedItem();
         String utdan = (String) cb_utdanning.getSelectedItem();
         String kjonn;
             if(mann.isSelected())
@@ -221,21 +227,23 @@ public class EndreVikar extends JPanel{
             } else {
                 tlf = Integer.parseInt(tf_tlfnr.getText());
                 pers = Long.parseLong(tf_persnr.getText());
-                Vikar vikar = new Vikar(navn,tlf,epost,pers,jobbkat,utdan,kjonn,jobberf,ref);
-                v.getVikarRegister().settInn(vikar);
-                System.out.println("regVikar");
-                utskrift.setText(vikar.toString());
-                tf_navn.setText("");
-                tf_persnr.setText("");
-                tf_tlfnr.setText("");
-                tf_epost.setText("");
-                ta_jobberf.setText("");
-                ta_ref.setText("");
+                vikar = v.getVikarRegister().finnVikar(personNr);
+                vikar.setNavn(navn);
+                vikar.setTlf(tlf);
+                vikar.setPersonNr(pers);
+                vikar.setOnsketBransje(onsketBransje);
+                vikar.setUtdanning(utdan);
+                vikar.setJobberfaring(jobberf);
+                vikar.setReferanser(ref);
+                vikar.setKjonn(kjonn);
+                vikar.setEpost(epost);
             }
         } catch(NumberFormatException nfe){
-            JOptionPane.showMessageDialog(null, "");
+            JOptionPane.showMessageDialog(null, "Feil i tallformat!");
         }
         JOptionPane.showMessageDialog(null, "Vikar har blitt oppdatert!","Oppdatert",JOptionPane.INFORMATION_MESSAGE);
+        endreKundeTilVikariater(personNr);
+    
     }//end regVikar()
     
     //Sletter den valgte vikaren når "Slett Vikar"-knappen blir trykket
@@ -247,20 +255,14 @@ public class EndreVikar extends JPanel{
         }
         int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikaren?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
-            Vikar vikar = v.getVikarRegister().finnVikar(personNr);
+            v.getVikariatRegister().finnVikariatOgSLettVikar(personNr);
             if(v.getVikarRegister().slettVikar(personNr)){
-                for(int y = 0; y < vikar.getVikariatNr().size(); y++){
-                    Vikariat vikariat = vikar.getVikariatNr().get(y);
-                    int vikariatNr = vikariat.getVikariatNr();
-                    v.getVikariatRegister().finnVikariat(vikariatNr).setVikarer(null, true);
-                }
-                
+                cb_vikar.removeItem((String)cb_vikar.getSelectedItem());
+                resetInput();
+                refresh();
                 
             }
         }
-        cb_vikar.removeItem((String)cb_vikar.getSelectedItem());
-        resetInput();
-        refresh();
     }
     
     private void resetInput(){
@@ -291,4 +293,18 @@ public class EndreVikar extends JPanel{
             }
         }
     }//end Knappelytter
+    
+    public void endreKundeTilVikariater(String personNr){
+        Vikariat loper = v.getVikariatRegister().forste;
+        if(loper==null){
+            return;
+        } else {
+            while(loper!=null){
+                if(loper.getVikar().getPersonNrS().equals(personNr)){
+                    loper.setVikarer(vikar, false);
+                } else 
+                    loper = loper.neste;
+            }
+        }//end else
+    }//end endreKundeTilVikariater
 }//end EndreVikar

@@ -115,7 +115,7 @@ public class RegistrerKunde extends JPanel {
                 resetInput();
             }
         } catch(NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
+            JOptionPane.showMessageDialog(null, "Feil med nummerformat");
         }   
     }//end regKunde()
     
