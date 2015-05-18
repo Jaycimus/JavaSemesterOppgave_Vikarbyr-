@@ -245,6 +245,7 @@ public class AnsattVindu extends JFrame{
                 cl.show(cards, "EndreArbeidsforhold");
                 visArbeisforholdReg();
             }
+<<<<<<< HEAD
             
 <<<<<<< HEAD
             //Knappen "Vis/Endre Vikar"
@@ -274,11 +275,17 @@ public class AnsattVindu extends JFrame{
                 visVikariatReg();
                 visVikarReg();
 =======
+=======
+                
+>>>>>>> origin/master
             //Knappe "Søk i registerene
             else if(e.getSource()==regSoking){
                 cardLayoutUpdate();
                 CardLayout cl = (CardLayout)(cards.getLayout());
                 cl.show(cards, "SokningIRegister");
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
             }
             

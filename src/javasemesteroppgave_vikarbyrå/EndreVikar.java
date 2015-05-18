@@ -39,7 +39,7 @@ public class EndreVikar extends JPanel{
     private Vikar vikar;
     
     private JComboBox<String> cb_vikar;
-    private String[] vikarNavn;
+    private String[] vikarPersNr;
     private JComboBox<String> cb_utdanning;
     private final String[] utdanning = 
         {"Ingen","Videregående","Fagskole","Høgskole/Universitet"};
@@ -65,7 +65,7 @@ public class EndreVikar extends JPanel{
         
         Knappelytter lytter = new Knappelytter();
         
-        vikarNavn = v.vikarRegister.getVikarer();
+        vikarPersNr = v.getVikarRegister().finnVikar(vikar.getPersonNr());
         
         endreVikar = new JButton("Endre Vikar");
         endreVikar.addActionListener(lytter);
@@ -123,7 +123,7 @@ public class EndreVikar extends JPanel{
         cb_bransjer.setMaximumRowCount(9);
         cb_utdanning = new JComboBox<>(utdanning);
         cb_utdanning.setMaximumRowCount(4);
-        cb_vikar = new JComboBox<>(vikarNavn);
+        cb_vikar = new JComboBox<>(vikarPersNr);
         cb_vikar.setMaximumRowCount(9);
         cb_vikar.addItemListener((ItemEvent e)-> {
             String vikarNavn = (String) cb_vikar.getSelectedItem();
@@ -135,12 +135,15 @@ public class EndreVikar extends JPanel{
                 kvinne.setSelected(false);
                 ta_jobberf.setText("");
                 ta_ref.setText("");
+                return;
             }
+            Vikar vikar = v.getVikarRegister().finnVikar(WIDTH)
+            
             
         });
         
         add(lbl_navn);
-        add(tf_navn);
+        add(cb_vikar);
         add(lbl_persnr);
         add(tf_persnr);
         add(lbl_tlfnr);
