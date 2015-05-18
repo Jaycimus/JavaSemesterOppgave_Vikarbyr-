@@ -173,7 +173,7 @@ public class EndreKunde extends JPanel {
                 if(v.getVikariatRegister().slettVikariaterTilKunde(navn)){
                     Vikar[] vikarer = v.getVikarRegister().getVikarerObjekter();
                     for(int i = 0; i < vikarer.length;i++){
-                        ArrayList<Vikariat> vikariater = vikarer[i].getVikariatListe();
+                        ArrayList<Vikariat> vikariater = vikarer[i].getVikariatNr();
                         for(int y = 0;y < vikariater.size();y++){
                             if(vikariater.get(y).getKundeNavn().equals(navn))
                                 vikariater.remove(y);

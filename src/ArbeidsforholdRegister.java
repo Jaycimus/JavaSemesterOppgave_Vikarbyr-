@@ -38,7 +38,7 @@ public class ArbeidsforholdRegister implements Serializable {
         if(forste == null){
             arbeidsforholdiste.setText("Ingen Arbeidsforhold i registeret");
         } else {
-            arbeidsforholdiste.setText("");            
+            arbeidsforholdiste.setText("ARBEIDSFORHOLD REGISTER\n");            
             while(loper!=null){                
                 arbeidsforholdiste.append(loper.toString()+"\n");                
                 loper = loper.neste;

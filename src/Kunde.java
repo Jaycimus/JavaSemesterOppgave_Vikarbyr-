@@ -16,7 +16,6 @@ public class Kunde implements Serializable{
     private String adresse;
     private String epost;
     private int tlf;
-       
     Kunde neste;
     
     //Kontruktør

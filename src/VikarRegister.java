@@ -34,12 +34,61 @@ public class VikarRegister implements Serializable {
         }
     }
     
-    //Finner en bestemt vikar
-    public Vikar finnVikar(long personNr){
+    public boolean slettVikar(String vikar){
+        Vikar loper = forste;        
+        
+        if(forste.getPersonNrS().equals(vikar)){
+            forste = forste.neste;
+            return true;
+        }
+        
+        if (loper.neste == null){
+            forste = null;
+            return true;
+        }
+        
+        if(loper.getPersonNrS().equals(vikar)){
+            loper = loper.neste;
+            return true;
+        }
+        
+        while(loper.neste != null){
+            if(loper.neste.getPersonNrS().equals(vikar)){
+                loper.neste = loper.neste.neste;
+                return true;
+            }
+            else{
+                loper = loper.neste;
+            }
+        }
+        
+        loper = finnNestSisteNode();
+        if(loper.getPersonNrS().equals(vikar)){
+            loper.neste = null;
+        }
+        
+        return false;
+    }
+    
+    public Vikar finnNestSisteNode(){
         Vikar loper = forste;
         boolean ok = true;
         while(ok){
-            if(loper != null && loper.getPersonNr()==personNr){
+            if(loper.neste.neste!=null){
+                loper = loper.neste;
+            } else {
+                return loper;
+            }
+        }
+        return loper;
+    }
+    
+    //Finner en bestemt vikar
+    public Vikar finnVikar(String personNr){
+        Vikar loper = forste;
+        boolean ok = true;
+        while(ok){
+            if(loper != null && loper.getPersonNrS().equals(personNr)){
                 return loper;
             }
             else if(loper.neste!=null)
@@ -54,6 +103,7 @@ public class VikarRegister implements Serializable {
         String[] vikarer = new String[1+getAntallNoder()];
         Vikar loper = forste;
         vikarer[0] = "---Vikarer---";
+        
         for(int i = 1; i <= getAntallNoder(); i++){
             vikarer[i] = loper.getNavn();
             loper = loper.neste;
@@ -153,7 +203,7 @@ public class VikarRegister implements Serializable {
         if(forste == null){
             vikarListe.setText("Ingen vikar i registeret");
         } else {
-            vikarListe.setText("");            
+            vikarListe.setText("VIKAR REGISTER\n");            
             while(loper!=null){                
                 vikarListe.append(loper.toString()+"\n");                
                 loper = loper.neste;

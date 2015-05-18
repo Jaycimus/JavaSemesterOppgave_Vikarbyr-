@@ -86,7 +86,7 @@ public class RegistrerVikarTilVikariat extends JPanel {
                             cb_vikarer.setEnabled(false);
                             return;
                         } else {
-                            v.getVikarRegister().skrivVikarListe(utskrift);
+                            v.getSoknadsRegister().skrivSoknadTilVikariatListe(utskrift, valg);
                             cb_vikarer.setEnabled(true);
                         }
                     }
@@ -143,10 +143,10 @@ public class RegistrerVikarTilVikariat extends JPanel {
             if(sikker == JOptionPane.YES_OPTION){
                 if(v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr))!=null){
                     System.out.println("Vikariat funnet");
-                    if(v.getVikarRegister().finnVikar(Long.parseLong(vikar))!=null){
+                    if(v.getVikarRegister().finnVikar(vikar)!=null){
                         System.out.println("Vikar funnet");
-                        v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr)).setVikarer(v.getVikarRegister().finnVikar(Long.parseLong(vikar)), false);
-                        v.getVikarRegister().finnVikar(Long.parseLong(vikar)).setVikariat(v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr)));
+                        v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr)).setVikarer(v.getVikarRegister().finnVikar(vikar), false);
+                        v.getVikarRegister().finnVikar(vikar).setVikariater(v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariatNr)));
                         resetInput();
                         refresh();
                     }

@@ -7,12 +7,10 @@ Gruppenummer: 15*/
 //Sist endret 15. Mai 2015 AV: Arthur Nordnes
 
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,8 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 
 //Klassen bygger opp vinduet når knappen "Registrer Kunde" blir trykket
 public class RegistrerKunde extends JPanel {
@@ -35,18 +31,10 @@ public class RegistrerKunde extends JPanel {
     
     private Vikarbyraa v;
     
-    Border blackline;
-    TitledBorder titleKunde;
-    
     //Konstruktør
     public RegistrerKunde(JTextArea utskrift, Vikarbyraa v){
         setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
-        
-        blackline = BorderFactory.createLineBorder(Color.black);
-        
-        titleKunde = BorderFactory.createTitledBorder(blackline,"Søk i Kunde Register");
-        titleKunde.setTitleJustification(TitledBorder.CENTER);
         
         this.v = v;
         this.utskrift = utskrift;

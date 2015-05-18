@@ -232,7 +232,7 @@ public class VikariatRegister implements Serializable {
         if(forste == null){
             vikariatListe.setText("Ingen vikariater i registeret");
         } else {
-            vikariatListe.setText("");
+            vikariatListe.setText("VIKARIAT REGISTER\n");
             
             while(loper!=null){
                 
@@ -363,21 +363,26 @@ public class VikariatRegister implements Serializable {
     
     //Sletting av vikariater til et firma som blir fjernet
     public boolean slettVikariat(String vikariatNr){
-        Vikariat loper = forste;
-        if(loper==null){
-            JOptionPane.showMessageDialog(null, "Ingen registrerte vikariater");
-            return false;
-        } else if (loper.neste == null && loper.getVikariatNrS().equals(vikariatNr)){
+        Vikariat loper = forste;        
+        
+        if(forste.getVikariatNrS().equals(vikariatNr)){
+            forste = forste.neste;
+            return true;
+        }
+        
+        if (loper.neste == null){
             forste = null;
             return true;
-        } else if(loper.getVikariatNrS().equals(vikariatNr)) {
+        }
+        
+        if(loper.getVikariatNrS().equals(vikariatNr)){
             loper = loper.neste;
             return true;
         }
+        
         while(loper.neste != null){
             if(loper.neste.getVikariatNrS().equals(vikariatNr)){
                 loper.neste = loper.neste.neste;
-                System.out.println("Vikariatnavn passet 2");
                 return true;
             }
             else{
@@ -389,6 +394,7 @@ public class VikariatRegister implements Serializable {
         if(loper.getVikariatNrS().equals(vikariatNr)){
             loper.neste = null;
         }
+        
         return false;
     }
     
