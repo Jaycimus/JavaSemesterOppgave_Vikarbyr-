@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -35,7 +36,10 @@ public class EndreVikar extends JPanel{
     private ButtonGroup BG_kjonn;
     
     private Vikarbyraa v;
+    private Vikar vikar;
     
+    private JComboBox<String> cb_vikar;
+    private String[] vikarNavn;
     private JComboBox<String> cb_utdanning;
     private final String[] utdanning = 
         {"Ingen","Videregående","Fagskole","Høgskole/Universitet"};
@@ -60,6 +64,8 @@ public class EndreVikar extends JPanel{
         this.utskrift = utskrift;
         
         Knappelytter lytter = new Knappelytter();
+        
+        vikarNavn = v.vikarRegister.getVikarer();
         
         endreVikar = new JButton("Endre Vikar");
         endreVikar.addActionListener(lytter);
@@ -117,6 +123,21 @@ public class EndreVikar extends JPanel{
         cb_bransjer.setMaximumRowCount(9);
         cb_utdanning = new JComboBox<>(utdanning);
         cb_utdanning.setMaximumRowCount(4);
+        cb_vikar = new JComboBox<>(vikarNavn);
+        cb_vikar.setMaximumRowCount(9);
+        cb_vikar.addItemListener((ItemEvent e)-> {
+            String vikarNavn = (String) cb_vikar.getSelectedItem();
+            if(vikarNavn.equals("---Vikarer---")){
+                tf_persnr.setText("");
+                tf_tlfnr.setText("");
+                tf_epost.setText("");
+                mann.setSelected(false);
+                kvinne.setSelected(false);
+                ta_jobberf.setText("");
+                ta_ref.setText("");
+            }
+            
+        });
         
         add(lbl_navn);
         add(tf_navn);
@@ -146,7 +167,7 @@ public class EndreVikar extends JPanel{
     }//end kontruktør
     
     //Leser inn den nye infoen som blir skrevet inn i tekstfelt
-    public void regVikar(){
+    public void endreVikar(){
         String navn = tf_navn.getText();
         long pers;
         int tlf;
@@ -198,7 +219,7 @@ public class EndreVikar extends JPanel{
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==endreVikar){
-                regVikar();
+                endreVikar();
             } else if(e.getSource()==slettVikar){
                 slettVikar();
             }

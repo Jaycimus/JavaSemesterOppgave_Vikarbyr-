@@ -74,7 +74,7 @@ public class EndreKunde extends JPanel {
         tf_epost = new JTextField("", 15);
         
         
-        cb_kunder = new JComboBox<String>(kundeNavn);
+        cb_kunder = new JComboBox<>(kundeNavn);
         cb_kunder.setMaximumRowCount(9);
         //Gjør at nåværende info blir skrevet inn i tekstfeltet
         cb_kunder.addItemListener((ItemEvent e) -> {

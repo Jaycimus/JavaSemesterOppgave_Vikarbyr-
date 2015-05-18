@@ -402,9 +402,13 @@ public class AnsattVindu extends JPanel{
                 if(evt!=null)
                     AnsattVindu.this.evt.setVisible(false);
                 //if(eaf!=null)
-                //    AnsattVindu.this.ev.setVisible(false);
+                  //  AnsattVindu.this.ev.setVisible(false);
                 //if(s!=null)
                 //    AnsattVindu.this.s.setVisible(false);
+                EndreVikar ev = new EndreVikar(AnsattVindu.this.getTextArea(),v);
+                AnsattVindu.this.ev = ev;
+                add(ev,BorderLayout.EAST);
+                visVikariatReg();
                 visVikarReg();
             }
             
