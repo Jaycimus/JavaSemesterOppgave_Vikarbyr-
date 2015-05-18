@@ -11,6 +11,7 @@
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/RegistrerArbeidsforhold.java</file>
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/RegistrerVikar.java</file>
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/Logginn.java</file>
+            <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/AnsattVindu.java</file>
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/Vikarbyraa.java</file>
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/Kunde.java</file>
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/Arbeidsforhold.java</file>
@@ -18,8 +19,11 @@
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/Vikar.java</file>
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/Vikariat.java</file>
             <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/VikariatRegister.java</file>
-            <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/AnsattVindu-BærbarGaming.java</file>
-            <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/EndreKunde-BærbarGaming.java</file>
+            <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/Validering.java</file>
+            <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/RegistrerVikarTilVikariat.java</file>
+            <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/RegistrerVikariat.java</file>
+            <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/EndreKunde.java</file>
+            <file>file:/C:/Users/Andreas/SkyDrive/Dokumenter/GitHub/JavaSemesterOppgave_Vikarbyr-/src/javasemesteroppgave_vikarbyrå/EndreVikar.java</file>
         </group>
     </open-files>
 </project-private>
