@@ -17,12 +17,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 //Denne klassen bygger opp det vinduet som man ser når man logger inn som en ansatt
 public class AnsattVindu extends JFrame{
@@ -34,16 +37,37 @@ public class AnsattVindu extends JFrame{
     private Vikarbyraa v;
     
     private Color bakgrunn;
+    TitledBorder borderKunde, borderVikariat, borderVikar, borderArbForhold, 
+            borderVikarVikariat, borderVisEndreKundeReg, borderVisEndreVikariatReg, 
+            borderVisEndreArbeisforholdReg, borderVisEndreVikarReg, borderRegSoking;
     
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
     public AnsattVindu(Vikarbyraa v){
         this.v = v;
-
         bakgrunn = v.getFarge().getBakrunn();
-        
         BorderLayout borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
-         setLayout(new BorderLayout(10, 10));
+        
+        
+        borderKunde = BorderFactory.createTitledBorder(null,"Registreing av Kunde");
+        borderKunde.setTitleJustification(TitledBorder.CENTER);
+        borderVikariat = BorderFactory.createTitledBorder(null,"Registreing av Vikriat");
+        borderVikariat.setTitleJustification(TitledBorder.CENTER);
+        borderVikar = BorderFactory.createTitledBorder(null,"Registreing av Vikar");
+        borderVikar.setTitleJustification(TitledBorder.CENTER);
+        borderVikarVikariat = BorderFactory.createTitledBorder(null,"Registreing av Vikar til Vikariat");
+        borderVikarVikariat.setTitleJustification(TitledBorder.CENTER);
+        borderArbForhold = BorderFactory.createTitledBorder(null,"Registreing av Arbeidsforhold");
+        borderArbForhold.setTitleJustification(TitledBorder.CENTER);
+        borderVisEndreKundeReg = BorderFactory.createTitledBorder(null,"Endring/Sletting av Kunde");
+        borderVisEndreKundeReg.setTitleJustification(TitledBorder.CENTER);
+        borderVisEndreVikariatReg = BorderFactory.createTitledBorder(null,"Endring/Sletting av Vikariat");
+        borderVisEndreVikariatReg.setTitleJustification(TitledBorder.CENTER);
+        borderVisEndreVikarReg = BorderFactory.createTitledBorder(null,"Endring/Sletting av Vikar");
+        borderVisEndreVikarReg.setTitleJustification(TitledBorder.CENTER);
+        borderVisEndreArbeisforholdReg = BorderFactory.createTitledBorder(null,"Endring/Sletting av Arbeidsforhold");
+        borderVisEndreArbeisforholdReg.setTitleJustification(TitledBorder.CENTER);
+                
         regKunde = new JButton("Registrer Kunde");
             regKunde.setFocusPainted(false);
             regKunde.setContentAreaFilled(false);
@@ -93,56 +117,42 @@ public class AnsattVindu extends JFrame{
         utskrift = new JTextArea(0, 0);
         utskrift.setEditable(false);
         utskrift.setText(bruksanvisning());
+        utskrift.setPreferredSize(new Dimension(200,200));
         JScrollPane sp = new JScrollPane(utskrift);
         sp.setBorder(new EmptyBorder(10,0,10,0));
         
-        registrering = new JPanel();
-            registrering.setLayout(null);
-            registrering.setPreferredSize(new Dimension(500, 500));
-        card1 = new RegistrerKunde(utskrift, v);
-        card2 = new RegistrerVikariat(utskrift, v);
-        card3 = new RegistrerVikar(utskrift, v);
-        card4 = new RegistrerVikarTilVikariat(utskrift, v);
-        card5 = new RegistrerArbeidsforhold(utskrift, v);
-        card6 = new EndreKunde(utskrift, v);
-        card7 = new EndreVikariat(utskrift, v);
-        card8 = new EndreVikar(utskrift, v);
-        card9 = new EndreArbeidsforhold(utskrift, v);
-        card10 = new SokningIRegister(utskrift, v);
-        
         cards = new JPanel(new CardLayout());
         cards.setBorder(new EmptyBorder(5,0,5,5));
-        cards.add(registrering, "Registrering");//Det første blanke feltet som bli opprettet
-        cards.add(card1, "RegistrerKunde");
-        cards.add(card2, "RegistrerVikariat");
-        cards.add(card3, "RegistrerVikar");
-        cards.add(card4, "RegistrerVikarTilVikariat");
-        cards.add(card5, "RegistrerArbeidsforhold");
-        cards.add(card6, "EndreKunde");
-        cards.add(card7, "EndreVikariat");
-        cards.add(card8, "EndreVikar");
-        cards.add(card9, "EndreArbeidsforhold");
-        cards.add(card10, "SokningIRegister");
+        cardLayoutUpdate();
         
         add(cards, BorderLayout.EAST);
         add(meny, BorderLayout.WEST);
         add(sp, BorderLayout.CENTER);
-        cardLayoutUpdate();
     }//end AnsattVindu
     
     private void cardLayoutUpdate(){
+        registrering = new JPanel();
+            registrering.setLayout(null);
+            registrering.setPreferredSize(new Dimension(500, 500));
         card1 = new RegistrerKunde(utskrift, v);
+        card1.setBorder(borderKunde);
         card2 = new RegistrerVikariat(utskrift, v);
+        card2.setBorder(borderVikariat);
         card3 = new RegistrerVikar(utskrift, v);
+        card3.setBorder(borderVikar);
         card4 = new RegistrerVikarTilVikariat(utskrift, v);
+        card4.setBorder(borderVikarVikariat);
         card5 = new RegistrerArbeidsforhold(utskrift, v);
+        card5.setBorder(borderArbForhold);
         card6 = new EndreKunde(utskrift, v);
+        card6.setBorder(borderVisEndreKundeReg);
         card7 = new EndreVikariat(utskrift, v);
+        card7.setBorder(borderVisEndreVikariatReg);
         card8 = new EndreVikar(utskrift, v);
+        card8.setBorder(borderVisEndreVikarReg);
         card9 = new EndreArbeidsforhold(utskrift, v);
+        card9.setBorder(borderVisEndreArbeisforholdReg);
         card10 = new SokningIRegister(utskrift, v);
-        
-        cards.removeAll();
         
         cards.add(registrering, "Registrering");//Det første blanke feltet som bli opprettet
         cards.add(card1, "RegistrerKunde");
