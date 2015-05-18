@@ -81,14 +81,14 @@ public class RegistrerSoknad extends JPanel{
     //Metoden tar i mot søknaden og sender den til visning av vikar i ansattvindu
     public void regSoknad(){
         Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
-        Vikar vikar = v.getVikarRegister().finnVikar(Long.parseLong(tf_vikar.getText()));
+        Vikar vikar = v.getVikarRegister().finnVikar(tf_vikar.getText());
         String soknadTekst = ta_soknad.getText();
         
         Soknad soknad = new Soknad(soknadTekst, vikariat, vikar);
         v.getSoknadsRegister().settInn(soknad);
         vikariat.setSoknad(soknad);
-        vikar.setVikariat(vikariat);
-        vikar.setSoknad(soknad);
+        vikar.setVikariater(vikariat);
+        vikar.setSoknader(soknad);
         System.out.println("Registrer søknad");
         utskrift.setText("Søknad registrert:\n" + soknad.toString());
         resetInput();

@@ -21,10 +21,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 
 //Klassen bygger opp vinduet til registrering av vikar
 public class RegistrerVikar extends JPanel{
@@ -41,7 +39,7 @@ public class RegistrerVikar extends JPanel{
     private JComboBox<String> cb_utdanning;
     private final String[] utdanning = 
         {"Ingen","Videregående","Fagskole","Høgskole/Universitet"};
-    private JList<String> cb_bransjer;
+    private JComboBox<String> cb_bransjer;
     private final String[] bransjer = 
         {"Advokattjenester/Prosedyre", "Bankvirksomhet", "Bygg/Anlegg/Entreprenør", 
             "Eiendom/Eiendomsmegling", "Engineering", "Farmasi/Legemiddel", "Finans -verdipapirer/megling", 
@@ -72,7 +70,7 @@ public class RegistrerVikar extends JPanel{
         lbl_epost = new JLabel("E-post: ");
         lbl_jobberf = new JLabel("Jobberfaring: ");
         lbl_ref = new JLabel("Referanse(r): ");
-        lbl_bransje = new JLabel("Ønskeet Bransjer: ");
+        lbl_bransje = new JLabel("Bransje: ");
         lbl_utdanning = new JLabel("Utdanning: ");
         
         tf_navn = new JTextField("",15);
@@ -113,9 +111,8 @@ public class RegistrerVikar extends JPanel{
         BG_kjonn.add(mann);
         BG_kjonn.add(kvinne);
         
-        cb_bransjer = new JList<>(bransjer);
-        cb_bransjer.setVisibleRowCount(9);
-        cb_bransjer.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        cb_bransjer = new JComboBox<>(bransjer);
+        cb_bransjer.setMaximumRowCount(9);
         cb_utdanning = new JComboBox<>(utdanning);
         cb_utdanning.setMaximumRowCount(4);
         
@@ -136,7 +133,7 @@ public class RegistrerVikar extends JPanel{
         add(lbl_ref);
         add(sp_ref);
         add(lbl_bransje);
-        add(new JScrollPane(cb_bransjer));
+        add(cb_bransjer);
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
@@ -156,11 +153,7 @@ public class RegistrerVikar extends JPanel{
         String epost = tf_epost.getText();
         String jobberf = ta_jobberf.getText();
         String ref = ta_ref.getText();
-        String[] valgteBransjer = cb_bransjer.getSelectedValuesList().toArray(new String[0]);
-        String bransjer = "";
-        for(int i = 0; i < valgteBransjer.length;i++){
-            bransjer += valgteBransjer[i] + ", ";
-        }
+        String jobbkat = (String) cb_bransjer.getSelectedItem();
         String utdan = (String) cb_utdanning.getSelectedItem();
         String kjonn;
             if(mann.isSelected())
@@ -179,7 +172,7 @@ public class RegistrerVikar extends JPanel{
             } else {
                 tlf = Integer.parseInt(tf_tlfnr.getText());
                 pers = Long.parseLong(tf_persnr.getText());
-                Vikar vikar = new Vikar(navn,tlf,epost,pers,bransjer,utdan,kjonn,jobberf,ref);
+                Vikar vikar = new Vikar(navn,tlf,epost,pers,jobbkat,utdan,kjonn,jobberf,ref);
                 v.getVikarRegister().settInn(vikar);
                 System.out.println("regVikar");
                 utskrift.setText(vikar.toString());

@@ -122,7 +122,7 @@ public class EndreArbeidsforhold extends JPanel {
     //Metoden tar i mot info fra felt og mater dem inn i registrering av arbeidsforhold
     public void regArbeidsforhold(){
         Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
-        Vikar vikar = v.getVikarRegister().finnVikar(Long.parseLong((String) cb_vikarer.getSelectedItem()));
+        Vikar vikar = v.getVikarRegister().finnVikar((String) cb_vikarer.getSelectedItem());
         String arbeidsforhold = ta_arbeidsforhold.getText();
         
         Arbeidsforhold af = new Arbeidsforhold(vikariat, vikar, arbeidsforhold);

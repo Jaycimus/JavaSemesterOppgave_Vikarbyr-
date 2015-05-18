@@ -140,7 +140,7 @@ public class KundeRegister implements Serializable {
             utskrift.setText("Ingen kunde i registeret!");
         }
         else{
-            utskrift.setText("");
+            utskrift.setText("KUNDEREGISTER\n");
             
             while(loper!=null){
                 

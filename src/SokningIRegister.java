@@ -24,7 +24,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 public class SokningIRegister extends JPanel {
     private JPanel kunde,vikar,vikariat;
@@ -44,6 +45,9 @@ public class SokningIRegister extends JPanel {
     private final JButton sok;
     private final JTextArea utskrift;
     
+    Border blackline;
+    TitledBorder titleKunde, titleVikariat, titleVikar;
+    
     private Vikarbyraa v;
     
     public SokningIRegister(JTextArea utskrift, Vikarbyraa v){
@@ -51,6 +55,15 @@ public class SokningIRegister extends JPanel {
         this.utskrift = utskrift;
         setLayout(new GridLayout(0,1,20,25));
         setPreferredSize(new Dimension(500,500));
+        
+        blackline = BorderFactory.createLineBorder(Color.black);
+        
+        titleKunde = BorderFactory.createTitledBorder(blackline,"Søk i Kunde Register");
+        titleKunde.setTitleJustification(TitledBorder.CENTER);
+        titleVikariat = BorderFactory.createTitledBorder(blackline,"Søk i Vikariat Register");
+        titleVikariat.setTitleJustification(TitledBorder.CENTER);
+        titleVikar = BorderFactory.createTitledBorder(blackline,"Søk i Vikar Register");
+        titleVikar.setTitleJustification(TitledBorder.CENTER);
         
         sok = new JButton("Søk");
         Knappelytter lytter = new Knappelytter();
@@ -178,7 +191,7 @@ public class SokningIRegister extends JPanel {
             
     private void opprettKundePanel(){
         kunde = new JPanel(new GridLayout(0,2,5,5));
-        kunde.setBorder(BorderFactory.createLineBorder(Color.black));
+        kunde.setBorder(titleKunde);
         kunde.add(lbl_kundeAlternativ);
         kunde.add(cb_kunder);
         kunde.add(lbl_skrivHerKunde);
@@ -187,7 +200,7 @@ public class SokningIRegister extends JPanel {
     
     private void opprettVikariatPanel(){
         vikariat = new JPanel(new GridLayout(2,2,5,5));
-        vikariat.setBorder(BorderFactory.createLineBorder(Color.black));
+        vikariat.setBorder(titleVikariat);
         vikariat.add(lbl_vikariatAlternativ);
         vikariat.add(cb_vikariater);
         vikariat.add(lbl_skrivHerVikariat);
@@ -196,7 +209,7 @@ public class SokningIRegister extends JPanel {
     
     private void oppretteVikarPanel(){
         vikar = new JPanel(new GridLayout(2,2,5,5));
-        vikar.setBorder(BorderFactory.createLineBorder(Color.black));
+        vikar.setBorder(titleVikar);
         vikar.add(lbl_vikarAlternativ);
         vikar.add(cb_vikar);
         vikar.add(lbl_skrivHerVikar);
@@ -207,7 +220,7 @@ public class SokningIRegister extends JPanel {
         String kundeValg = (String) cb_kunder.getSelectedItem();
         String vikariatValg = (String) cb_vikariater.getSelectedItem();
         String vikarValg = (String) cb_vikar.getSelectedItem();
-        if(!kundeValg.matches("Alternativer")){
+        if(!kundeValg.matches("Kunde alternativer")){
             if (cb_kunder.getSelectedIndex() == 1){
                 if(tf_kunde.getText().matches("")){
                     v.getKundeRegister().skrivHeleKundeListe(utskrift);
@@ -246,7 +259,7 @@ public class SokningIRegister extends JPanel {
                 }
             }
             return;
-        } else if (!vikariatValg.matches("Alternativer")){
+        } else if (!vikariatValg.matches("Vikariat alternativer")){
             if (cb_kunder.getSelectedIndex() == 1){
                 if(tf_kunde.getText().matches("")){
                     v.getVikariatRegister().skrivVikariatListe(utskrift);
@@ -255,7 +268,7 @@ public class SokningIRegister extends JPanel {
                 }
             }
             return;
-        } else if (!vikarValg.matches("Alternativer")){
+        } else if (!vikarValg.matches("Vikar alternativer")){
             if (cb_kunder.getSelectedIndex() == 1){
                 if(tf_kunde.getText().matches("")){
                     v.getVikariatRegister().skrivVikariatListe(utskrift);

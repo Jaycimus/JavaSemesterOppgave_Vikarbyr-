@@ -28,7 +28,7 @@ import javax.swing.JScrollPane;
 //Klassen bygger opp vinduet når du trykker på knappen "Vis/Endre Vikar"
 public class EndreVikar extends JPanel{
     private JButton endreVikar, slettVikar;
-    private JLabel lbl_navn, lbl_persnr, lbl_tlfnr, lbl_jobberf, lbl_ref;
+    private JLabel lbl_velgVikar, lbl_navn, lbl_persnr, lbl_tlfnr, lbl_jobberf, lbl_ref;
     private JLabel lbl_bransje, lbl_utdanning, lbl_epost;
     private JTextField tf_navn, tf_persnr, tf_tlfnr, tf_epost;
     private JTextArea ta_jobberf, ta_ref, utskrift;
@@ -68,20 +68,20 @@ public class EndreVikar extends JPanel{
 
         vikarPersNr = v.getVikarRegister().getVikarer();
         
-
         endreVikar = new JButton("Endre Vikar");
         endreVikar.addActionListener(lytter);
         slettVikar = new JButton("Slett Vikar");
         slettVikar.addActionListener(lytter);
         
-        lbl_navn = new JLabel("Navn: ");
-        lbl_persnr = new JLabel("Personnr: ");
-        lbl_tlfnr = new JLabel("Telefon: ");
-        lbl_epost = new JLabel("E-post: ");
-        lbl_jobberf = new JLabel("Jobberfaring: ");
-        lbl_ref = new JLabel("Referanse(r): ");
-        lbl_bransje = new JLabel("Bransje: ");
-        lbl_utdanning = new JLabel("Utdanning: ");
+        lbl_velgVikar = new JLabel("Velg Vikar:");
+        lbl_navn = new JLabel("Navn:");
+        lbl_persnr = new JLabel("Personnr:");
+        lbl_tlfnr = new JLabel("Telefon:");
+        lbl_epost = new JLabel("E-post:");
+        lbl_jobberf = new JLabel("Jobberfaring:");
+        lbl_ref = new JLabel("Referanse(r):");
+        lbl_bransje = new JLabel("Bransje:");
+        lbl_utdanning = new JLabel("Utdanning:");
         
         tf_navn = new JTextField("",15);
         tf_persnr = new JTextField("11 siffer",15);
@@ -143,20 +143,38 @@ public class EndreVikar extends JPanel{
                 return;
             }
             
-            /*Vikar vikar = v.getVikarRegister().finnVikar(vikar.getPersonNr());
+            Vikar vikar = v.getVikarRegister().finnVikar((String) cb_vikar.getSelectedItem());
+            tf_navn.setText(vikar.getNavn());
+            tf_persnr.setText("" + vikar.getPersonNr());
+            tf_tlfnr.setText("" + vikar.getTlf());
             tf_epost.setText(vikar.getEpost());
+            String stillingsType = vikar.getUtdanning();
+                for( int i = 0; i < utdanning.length; i++){
+                    if(stillingsType.matches(bransjer[i])){
+                        cb_utdanning.setSelectedIndex(i);
+                    }
+                }
             String kjonn = vikar.getKjonn();
             if(kjonn.matches("Mann")){
                 mann.setSelected(true);
             } else if(kjonn.matches("Kvinne")){
                 kvinne.setSelected(true);
             }
-            //ta_jobberf.setText(vikar.getJobberfaring());
-            ta_ref.setText(vikar.getReferanser()); */  
+            ta_jobberf.setText(vikar.getJobberfaring());
+            ta_ref.setText(vikar.getReferanser());
+            
+            String bransje = vikar.getOnsketBransje();
+                for( int i = 0; i < bransjer.length; i++){
+                    if(bransje.matches(bransjer[i])){
+                        cb_bransjer.setSelectedIndex(i);
+                    }
+                }
         });
         
-        add(lbl_navn);
+        add(lbl_velgVikar);
         add(cb_vikar);
+        add(lbl_navn);
+        add(tf_navn);
         add(lbl_persnr);
         add(tf_persnr);
         add(lbl_tlfnr);
@@ -173,17 +191,12 @@ public class EndreVikar extends JPanel{
         add(sp_ref);
         add(lbl_bransje);
         add(cb_bransjer);
-        add(new JPanel());
-        add(new JPanel());
-        add(new JPanel());
-        add(new JPanel());
-        add(new JPanel());
         add(slettVikar);
         add(endreVikar);
     }//end kontruktør
     
     //Leser inn den nye infoen som blir skrevet inn i tekstfelt
-    public void regVikar(){
+    public void endreVikar(){
         String navn = tf_navn.getText();
         long pers;
         int tlf;
@@ -227,15 +240,52 @@ public class EndreVikar extends JPanel{
     
     //Sletter den valgte vikaren når "Slett Vikar"-knappen blir trykket
     public void slettVikar(){
-        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette kunden?","Sletting",JOptionPane.YES_NO_OPTION);
-        if(sikker == JOptionPane.YES_OPTION){}
+        String personNr = (String)cb_vikar.getSelectedItem();
+        if(personNr.matches("---Vikarer---")){
+            JOptionPane.showMessageDialog(null,"Vikar ikke valgt!");
+            return;
+        }
+        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikaren?","Sletting",JOptionPane.YES_NO_OPTION);
+        if(sikker == JOptionPane.YES_OPTION){
+            Vikar vikar = v.getVikarRegister().finnVikar(personNr);
+            if(v.getVikarRegister().slettVikar(personNr)){
+                for(int y = 0; y < vikar.getVikariatNr().size(); y++){
+                    Vikariat vikariat = vikar.getVikariatNr().get(y);
+                    int vikariatNr = vikariat.getVikariatNr();
+                    v.getVikariatRegister().finnVikariat(vikariatNr).setVikarer(null, true);
+                }
+                
+                
+            }
+        }
+        cb_vikar.removeItem((String)cb_vikar.getSelectedItem());
+        resetInput();
+        refresh();
+    }
+    
+    private void resetInput(){
+        //cb_vikariater.setSelectedIndex(0);
+        tf_navn.setText("");
+        cb_vikar.setSelectedIndex(0);
+        cb_utdanning.setSelectedIndex(0);
+        cb_bransjer.setSelectedIndex(0);
+        tf_persnr.setText("");
+        tf_tlfnr.setText("");
+        tf_epost.setText("");
+        ta_jobberf.setText("");
+        ta_ref.setText("");
+    }
+    
+    
+    private void refresh(){
+        v.getVikarRegister().skrivVikarListe(utskrift);
     }
             
     //Knytter "Endre Vikar" og "Slett Vikar" knappene til lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==endreVikar){
-                regVikar();
+                endreVikar();
             } else if(e.getSource()==slettVikar){
                 slettVikar();
             }

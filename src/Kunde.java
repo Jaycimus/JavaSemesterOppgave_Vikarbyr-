@@ -16,7 +16,6 @@ public class Kunde implements Serializable{
     private String adresse;
     private String epost;
     private int tlf;
-       
     Kunde neste;
     
     //Kontruktør
@@ -86,7 +85,7 @@ public class Kunde implements Serializable{
     }
     
     //Skriver ut all innlest informasjon til utskriftsområdet
-    public String toString(int antallNoder){
+    public String toString(){
         String utskrift = "\nKunde navn: " + navn + "\nType Sektor: " + typeSektor + 
                           "\nAdresse: " + adresse + 
                           "\nTelefon: " + tlf + "\nE-post: " + epost;

@@ -33,14 +33,15 @@ public class SoknadsRegister implements Serializable {
     }
     
     //Skriver ut søknadene som registrert
-    public void skrivVikarListe(JTextArea soknadListe){
+    public void skrivSoknadTilVikariatListe(JTextArea soknadListe, String vikariatNr){
         Soknad loper = forste;
         
         if(forste == null){
-            soknadListe.setText("Ingen soknad i registeret");
+            soknadListe.setText("Ingen soknader inne");
         } else {
             soknadListe.setText("");            
             while(loper!=null){                
+                if(loper.getVikariat().getVikariatNrS().equals(vikariatNr))
                 soknadListe.append(loper.toString()+"\n");                
                 loper = loper.neste;
             }

@@ -27,7 +27,7 @@ public class RegistrerVikariat extends JPanel {
     private JButton regVikariat;
     private JLabel lbl_kunde, lbl_adresse, lbl_arbeidtid, lbl_stillingstype, lbl_kvalifikasjoner,
                     lbl_lonnsbetingelser, lbl_kontaktinfo, lbl_stillingsinfo, lbl_varighettil, lbl_varighetfra,
-                    lbl_bindestrek, lbl_kolon, lbl_kolon2;
+                    lbl_bindestrek;
     private JTextField tf_adresse, tf_stillingstype, tf_kvalifikasjoner,
                     tf_lonnsbetingelser, tf_kontaktinfo, tf_stillingsinfo;
     
