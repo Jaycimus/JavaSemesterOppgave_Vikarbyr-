@@ -128,6 +128,8 @@ public class EndreVikar extends JPanel{
 
         cb_vikar = new JComboBox<>(vikarPersNr);
         cb_vikar.setMaximumRowCount(9);
+        cb_vikar = new JComboBox<>(vikarPersNr);
+        cb_vikar.setMaximumRowCount(9);
         cb_vikar.addItemListener((ItemEvent e)-> {
             String vikarNavn = (String) cb_vikar.getSelectedItem();
             if(vikarNavn.equals("---Vikarer---")){
@@ -140,11 +142,18 @@ public class EndreVikar extends JPanel{
                 ta_ref.setText("");
                 return;
             }
-            Vikar vikar = v.getVikarRegister().finnVikar(vikar.getPersonNr());
             
-            
+            /*Vikar vikar = v.getVikarRegister().finnVikar(vikar.getPersonNr());
+            tf_epost.setText(vikar.getEpost());
+            String kjonn = vikar.getKjonn();
+            if(kjonn.matches("Mann")){
+                mann.setSelected(true);
+            } else if(kjonn.matches("Kvinne")){
+                kvinne.setSelected(true);
+            }
+            //ta_jobberf.setText(vikar.getJobberfaring());
+            ta_ref.setText(vikar.getReferanser()); */  
         });
-
         
         add(lbl_navn);
         add(cb_vikar);
