@@ -90,7 +90,7 @@ public class ArbeidsforholdRegister implements Serializable {
     }//end getAntallNoder
     
     public int finnNesteNummer(){
-        int nummer = 10000;
+        int nummer = 99999;
         Arbeidsforhold loper = siste;
         while(loper!=null)
         {

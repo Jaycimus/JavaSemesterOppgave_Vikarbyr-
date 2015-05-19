@@ -35,7 +35,7 @@ public class VikarRegister implements Serializable {
     }
     
     public int finnNesteNummer(){
-        int nummer = 100;
+        int nummer = 99;
         Vikar loper = siste;
         while(loper!=null)
         {
