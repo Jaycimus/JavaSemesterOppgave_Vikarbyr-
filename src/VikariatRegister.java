@@ -226,8 +226,7 @@ public class VikariatRegister implements Serializable {
     public int finnNesteNummer(){
         int nummer = 9999;
         Vikariat loper = siste;
-        while(loper!=null)
-        {
+        while(loper!=null){
             if(nummer < loper.getVikariatNr()){
                 nummer ++;                
             }           
