@@ -7,6 +7,7 @@ Gruppenummer: 15*/
 //Sist endret 15. Mai 2015 AV: Arthur Nordnes
 
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
