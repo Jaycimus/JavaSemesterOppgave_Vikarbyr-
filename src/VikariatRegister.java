@@ -180,9 +180,6 @@ public class VikariatRegister implements Serializable {
                 }
             }
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Kunde har ingen registrerte vikariater");
-        }
         
         vikariater = list.toArray(new String[list.size()]);    
         return vikariater;        

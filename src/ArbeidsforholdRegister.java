@@ -30,7 +30,56 @@ public class ArbeidsforholdRegister implements Serializable {
             siste = ny;
         }
     }
+    
+    public boolean slettArbeidsforhold(String arbeidsforholdNr){
+        Arbeidsforhold loper = forste;        
+        
+        if(forste.getArbeidsforholdNrS().equals(arbeidsforholdNr)){
+            forste = forste.neste;
+            return true;
+        }
+        
+        if (loper.neste == null){
+            forste = null;
+            return true;
+        }
+        
+        if(loper.getArbeidsforholdNrS().equals(arbeidsforholdNr)){
+            loper = loper.neste;
+            return true;
+        }
+        
+        while(loper.neste != null){
+            if(loper.neste.getArbeidsforholdNrS().equals(arbeidsforholdNr)){
+                loper.neste = loper.neste.neste;
+                return true;
+            }
+            else{
+                loper = loper.neste;
+            }
+        }
+        
+        loper = finnNestSisteNode();
+        if(loper.getArbeidsforholdNrS().equals(arbeidsforholdNr)){
+            loper.neste = null;
+        }
+        
+        return false;
+    }
    
+    public Arbeidsforhold finnNestSisteNode(){
+        Arbeidsforhold loper = forste;
+        boolean ok = true;
+        while(ok){
+            if(loper.neste.neste!=null){
+                loper = loper.neste;
+            } else {
+                return loper;
+            }
+        }
+        return loper;
+    }
+    
     public Arbeidsforhold finnArbeidsforhold(String arbeidsforholdNr){
         int arbeidsforholdNummer = Integer.parseInt(arbeidsforholdNr);
         Arbeidsforhold loper = forste;

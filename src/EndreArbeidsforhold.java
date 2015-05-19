@@ -44,7 +44,7 @@ public class EndreArbeidsforhold extends JPanel {
         
         Knappelytter lytter = new Knappelytter();
         
-        endreArbeidsforhold = new JButton("Registrer forhold");
+        endreArbeidsforhold = new JButton("Endre forhold");
         endreArbeidsforhold.addActionListener(lytter);
         slettArbeidsforhold = new JButton("Slett forhold");
         slettArbeidsforhold.addActionListener(lytter);
@@ -63,24 +63,26 @@ public class EndreArbeidsforhold extends JPanel {
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange() == ItemEvent.SELECTED){
-                        cb_vikariater.removeAllItems();
-                        vikariatNr = v.getVikariatRegister().getVikariaterTilKunde((String) cb_kunder.getSelectedItem());
-                        for(int i = 0; i < vikariatNr.length; i++){
-                            cb_vikariater.addItem(vikariatNr[i]);
+                        String kundeNavn = (String)cb_kunder.getSelectedItem();
+                        if(kundeNavn.matches("---Kunder---")){
+                            System.out.println("Ingen kunde valgt");
+                            resetInput();
+                        } else{
+                            cb_vikariater.removeAllItems();
+                            vikariatNr = v.getVikariatRegister().getVikariaterTilKunde((String) cb_kunder.getSelectedItem());
+                            cb_vikariater.addItem("---Vikariater---");
+                            cb_vikariater.setEnabled(true);
+                            for(int i = 0; i < vikariatNr.length; i++){
+                                cb_vikariater.addItem(vikariatNr[i]);
+                            }
                         }
-                        cb_vikariater.setEnabled(true);
-                        if(cb_vikariater.getItemCount()==0){
-                            cb_vikarer.removeAllItems();
-                            cb_arbeidsforholdNr.removeAllItems();
-                            ta_arbeidsforhold.setText("");
-                            JOptionPane.showMessageDialog(null, "Ingen vikariater registrert på denne kunden");
-                        } 
                     }
                 }
             }
         );
         vikariatNr = new String[0];
         cb_vikariater = new JComboBox<String>(vikariatNr);
+        cb_vikariater.addItem("---Vikariater---");
         cb_vikariater.setMaximumRowCount(9);
         cb_vikariater.setEnabled(false);
         //Setter inn vikariatnr. som er registrert fra før av i ComboBox'en
@@ -88,53 +90,90 @@ public class EndreArbeidsforhold extends JPanel {
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange()==ItemEvent.SELECTED){
+                        String vikariatNr = (String)cb_vikariater.getSelectedItem();
+                        if(vikariatNr.matches("---Vikariater---")){
+                            System.out.println("Ingen vikariat valgt");
+                            cb_vikarer.setSelectedIndex(0);
+                            cb_vikarer.setEnabled(false);
+                            cb_arbeidsforholdNr.setSelectedIndex(0);
+                            cb_arbeidsforholdNr.setEnabled(false);
+                            ta_arbeidsforhold.setText("");
+                            ta_arbeidsforhold.setEnabled(false);    
+                            return;
+                        }
+                        
                         cb_vikarer.removeAllItems();
-                        cb_arbeidsforholdNr.removeAllItems();
                         ta_arbeidsforhold.setText("");
                         String vikariat = (String) cb_vikariater.getSelectedItem();
                         vikarer = v.getVikarRegister().getVikarerTilVikariat(Integer.parseInt(vikariat));
+                        cb_vikarer.addItem("---Vikarer---");
                         for(int i = 0; i < vikarer.length; i++){
                             cb_vikarer.addItem(vikarer[i]);
                         }
                         cb_vikarer.setEnabled(true);
-                        if(cb_vikarer.getItemCount()!=0 ){
+                        
+                    }//end getStateChanged
+                }//end itemStateChanged
+            }
+        );//end itemlistener
+        
+        vikarer = new String[0];
+        cb_vikarer = new JComboBox<String>(vikarer);
+        cb_vikarer.addItem("---Vikarer---");
+        cb_vikarer.setMaximumRowCount(9);
+        cb_vikarer.setEnabled(false);
+        cb_vikarer.addItemListener(
+            new ItemListener(){
+                public void itemStateChanged(ItemEvent event){
+                    if(event.getStateChange() == ItemEvent.SELECTED){
+                        String vikarNr = (String)cb_vikarer.getSelectedItem();
+                        if(vikarNr.matches("---Vikarer---")){
+                            System.out.println("Ingen vikar valgt");
+                            cb_arbeidsforholdNr.setSelectedIndex(0);
+                            cb_arbeidsforholdNr.setEnabled(false);
+                            ta_arbeidsforhold.setText("");
+                            ta_arbeidsforhold.setEnabled(false);  
+                            return;
+                        } else {
+                            cb_arbeidsforholdNr.setEnabled(true);
+                            String vikariat = (String) cb_vikariater.getSelectedItem();
                             ArrayList<Arbeidsforhold> arbeidsforholdTilVikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariat)).getArbeidsforhold();
                             for(int i = 0; i < arbeidsforholdTilVikariat.size(); i++){
                                 if(arbeidsforholdTilVikariat.get(i).getVikar().getVikarNr() == Integer.parseInt((String)cb_vikarer.getSelectedItem())){
                                     cb_arbeidsforholdNr.addItem(arbeidsforholdTilVikariat.get(i).getArbeidsforholdNrS());
                                 }
-                            }
-                            if(cb_arbeidsforholdNr.getItemCount()==0){
-                                JOptionPane.showMessageDialog(null, "Ingen registrerte arbeidsforhold til vikaren på dette vikariatet");
-                                return;
-                            }
-                        } else{
-                            JOptionPane.showMessageDialog(null, "Ingen registrert vikar på dette vikariatet");
-                            return;
+                            }//end for loop
                         }
-                            
                     }
                 }
             }
         );
-        vikarer = new String[0];
-        cb_vikarer = new JComboBox<String>(vikarer);
-        cb_vikarer.setMaximumRowCount(9);
-        cb_vikarer.setEnabled(false);
+        
         arbeidsforholdNr = new String[0];
         cb_arbeidsforholdNr = new JComboBox<String>(arbeidsforholdNr);
-        cb_arbeidsforholdNr.setEditable(false);
+        cb_arbeidsforholdNr.addItem("---Arbeidsforhold---");
+        cb_arbeidsforholdNr.setEnabled(false);
         cb_arbeidsforholdNr.addItemListener(
             new ItemListener(){
                 public void itemStateChanged(ItemEvent event){
                     if(event.getStateChange() == ItemEvent.SELECTED){
+                        String arbeidsforholdNr = (String)cb_arbeidsforholdNr.getSelectedItem();
+                        if(arbeidsforholdNr.matches("---Arbeidsforhold---")){
+                            ta_arbeidsforhold.setText("");
+                            ta_arbeidsforhold.setEnabled(false);  
+                            return;
+                        }
+                        ta_arbeidsforhold.setEnabled(true);
                         ta_arbeidsforhold.setText(v.getArbeidsforholdRegister().finnArbeidsforhold((String)cb_arbeidsforholdNr.getSelectedItem()).getArbeidsforhold());
-                    }
-                }
+                    }//end getStateChanged
+                }//end itemStateChanged
             }
-        );
+        );//end itemlistener
                 
         ta_arbeidsforhold = new JTextArea(40,15);
+        ta_arbeidsforhold.setEnabled(false);
+        ta_arbeidsforhold.setWrapStyleWord(true);
+        ta_arbeidsforhold.setLineWrap(true);
         JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
         
         add(lbl_kunder);
@@ -163,45 +202,42 @@ public class EndreArbeidsforhold extends JPanel {
     
     //Metoden tar i mot info fra felt og mater dem inn i registrering av arbeidsforhold
     private void endreArbeidsforhold(){
-        Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
+        /*Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
         Vikar vikar = v.getVikarRegister().finnVikar((String) cb_vikarer.getSelectedItem());
-        String arbeidsforhold = ta_arbeidsforhold.getText();
         if(vikariat==null||vikar==null){
             JOptionPane.showMessageDialog(null,"Finner ikke vikariat/vikar");
             return;
-        }
-        //int arbeidsforholdNr = Integer.parseInt();
+        }*/
+        String arbeidsforholdNr = (String) cb_arbeidsforholdNr.getSelectedItem();
+        String arbeidsforholdTekst = ta_arbeidsforhold.getText();
         
-        //arbeidsforhold = v.getArbeidsforholdRegister().finnArbeidsforhold(arbeidsforholdNr)
-                
-        //v.getArbeidsforholdRegister().settInn(af);
-        //System.out.println("Registrer Arbeidsforhold");
-        //utskrift.setText(af.toString());
-        //resetInput();
+        Arbeidsforhold arbeidsforhold = v.getArbeidsforholdRegister().finnArbeidsforhold(arbeidsforholdNr);
+        arbeidsforhold.setArbeidsforhold(arbeidsforholdTekst);
+        
+        utskrift.setText(arbeidsforhold.toString());
+        resetInput();
     }
     
     private void slettArbeidsforhold(){
-        /*int ArbeidsforholdNummer = v.getVikarRegister().
+        String ArbeidsforholdNummer = (String) cb_arbeidsforholdNr.getSelectedItem();
         
-        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikaren?","Sletting",JOptionPane.YES_NO_OPTION);
+        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette arbeidsforholdet?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
-            v.getVikariatRegister().finnVikariatOgSLettVikar(personNr);
-            if(v.getVikarRegister().slettVikar(personNr)){
-                cb_vikar.removeItem((String)cb_vikar.getSelectedItem());
-                resetInput();
-                refresh();
-                
-            }
-        }*/
+            v.getArbeidsforholdRegister().slettArbeidsforhold(ArbeidsforholdNummer);
+            cb_arbeidsforholdNr.removeItem((String)cb_arbeidsforholdNr.getSelectedItem());
+        }
     }
     
     //Tilbakestiller infoen til originale tilstand
     private void resetInput(){
         cb_kunder.setSelectedIndex(0);
-        cb_vikariater.setSelectedIndex(0);
-        cb_vikarer.setSelectedIndex(0);
+        cb_vikariater.setEnabled(false);
+        cb_vikarer.setEnabled(false);
+        cb_arbeidsforholdNr.setEnabled(false);
         ta_arbeidsforhold.setText("");
+        ta_arbeidsforhold.setEnabled(false);
     }
+
     
     //Knytter knappen "Registrer Arbeidsfohold" til lytter
     private class Knappelytter implements ActionListener{
