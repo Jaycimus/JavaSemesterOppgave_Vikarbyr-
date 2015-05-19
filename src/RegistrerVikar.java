@@ -7,6 +7,7 @@ Gruppenummer: 15*/
 //Sist endret 15. Mai 2015 AV: Arthur Nordnes
 
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -168,10 +169,16 @@ public class RegistrerVikar extends JPanel{
         try{
             if(!Validering.validerNavn(navn)){
                 JOptionPane.showMessageDialog(null, "Feil i vikar navn");
+                tf_navn.setBackground(new Color(213,125,98));
             } else if(!Validering.validerPersonnummer(tf_persnr.getText())){
                 JOptionPane.showMessageDialog(null, "Feil med personnummeret");
+                tf_persnr.setBackground(new Color(213,125,98));
             } else if(!Validering.validerTLF(tf_tlfnr.getText())){
                 JOptionPane.showMessageDialog(null, "Feil med telfonnummeret");
+                tf_tlfnr.setBackground(new Color(213,125,98));
+            } else if(!Validering.validerEpost(epost)){
+                JOptionPane.showMessageDialog(null, "Feil med e-post");
+                tf_epost.setBackground(new Color(213,125,98));
             } else {
                 tlf = Integer.parseInt(tf_tlfnr.getText());
                 pers = Long.parseLong(tf_persnr.getText());

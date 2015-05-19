@@ -151,7 +151,7 @@ public class EndreVikar extends JPanel{
             tf_epost.setText(vikar.getEpost());
             String stillingsType = vikar.getUtdanning();
                 for( int i = 0; i < utdanning.length; i++){
-                    if(stillingsType.matches(bransjer[i])){
+                    if(stillingsType.matches(utdanning[i])){
                         cb_utdanning.setSelectedIndex(i);
                     }
                 }
