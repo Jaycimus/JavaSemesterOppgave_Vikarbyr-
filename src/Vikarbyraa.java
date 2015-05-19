@@ -7,7 +7,6 @@ Gruppenummer: 15*/
 //Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
 
 
-import java.awt.Font;
 import java.io.Serializable;
 import java.util.ArrayList;
 

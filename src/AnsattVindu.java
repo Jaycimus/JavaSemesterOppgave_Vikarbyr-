@@ -34,7 +34,6 @@ public class AnsattVindu extends JFrame{
     
     private Vikarbyraa v;
     
-    private Color bakgrunn;
     TitledBorder borderKunde, borderVikariat, borderVikar, borderArbForhold, 
             borderVikarVikariat, borderVisEndreKundeReg, borderVisEndreVikariatReg, 
             borderVisEndreArbeisforholdReg, borderVisEndreVikarReg, borderRegSoking;
@@ -43,7 +42,6 @@ public class AnsattVindu extends JFrame{
     public AnsattVindu(Vikarbyraa v){
         super("Vikarbyrå AS");
         this.v = v;
-        bakgrunn = v.getFarge().getBakrunn();
         BorderLayout borderLayout = new BorderLayout(10, 10);
         setLayout(borderLayout);
         

@@ -94,53 +94,51 @@ public class Logginn extends JFrame{
         add(status);
 	
         //Metode som sjekker om riktig pass og brukernavn kombinasjon er skrevet
-	loggInn.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                //henter og lagrer det innskrivende brukernavnet og passord
-                String bruker = brukernavn.getText();
-                String pass = passord.getText();
-                    
-                //tester om brukernavn og passord kombanasjonen funker
-                for(int i = 0; i < v.navneListe1.size(); i++) {
-                    if(bruker.equalsIgnoreCase(v.navneListe1.get(i)) && pass.equals(v.passordListe1.get(i))) {
-                        setVisible(false);
-                        AnsattVindu vindu = new AnsattVindu(v);
-                        vindu.setSize(new Dimension(1200,700));
-                        vindu.setVisible(true);
-                        vindu.setLocationRelativeTo(null);
-                        vindu.setResizable(false);
-                        vindu.addWindowListener( new WindowAdapter(){
-                            public void windowClosing(WindowEvent e){
-                                skrivTilFil();
-                                System.exit(0);
-                            }
-                        });
-                        return;
-                    } 
+	loggInn.addActionListener((ActionEvent e) -> {
+            //henter og lagrer det innskrivende brukernavnet og passord
+            String bruker = brukernavn.getText();
+            String pass = passord.getText();
+            
+            //tester om brukernavn og passord kombanasjonen funker
+            for(int i = 0; i < v.navneListe1.size(); i++) {
+                if(bruker.equalsIgnoreCase(v.navneListe1.get(i)) && pass.equals(v.passordListe1.get(i))) {
+                    setVisible(false);
+                    AnsattVindu vindu = new AnsattVindu(v);
+                    vindu.setSize(new Dimension(1200,700));
+                    vindu.setVisible(true);
+                    vindu.setLocationRelativeTo(null);
+                    vindu.setResizable(false);
+                    vindu.addWindowListener( new WindowAdapter(){
+                        public void windowClosing(WindowEvent e){
+                            skrivTilFil();
+                            System.exit(0);
+                        }
+                    });
+                    return; 
                 }
-                for(int i = 0; i < v.navneListe2.size(); i++){
-                    if (bruker.equalsIgnoreCase(v.navneListe2.get(i)) && pass.equals(v.passordListe2.get(i))){
-                        setVisible(false);
-                        VikarVindu vindu = new VikarVindu(v);
-                        vindu.setSize(new Dimension(1200,700));
-                        vindu.setVisible(true);
-                        vindu.setLocationRelativeTo(null);
-                        vindu.setResizable(false);
-                        vindu.addWindowListener( new WindowAdapter(){
-                            public void windowsClosing(WindowEvent e){
-                                skrivTilFil();
-                                System.exit(0);
-                                }
-                            });
-                        return;
-                    }
-                    else {
-                        status.setText("       Feil brukernavn/passord       ");
-                        
-                        //fjerner all tekst i tekstfeltene
-                        brukernavn.setText("");
-                        passord.setText("");
-                    }
+            }
+            for(int i = 0; i < v.navneListe2.size(); i++){
+                if (bruker.equalsIgnoreCase(v.navneListe2.get(i)) && pass.equals(v.passordListe2.get(i))){
+                    setVisible(false);
+                    VikarVindu vindu = new VikarVindu(v);
+                    vindu.setSize(new Dimension(1200,700));
+                    vindu.setVisible(true);
+                    vindu.setLocationRelativeTo(null);
+                    vindu.setResizable(false);
+                    vindu.addWindowListener( new WindowAdapter(){
+                        public void windowsClosing(WindowEvent e){
+                            skrivTilFil();
+                            System.exit(0);
+                        }
+                    });
+                    return;
+                }
+                else {
+                    status.setText("       Feil brukernavn/passord       ");
+                    
+                    //fjerner all tekst i tekstfeltene
+                    brukernavn.setText("");
+                    passord.setText("");
                 }
             }
         });
@@ -196,53 +194,51 @@ public class Logginn extends JFrame{
         add(status);
 	
         //Metode som sjekker om riktig pass og brukernavn kombinasjon er skrevet
-	loggInn.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                //henter og lagrer det innskrivende brukernavnet og passord
-                String bruker = brukernavn.getText();
-                String pass = passord.getText();
-                    
-                //tester om brukernavn og passord kombanasjonen funker
-                for(int i = 0; i < v.navneListe1.size(); i++) {
-                    if(bruker.equalsIgnoreCase(v.navneListe1.get(i)) && pass.equals(v.passordListe1.get(i))) {
-                        setVisible(false);
-                        AnsattVindu vindu = new AnsattVindu(v);
-                        vindu.setSize(new Dimension(1200,700));
-                        vindu.setVisible(true);
-                        vindu.setLocationRelativeTo(null);
-                        vindu.setResizable(false);
-                        vindu.addWindowListener( new WindowAdapter(){
-                            public void windowClosing(WindowEvent e){
-                                skrivTilFil();
-                                System.exit(0);
-                            }
-                        });
-                        return;
-                    } 
+	loggInn.addActionListener((ActionEvent e) -> {
+            //henter og lagrer det innskrivende brukernavnet og passord
+            String bruker = brukernavn.getText();
+            String pass = passord.getText();
+            
+            //tester om brukernavn og passord kombanasjonen funker
+            for(int i = 0; i < v.navneListe1.size(); i++) {
+                if(bruker.equalsIgnoreCase(v.navneListe1.get(i)) && pass.equals(v.passordListe1.get(i))) {
+                    setVisible(false);
+                    AnsattVindu vindu = new AnsattVindu(v);
+                    vindu.setSize(new Dimension(1200,700));
+                    vindu.setVisible(true);
+                    vindu.setLocationRelativeTo(null);
+                    vindu.setResizable(false);
+                    vindu.addWindowListener( new WindowAdapter(){
+                        public void windowClosing(WindowEvent e){
+                            skrivTilFil();
+                            System.exit(0);
+                        }
+                    });
+                    return; 
                 }
-                for(int i = 0; i < v.navneListe2.size(); i++){
-                    if (bruker.equalsIgnoreCase(v.navneListe2.get(i)) && pass.equals(v.passordListe2.get(i))){
-                        setVisible(false);
-                        VikarVindu vindu = new VikarVindu(v);
-                        vindu.setSize(new Dimension(1200,700));
-                        vindu.setVisible(true);
-                        vindu.setLocationRelativeTo(null);
-                        vindu.setResizable(false);
-                        vindu.addWindowListener( new WindowAdapter(){
-                            public void windowsClosing(WindowEvent e){
-                                skrivTilFil();
-                                System.exit(0);
-                                }
-                            });
-                        return;
-                    }
-                    else {
-                        status.setText("       Feil brukernavn/passord       ");
-                        
-                        //fjerner all tekst i tekstfeltene
-                        brukernavn.setText("");
-                        passord.setText("");
-                    }
+            }
+            for(int i = 0; i < v.navneListe2.size(); i++){
+                if (bruker.equalsIgnoreCase(v.navneListe2.get(i)) && pass.equals(v.passordListe2.get(i))){
+                    setVisible(false);
+                    VikarVindu vindu = new VikarVindu(v);
+                    vindu.setSize(new Dimension(1200,700));
+                    vindu.setVisible(true);
+                    vindu.setLocationRelativeTo(null);
+                    vindu.setResizable(false);
+                    vindu.addWindowListener( new WindowAdapter(){
+                        public void windowsClosing(WindowEvent e){
+                            skrivTilFil();
+                            System.exit(0);
+                        }
+                    });
+                    return;
+                }
+                else {
+                    status.setText("       Feil brukernavn/passord       ");
+                    
+                    //fjerner all tekst i tekstfeltene
+                    brukernavn.setText("");
+                    passord.setText("");
                 }
             }
         });
