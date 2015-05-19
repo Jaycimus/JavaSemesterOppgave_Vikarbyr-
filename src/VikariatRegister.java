@@ -224,13 +224,15 @@ public class VikariatRegister implements Serializable {
     
     //Lager neste vikariatnummer
     public int finnNesteNummer(){
-        int nummer = 10000;
-        Vikariat loper = forste;
+        int nummer = 9999;
+        Vikariat loper = siste;
         while(loper!=null)
         {
-            if(nummer <= loper.getVikariatNr())
+            if(nummer < loper.getVikariatNr())
             {
-                nummer = loper.getVikariatNr();
+                nummer ++;                
+            }           
+            else{
                 return nummer;
             }
         }
