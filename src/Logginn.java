@@ -4,7 +4,7 @@ Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
 Gruppenummer: 15*/
 
-//Sist endret 15. Mai 2015 AV: Arthur Nordnes
+//Sist endret 15. Mai 2015 AV: Andreas Stenseng Bjørnrud
 
 
 //importerer nødvendige klasser fra Javas klassebiblotek
@@ -12,7 +12,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -25,7 +24,6 @@ import java.io.IOException;
 import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -57,7 +55,7 @@ public class Logginn extends JFrame{
         tekstfelt = v.getFonts().getBitstreamVeraSansMono();
         
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter
-        brukernavn = new JTextField("Andreas",15);
+        brukernavn = new JTextField("Brukernavn",15);
         brukernavn.setFont(tekstfelt);
         brukernavn.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -66,7 +64,7 @@ public class Logginn extends JFrame{
 	});
                         
         //oppretter tekstfelt for passord og regisrerer museklikk lytter
-        passord = new JPasswordField("andreas",15);
+        passord = new JPasswordField("Passord",15);
         passord.setFont(tekstfelt);
 	passord.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -157,7 +155,7 @@ public class Logginn extends JFrame{
         tekstfelt = v.getFonts().getBitstreamVeraSansMono();
         
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter
-        brukernavn = new JTextField("Andreas",15);
+        brukernavn = new JTextField("Brukernavn",15);
         brukernavn.setFont(tekstfelt);
         brukernavn.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -166,7 +164,7 @@ public class Logginn extends JFrame{
 	});
         
         //oppretter tekstfelt for passord og regisrerer museklikk lytter
-        passord = new JPasswordField("andreas",15);
+        passord = new JPasswordField("Passord",15);
         passord.setFont(tekstfelt);
 	passord.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {

@@ -24,7 +24,7 @@ public class RegistrerVikarTilVikariat extends JPanel {
     private JLabel lbl_kunder, lbl_vikaiater, lbl_vikar;
     private JComboBox<String> cb_kunder, cb_vikariater, cb_vikarer;
     private String[] kunder, vikariatNr, vikarer;
-    private JButton regVikarTilVikariat;
+    private JButton tildelVikariat, fjernVikar;
     
     private Vikarbyraa v;
     private JTextArea utskrift;
@@ -37,8 +37,10 @@ public class RegistrerVikarTilVikariat extends JPanel {
         this.utskrift = utskrift;
         
         Knappelytter lytter = new Knappelytter();
-        regVikarTilVikariat = new JButton("Tildel");
-        regVikarTilVikariat.addActionListener(lytter);
+        tildelVikariat = new JButton("Tildel");
+        tildelVikariat.addActionListener(lytter);
+        fjernVikar = new JButton("Fjern Vikar");
+        fjernVikar.addActionListener(lytter);
         
         lbl_kunder = new JLabel("Kunder:");
         lbl_vikaiater = new JLabel("Vikariater:");
@@ -116,7 +118,7 @@ public class RegistrerVikarTilVikariat extends JPanel {
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
-        add(regVikarTilVikariat);
+        add(tildelVikariat);
         
     }//end konstruktør
     
@@ -153,6 +155,10 @@ public class RegistrerVikarTilVikariat extends JPanel {
         }
     }
     
+    private void fjernVikar(){
+        
+    }
+    
     private void resetInput(){
         cb_kunder.setSelectedIndex(0);
         cb_vikariater.setSelectedIndex(0);
@@ -165,8 +171,11 @@ public class RegistrerVikarTilVikariat extends JPanel {
     
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            if(e.getSource()==regVikarTilVikariat){
+            if(e.getSource()==tildelVikariat){
                 regVikarTilVikariat();
+            } 
+            else if(e.getSource()==fjernVikar){
+                fjernVikar();
             }
         }
     }

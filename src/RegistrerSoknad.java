@@ -4,7 +4,7 @@ Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
 Gruppenummer: 15*/
 
-//Sist endret 15. Mai 2015 AV: Arthur Nordnes
+//Sist endret 15. Mai 2015 AV: Jørgen Dyhre
 
 
 import java.awt.Dimension;
@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -80,18 +81,22 @@ public class RegistrerSoknad extends JPanel{
     
     //Metoden tar i mot søknaden og sender den til visning av vikar i ansattvindu
     public void regSoknad(){
-        Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
-        Vikar vikar = v.getVikarRegister().finnVikar(tf_vikar.getText());
-        String soknadTekst = ta_soknad.getText();
-        
-        Soknad soknad = new Soknad(soknadTekst, vikariat, vikar);
-        v.getSoknadsRegister().settInn(soknad);
-        vikariat.setSoknad(soknad);
-        vikar.setVikariater(vikariat);
-        vikar.setSoknader(soknad);
-        System.out.println("Registrer søknad");
-        utskrift.setText("Søknad registrert:\n" + soknad.toString());
-        resetInput();
+        try{
+            Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
+            Vikar vikar = v.getVikarRegister().finnVikar(tf_vikar.getText());
+            String soknadTekst = ta_soknad.getText();
+
+            Soknad soknad = new Soknad(soknadTekst, vikariat, vikar);
+            v.getSoknadsRegister().settInn(soknad);
+            vikariat.setSoknad(soknad);
+            vikar.setVikariater(vikariat);
+            vikar.setSoknader(soknad);
+            System.out.println("Registrer søknad");
+            utskrift.setText("Søknad registrert:\n" + soknad.toString());
+            resetInput();
+        } catch(NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Feil med nummerformat");
+        }  
     }
     
     //Fjerner teksten fra søknadsfeltet

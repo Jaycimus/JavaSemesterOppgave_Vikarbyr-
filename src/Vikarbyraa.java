@@ -4,7 +4,7 @@ Jørgen Dyhre, studentnummer: s236647, INFORMATIK14HA
 Arthur Nordnes, studentnummer: S236644, INFORMATIK14HA
 Gruppenummer: 15*/
 
-//Sist endret 3. Mai 2015 AV: Andreas Stenseng Bjørnrud
+//Sist endret 8. Mai 2015 AV: Andreas Stenseng Bjørnrud
 
 
 import java.io.Serializable;
