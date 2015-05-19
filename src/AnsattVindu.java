@@ -115,10 +115,9 @@ public class AnsattVindu extends JFrame{
         utskrift.setWrapStyleWord(true);
         utskrift.setLineWrap(true);
         utskrift.setText(bruksanvisning());
-        utskrift.setPreferredSize(new Dimension(200,200));
         JScrollPane sp = new JScrollPane(utskrift);
         sp.setBorder(new EmptyBorder(10,0,10,0));
-        
+   
         cards = new JPanel(new CardLayout());
         cards.setPreferredSize(new Dimension(500, 600));
         cards.setBorder(new EmptyBorder(5,0,5,0));
