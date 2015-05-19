@@ -66,6 +66,7 @@ public class VikarVindu extends JFrame{
         meny.add(new JPanel());
         meny.add(new JPanel());
         meny.add(new JPanel());
+        meny.add(new JPanel());
         meny.add(loggUt);
         
         utskrift = new JTextArea(0,0);

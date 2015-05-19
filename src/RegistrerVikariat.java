@@ -70,7 +70,7 @@ public class RegistrerVikariat extends JPanel {
                             "Konsulenttjenester: Øvrig", "Konsultenttjenester: IT", "Kultur/Kunst/Øvrige kreative fag", "Management consulting", "Media/Underholdning", "Merkevarer/Konsumentprodukter", 
                                 "NGO - Ikke-statlige organisasjoner", "Non-profit -/interesseorg.", "Olje/Gass/Energi/Kraft", "Regnskap", "Reiseliv/Turisme/Event", "Reklame", "Rekruttering/HR/Bemanning", 
                                     "Restaurant/Servering", "Revisjon", "Salg/Markedsføring", "Shipping/Off-/Onshore/Maritim", "Statlig/Offentlig/Kommunal sektor", "Transport/Distribusjon/Logistikk", "Utdanning/undervisning", 
-                                        "Varehandel/Dagligvare/Butikk", "Øvrig"};
+                                        "Varehandel/Dagligvare/Butikk", "Annet"};
     
     
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.ENGLISH);
