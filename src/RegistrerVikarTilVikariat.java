@@ -57,8 +57,6 @@ public class RegistrerVikarTilVikariat extends JPanel {
                         if(valg.matches("---Kunder---")){
                             cb_vikariater.setSelectedIndex(0);
                             cb_vikariater.setEnabled(false);
-                            cb_vikarer.setSelectedIndex(0);
-                            cb_vikarer.setEnabled(false);
                             return;
                         } else {
                             v.getVikariatRegister().skrivLedigVikariatListeTilKunde(utskrift, valg);

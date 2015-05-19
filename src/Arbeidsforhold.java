@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 //Klassen bygger opp forhold mellom firma og vikar som arbeidsforhold
 public class Arbeidsforhold implements Serializable {
+    private final int arbeidsforholdNr;
     private Vikariat vikariat;
     private Vikar vikar;
     private String arbeidsforhold;
@@ -18,46 +19,46 @@ public class Arbeidsforhold implements Serializable {
     Arbeidsforhold neste;
     
     //Konstruktør
-    public Arbeidsforhold(Vikariat vikariat, Vikar vikar, String arbeidsforhold){
+    public Arbeidsforhold(Vikariat vikariat, Vikar vikar, String arbeidsforhold, int arbeidsforholdNr){
         this.vikariat = vikariat;
         this.vikar = vikar;
         this.arbeidsforhold = arbeidsforhold;
+        this.arbeidsforholdNr = arbeidsforholdNr;
     }
-    
-    //Returnerer vikariat
-    public Vikariat getVikariat(){
+
+    public Vikariat getVikariat() {
         return vikariat;
     }
-    
-    //Returnerer vikar
-    public Vikar getVikar(){
+
+    public void setVikariat(Vikariat vikariat) {
+        this.vikariat = vikariat;
+    }
+
+    public Vikar getVikar() {
         return vikar;
     }
-    
-    //Returnerer arbeidsforhold
-    public String getArbeidsforhold(){
+
+    public void setVikar(Vikar vikar) {
+        this.vikar = vikar;
+    }
+
+    public String getArbeidsforhold() {
         return arbeidsforhold;
     }
-    
-    //Setter ny vikariat gjennom parameter
-    public void setVikariat(Vikariat v){
-        this.vikariat = v;
+
+    public void setArbeidsforhold(String arbeidsforhold) {
+        this.arbeidsforhold = arbeidsforhold;
     }
     
-    //Setter ny vikar gjennom parameteret
-    public void setVikar(Vikar v){
-        this.vikar = v;
+    public int getArbeidsforholdNr() {
+        return arbeidsforholdNr;
     }
-    
-    //Setter nytt arbeidsforhold gjennom parameteret
-    public void setArbeidsforhold(String forhold){
-        this.arbeidsforhold = forhold;
-    }
-    
-    //Skriver ut informasjonen som har blitt utfylt i utskriftsområdet
+
+
+//Skriver ut informasjonen som har blitt utfylt i utskriftsområdet
     public String toString(){
-        String utskrift = "\nVikariat: " + vikariat.toStringShort() + "\nVikar: " +
-                vikar.getPersonNr() + "\nArbeidsforhold: " + arbeidsforhold;
+        String utskrift = "\nArbeidsforhold Nummer: " + arbeidsforholdNr + "\nVikariat: " + vikariat.getVikariatNr() + "\nVikar: " +
+                vikar.getVikarNr() + "\nArbeidsforhold: " + arbeidsforhold;
         return utskrift;                
     }
 }//end Arbeidforhold

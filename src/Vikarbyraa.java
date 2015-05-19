@@ -26,6 +26,8 @@ public class Vikarbyraa implements Serializable {
     ArrayList<String> passordListe2 = new ArrayList<>();
     
     private int nesteVikariatNr = 10000;
+    private int nesteArbeidsforholdNr = 10000;
+    private int nesteVikarNr = 100;
     
     //Konstruktør
     public Vikarbyraa(){
@@ -35,6 +37,8 @@ public class Vikarbyraa implements Serializable {
         passordListe2.add("vikar");
         
         nesteVikariatNr();
+        nesteArbeidsforholdNr();
+        nesteVikarNr();
     }
     
     public Fonts getFonts(){
@@ -71,13 +75,40 @@ public class Vikarbyraa implements Serializable {
         nesteVikariatNr = ++nummer;
     }
     
+    public void nesteArbeidsforholdNr(){
+        int nummer = arbeidsforholdRegister.finnNesteNummer();
+        nesteArbeidsforholdNr = ++nummer;
+    }
+    
+    public void nesteVikarNr(){
+        int nummer = vikarRegister.finnNesteNummer();
+        nesteVikarNr = ++nummer;
+    }
+    
     //Metoden returnerer et vikariatnummer
     public int getNesteVikariatNr(){
         return nesteVikariatNr;
     }
     
+    public int getNesteArbeidsforholdNr(){
+        return nesteArbeidsforholdNr;
+    }
+    
+    //Metoden returnerer et vikariatnummer
+    public int getNesteVikarNr(){
+        return nesteVikarNr;
+    }
+    
     //Metoden setter et vikariatnummer
     public void setNesteVikariatNr(){
         nesteVikariatNr++;
+    }
+    
+    public void setNesteArbeidsforholdNr(){
+        nesteArbeidsforholdNr++;
+    }
+    
+    public void setNesteVikarNr(){
+        nesteVikarNr++;
     }
 }//end Vikarbyraa

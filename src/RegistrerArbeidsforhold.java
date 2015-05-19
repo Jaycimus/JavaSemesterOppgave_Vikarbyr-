@@ -80,6 +80,7 @@ public class RegistrerArbeidsforhold extends JPanel {
                                 cb_vikariater.addItem(vikariater[i]);
                             }
                             cb_vikariater.setEnabled(true);
+                            ta_arbeidsforhold.setEnabled(true);
                         }
                     }
                 }
@@ -98,15 +99,12 @@ public class RegistrerArbeidsforhold extends JPanel {
                             cb_vikarer.setEnabled(false);
                             return;
                         } else {
-                            String vikar = v.getVikarRegister().skrivVikarTilVikariatListe(utskrift, valg);
-                            if(vikar!=null){
-                                cb_vikarer.removeAllItems();
-                                cb_vikarer.addItem(vikar);
-                                cb_vikarer.setEnabled(true);
-                                sp.setEnabled(true);
-                            } else {
-                                utskrift.setText("Ingen vikar i registeret");
-                            }
+                            v.getVikarRegister().skrivVikarTilVikariatListe(utskrift, valg);
+                            String[] vikar = v.getVikarRegister().getVikarerTilVikariat(Integer.parseInt(valg));
+                            cb_vikarer.removeAllItems();
+                            cb_vikarer.addItem(vikar[0]);
+                            cb_vikarer.setEnabled(true);
+                            
                         }
                     }
                 }
@@ -145,11 +143,18 @@ public class RegistrerArbeidsforhold extends JPanel {
     //Metoden tar i mot info fra felt og mater dem inn i registrering av arbeidsforhold
     public void regArbeidsforhold(){
         Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
-        Vikar vikar = v.getVikarRegister().finnVikar((String) cb_vikarer.getSelectedItem());
+        Vikar vikar = v.getVikarRegister().finnVikar((String)cb_vikarer.getSelectedItem());
+        if(vikar==null){
+            System.out.println("kjshfdakhd");
+        }
         String arbeidsforhold = ta_arbeidsforhold.getText();
         
-        Arbeidsforhold af = new Arbeidsforhold(vikariat, vikar, arbeidsforhold);
+        int arbeidsforholdNr = v.getNesteArbeidsforholdNr();
+        v.setNesteArbeidsforholdNr();
+        
+        Arbeidsforhold af = new Arbeidsforhold(vikariat, vikar, arbeidsforhold, arbeidsforholdNr);
         v.getArbeidsforholdRegister().settInn(af);
+        v.getVikarRegister().finnVikar((String) cb_vikarer.getSelectedItem()).setArbeidsforhold(af);
         System.out.println("Registrer Arbeidsforhold");
         utskrift.setText(af.toString());
         resetInput();

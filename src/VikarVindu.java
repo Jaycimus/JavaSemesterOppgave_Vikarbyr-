@@ -92,12 +92,7 @@ public class VikarVindu extends JFrame{
     
     //Viser vikariatliste i utskfriftsområdet
     public void visVikariatListe(){
-        v.getVikariatRegister().skrivVikariatListe(utskrift);
-    }
-    
-    //Returnerer teksten som i utskriftsområdet
-    private JTextArea getTextArea(){
-        return utskrift;
+        v.getVikariatRegister().skrivLedigVikariatListe(utskrift);
     }
     
     //Viser registrerte og ledige vikariater for vikarer

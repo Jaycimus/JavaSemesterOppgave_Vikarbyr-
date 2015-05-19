@@ -87,6 +87,12 @@ public class RegistrerKunde extends JPanel {
     //Tar i mot info fra tekstfelt og setter det inn i Kunde-objektet
     public void regKunde(){
         String navn = tf_navn.getText();
+        if(v.getKundeRegister().finnKunde(navn)!=null){
+            JOptionPane.showMessageDialog(this, "Kunde med navn, " + navn + ", ekstrierer allerede!\nSkriv et annet navn.");
+            return;
+        }
+            
+        
         String adresse = tf_adresse.getText();
         int tlf;
         String epost = tf_epost.getText();

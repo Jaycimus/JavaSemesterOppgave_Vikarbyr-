@@ -16,6 +16,7 @@ import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -26,7 +27,7 @@ public class EndreArbeidsforhold extends JPanel {
     private JTextArea ta_arbeidsforhold;
     private JComboBox<String> cb_kunder, cb_vikariater, cb_vikarer;
     private String[] kundeNavn, vikariatNr, vikarer;
-    private JButton regArbeidsforhold;
+    private JButton endreArbeidsforhold, slettArbeidsforhold;
         
     private Vikarbyraa v;
     private JTextArea utskrift;
@@ -41,8 +42,10 @@ public class EndreArbeidsforhold extends JPanel {
         
         Knappelytter lytter = new Knappelytter();
         
-        regArbeidsforhold = new JButton("Registrer forhold");
-        regArbeidsforhold.addActionListener(lytter);
+        endreArbeidsforhold = new JButton("Registrer forhold");
+        endreArbeidsforhold.addActionListener(lytter);
+        slettArbeidsforhold = new JButton("Slett forhold");
+        slettArbeidsforhold.addActionListener(lytter);
         
         lbl_kunder = new JLabel("Kunder:");
         lbl_vikariater = new JLabel("Vikariater:");
@@ -91,7 +94,15 @@ public class EndreArbeidsforhold extends JPanel {
         cb_vikarer = new JComboBox<String>(vikarer);
         cb_vikarer.setMaximumRowCount(9);
         cb_vikarer.setEnabled(false);
-        
+        cb_vikarer.addItemListener(
+            new ItemListener(){
+                public void itemStateChanged(ItemEvent event){
+                    if(event.getStateChange()==ItemEvent.SELECTED){
+                        //ta_arbeidsforhold.setText(v.getVikarRegister().finnVikar((String)cb_vikarer.getSelectedItem()).findArbeidsforhold(WIDTH));
+                    }
+                }
+            }
+        );        
         ta_arbeidsforhold = new JTextArea(40,15);
         JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
         
@@ -115,21 +126,36 @@ public class EndreArbeidsforhold extends JPanel {
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
-        add(new JPanel());
-        add(regArbeidsforhold);
+        add(slettArbeidsforhold);
+        add(endreArbeidsforhold);
     }//end konstruktør
     
     //Metoden tar i mot info fra felt og mater dem inn i registrering av arbeidsforhold
-    public void regArbeidsforhold(){
-        Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
+    private void endreArbeidsforhold(){
+        /*Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
         Vikar vikar = v.getVikarRegister().finnVikar((String) cb_vikarer.getSelectedItem());
         String arbeidsforhold = ta_arbeidsforhold.getText();
         
-        Arbeidsforhold af = new Arbeidsforhold(vikariat, vikar, arbeidsforhold);
-        v.getArbeidsforholdRegister().settInn(af);
+        //Arbeidsforhold af = new Arbeidsforhold(vikariat, vikar, arbeidsforhold);
+        //v.getArbeidsforholdRegister().settInn(af);
         System.out.println("Registrer Arbeidsforhold");
-        utskrift.setText(af.toString());
-        resetInput();
+        //utskrift.setText(af.toString());
+        resetInput();*/
+    }
+    
+    private void slettArbeidsforhold(){
+        /*String personNr = (String)cb_arbeidsforhold.getSelectedItem();
+        
+        int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikaren?","Sletting",JOptionPane.YES_NO_OPTION);
+        if(sikker == JOptionPane.YES_OPTION){
+            v.getVikariatRegister().finnVikariatOgSLettVikar(personNr);
+            if(v.getVikarRegister().slettVikar(personNr)){
+                cb_vikar.removeItem((String)cb_vikar.getSelectedItem());
+                resetInput();
+                refresh();
+                
+            }
+        }*/
     }
     
     //Tilbakestiller infoen til originale tilstand
@@ -142,8 +168,10 @@ public class EndreArbeidsforhold extends JPanel {
     //Knytter knappen "Registrer Arbeidsfohold" til lytter
     private class Knappelytter implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            if(e.getSource()==regArbeidsforhold){
-                regArbeidsforhold();
+            if(e.getSource()==endreArbeidsforhold){
+                endreArbeidsforhold();
+            } else if(e.getSource()==slettArbeidsforhold){
+                slettArbeidsforhold();
             }
         }
     }

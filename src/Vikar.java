@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 //Klassen lager et vikar-objekt
 public class Vikar implements Serializable{
+    private final int vikarNr;
     private String navn;
     private int tlf;
     private long personNr;
@@ -26,11 +27,12 @@ public class Vikar implements Serializable{
     
     private ArrayList<Vikariat> vikariater = new ArrayList<>();
     private ArrayList<Soknad> soknader = new ArrayList<>();
+    private ArrayList<Arbeidsforhold> forhold = new ArrayList<>();
         
     //Konstruktør
     public Vikar(String navn, int tlf, String epost, long personNr, 
             String onsketBransje, String utdanning, String kjonn, String jobberfaring, 
-            String referanser){
+            String referanser, int vikarNr){
         this.navn = navn;
         this.tlf = tlf;
         this.epost = epost;
@@ -40,7 +42,12 @@ public class Vikar implements Serializable{
         this.kjonn = kjonn;
         this.jobberfaring = jobberfaring;
         this.referanser = referanser;
+        this.vikarNr = vikarNr;
         neste = null;
+    }
+    
+    public void setArbeidsforhold(Arbeidsforhold forhold){
+        this.forhold.add(forhold);
     }
     
     //Finner vikariatnummer
@@ -50,6 +57,22 @@ public class Vikar implements Serializable{
                 return this.vikariater.get(i).getVikariatNr();
         }
         return 0;
+    }
+    
+    public int findArbeidsforhold(int vikarNr){
+        for(int i = 0; i < forhold.size(); i++){
+            if(forhold.get(i).getVikar().getVikarNr() == vikarNr)
+                return forhold.get(i).getVikar().getVikarNr();
+        }
+        return 0;
+    }
+
+    public int getVikarNr() {
+        return vikarNr;
+    }
+    
+    public String getVikarNrS(){
+        return "" + vikarNr;
     }
 
     public String getNavn() {
@@ -155,12 +178,12 @@ public class Vikar implements Serializable{
     
     
     public String toStringShort(){
-        String utskrift = "\nVikar navn: " + navn + "\nPersonnummer: " + personNr;
+        String utskrift = "\nVikar Nummer: " + vikarNr + "\nVikar navn: " + navn + "\nPersonnummer: " + personNr;
         return utskrift;
     }
     
     public String toStringUtenVikariat(){
-        String utskrift = "\nVikar navn: " + navn + "\nTelefonnr.: " + tlf + "\nE-post: " + epost +
+        String utskrift = "\nVikar Nummer: " + vikarNr + "\nVikar navn: " + navn + "\nTelefonnr.: " + tlf + "\nE-post: " + epost +
                           "\nPersonnummer: " + personNr + "\nØnsket bransje: " + onsketBransje +
                           "\nUtdanning: " + utdanning + "\nKjønn: " + kjonn +
                           "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser;
@@ -169,7 +192,7 @@ public class Vikar implements Serializable{
 
     //Skriver ut info om vikaren i utskriftområdet
     public String toString(){
-        String utskrift = "\nVikar navn: " + navn + "\nTelefonnr.: " + tlf + "\nE-post: " + epost +
+        String utskrift = "\nVikar Nummer: " + vikarNr + "\nVikar navn: " + navn + "\nTelefonnr.: " + tlf + "\nE-post: " + epost +
                           "\nPersonnummer: " + personNr + "\nØnsket bransje: " + onsketBransje +
                           "\nUtdanning: " + utdanning + "\nKjønn: " + kjonn +
                           "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser + "\nVikariater: ";

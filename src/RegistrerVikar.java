@@ -160,6 +160,9 @@ public class RegistrerVikar extends JPanel{
                 kjonn = "Mann";
             else
                 kjonn = "Kvinne";
+            
+        int vikartNr = v.getNesteVikarNr();
+        v.setNesteVikarNr();
         
         //Validering av info    
         try{
@@ -172,7 +175,7 @@ public class RegistrerVikar extends JPanel{
             } else {
                 tlf = Integer.parseInt(tf_tlfnr.getText());
                 pers = Long.parseLong(tf_persnr.getText());
-                Vikar vikar = new Vikar(navn,tlf,epost,pers,jobbkat,utdan,kjonn,jobberf,ref);
+                Vikar vikar = new Vikar(navn,tlf,epost,pers,jobbkat,utdan,kjonn,jobberf,ref, vikartNr);
                 v.getVikarRegister().settInn(vikar);
                 System.out.println("regVikar");
                 utskrift.setText(vikar.toString());

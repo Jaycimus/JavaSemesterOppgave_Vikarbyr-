@@ -34,6 +34,20 @@ public class VikarRegister implements Serializable {
         }
     }
     
+    public int finnNesteNummer(){
+        int nummer = 100;
+        Vikar loper = forste;
+        while(loper!=null)
+        {
+            if(nummer <= loper.getVikarNr())
+            {
+                nummer = loper.getVikarNr();
+                return nummer;
+            }
+        }
+        return nummer;
+    }
+    
     public boolean slettVikar(String vikar){
         Vikar loper = forste;        
         
@@ -84,17 +98,16 @@ public class VikarRegister implements Serializable {
     }
     
     //Finner en bestemt vikar
-    public Vikar finnVikar(String personNr){
+    public Vikar finnVikar(String vikarNr){
+        int vikarNummer = Integer.parseInt(vikarNr);
         Vikar loper = forste;
-        boolean ok = true;
-        while(ok){
-            if(loper != null && loper.getPersonNrS().equals(personNr)){
+        while(loper!=null){
+            if(loper.getVikarNr()==vikarNummer){
                 return loper;
             }
-            else if(loper.neste!=null)
-                loper = loper.neste;
             else
-                ok = false;
+                loper = loper.neste;
+            
         }
         return null;
     }
@@ -105,7 +118,7 @@ public class VikarRegister implements Serializable {
         vikarer[0] = "---Vikarer---";
         
         for(int i = 1; i <= getAntallNoder(); i++){
-            vikarer[i] = loper.getPersonNrS();
+            vikarer[i] = loper.getVikarNrS();
             loper = loper.neste;
         }
         return vikarer;
@@ -151,7 +164,7 @@ public class VikarRegister implements Serializable {
         Vikar loper = forste;
         if(loper!=null){
             if(loper.findVikariatNr(vikariatNr) == vikariatNr){
-                String s = "" + vikariatNr;
+                String s = loper.getVikarNrS();
                 list.add(s);
             }
             ok = true;
@@ -159,7 +172,7 @@ public class VikarRegister implements Serializable {
             while(ok == true){
                 if(loper != null){
                     if(loper.findVikariatNr(vikariatNr) == vikariatNr){
-                        String s = "" + vikariatNr;
+                        String s = loper.getVikarNrS();
                         list.add(s);
                         loper = loper.neste;
                     }
