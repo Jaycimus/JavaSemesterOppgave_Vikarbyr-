@@ -95,7 +95,7 @@ public class RegistrerVikariat extends JPanel {
         lbl_arbeidtid = new JLabel("Arbeidstid: ");
         lbl_stillingstype = new JLabel("Stillingstype: ");
         lbl_kvalifikasjoner = new JLabel("Kvalifikasjoner: ");
-        lbl_lonnsbetingelser = new JLabel("Lønnsbetingelser: ");
+        lbl_lonnsbetingelser = new JLabel("Timeslønn: ");
         lbl_kontaktinfo = new JLabel("Kontaktinfo: ");
         lbl_stillingsinfo = new JLabel("Stillingsinfo: ");
         lbl_varighetfra = new JLabel("Varighet(fra): ");
