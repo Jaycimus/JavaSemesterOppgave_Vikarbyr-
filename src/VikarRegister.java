@@ -36,12 +36,13 @@ public class VikarRegister implements Serializable {
     
     public int finnNesteNummer(){
         int nummer = 100;
-        Vikar loper = forste;
+        Vikar loper = siste;
         while(loper!=null)
         {
-            if(nummer <= loper.getVikarNr())
-            {
-                nummer = loper.getVikarNr();
+            if(nummer < loper.getVikarNr()){
+                nummer ++;                
+            }           
+            else{
                 return nummer;
             }
         }

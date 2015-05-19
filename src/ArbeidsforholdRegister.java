@@ -91,12 +91,13 @@ public class ArbeidsforholdRegister implements Serializable {
     
     public int finnNesteNummer(){
         int nummer = 10000;
-        Arbeidsforhold loper = forste;
+        Arbeidsforhold loper = siste;
         while(loper!=null)
         {
-            if(nummer <= loper.getArbeidsforholdNr())
-            {
-                nummer = loper.getArbeidsforholdNr();
+            if(nummer < loper.getArbeidsforholdNr()){
+                nummer ++;                
+            }           
+            else{
                 return nummer;
             }
         }
