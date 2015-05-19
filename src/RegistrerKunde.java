@@ -101,12 +101,16 @@ public class RegistrerKunde extends JPanel {
         try{
             if(!Validering.validerNavn(navn)){
                 JOptionPane.showMessageDialog(null, "Feil med kunde navn");
+                tf_navn.setBackground(new Color(213,125,98));
             } else if(!Validering.validerAdresse(adresse)){
                 JOptionPane.showMessageDialog(null, "Feil med adresse");
+                tf_adresse.setBackground(new Color(213,125,98));
             } else if(!Validering.validerTLF(tf_tlf.getText())){
                 JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
+                tf_tlf.setBackground(new Color(213,125,98));
             } else if(!Validering.validerEpost(epost)){
                 JOptionPane.showMessageDialog(null, "Feil med epost");
+                tf_epost.setBackground(new Color(213,125,98));
             } else {
                 tlf = Integer.parseInt(tf_tlf.getText());
                 Kunde kunde = new Kunde(navn, sektor, adresse, tlf, epost);
