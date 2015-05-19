@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -23,14 +24,15 @@ import javax.swing.JTextArea;
 
 //Klassen bygger opp vinduet når knappen "Registrer Arbeidsfohold" er trykket
 public class EndreArbeidsforhold extends JPanel {
-    private JLabel lbl_kunder, lbl_vikariater, lbl_vikar, lbl_arbeidsforhold;
+    private JLabel lbl_kunder, lbl_vikariater, lbl_vikar, lbl_arbeidsforhold, lbl_arbeidsforholdNr;
     private JTextArea ta_arbeidsforhold;
-    private JComboBox<String> cb_kunder, cb_vikariater, cb_vikarer;
-    private String[] kundeNavn, vikariatNr, vikarer;
+    private JComboBox<String> cb_kunder, cb_vikariater, cb_vikarer, cb_arbeidsforholdNr;
+    private String[] kundeNavn, vikariatNr, vikarer, arbeidsforholdNr;
     private JButton endreArbeidsforhold, slettArbeidsforhold;
         
     private Vikarbyraa v;
     private JTextArea utskrift;
+    private Arbeidsforhold arbeidsforhold;
     
     //Konstruktøren
     public EndreArbeidsforhold(JTextArea utskrift, Vikarbyraa v){
@@ -51,6 +53,7 @@ public class EndreArbeidsforhold extends JPanel {
         lbl_vikariater = new JLabel("Vikariater:");
         lbl_vikar = new JLabel("Vikar id:");
         lbl_arbeidsforhold = new JLabel("Arbeidsforhold:");
+        lbl_arbeidsforholdNr = new JLabel("Arbeisforhold Nr:");
                 
         kundeNavn = v.getKundeRegister().getKundeNavn();
         cb_kunder = new JComboBox<String>(kundeNavn);
@@ -87,7 +90,16 @@ public class EndreArbeidsforhold extends JPanel {
                         }
                         cb_vikarer.setEnabled(true);
                         
-                        //ta_arbeidsforhold.setText(v.getVikariatRegister().g);
+                        ArrayList<Arbeidsforhold> arbeidsforholdTilVikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt(vikariat)).getArbeidsforhold();
+                        for(int i = 0; i < arbeidsforholdTilVikariat.size(); i++){
+                            if(arbeidsforholdTilVikariat.get(i).getVikar().getVikarNr() == Integer.parseInt((String)cb_vikarer.getSelectedItem())){
+                                cb_arbeidsforholdNr.addItem(arbeidsforholdTilVikariat.get(i).getArbeidsforholdNrS());
+                            }
+                        }
+                        if(cb_arbeidsforholdNr.getItemCount()==0){
+                            JOptionPane.showMessageDialog(null, "Ingen registrerte arbeidsforhold til vikaren på dette vikariatet");
+                            return;
+                        }
                     }
                 }
             }
@@ -96,6 +108,19 @@ public class EndreArbeidsforhold extends JPanel {
         cb_vikarer = new JComboBox<String>(vikarer);
         cb_vikarer.setMaximumRowCount(9);
         cb_vikarer.setEnabled(false);
+        arbeidsforholdNr = new String[0];
+        cb_arbeidsforholdNr = new JComboBox<String>(arbeidsforholdNr);
+        cb_arbeidsforholdNr.setEditable(false);
+        cb_arbeidsforholdNr.addItemListener(
+            new ItemListener(){
+                public void itemStateChanged(ItemEvent event){
+                    if(event.getStateChange() == ItemEvent.SELECTED){
+                        ta_arbeidsforhold.setText(v.getArbeidsforholdRegister().finnArbeidsforhold((String)cb_arbeidsforholdNr.getSelectedItem()).getArbeidsforhold());
+                    }
+                }
+            }
+        );
+                
         ta_arbeidsforhold = new JTextArea(40,15);
         JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
         
@@ -105,10 +130,10 @@ public class EndreArbeidsforhold extends JPanel {
         add(cb_vikariater);
         add(lbl_vikar);
         add(cb_vikarer);
+        add(lbl_arbeidsforholdNr);
+        add(cb_arbeidsforholdNr);
         add(lbl_arbeidsforhold);
         add(sp);
-        add(new JPanel());
-        add(new JPanel());
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
@@ -125,19 +150,25 @@ public class EndreArbeidsforhold extends JPanel {
     
     //Metoden tar i mot info fra felt og mater dem inn i registrering av arbeidsforhold
     private void endreArbeidsforhold(){
-        /*Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
+        Vikariat vikariat = v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem()));
         Vikar vikar = v.getVikarRegister().finnVikar((String) cb_vikarer.getSelectedItem());
         String arbeidsforhold = ta_arbeidsforhold.getText();
+        if(vikariat==null||vikar==null){
+            JOptionPane.showMessageDialog(null,"Finner ikke vikariat/vikar");
+            return;
+        }
+        //int arbeidsforholdNr = Integer.parseInt();
         
-        //Arbeidsforhold af = new Arbeidsforhold(vikariat, vikar, arbeidsforhold);
+        //arbeidsforhold = v.getArbeidsforholdRegister().finnArbeidsforhold(arbeidsforholdNr)
+                
         //v.getArbeidsforholdRegister().settInn(af);
-        System.out.println("Registrer Arbeidsforhold");
+        //System.out.println("Registrer Arbeidsforhold");
         //utskrift.setText(af.toString());
-        resetInput();*/
+        //resetInput();
     }
     
     private void slettArbeidsforhold(){
-        /*String personNr = (String)cb_arbeidsforhold.getSelectedItem();
+        /*int ArbeidsforholdNummer = v.getVikarRegister().
         
         int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikaren?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
@@ -153,6 +184,7 @@ public class EndreArbeidsforhold extends JPanel {
     
     //Tilbakestiller infoen til originale tilstand
     private void resetInput(){
+        cb_kunder.setSelectedIndex(0);
         cb_vikariater.setSelectedIndex(0);
         cb_vikarer.setSelectedIndex(0);
         ta_arbeidsforhold.setText("");

@@ -30,6 +30,20 @@ public class ArbeidsforholdRegister implements Serializable {
             siste = ny;
         }
     }
+   
+    public Arbeidsforhold finnArbeidsforhold(String arbeidsforholdNr){
+        int arbeidsforholdNummer = Integer.parseInt(arbeidsforholdNr);
+        Arbeidsforhold loper = forste;
+        while(loper!=null){
+            if(loper.getArbeidsforholdNr()==arbeidsforholdNummer){
+                return loper;
+            }
+            else
+                loper = loper.neste;
+            
+        }
+        return null;
+    }
     
     public String[] getArbeidsforhold(){
         String[] arbeidsforhold = new String[1+getAntallNoder()];
@@ -62,6 +76,30 @@ public class ArbeidsforholdRegister implements Serializable {
             }
         }
         
+        return antall;
+    }//end getAntallNoder
+    
+    public String[] getArbeidsforholdTilVikar(int vikarNr){
+        String[] arbeidsforhold = new String[1+getAntallNoderTilVikar(vikarNr)];
+        Arbeidsforhold loper = forste;
+        arbeidsforhold[0] = "---Arbeidsforhold---";
+        
+        for(int i = 1; i <= getAntallNoder(); i++){
+            arbeidsforhold[i] = "" + loper.getArbeidsforholdNr();
+            loper = loper.neste;
+        }
+        return arbeidsforhold;
+    }
+    
+    public int getAntallNoderTilVikar(int vikariatNr){
+        int antall = 0;
+        Arbeidsforhold loper = forste;
+        while(loper!=null){
+            if(1>2){
+                antall++;
+                loper = loper.neste;
+            }
+        }
         return antall;
     }//end getAntallNoder
     

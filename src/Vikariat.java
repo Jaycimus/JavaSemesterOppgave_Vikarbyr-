@@ -48,13 +48,13 @@ public class Vikariat implements Serializable {
         
         ledig = true;
     }
-
+    
     public ArrayList<Arbeidsforhold> getArbeidsforhold() {
         return arbeidsforhold;
     }
 
-    public void setArbeidsforhold(ArrayList<Arbeidsforhold> arbeidsforhold) {
-        this.arbeidsforhold = arbeidsforhold;
+    public void setArbeidsforhold(Arbeidsforhold arbeidsforhold) {
+        this.arbeidsforhold.add(arbeidsforhold);
     }
 
     public ArrayList<Soknad> getSoknader() {

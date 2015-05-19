@@ -154,6 +154,7 @@ public class RegistrerArbeidsforhold extends JPanel {
         
         Arbeidsforhold af = new Arbeidsforhold(vikariat, vikar, arbeidsforhold, arbeidsforholdNr);
         v.getArbeidsforholdRegister().settInn(af);
+        v.getVikariatRegister().finnVikariat(Integer.parseInt((String) cb_vikariater.getSelectedItem())).setArbeidsforhold(af);
         v.getVikarRegister().finnVikar((String) cb_vikarer.getSelectedItem()).setArbeidsforhold(af);
         System.out.println("Registrer Arbeidsforhold");
         utskrift.setText(af.toString());

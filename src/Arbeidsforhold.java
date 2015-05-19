@@ -53,6 +53,10 @@ public class Arbeidsforhold implements Serializable {
     public int getArbeidsforholdNr() {
         return arbeidsforholdNr;
     }
+    
+    public String getArbeidsforholdNrS() {
+        return "" + arbeidsforholdNr;
+    }
 
 
 //Skriver ut informasjonen som har blitt utfylt i utskriftsområdet
