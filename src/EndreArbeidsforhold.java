@@ -86,6 +86,8 @@ public class EndreArbeidsforhold extends JPanel {
                             cb_vikarer.addItem(vikarer[i]);
                         }
                         cb_vikarer.setEnabled(true);
+                        
+                        //ta_arbeidsforhold.setText(v.getVikariatRegister().g);
                     }
                 }
             }
@@ -94,15 +96,6 @@ public class EndreArbeidsforhold extends JPanel {
         cb_vikarer = new JComboBox<String>(vikarer);
         cb_vikarer.setMaximumRowCount(9);
         cb_vikarer.setEnabled(false);
-        cb_vikarer.addItemListener(
-            new ItemListener(){
-                public void itemStateChanged(ItemEvent event){
-                    if(event.getStateChange()==ItemEvent.SELECTED){
-                        //ta_arbeidsforhold.setText(v.getVikarRegister().finnVikar((String)cb_vikarer.getSelectedItem()).findArbeidsforhold(WIDTH));
-                    }
-                }
-            }
-        );        
         ta_arbeidsforhold = new JTextArea(40,15);
         JScrollPane sp = new JScrollPane(ta_arbeidsforhold);
         
