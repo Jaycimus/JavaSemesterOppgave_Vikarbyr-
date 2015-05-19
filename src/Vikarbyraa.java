@@ -25,6 +25,11 @@ public class Vikarbyraa implements Serializable {
     ArrayList<String> navneListe2 = new ArrayList<>();
     ArrayList<String> passordListe2 = new ArrayList<>();
     
+    ArrayList<String> vikarHistorikk = new ArrayList<>();
+    ArrayList<String> vikariatHistorikk = new ArrayList<>();
+    ArrayList<String> kundeHistorikk = new ArrayList<>();
+    ArrayList<String> arbeidsforholdHistorikk = new ArrayList<>();
+    
     private int nesteVikariatNr = 10000;
     private int nesteArbeidsforholdNr = 10000;
     private int nesteVikarNr = 100;
