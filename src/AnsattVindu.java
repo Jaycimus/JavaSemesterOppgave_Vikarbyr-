@@ -282,16 +282,7 @@ public class AnsattVindu extends JFrame{
     //Det første som er skrevet i utskriftområdet når man begynner programmet
     //er en bruksanvisning som forteller hva som kan gjøres i programmet.
     private String bruksanvisning(){
-        String bruksanvisning = 
-                    "\t\tBruksanvisning\n"
-                +"\nVelg på venstre siden av skjermen om du vil registrere"
-                    +"\nKunde, Vikariat, Arbeidsforhold eller Vikar.\n"
-                +"\nEtter det så vil det komme tekstfelt som må fylles ut på høyre side.\n"
-                +"\nAvslutt med å tryke på registreringsknappen nederst på høyre side."
-                +"\n\n\n\n\n\n\n"
-                +"På venstre side ";
-        
-        return bruksanvisning;
+        return "Velkommen til Vikarbyrå program.";
     }
 }//end AnsattVindu
 
