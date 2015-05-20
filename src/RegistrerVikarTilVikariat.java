@@ -23,18 +23,17 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 public class RegistrerVikarTilVikariat extends JPanel {
-    private JLabel lbl_kunder, lbl_vikaiater, lbl_vikar, lbl_kunder2, lbl_vikaiater2, lbl_vikar2;
-    private JComboBox<String> cb_kunder, cb_vikariater, cb_vikarer, cb_kunder2, cb_vikariater2, cb_vikarer2;
+    private JLabel lbl_kunder, lbl_vikaiater, lbl_vikar;
+    private JComboBox<String> cb_kunder, cb_vikariater, cb_vikarer;
     private String[] kunder, vikariatNr, vikarer;
     private JButton tildelVikariat, fjernVikar;
     
     private Vikarbyraa v;
     private JTextArea utskrift;
     private TitledBorder borderTildelVikariat, borderFjerningVikariat;
-    private JPanel overst, nederst;
     
     public RegistrerVikarTilVikariat(JTextArea utskrift, Vikarbyraa v){
-        setLayout(new GridLayout(0,1,20,25));
+        setLayout(new GridLayout(0,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
         this.v = v;
@@ -54,9 +53,6 @@ public class RegistrerVikarTilVikariat extends JPanel {
         lbl_kunder = new JLabel("Kunder:");
         lbl_vikaiater = new JLabel("Vikariater:");
         lbl_vikar = new JLabel("Vikarer:");    
-        lbl_kunder2 = new JLabel("Kunder:");
-        lbl_vikaiater2 = new JLabel("Vikariater:");
-        lbl_vikar2 = new JLabel("Vikarer:");    
         
         kunder = v.getKundeRegister().getKundeNavn();
         vikariatNr = v.getVikariatRegister().getLedigeVikariater();
@@ -109,83 +105,7 @@ public class RegistrerVikarTilVikariat extends JPanel {
         cb_vikarer.setMaximumRowCount(9);
         cb_vikarer.setEnabled(false);
         
-        cb_kunder2 = new JComboBox<>(kunder);
-        cb_kunder2.setMaximumRowCount(9);
-        cb_kunder2.addItemListener(
-            new ItemListener(){
-                public void itemStateChanged(ItemEvent event){
-                    if(event.getStateChange() == ItemEvent.SELECTED){
-                        String valg = (String) cb_kunder2.getSelectedItem();
-                        if(valg.matches("---Kunder---")){
-                            cb_vikariater2.setSelectedIndex(0);
-                            cb_vikariater2.setEnabled(false);
-                            return;
-                        } else {
-                            v.getVikariatRegister().skrivLedigVikariatListeTilKunde(utskrift, valg);
-                            cb_vikariater2.removeAllItems();
-                            String[] vikariater = v.getVikariatRegister().getLedigeVikariaterTilKunde(valg);
-                            for(int i=0; i < vikariater.length;i++){
-                                cb_vikariater2.addItem(vikariater[i]);
-                            }
-                            cb_vikariater2.setEnabled(true);
-                        }
-                    }
-                }
-            }
-        );
-        cb_vikariater2 = new JComboBox<>(vikariatNr);
-        cb_vikariater2.setMaximumRowCount(9);
-        cb_vikariater2.setEnabled(false);
-        cb_vikariater2.addItemListener(
-            new ItemListener(){
-                public void itemStateChanged(ItemEvent event){
-                    if(event.getStateChange() == ItemEvent.SELECTED){
-                        String valg = (String) cb_vikariater2.getSelectedItem();
-                        if(valg.matches("---Vikariater---")){
-                            cb_vikarer2.setSelectedIndex(0);
-                            cb_vikarer2.setEnabled(false);
-                            return;
-                        } else {
-                            v.getSoknadsRegister().skrivSoknadTilVikariatListe(utskrift, valg);
-                            cb_vikarer2.setEnabled(true);
-                        }
-                    }
-                }
-            }
-        );
-        cb_vikarer2 = new JComboBox<>(vikarer);
-        cb_vikarer2.setMaximumRowCount(9);
-        cb_vikarer2.setEnabled(false);
-        
-        overst = new JPanel(new GridLayout(0,2,20,25));
-        overst.setBorder(borderTildelVikariat);
-        overst.add(lbl_kunder);
-        overst.add(cb_kunder);
-        overst.add(lbl_vikaiater);
-        overst.add(cb_vikariater);
-        overst.add(new JPanel());
-        overst.add(new JPanel());
-        overst.add(lbl_vikar);
-        overst.add(cb_vikarer);
-        overst.add(new JPanel());
-        overst.add(tildelVikariat);
-        
-        nederst = new JPanel(new GridLayout(0,2,20,25));
-        nederst.setBorder(borderFjerningVikariat);
-        nederst.add(lbl_kunder2);
-        nederst.add(cb_kunder2);
-        nederst.add(lbl_vikaiater2);
-        nederst.add(cb_vikariater2);
-        nederst.add(new JPanel());
-        nederst.add(new JPanel());
-        nederst.add(lbl_vikar2);
-        nederst.add(cb_vikarer2);
-        nederst.add(new JPanel());
-        nederst.add(fjernVikar);
-            
-        add(overst);
-        add(nederst);
-        /*add(lbl_kunder);
+        add(lbl_kunder);
         add(cb_kunder);
         add(lbl_vikaiater);
         add(cb_vikariater);
@@ -205,8 +125,8 @@ public class RegistrerVikarTilVikariat extends JPanel {
         add(new JPanel());
         add(new JPanel());
         add(new JPanel());
-        add(new JPanel());
-        add(tildelVikariat);*/
+        add(fjernVikar);
+        add(tildelVikariat);
         
     }//end konstruktør
     
