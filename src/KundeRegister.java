@@ -132,7 +132,8 @@ public class KundeRegister implements Serializable {
         return loper;
     }
     
-    //Skriver ut enten om det ikke finnes noen kunder, eller alle registrerte kunder
+    //Skriver ut enten om det ikke finnes noen kunder, eller alle 
+    //registrerte kunder
     public void skrivHeleKundeListe(JTextArea utskrift){
         Kunde loper = forste;
         
@@ -165,7 +166,8 @@ public class KundeRegister implements Serializable {
                 }
                 loper = loper.neste;
             }
-            utskrift.setText("Ingen kunder i registeret med navnet: " + kundeNavn);
+            utskrift.setText("Ingen kunder i registeret med navnet: " 
+                    + kundeNavn);
         }        
     }
     
@@ -185,7 +187,8 @@ public class KundeRegister implements Serializable {
             }   
         }
         if(u.matches("")){
-            utskrift.setText("Ingen registrerte kunder innen for denne sektoren");
+            utskrift.setText("Ingen registrerte kunder "
+                    + "innen for denne sektoren");
             return;
         } else {
             utskrift.setText(u);
@@ -210,7 +213,8 @@ public class KundeRegister implements Serializable {
             
         }
         if(u.matches("")){
-            utskrift.setText("Ingen registrerte kunder innen for denne sektoren");
+            utskrift.setText("Ingen registrerte kunder innen "
+                    + "for denne sektoren");
             return;
         } else {
             utskrift.setText(u);
@@ -234,7 +238,8 @@ public class KundeRegister implements Serializable {
             }                
         } 
         if(u.matches("")){
-            utskrift.setText("Ingen registrerte kunder innen for denne sektoren");
+            utskrift.setText("Ingen registrerte kunder innen "
+                    + "for denne sektoren");
             return;
         } else {
             utskrift.setText(u);

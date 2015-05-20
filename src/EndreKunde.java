@@ -42,7 +42,7 @@ public class EndreKunde extends JPanel {
     
     //Kontruktør på oppbygning av vinduet
     public EndreKunde(JTextArea utskrift, Vikarbyraa v){
-        setLayout(new GridLayout(0,2,20,25));
+        setLayout(new GridLayout(11,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
         this.v = v;

@@ -50,11 +50,17 @@ public class Vikar implements Serializable{
         this.forhold.add(forhold);
     }
     
+    public void slettVikariat(int vikariatNr){
+        for(int i = 0; i < vikariater.size(); i++){
+            if(vikariater.get(i).getVikariatNr() == vikariatNr)
+                vikariater.remove(i);
+        }
+    }
     //Finner vikariatnummer
     public int findVikariatNr(int vikariatNr){
         for(int i = 0; i < this.vikariater.size(); i++){
-            if(this.vikariater.get(i).getVikariatNr() == vikariatNr)
-                return this.vikariater.get(i).getVikariatNr();
+            if(vikariater.get(i).getVikariatNr() == vikariatNr)
+                return vikariater.get(i).getVikariatNr();
         }
         return 0;
     }
@@ -164,7 +170,7 @@ public class Vikar implements Serializable{
     }
 
     public void setVikariater(Vikariat vikar) {
-        this.vikariater.add(vikar);
+        vikariater.add(vikar);
     }
 
     public ArrayList<Soknad> getSoknader() {
@@ -179,6 +185,7 @@ public class Vikar implements Serializable{
     
     public String toStringShort(){
         String utskrift = "\nVikar Nummer: " + vikarNr + "\nVikar navn: " + navn + "\nPersonnummer: " + personNr;
+        
         return utskrift;
     }
     
@@ -198,7 +205,7 @@ public class Vikar implements Serializable{
                           "\nJobberfaring: " + jobberfaring + "\nReferanser: " + referanser + "\nVikariater: ";
                           if(vikariater.size()!=0){
                               for(int i=0;i<vikariater.size();i++){
-                              utskrift += "\t" + vikariater.get(i).toStringShort();
+                                utskrift += vikariater.get(i).toStringShort();
                               } 
                           }else
                               utskrift += "Ingen vikariater";

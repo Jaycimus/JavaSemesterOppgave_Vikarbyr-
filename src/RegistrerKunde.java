@@ -7,7 +7,6 @@ Gruppenummer: 15*/
 //Sist endret 15. Mai 2015 AV: Andreas Stenseng Bjørnrud
 
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -34,7 +33,7 @@ public class RegistrerKunde extends JPanel {
     
     //Konstruktør
     public RegistrerKunde(JTextArea utskrift, Vikarbyraa v){
-        setLayout(new GridLayout(0,2,20,25));
+        setLayout(new GridLayout(11,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
         this.v = v;
@@ -89,7 +88,8 @@ public class RegistrerKunde extends JPanel {
     public void regKunde(){
         String navn = tf_navn.getText();
         if(v.getKundeRegister().finnKunde(navn)!=null){
-            JOptionPane.showMessageDialog(this, "Kunde med navn, " + navn + ", ekstrierer allerede!\nSkriv et annet navn.");
+            JOptionPane.showMessageDialog(this, "Kunde med navn, " + navn + 
+                    ", ekstrierer allerede!\nSkriv et annet navn.");
             return;
         }
             
@@ -107,16 +107,16 @@ public class RegistrerKunde extends JPanel {
         try{
             if(!Validering.validerNavn(navn)){
                 JOptionPane.showMessageDialog(null, "Feil med kunde navn");
-                tf_navn.setBackground(new Color(213,125,98));
+                //tf_navn.setBackground(new Color(213,125,98));
             } else if(!Validering.validerAdresse(adresse)){
                 JOptionPane.showMessageDialog(null, "Feil med adresse");
-                tf_adresse.setBackground(new Color(213,125,98));
+                //tf_adresse.setBackground(new Color(213,125,98));
             } else if(!Validering.validerTLF(tf_tlf.getText())){
                 JOptionPane.showMessageDialog(null, "Feil med telefonnummer");
-                tf_tlf.setBackground(new Color(213,125,98));
+                //tf_tlf.setBackground(new Color(213,125,98));
             } else if(!Validering.validerEpost(epost)){
                 JOptionPane.showMessageDialog(null, "Feil med epost");
-                tf_epost.setBackground(new Color(213,125,98));
+                //tf_epost.setBackground(new Color(213,125,98));
             } else {
                 tlf = Integer.parseInt(tf_tlf.getText());
                 Kunde kunde = new Kunde(navn, sektor, adresse, tlf, epost);

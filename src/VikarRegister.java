@@ -113,6 +113,19 @@ public class VikarRegister implements Serializable {
         return null;
     }
     
+    public Vikar finnVikarPersonNr(long persNr){
+        Vikar loper = forste;
+        while(loper!=null){
+            if(loper.getPersonNr()==persNr){
+                return loper;
+            }
+            else
+                loper = loper.neste;
+            
+        }
+        return null;
+    }
+    
     public String[] getVikarer(){
         String[] vikarer = new String[1+getAntallNoder()];
         Vikar loper = forste;
@@ -157,7 +170,20 @@ public class VikarRegister implements Serializable {
         return antall;
     }//end getAntallNoder
     
-    //
+    public Vikar getVikarTilVikariat(int vikariatNr){
+        Vikar loper = forste;
+        while(loper!=null){
+            System.out.println("Fant vikar - getVikarTilVikariat - VikarRegister");
+            if(loper.findVikariatNr(vikariatNr)==vikariatNr){
+                return loper;
+            } else {
+                loper = loper.neste;
+            }
+        }
+        return loper;
+    }
+
+    //metoden returnerer all viakarer
     public String[] getVikarerTilVikariat(int vikariatNr){
         String[] vikarer;
         List<String> list =new ArrayList<String>();
@@ -208,15 +234,15 @@ public class VikarRegister implements Serializable {
     }
     
     //Skriver ut en liste med vikarer
-    public void skrivVikarListe(JTextArea vikarListe){
+    public void skrivVikarListe(JTextArea utskrift){
         Vikar loper = forste;
         
         if(forste == null){
-            vikarListe.setText("Ingen vikar i registeret");
+            utskrift.setText("Ingen vikar i registeret");
         } else {
-            vikarListe.setText("VIKAR REGISTER\n");            
+            utskrift.setText("VIKAR REGISTER\n");            
             while(loper!=null){                
-                vikarListe.append(loper.toString()+"\n");                
+                utskrift.append(loper.toString()+"\n");                
                 loper = loper.neste;
             }
         }

@@ -55,7 +55,7 @@ public class Logginn extends JFrame{
         tekstfelt = v.getFonts().getBitstreamVeraSansMono();
         
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter
-        brukernavn = new JTextField("Brukernavn",15);
+        brukernavn = new JTextField("Andreas",15);
         brukernavn.setFont(tekstfelt);
         brukernavn.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -64,7 +64,7 @@ public class Logginn extends JFrame{
 	});
                         
         //oppretter tekstfelt for passord og regisrerer museklikk lytter
-        passord = new JPasswordField("Passord",15);
+        passord = new JPasswordField("andreas",15);
         passord.setFont(tekstfelt);
 	passord.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -155,7 +155,7 @@ public class Logginn extends JFrame{
         tekstfelt = v.getFonts().getBitstreamVeraSansMono();
         
         //oppretter tekstfelt for brukernavn og regisrerer museklikk lytter
-        brukernavn = new JTextField("Brukernavn",15);
+        brukernavn = new JTextField("Vikar",15);
         brukernavn.setFont(tekstfelt);
         brukernavn.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -164,7 +164,7 @@ public class Logginn extends JFrame{
 	});
         
         //oppretter tekstfelt for passord og regisrerer museklikk lytter
-        passord = new JPasswordField("Passord",15);
+        passord = new JPasswordField("vikar",15);
         passord.setFont(tekstfelt);
 	passord.addMouseListener( new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {

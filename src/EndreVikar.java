@@ -58,7 +58,7 @@ public class EndreVikar extends JPanel{
     
     //Konstruktør
     public EndreVikar(JTextArea utskrift, Vikarbyraa v){
-        setLayout(new GridLayout(0,2,20,25));
+        setLayout(new GridLayout(11,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
         this.v = v;
@@ -248,15 +248,15 @@ public class EndreVikar extends JPanel{
     
     //Sletter den valgte vikaren når "Slett Vikar"-knappen blir trykket
     public void slettVikar(){
-        String personNr = (String)cb_vikar.getSelectedItem();
-        if(personNr.matches("---Vikarer---")){
+        String vikarNr = (String)cb_vikar.getSelectedItem();
+        if(vikarNr.matches("---Vikarer---")){
             JOptionPane.showMessageDialog(null,"Vikar ikke valgt!");
             return;
         }
         int sikker = JOptionPane.showConfirmDialog(null, "Er du sikker på at du vil slette vikaren?","Sletting",JOptionPane.YES_NO_OPTION);
         if(sikker == JOptionPane.YES_OPTION){
-            v.getVikariatRegister().finnVikariatOgSLettVikar(personNr);
-            if(v.getVikarRegister().slettVikar(personNr)){
+            v.getVikariatRegister().finnVikariatOgSLettVikar(vikarNr);
+            if(v.getVikarRegister().slettVikar(vikarNr)){
                 cb_vikar.removeItem((String)cb_vikar.getSelectedItem());
                 resetInput();
                 refresh();

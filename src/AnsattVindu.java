@@ -35,7 +35,7 @@ public class AnsattVindu extends JFrame{
     private Vikarbyraa v;
     
     private TitledBorder borderKunde, borderVikariat, borderVikar, borderArbForhold, 
-            borderVikarVikariat, borderVisEndreKundeReg, borderVisEndreVikariatReg, 
+            borderVisEndreKundeReg, borderVisEndreVikariatReg, 
             borderVisEndreArbeisforholdReg, borderVisEndreVikarReg, borderRegSoking;
     
     //Konstruktøren til vinduet man ser når man logger inn med ansatt-id.
@@ -51,8 +51,6 @@ public class AnsattVindu extends JFrame{
         borderVikariat.setTitleJustification(TitledBorder.CENTER);
         borderVikar = BorderFactory.createTitledBorder(null,"Registrering av Vikar");
         borderVikar.setTitleJustification(TitledBorder.CENTER);
-        borderVikarVikariat = BorderFactory.createTitledBorder(null,"Tildeling/fjerning av Vikar til Vikariat");
-        borderVikarVikariat.setTitleJustification(TitledBorder.CENTER);
         borderArbForhold = BorderFactory.createTitledBorder(null,"Registrering av Arbeidsforhold");
         borderArbForhold.setTitleJustification(TitledBorder.CENTER);
         borderVisEndreKundeReg = BorderFactory.createTitledBorder(null,"Endring/Sletting av Kunde");
@@ -65,8 +63,6 @@ public class AnsattVindu extends JFrame{
         borderVisEndreArbeisforholdReg.setTitleJustification(TitledBorder.CENTER);
                 
         regKunde = new JButton("Registrer Kunde");
-            regKunde.setFocusPainted(false);
-            regKunde.setContentAreaFilled(false);
         regVikariat = new JButton("Registrer Vikariat");
         regArbForhold = new JButton("Registrer Arbeidsfohold");
         regVikar = new JButton("Registrer Vikar");
@@ -92,7 +88,7 @@ public class AnsattVindu extends JFrame{
             loggUt.addActionListener(lytter);
         
         meny = new JPanel();
-        meny.setLayout(new GridLayout(0,1,0,5));
+        meny.setLayout(new GridLayout(14,1,0,5));
         meny.setPreferredSize(new Dimension(212, 200));
         meny.setBorder(new EmptyBorder(5,5,5,0));
         meny.add(regKunde);
@@ -139,7 +135,6 @@ public class AnsattVindu extends JFrame{
         card3 = new RegistrerVikar(utskrift, v);
         card3.setBorder(borderVikar);
         card4 = new RegistrerVikarTilVikariat(utskrift, v);
-        card4.setBorder(borderVikarVikariat);
         card5 = new RegistrerArbeidsforhold(utskrift, v);
         card5.setBorder(borderArbForhold);
         card6 = new EndreKunde(utskrift, v);

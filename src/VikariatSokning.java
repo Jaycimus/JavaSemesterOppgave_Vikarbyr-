@@ -27,30 +27,26 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-public class SokningIRegister extends JPanel {
-    private JPanel kunde,vikar,vikariat;
-    private final JTextField tf_kunde, tf_vikar, tf_vikariat;
-    private final JLabel lbl_skrivHerKunde, lbl_skrivHerVikariat, lbl_skrivHerVikar, lbl_kundeAlternativ, lbl_vikariatAlternativ, lbl_vikarAlternativ;
-    private final JComboBox<String> cb_kunder, cb_vikar, cb_vikariater;
+public class VikariatSokning extends JPanel {
+    private JPanel kunde,vikariat;
+    private final JTextField tf_kunde,  tf_vikariat;
+    private final JLabel lbl_skrivHerKunde, lbl_skrivHerVikariat, lbl_kundeAlternativ, lbl_vikariatAlternativ;
+    private final JComboBox<String> cb_kunder, cb_vikariater;
     private final String[] kundeVariabler = 
         {"Alternativer", "Navn", "Sektor", "Adresse", "E-post", "TLF", "Vikariater"};
     private final String[] vikariatVariable = 
         {"Alternativer", "Vikariat Nr.", "Varighet", "Arbeidstid", "Stillingstype", 
             "Kvalifikasjoner", "Lønnsbetingelser", "Kontaktinfo", "StillingsInfo", 
             "Ledig", "Arbeidsforhold", "Søknader", "Vikar"};           
-    private final String[] vikarVariabler =
-        {"Alternativer","Navn", "TLF", "Person Nr.", "Ønskete Bransjer", "Utdanning", 
-            "Jobberfaring", "Referanser", "kjønn", "E-post"};
-
     private final JButton sok;
     private final JTextArea utskrift;
     
     Border blackline;
-    TitledBorder titleKunde, titleVikariat, titleVikar;
+    TitledBorder titleKunde, titleVikariat;
     
     private Vikarbyraa v;
     
-    public SokningIRegister(JTextArea utskrift, Vikarbyraa v){
+    public VikariatSokning(JTextArea utskrift, Vikarbyraa v){
         this.v = v;
         this.utskrift = utskrift;
         setLayout(new GridLayout(0,1,20,25));
@@ -62,8 +58,6 @@ public class SokningIRegister extends JPanel {
         titleKunde.setTitleJustification(TitledBorder.CENTER);
         titleVikariat = BorderFactory.createTitledBorder(blackline,"Søk i Vikariat Register");
         titleVikariat.setTitleJustification(TitledBorder.CENTER);
-        titleVikar = BorderFactory.createTitledBorder(blackline,"Søk i Vikar Register");
-        titleVikar.setTitleJustification(TitledBorder.CENTER);
         
         sok = new JButton("Søk");
         Knappelytter lytter = new Knappelytter();
@@ -71,25 +65,13 @@ public class SokningIRegister extends JPanel {
         
         lbl_kundeAlternativ = new JLabel("Søk Etter Kunde I Registeret:");
         lbl_vikariatAlternativ = new JLabel("Søk Etter Vikariat I Registeret:");
-        lbl_vikarAlternativ = new JLabel("Søk Etter Vikar I Registeret:");
         lbl_skrivHerKunde = new JLabel("Skriv her:");
         lbl_skrivHerVikariat = new JLabel("Skriv her:");
-        lbl_skrivHerVikar = new JLabel("Skriv her:");
         
         tf_kunde = new JTextField("",15);
         tf_kunde.addFocusListener(new FocusListener(){
             public void focusGained(FocusEvent e){
                 tf_kunde.setText("");
-            }
-            
-            public void focusLost(FocusEvent e){
-                
-            }
-        });
-        tf_vikar = new JTextField("",15);
-        tf_vikar.addFocusListener(new FocusListener(){
-            public void focusGained(FocusEvent e){
-                tf_vikar.setText("");
             }
             
             public void focusLost(FocusEvent e){
@@ -174,48 +156,13 @@ public class SokningIRegister extends JPanel {
             }
         );
         
-        cb_vikar = new JComboBox<>(vikarVariabler);
-        cb_vikar.setMaximumRowCount(9);
-        cb_vikar.addItemListener(
-            new ItemListener(){
-                public void itemStateChanged(ItemEvent event){
-                    if(event.getStateChange() == ItemEvent.SELECTED){
-                        String valg = (String) cb_vikar.getSelectedItem();
-                        if(valg.matches("Alternativer")){
-                            tf_vikar.setText("");
-                            return;
-                        } else if(valg.matches("Navn")) {
-                            tf_vikar.setText("Eks: Ola Nordmann");
-                        } else if(valg.matches("TLF")) {
-                            tf_vikar.setText("Eks: 00000000 (8 siffer)");
-                        } else if(valg.matches("Person Nr.")) {
-                            tf_vikar.setText("Eks: 12345678910 (11 siffer)");
-                        } else if(valg.matches("Ønskete Bransjer")) {
-                            tf_vikar.setText("Eks: Konsulent");
-                        }  else if(valg.matches("Utdaning")) {
-                            tf_vikar.setText("Eks: Vidergående");
-                        } else if(valg.matches("Jobberfaring")) {
-                            tf_vikar.setText("Eks: Rema 1000");
-                        } else if(valg.matches("Referanser")) {
-                            tf_vikar.setText("Eks: Nils Arne (kun bokstaver)");
-                        } else if(valg.matches("kjønn")) {
-                            tf_vikar.setText("Eks: Mann/Kvinne");
-                        } else if(valg.matches("E-post")) {
-                            tf_vikar.setText("Eks: eks@eks.no");
-                        }
-                    }
-                }
-            }
-        );
-
-                
+                        
         opprettKundePanel();
         opprettVikariatPanel();
-        oppretteVikarPanel();
         
         add(kunde);
         add(vikariat);
-        add(vikar);
+        add(new JPanel());
         add(new JPanel());
         add(new JPanel());
         add(sok);
@@ -239,19 +186,11 @@ public class SokningIRegister extends JPanel {
         vikariat.add(tf_vikariat);
     } 
     
-    private void oppretteVikarPanel(){
-        vikar = new JPanel(new GridLayout(2,2,5,5));
-        vikar.setBorder(titleVikar);
-        vikar.add(lbl_vikarAlternativ);
-        vikar.add(cb_vikar);
-        vikar.add(lbl_skrivHerVikar);
-        vikar.add(tf_vikar);
-    }
+    
     
     private void sokning(){
         String kundeValg = (String) cb_kunder.getSelectedItem();
         String vikariatValg = (String) cb_vikariater.getSelectedItem();
-        String vikarValg = (String) cb_vikar.getSelectedItem();
         if(!kundeValg.matches("Kunde alternativer")){
             if (cb_kunder.getSelectedIndex() == 1){
                 if(tf_kunde.getText().matches("")){
@@ -300,16 +239,7 @@ public class SokningIRegister extends JPanel {
                 }
             }
             return;
-        } else if (!vikarValg.matches("Vikar alternativer")){
-            if (cb_kunder.getSelectedIndex() == 1){
-                if(tf_kunde.getText().matches("")){
-                    v.getVikariatRegister().skrivVikariatListe(utskrift);
-                } else {
-                    v.getKundeRegister().skrivKunde(utskrift, tf_kunde.getText());
-                }
-            }
-            return;
-        } else {
+        }  else {
             JOptionPane.showMessageDialog(null, "Ingen av alternativene er valgt!");
         }
     }

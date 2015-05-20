@@ -57,9 +57,10 @@ public class Soknad implements Serializable{
     
     //Skriver ut info og søknadstekst i utskriftområdet
     public String toString(){
-        String utskrift = "\nVikar: " + vikar.getNavn() + "(" + vikar.getPersonNr() + ")" +
-                          "\nViakriat: " + vikariat.toStringShort() + "\nSøknads tekst: " +
-                          soknadsTekst;
+        String utskrift = 
+            "\nVikar: " + vikar.getNavn() + "(" + vikar.getPersonNr() + ")" +
+            "\nViakriat: " + vikariat.toStringShort() + "\nSøknads tekst: " +
+            soknadsTekst;
         return utskrift;
     }
 }//end Soknad

@@ -54,7 +54,7 @@ public class RegistrerVikar extends JPanel{
     
     //Konstruktør
     public RegistrerVikar(JTextArea utskrift, Vikarbyraa v){
-        setLayout(new GridLayout(0,2,20,25));
+        setLayout(new GridLayout(11,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
         this.v = v;
@@ -169,19 +169,23 @@ public class RegistrerVikar extends JPanel{
         try{
             if(!Validering.validerNavn(navn)){
                 JOptionPane.showMessageDialog(null, "Feil i vikar navn");
-                tf_navn.setBackground(new Color(213,125,98));
+                //tf_navn.setBackground(new Color(213,125,98));
             } else if(!Validering.validerPersonnummer(tf_persnr.getText())){
                 JOptionPane.showMessageDialog(null, "Feil med personnummeret");
-                tf_persnr.setBackground(new Color(213,125,98));
+                //tf_persnr.setBackground(new Color(213,125,98));
             } else if(!Validering.validerTLF(tf_tlfnr.getText())){
                 JOptionPane.showMessageDialog(null, "Feil med telfonnummeret");
-                tf_tlfnr.setBackground(new Color(213,125,98));
+                //tf_tlfnr.setBackground(new Color(213,125,98));
             } else if(!Validering.validerEpost(epost)){
                 JOptionPane.showMessageDialog(null, "Feil med e-post");
-                tf_epost.setBackground(new Color(213,125,98));
+                //tf_epost.setBackground(new Color(213,125,98));
             } else {
                 tlf = Integer.parseInt(tf_tlfnr.getText());
                 pers = Long.parseLong(tf_persnr.getText());
+                if(v.getVikarRegister().finnVikarPersonNr(pers)!=null){
+                    JOptionPane.showMessageDialog(this, "Vikar med personummer, " + pers + ", ekstrierer allerede!\nSkriv riktig personnummer.");
+                    return;
+                }
                 Vikar vikar = new Vikar(navn,tlf,epost,pers,jobbkat,utdan,kjonn,jobberf,ref, vikartNr);
                 v.getVikarRegister().settInn(vikar);
                 System.out.println("regVikar");

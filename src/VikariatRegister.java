@@ -49,10 +49,10 @@ public class VikariatRegister implements Serializable {
         return null;
     }
     
-    public void finnVikariatOgSLettVikar(String personNr){
+    public void finnVikariatOgSLettVikar(String vikarNr){
         Vikariat loper = forste;
         while(loper!=null){
-            if(loper.getVikar().getPersonNrS().equals(personNr)){
+            if(loper.getVikar().getVikarNrS().equals(vikarNr)){
                 loper.setVikarer(null, true);
                 return;
             }

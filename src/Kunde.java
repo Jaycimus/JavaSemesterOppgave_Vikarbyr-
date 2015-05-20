@@ -87,9 +87,10 @@ public class Kunde implements Serializable{
     
     //Skriver ut all innlest informasjon til utskriftsområdet
     public String toString(){
-        String utskrift = "\nKunde navn: " + navn + "\nType Sektor: " + typeSektor + 
-                          "\nAdresse: " + adresse + 
-                          "\nTelefon: " + tlf + "\nE-post: " + epost;
+        String utskrift = 
+            "\nKunde Navn: " + navn + "\nType Sektor: " + typeSektor + 
+            "\nAdresse: " + adresse + 
+            "\nTelefon: " + tlf + "\nE-post: " + epost;
         return utskrift;
     }
 }//end Kunde

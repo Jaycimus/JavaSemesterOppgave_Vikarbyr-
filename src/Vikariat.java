@@ -32,8 +32,9 @@ public class Vikariat implements Serializable {
     
     //Konstruktør
     public Vikariat (Kunde kunde, String arbeidsted, String arbeidstid, 
-            String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
-                String kontaktinfo, String stillingsInfo, String varighetfra, String varighettil, int vikariatNr){
+        String stillingstype, String kvalifikasjoner, String lonnsbetingelser, 
+                String kontaktinfo, String stillingsInfo, String varighetfra, 
+                String varighettil, int vikariatNr){
         this.kunde = kunde;
         this.adresse = arbeidsted;
         this.arbeidstid = arbeidstid;
@@ -196,21 +197,24 @@ public class Vikariat implements Serializable {
     
     //Returnerer en forkortet versjon av info til utskriftområde
     public String toStringShort(){
-        String utskrift = "\nKunde Navn: " + kunde + "\nVikariat Nr: " + vikariatNr;
+        String utskrift = "\n" + kunde + "\nVikariat Nr: " + vikariatNr;
         return utskrift;
     }
     
     //Returnerer innskrvet info til utskriftsområdet
     public String toString(){
-        String utskrift = "\nKunde navn: " + kunde.getNavn() + "\nVikariat Nr: " + vikariatNr + "\nAdresse: " + adresse + 
-                          "\nVarighet: " + varighetfra + "\nTil: " + varighettil + "\nArbeidstid: " + arbeidstid + 
-                          "\nStillingstype: " + stillingstype + "\nKvalifikasjoner: " + kvalifikasjoner + 
-                          "\nLønnsbetingelser: " + lonnsbetingelser + "\nKontaktinfo: " + kontaktinfo + 
-                          "\nStillingsinfo: " + stillingsInfo;
-                          if(vikar!=null)
-                              utskrift += "\nVikaren på stedet: " + vikar.toStringShort();
-                          else
-                              utskrift += "Ingen vikar";
+        String utskrift = 
+            "\nKunde navn: " + kunde.getNavn() + "\nVikariat Nr: " + 
+            vikariatNr + "\nAdresse: " + adresse + "\nVarighet: " + 
+            varighetfra + "\nTil: " + varighettil + "\nArbeidstid: " + 
+            arbeidstid +"\nStillingstype: " + stillingstype + 
+            "\nKvalifikasjoner: " + kvalifikasjoner + "\nLønnsbetingelser: "
+            + lonnsbetingelser + "\nKontaktinfo: " + kontaktinfo +
+            "\nStillingsinfo: " + stillingsInfo;
+                if(vikar!=null)
+                   utskrift += "\nVikaren på stedet: " + vikar.toStringShort();
+                else
+                    utskrift += "Ingen vikar";
         return utskrift;
     }
 }//end Vikariat

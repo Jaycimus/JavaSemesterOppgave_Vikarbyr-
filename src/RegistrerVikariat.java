@@ -77,7 +77,7 @@ public class RegistrerVikariat extends JPanel {
     
     //Konstruktør
     public RegistrerVikariat (JTextArea utskrift, Vikarbyraa v){
-        setLayout(new GridLayout(0,2,20,25));
+        setLayout(new GridLayout(11,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
         this.utskrift = utskrift;

@@ -51,7 +51,7 @@ public class VikarVindu extends JFrame{
         visVikariatListe.addActionListener(lytter);
         
         meny = new JPanel();
-        meny.setLayout(new GridLayout(0,1,0,10));
+        meny.setLayout(new GridLayout(14,1,0,10));
         meny.setPreferredSize(new Dimension(212,200));
         meny.setBorder(new EmptyBorder(5,5,5,0));
         meny.add(visVikariatListe);
@@ -71,6 +71,8 @@ public class VikarVindu extends JFrame{
         
         utskrift = new JTextArea(0,0);
         utskrift.setEditable(false);
+        utskrift.setWrapStyleWord(true);
+        utskrift.setLineWrap(true);
         utskrift.setText("Vikarbruksanvisning");
         JScrollPane sp = new JScrollPane(utskrift);
         sp.setBorder(new EmptyBorder(10,0,10,0));
@@ -80,21 +82,18 @@ public class VikarVindu extends JFrame{
         registrering.setPreferredSize(new Dimension(500, 500));
         
         JPanel card1 = new RegistrerSoknad(utskrift, v);
+        JPanel card2 = new VikariatSokning(utskrift, v);
         
         cards = new JPanel(new CardLayout());
         cards.setBorder(new EmptyBorder(5,0,5,5));
         cards.add(registrering, "Registrering");//Det første blanke feltet som bli opprettet
         cards.add(card1, "RegistrerSøknad");
+        cards.add(card2, "VikariatSøking");
         
         add(meny, BorderLayout.WEST);
         add(sp, BorderLayout.CENTER);
         add(cards, BorderLayout.EAST);
     }//end Konstruktør
-    
-    //Viser vikariatliste i utskfriftsområdet
-    public void visVikariatListe(){
-        v.getVikariatRegister().skrivLedigVikariatListe(utskrift);
-    }
     
     //Viser registrerte og ledige vikariater for vikarer
     private void visLedigeVikariatReg(){
@@ -111,7 +110,9 @@ public class VikarVindu extends JFrame{
               
             }
             else if(e.getSource()==visVikariatListe){
-                visVikariatListe();
+                CardLayout cl = (CardLayout)(cards.getLayout());
+                cl.show(cards, "VikariatSøking");
+                visLedigeVikariatReg();
             }
             else if(e.getSource()==loggUt){
                 Logginn logginn = new Logginn(v);

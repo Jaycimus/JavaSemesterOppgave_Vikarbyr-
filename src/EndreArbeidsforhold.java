@@ -36,7 +36,7 @@ public class EndreArbeidsforhold extends JPanel {
     
     //Konstruktøren
     public EndreArbeidsforhold(JTextArea utskrift, Vikarbyraa v){
-        setLayout(new GridLayout(0,2,20,25));
+        setLayout(new GridLayout(11,2,20,25));
         setPreferredSize(new Dimension(500,500));
         
         this.v = v;
