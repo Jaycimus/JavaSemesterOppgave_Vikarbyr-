@@ -35,9 +35,7 @@ public class VikariatSokning extends JPanel {
     private final String[] kundeVariabler = 
         {"Alternativer", "Navn", "Sektor", "Adresse", "E-post", "TLF", "Vikariater"};
     private final String[] vikariatVariable = 
-        {"Alternativer", "Vikariat Nr.", "Varighet", "Arbeidstid", "Stillingstype", 
-            "Kvalifikasjoner", "Lønnsbetingelser", "Kontaktinfo", "StillingsInfo", 
-            "Ledig", "Arbeidsforhold", "Søknader", "Vikar"};           
+        {"Alternativer", "Vikariat Nr.", "Adresse", "Stillingstype"};           
     private final JButton sok;
     private final JTextArea utskrift;
     
@@ -128,29 +126,11 @@ public class VikariatSokning extends JPanel {
                             return;
                         } else if(valg.matches("Vikariat Nr.")) {
                             tf_vikariat.setText("Eks: 10005 (5 siffer)");
-                        } else if(valg.matches("Varighet")) {
-                            tf_vikariat.setText("Eks: Privat/Offentlig");
-                        } else if(valg.matches("Arbeidstid")) {
+                        } else if(valg.matches("Adresse")) {
                             tf_vikariat.setText("Eks: Tullebakken 5");
                         } else if(valg.matches("Stillingstype")) {
                             tf_vikariat.setText("Eks: Regnskap");
-                        } else if(valg.matches("Kvalifikasjoner")) {
-                            tf_vikariat.setText("Eks: 00000000 (8 siffer)");
-                        } else if(valg.matches("Lønnsbetingelser")) {
-                            tf_vikariat.setText("Eks: 10005 (5 siffer)");
-                        } else if(valg.matches("Kontaktinfo")) {
-                            tf_vikariat.setText("Eks: 10005 (5 siffer)");
-                        } else if(valg.matches("StillingsInfo")) {
-                            tf_vikariat.setText("Eks: 10005 (5 siffer)");
-                        } else if(valg.matches("Ledig")) {
-                            tf_vikariat.setText("Eks: 10005 (5 siffer)");
-                        } else if(valg.matches("Arbeidsforhold")) {
-                            tf_vikariat.setText("Eks: 10005 (5 siffer)");
-                        } else if(valg.matches("Søknader")) {
-                            tf_vikariat.setText("Eks: 10005 (5 siffer)");
-                        } else if(valg.matches("Vikar")) {
-                            tf_vikariat.setText("Eks: 10005 (5 siffer)");
-                        }
+                        }    
                     }
                 }
             }

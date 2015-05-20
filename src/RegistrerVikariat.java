@@ -230,6 +230,7 @@ public class RegistrerVikariat extends JPanel {
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==regVikariat){
                 regVikariat();
+                System.out.println("regVikariat trykker");
             }
         }
     }
