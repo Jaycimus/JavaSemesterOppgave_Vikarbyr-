@@ -208,7 +208,7 @@ public class RegistrerVikariat extends JPanel {
         int vikariatNr = v.getNesteVikariatNr();
         v.setNesteVikariatNr();
         
-        if(Validering.validerVikariatInput(kunde, arbeidsted, cb_ar2.getSelectedIndex(), 
+        if(!Validering.validerVikariatInput(kunde, arbeidsted, cb_ar2.getSelectedIndex(), 
                 cb_ar.getSelectedIndex(), cb_maned2.getSelectedIndex(), cb_maned.getSelectedIndex(),
                 cb_dag2.getSelectedIndex(), cb_dag.getSelectedIndex(), cb_timer2.getSelectedIndex(), 
                 cb_timer.getSelectedIndex(), cb_minutter2.getSelectedIndex(), cb_minutter.getSelectedIndex()
